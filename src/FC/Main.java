@@ -1,22 +1,14 @@
 package FC;
 
+import java.util.ArrayList;
+
 public class Main {
     public static void main (String[] args){
-        System.out.println("Hello World");
-        System.out.println("Test");
-        System.out.println("JPP");
-        System.out.println("ptn de ta race");
-        System.out.println("ZIZI");
-        System.out.println("Coucou");
-        System.out.println("coucou 1");
-        System.out.println("AÎE");
-        System.out.println("Coucoucoucoucououou");
-        System.out.println("Test");
-        System.out.println("Hugo");
-        System.out.println("test2hugo");
-        System.out.println("Aurelien la branche");
-        System.out.println("Test 25000");
-        System.out.println("Aie");
-        System.out.println("Nouveau test");
+        ArrayList<Utilisateur> listeUsers = new ArrayList<>();
+        Utilisateur user1 = new Utilisateur("Walton","Jack","1","123");
+        listeUsers.add(user1);
+        Utilisateur user2 = new Utilisateur("Paul","Jack","2","124");
+        Connexion connexion = new Connexion(user2,listeUsers);
+
     }
 }
