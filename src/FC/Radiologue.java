@@ -46,6 +46,4 @@ public class Radiologue extends Utilisateur {
         return "Dr " + nom.toUpperCase() + " " + prenom;
     }
 
-
-
 }

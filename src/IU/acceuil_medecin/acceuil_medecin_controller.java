@@ -31,7 +31,7 @@ private ResourceBundle resources;
     private TableColumn<?, ?> colonne_dossierPatient; // Value injected by FXMLLoader
 
     @FXML // fx:id="toggle_IDPatient"
-    private ToggleButton toggle_IDPatient; // Value injected by FXMLLoader
+    private ToggleButton toggle_IDPatient;// Value injected by FXMLLoader
 
     @FXML // fx:id="button_ajouterPatient"
     private Button button_ajouterPatient; // Value injected by FXMLLoader
