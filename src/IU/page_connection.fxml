@@ -7,8 +7,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
-fx:controller="IU.page_connection_controller">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="IU.page_connection_controller">
    <children>
       <ImageView fitHeight="175.0" fitWidth="229.0" layoutX="326.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -32,7 +31,7 @@ fx:controller="IU.page_connection_controller">
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Mot de Passe" GridPane.rowIndex="1" />
          </children>
       </GridPane>
-      <Button fx:id="button_seConnecter"  layoutX="467.0" layoutY="330.0" onAction="#SeConnecter" text="Se Connecter"  />
+      <Button fx:id="button_seConnecter" layoutX="467.0" layoutY="330.0" onAction="#SeConnecter" text="Se Connecter" />
    </children>
    <cursor>
       <Cursor fx:constant="DEFAULT" />
