@@ -5,21 +5,20 @@ import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 
 
-
 public class acceuil_medecin_controller {
 
-/**
- * Sample Skeleton for 'acceuil_medecin.fxml' Controller Class
- */
+    /**
+     * Sample Skeleton for 'acceuil_medecin.fxml' Controller Class
+     */
 
-
-@FXML // ResourceBundle that was given to the FXMLLoader
-private ResourceBundle resources;
+    @FXML // ResourceBundle that was given to the FXMLLoader
+    private ResourceBundle resources;
 
     @FXML // URL location of the FXML file that was given to the FXMLLoader
     private URL location;
@@ -30,11 +29,27 @@ private ResourceBundle resources;
     @FXML // fx:id="colonne_dossierPatient"
     private TableColumn<?, ?> colonne_dossierPatient; // Value injected by FXMLLoader
 
+    /**
+     * Toggle Buttons pour la "recherche par"
+     **/
+
     @FXML // fx:id="toggle_IDPatient"
-    private ToggleButton toggle_IDPatient;// Value injected by FXMLLoader
+    private ToggleButton toggle_IDPatient = new ToggleButton("ID Patient");// Value injected by FXMLLoader
+
+    @FXML // fx:id="toggle_medecinPrescripteur"
+    private ToggleButton toggle_medecinPrescripteur = new ToggleButton("Médecin Prescripteur"); // Value injected by FXMLLoader
+
+    @FXML // fx:id="toggle_nomPatient"
+    private ToggleButton toggle_nomPatient = new ToggleButton("Nom patient)"); // Value injected by FXMLLoader
+
+    @FXML
+    private ToggleButton toggle_medecinRadiologue = new ToggleButton("Médecin Radiologue");
+
+    @FXML
+    private ToggleButton toggle_IDExamen = new ToggleButton("ID Examen");
 
     @FXML // fx:id="button_ajouterPatient"
-    private Button button_ajouterPatient; // Value injected by FXMLLoader
+    private Button button_ajouterPatient = new Button("Ajouter Patient"); // Value injected by FXMLLoader
 
     @FXML // fx:id="colonne_IDExamen"
     private TableColumn<?, ?> colonne_IDExamen; // Value injected by FXMLLoader
@@ -63,9 +78,6 @@ private ResourceBundle resources;
     @FXML // fx:id="colonne_medecinPrescripteur"
     private TableColumn<?, ?> colonne_medecinPrescripteur; // Value injected by FXMLLoader
 
-    @FXML // fx:id="toggle_medecinPrescripteur"
-    private ToggleButton toggle_medecinPrescripteur; // Value injected by FXMLLoader
-
     @FXML // fx:id="colonne_patient"
     private TableColumn<?, ?> colonne_patient; // Value injected by FXMLLoader
 
@@ -75,8 +87,6 @@ private ResourceBundle resources;
     @FXML // fx:id="texte_rechercherPar"
     private Text texte_rechercherPar; // Value injected by FXMLLoader
 
-    @FXML // fx:id="toggle_nomPatient"
-    private ToggleButton toggle_nomPatient; // Value injected by FXMLLoader
 
     @FXML // fx:id="tableau_colonnes"
     private TableView<?> tableau_colonnes; // Value injected by FXMLLoader
@@ -97,7 +107,8 @@ private ResourceBundle resources;
 
     } */
 
-    @FXML // This method is called by the FXMLLoader when initialization is complete
+    @FXML
+        // This method is called by the FXMLLoader when initialization is complete
     void initialize() {
         assert colonne_CR != null : "fx:id=\"colonne_CR\" was not injected: check your FXML file 'acceuil_medecin.fxml'.";
         assert colonne_dossierPatient != null : "fx:id=\"colonne_dossierPatient\" was not injected: check your FXML file 'acceuil_medecin.fxml'.";
@@ -121,11 +132,18 @@ private ResourceBundle resources;
         assert champ_date != null : "fx:id=\"champ_date\" was not injected: check your FXML file 'acceuil_medecin.fxml'.";
         assert texte_date != null : "fx:id=\"texte_date\" was not injected: check your FXML file 'acceuil_medecin.fxml'.";
 
+        ToggleGroup groupe_toggle_rechercherPar = new ToggleGroup();
+        toggle_nomPatient.setToggleGroup(groupe_toggle_rechercherPar);
+        toggle_IDPatient.setToggleGroup(groupe_toggle_rechercherPar);
+        toggle_medecinPrescripteur.setToggleGroup(groupe_toggle_rechercherPar);
+        toggle_medecinRadiologue.setToggleGroup(groupe_toggle_rechercherPar);
+        toggle_IDExamen.setToggleGroup(groupe_toggle_rechercherPar);
     }
 
+}
 
 
-    }
+
 
 
 
