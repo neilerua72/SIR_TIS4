@@ -1,4 +1,4 @@
-package IU;
+package IU.acceuil_medecin;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

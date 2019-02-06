@@ -1,4 +1,4 @@
-package IU;
+package IU.page_connection;
 
 
 import FC.Connexion;
@@ -19,7 +19,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-
+import IU.acceuil_medecin.acceuil_medecin_controller;
+import IU.acceuil_medecin.acceuil_medecin_main;
 
 
 public class page_connection_controller {
@@ -57,7 +58,7 @@ public class page_connection_controller {
             button_seConnecter.setText("Erreur");
         }
         else if(connexion.isConnect()){
-            Parent parent = FXMLLoader.load(getClass().getResource("acceuil_medecin.fxml"));
+            Parent parent = FXMLLoader.load(getClass().getClassLoader().getResource("acceuil_medecin.fxml"));
             Scene scene = new Scene(parent);
             Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();     //pas compris
             stage.setScene(scene);
