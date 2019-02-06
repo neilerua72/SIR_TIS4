@@ -114,10 +114,10 @@ public class acceuil_medecin_controller {
      * test
      */
 
-    @FXML
+    /* @FXML
     void b8cada00(ActionEvent event) {
 
-    }
+    } */
 
    /* @FXML
     void 6f6e6ead(ActionEvent event) {
@@ -155,8 +155,6 @@ public class acceuil_medecin_controller {
         toggle_medecinPrescripteur.setToggleGroup(groupe_toggle_rechercherPar);
         toggle_medecinRadiologue.setToggleGroup(groupe_toggle_rechercherPar);
         toggle_IDExamen.setToggleGroup(groupe_toggle_rechercherPar);
-
-
 
     }
 
