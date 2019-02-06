@@ -42,4 +42,11 @@ public class Utilisateur {
     public void setMdp(String mdp) {
         this.mdp = mdp;
     }
+    public boolean equals (Utilisateur user){
+        if(this.id.equals(user.getId())&&this.mdp.equals(user.getMdp()))
+            return true;
+
+        else
+            return false;
+    }
 }

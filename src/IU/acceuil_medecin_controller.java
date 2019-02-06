@@ -1,4 +1,4 @@
-package IU.acceuil_medecin;
+package IU;
 
 import java.net.URL;
 import java.util.ResourceBundle;

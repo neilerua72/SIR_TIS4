@@ -1,17 +1,25 @@
-package IU.page_connection;
+package IU;
 
 
 import javafx.fxml.FXML;
 
+import javafx.event.ActionEvent;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
+
 
 
 public class page_connection_controller {
-
 /**
  * Sample Skeleton for 'page_connection.fxml' Controller Class
  */
@@ -32,6 +40,21 @@ public class page_connection_controller {
         @FXML // fx:id="button_seConnecter"
         private Button button_seConnecter; // Value injected by FXMLLoader
 
+    @FXML
+    private void SeConnecter(ActionEvent e) throws IOException {
+        System.out.println("aaaaaaaaaaaaaaaaaaaaaa");
+        if(champ_nomUtilisateur.getText().isEmpty() || champ_motDePasse.getText().isEmpty()){
+            button_seConnecter.setText("Erreur");
+        }
+        else{
+            Parent parent = FXMLLoader.load(getClass().getResource("acceuil_medecin.fxml"));
+            Scene scene = new Scene(parent);
+            Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();     //pas compris
+            stage.setScene(scene);
+            stage.show();
+
+        }
+    }
         @FXML // This method is called by the FXMLLoader when initialization is complete
         void initialize() {
             assert champ_nomUtilisateur != null : "fx:id=\"champ_nomUtilisateur\" was not injected: check your FXML file 'page_connection.fxml'.";
@@ -39,6 +62,7 @@ public class page_connection_controller {
             assert button_seConnecter != null : "fx:id=\"button_seConnecter\" was not injected: check your FXML file 'page_connection.fxml'.";
 
         }
+
     }
 
 
