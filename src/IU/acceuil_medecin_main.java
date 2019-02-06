@@ -12,7 +12,6 @@ public class acceuil_medecin_main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         // just load fxml file and display it in the stage:
-
         FXMLLoader loader = new FXMLLoader(getClass().getResource("acceuil_medecin.fxml"));
         Parent root = loader.load();
         Scene scene = new Scene(root);

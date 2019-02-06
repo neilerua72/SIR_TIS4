@@ -3,12 +3,18 @@ package IU;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import FC.Patient;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
 
 public class acceuil_medecin_controller {
@@ -42,23 +48,30 @@ public class acceuil_medecin_controller {
     @FXML // fx:id="toggle_nomPatient"
     private ToggleButton toggle_nomPatient = new ToggleButton("Nom patient)"); // Value injected by FXMLLoader
 
-    @FXML
+    @FXML // fx:id="toggle_medecinRadiologue"
     private ToggleButton toggle_medecinRadiologue = new ToggleButton("Médecin Radiologue");
 
-    @FXML
+    @FXML // fx:id="toggle_IDExamen"
     private ToggleButton toggle_IDExamen = new ToggleButton("ID Examen");
+
+
+    /**
+     * Bouton consulter tous les DP et bouton ajouter un patient
+     * **/
+    @FXML // fx:id="button_consulterTousLesDP"
+    private Button button_consulterTousLesDP; // Value injected by FXMLLoader
 
     @FXML // fx:id="button_ajouterPatient"
     private Button button_ajouterPatient = new Button("Ajouter Patient"); // Value injected by FXMLLoader
 
+    /**
+     * Colones du tableau
+     * **/
     @FXML // fx:id="colonne_IDExamen"
     private TableColumn<?, ?> colonne_IDExamen; // Value injected by FXMLLoader
 
     @FXML // fx:id="colonne_typeExamen"
     private TableColumn<?, ?> colonne_typeExamen; // Value injected by FXMLLoader
-
-    @FXML // fx:id="button_consulterTousLesDP"
-    private Button button_consulterTousLesDP; // Value injected by FXMLLoader
 
     @FXML // fx:id="colonne_IDPatient"
     private TableColumn<?, ?> colonne_IDPatient; // Value injected by FXMLLoader
@@ -87,7 +100,6 @@ public class acceuil_medecin_controller {
     @FXML // fx:id="texte_rechercherPar"
     private Text texte_rechercherPar; // Value injected by FXMLLoader
 
-
     @FXML // fx:id="tableau_colonnes"
     private TableView<?> tableau_colonnes; // Value injected by FXMLLoader
 
@@ -96,6 +108,18 @@ public class acceuil_medecin_controller {
 
     @FXML // fx:id="texte_date"
     private Text texte_date; // Value injected by FXMLLoader
+
+
+    /**
+     * test
+     */
+    final ObservableList<FC.Patient> data = FXCollections.observableArrayList(
+            new Patient("Jacob", "Smith"),
+            new Patient("Isabella", "Johnson"),
+            new Patient("Ethan", "Williams"),
+            new Patient("Emma", "Jones"),
+            new Patient("Michael", "Brown")
+
 
     @FXML
     void b8cada00(ActionEvent event) {
@@ -138,6 +162,19 @@ public class acceuil_medecin_controller {
         toggle_medecinPrescripteur.setToggleGroup(groupe_toggle_rechercherPar);
         toggle_medecinRadiologue.setToggleGroup(groupe_toggle_rechercherPar);
         toggle_IDExamen.setToggleGroup(groupe_toggle_rechercherPar);
+
+
+        public void pressButton_AjouterPatient(ActionEvent e) throws Exception {
+            try {
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("IU.ajouter_patient.ajouter_patient.fxml"));
+                Parent root1 = (Parent) fxmlLoader.load();
+                Stage stage = new Stage();
+                stage.setScene(new Scene(root1));
+                stage.show();
+            } catch(Exception e) {
+                e.printStackTrace();
+            }
+        }
     }
 
 }
