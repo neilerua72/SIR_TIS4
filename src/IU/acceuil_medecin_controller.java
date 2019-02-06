@@ -113,13 +113,6 @@ public class acceuil_medecin_controller {
     /**
      * test
      */
-    final ObservableList<FC.Patient> data = FXCollections.observableArrayList(
-            new Patient("Jacob", "Smith"),
-            new Patient("Isabella", "Johnson"),
-            new Patient("Ethan", "Williams"),
-            new Patient("Emma", "Jones"),
-            new Patient("Michael", "Brown")
-
 
     @FXML
     void b8cada00(ActionEvent event) {
@@ -164,17 +157,7 @@ public class acceuil_medecin_controller {
         toggle_IDExamen.setToggleGroup(groupe_toggle_rechercherPar);
 
 
-        public void pressButton_AjouterPatient(ActionEvent e) throws Exception {
-            try {
-                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("IU.ajouter_patient.ajouter_patient.fxml"));
-                Parent root1 = (Parent) fxmlLoader.load();
-                Stage stage = new Stage();
-                stage.setScene(new Scene(root1));
-                stage.show();
-            } catch(Exception e) {
-                e.printStackTrace();
-            }
-        }
+
     }
 
 }
