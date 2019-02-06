@@ -9,7 +9,7 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="583.0" prefWidth="885.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="IU.acceuil_medecin.acceuil_medecin_controller">
+<AnchorPane prefHeight="583.0" prefWidth="885.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
     <MenuBar prefHeight="25.0" prefWidth="896.0" VBox.vgrow="NEVER">
       <menus>
