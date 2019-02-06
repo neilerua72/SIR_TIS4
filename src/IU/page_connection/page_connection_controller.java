@@ -3,14 +3,8 @@ package IU.page_connection;
 
 import FC.Connexion;
 import FC.Utilisateur;
-import javafx.fxml.FXML;
-
 import javafx.event.ActionEvent;
-import java.io.IOException;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.ResourceBundle;
-
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -19,8 +13,12 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import IU.acceuil_medecin.acceuil_medecin_controller;
-import IU.acceuil_medecin.acceuil_medecin_main;
+
+import java.io.File;
+import java.io.IOException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.ResourceBundle;
 
 
 public class page_connection_controller {
@@ -58,7 +56,9 @@ public class page_connection_controller {
             button_seConnecter.setText("Erreur");
         }
         else if(connexion.isConnect()){
-            Parent parent = FXMLLoader.load(getClass().getClassLoader().getResource("acceuil_medecin.fxml"));
+            URL url_accreuil_medecin;
+            //url_accreuil_medecin = new File("IU.acceuil_medecin.acceuil_medecin.fxml").toURL();
+            Parent parent = FXMLLoader.load(getClass().getResource("/IU/acceuil_medecin/acceuil_medecin.fxml"));
             Scene scene = new Scene(parent);
             Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();     //pas compris
             stage.setScene(scene);
