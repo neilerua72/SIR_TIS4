@@ -1,11 +1,14 @@
 package IU;
 
 
+import FC.Connexion;
+import FC.Utilisateur;
 import javafx.fxml.FXML;
 
 import javafx.event.ActionEvent;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import javafx.fxml.FXMLLoader;
@@ -43,15 +46,26 @@ public class page_connection_controller {
     @FXML
     private void SeConnecter(ActionEvent e) throws IOException {
         System.out.println("aaaaaaaaaaaaaaaaaaaaaa");
+        String nom = champ_nomUtilisateur.getText();
+        String mdp = champ_motDePasse.getText();
+        Utilisateur user = new Utilisateur(nom,mdp);
+        ArrayList<Utilisateur> listeUsers = new ArrayList<>();
+        Utilisateur user1 = new Utilisateur("Walton","Jack","1","123");
+        listeUsers.add(user1);
+        Connexion connexion = new Connexion(user,listeUsers);
         if(champ_nomUtilisateur.getText().isEmpty() || champ_motDePasse.getText().isEmpty()){
             button_seConnecter.setText("Erreur");
         }
-        else{
+        else if(connexion.isConnect()){
             Parent parent = FXMLLoader.load(getClass().getResource("acceuil_medecin.fxml"));
             Scene scene = new Scene(parent);
             Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();     //pas compris
             stage.setScene(scene);
             stage.show();
+
+        }
+        else{
+            System.out.println("Erreur mdp");
 
         }
     }

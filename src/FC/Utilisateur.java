@@ -11,6 +11,12 @@ public class Utilisateur {
         this.setId(id);
         this.setMdp(mdp);
     }
+    public Utilisateur(String id, String mdp){
+        this.mdp=mdp;
+        this.id=id;
+        this.nom="jacky";
+        this.prenom="Paul";
+    }
     public String getNom() {
         return nom;
     }
