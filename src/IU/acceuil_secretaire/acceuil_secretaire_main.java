@@ -26,5 +26,6 @@ public class acceuil_secretaire_main extends Application {
         // starts the FX toolkit, instantiates this class,
         // and calls start(...) on the FX Application thread:
         launch(args);
+
     }
     }

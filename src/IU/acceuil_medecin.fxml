@@ -9,7 +9,7 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="583.0" prefWidth="885.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="583.0" prefWidth="885.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="IU.acceuil_medecin.acceuil_medecin_controller">
    <children>
     <MenuBar prefHeight="25.0" prefWidth="896.0" VBox.vgrow="NEVER">
       <menus>
@@ -75,8 +75,8 @@
                   <ToggleButton fx:id="toggle_nomPatient" mnemonicParsing="false" text="Nom Patient" />
                   <ToggleButton fx:id="toggle_IDPatient" mnemonicParsing="false" text="ID Patient" GridPane.columnIndex="1" />
                   <ToggleButton fx:id="toggle_medecinPrescripteur" mnemonicParsing="false" text="Médecin Prescripteur" GridPane.columnIndex="2" />
-                  <ToggleButton mnemonicParsing="false" text="Médecin Radiologue" GridPane.columnIndex="3" />
-                  <ToggleButton mnemonicParsing="false" text="ID Examen" GridPane.columnIndex="4" />
+                  <ToggleButton fx:id="toggle_medecinRadiologue" mnemonicParsing="false" text="Médecin Radiologue" GridPane.columnIndex="3" />
+                  <ToggleButton fx:id="toggle_IDExamen" mnemonicParsing="false" text="ID Examen" GridPane.columnIndex="4" />
                </children>
             </GridPane>
             <TableView fx:id="tableau_colonnes" layoutY="114.0" prefHeight="444.0" prefWidth="896.0">
