@@ -9,7 +9,8 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="583.0" prefWidth="885.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="583.0" prefWidth="885.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+fx:controller="IU.acceuil_medecin.acceuil_medecin_controller">
    <children>
     <MenuBar prefHeight="25.0" prefWidth="896.0" VBox.vgrow="NEVER">
       <menus>
@@ -52,7 +53,7 @@
     </MenuBar>
     <AnchorPane layoutY="25.0" maxHeight="-1.0" maxWidth="-1.0" prefHeight="558.0" prefWidth="881.0" VBox.vgrow="ALWAYS">
          <children>
-            <Button fx:id="button_ajouterPatient" layoutX="687.0" layoutY="67.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="204.0" text="Ajouter un Patient" />
+            <Button fx:id="button_ajouterPatient" layoutX="687.0" layoutY="67.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="204.0" onAction="#AjouterPat" text="Ajouter un Patient" />
             <Text fx:id="texte_rechercherPar" layoutX="14.0" layoutY="21.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Rechercher par" />
             <Rectangle fx:id="ractangle_recherche" arcHeight="5.0" arcWidth="5.0" fill="#b8cada00" height="77.0" layoutX="4.0" layoutY="25.0" stroke="#6f6e6ead" strokeLineCap="ROUND" strokeType="INSIDE" width="677.0" />
             <GridPane layoutX="14.0" layoutY="27.0" prefHeight="70.0" prefWidth="684.0">

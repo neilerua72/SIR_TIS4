@@ -1,5 +1,6 @@
 package IU.acceuil_medecin;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -9,6 +10,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -109,6 +111,16 @@ public class acceuil_medecin_controller {
     @FXML // fx:id="texte_date"
     private Text texte_date; // Value injected by FXMLLoader
 
+
+    @FXML
+    private void AjouterPat (ActionEvent event) throws IOException {
+        Parent parent = FXMLLoader.load(getClass().getResource("/IU/ajouter_patient/ajouter_patient.fxml"));
+        Scene scene = new Scene(parent);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();     //pas compris
+        stage.setScene(scene);
+        stage.show();
+
+    }
 
     /**
      * test

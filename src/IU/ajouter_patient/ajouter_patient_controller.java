@@ -62,7 +62,7 @@ public class ajouter_patient_controller {
 
     }
 
-    public void setAjoutPatientStage(Stage dialogStage){
+  /*  public void setAjoutPatientStage(Stage dialogStage){
         this.ajoutPatientStage = dialogStage;
     }
 
@@ -71,20 +71,20 @@ public class ajouter_patient_controller {
 
         ajoutpatient_champ_prenom.setText(patient.getNom());
         ajoutpatient_champ_nom.setText(patient.getPrenom());
-    }
+    }*/
 
     /**
      * Returns true if the user clicked OK, false otherwise.
      *
      * @return
      */
-    public boolean isValiderClicked() {
+ /*   public boolean isValiderClicked() {
         return validerClicked;
     }
 
-    /**
+    *//**
      * Called when the user clicks Valider.
-     */
+     *//*
     private void handleValider() {
         if (isInputValid()) {
             patient.setPrenom(ajoutpatient_champ_prenom.getText());
@@ -93,7 +93,7 @@ public class ajouter_patient_controller {
             validerClicked = true;
             ajoutPatientStage.close();
         }
-    }
+    }*/
 
 
     /**
