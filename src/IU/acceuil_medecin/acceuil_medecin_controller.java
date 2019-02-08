@@ -17,10 +17,13 @@ import javafx.scene.control.*;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import FC.Connexion;
+import javafx.stage.StageStyle;
 
+import javax.script.Bindings;
 
 public class acceuil_medecin_controller {
-
+    Connexion connect;
     /**
      * Sample Skeleton for 'acceuil_medecin.fxml' Controller Class
      */
@@ -61,10 +64,12 @@ public class acceuil_medecin_controller {
      * Bouton consulter tous les DP et bouton ajouter un patient
      * **/
     @FXML // fx:id="button_consulterTousLesDP"
-    private Button button_consulterTousLesDP; // Value injected by FXMLLoader
+    private Button button_consulterTousLesDP;// Value injected by FXMLLoader
+
+
 
     @FXML // fx:id="button_ajouterPatient"
-    private Button button_ajouterPatient = new Button("Ajouter Patient"); // Value injected by FXMLLoader
+    private Button button_ajouterPatient = new Button("Ajouter Patient");// Value injected by FXMLLoader
 
     /**
      * Colones du tableau
@@ -112,17 +117,23 @@ public class acceuil_medecin_controller {
     private Text texte_date; // Value injected by FXMLLoader
 
 
+
+
     @FXML
     private void AjouterPat (ActionEvent event) throws IOException {
         Parent parent = FXMLLoader.load(getClass().getResource("/IU/ajouter_patient/ajouter_patient.fxml"));
         Scene scene = new Scene(parent);
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();     //pas compris
+        //Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();     //pas compris
+        Stage stage = new Stage(StageStyle.DECORATED);
         stage.setScene(scene);
         stage.show();
 
+
     }
 
-    /**
+
+
+/**
      * test
      */
 
@@ -160,6 +171,8 @@ public class acceuil_medecin_controller {
         assert tableau_colonnes != null : "fx:id=\"tableau_colonnes\" was not injected: check your FXML file 'acceuil_medecin.fxml'.";
         assert champ_date != null : "fx:id=\"champ_date\" was not injected: check your FXML file 'acceuil_medecin.fxml'.";
         assert texte_date != null : "fx:id=\"texte_date\" was not injected: check your FXML file 'acceuil_medecin.fxml'.";
+
+
 
         ToggleGroup groupe_toggle_rechercherPar = new ToggleGroup();
         toggle_nomPatient.setToggleGroup(groupe_toggle_rechercherPar);

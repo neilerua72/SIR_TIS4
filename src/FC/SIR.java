@@ -9,11 +9,11 @@ public class SIR {
     public SIR(Connexion connexion, ArrayList listePatient){
         this.connexion=connexion;
         this.listePatient=listePatient;
-        if(connexion.isConnect()){
+       /* if(connexion.isConnect()){
 
         }
         else{
 
-        }
+        }*/
     }
 }

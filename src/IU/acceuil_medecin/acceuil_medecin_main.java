@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import  FC.Connexion;
 
 public class acceuil_medecin_main extends Application {
 
@@ -18,6 +19,7 @@ public class acceuil_medecin_main extends Application {
         primaryStage.setScene(scene);
         primaryStage.setTitle("acceuil");
         primaryStage.show();
+
     }
 
 
