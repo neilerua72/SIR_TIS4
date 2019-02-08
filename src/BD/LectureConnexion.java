@@ -1,16 +1,13 @@
 package BD;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.*;
 
-public class Lecture {
+public class LectureConnexion {
     public static void main(String[] args) {
         Connection connexion = null;
+        Statement statement = null;
+        ResultSet resultat = null;
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            System.out.println("Driver O.K.");
 
             String url = "jdbc:mysql://192.168.64.2/bdsir";
             String user = "hugo";
@@ -20,11 +17,11 @@ public class Lecture {
             System.out.println("Connexion effective !");
 
             //Création de l'objet gérant les requêtes
-            Statement statement= connexion.createStatement();
+            statement = connexion.createStatement();
             //Exécution d'une requete de lecture
-            ResultSet resultat = statement.executeQuery("SELECT id,mdp,prénom,nom,Spécialité FROM Connexion;");
+            resultat = statement.executeQuery("SELECT id,mdp,prénom,nom,Spécialité FROM Connexion;");
             //Récupération des données du résultat de la requete de lecture
-            while(resultat.next()){
+            while (resultat.next()) {
                 int idConnexion = resultat.getInt("id");
                 int motDePasseUtilisateur = resultat.getInt("mdp");
                 String prenom = resultat.getString("prénom");
@@ -36,14 +33,35 @@ public class Lecture {
                 System.out.println(prenom);
                 System.out.println(nom);
                 System.out.println(specialite);
-
             }
-
-
 
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
+        //libération des  ressources
+        finally {
+            if (resultat != null) {
+                try {
+                    /* On commence par fermer le ResultSet */
+                    resultat.close();
+                } catch (SQLException ignore) {
+                }
+            }
+            if (statement != null) {
+                try {
+                    /* Puis on ferme le Statement */
+                    statement.close();
+                } catch (SQLException ignore) {
+                }
+            }
+            if (connexion != null) {
+                try {
+                    /* Et enfin on ferme la connexion */
+                    connexion.close();
+                } catch (SQLException ignore) {
+                }
+            }
+        }
 
     }
+}
