@@ -2,7 +2,7 @@ package BD;
 
 import java.sql.*;
 
-public class EcritureConnexion {
+public class EcriturePatient {
     public static void main(String[] args) {
         Connection connexion = null;
         Statement statement = null;
@@ -19,11 +19,11 @@ public class EcritureConnexion {
             //Création de l'objet gérant les requêtes
             statement = connexion.createStatement();
             //Exécution d'une requete d'écriture
-            int statut = statement.executeUpdate("INSERT INTO Connexion (id,mdp,prénom,nom,Spécialité)" +
-                    "VALUES ('444444','123456','hugo','bosquet','manipulateur');");
+            int statut = statement.executeUpdate("INSERT INTO `Patient` (`nom`, `prenom`, `id`, `dateDeNaissance`, `mail`, `numeroTel`, `rue`, `infoComp`, `codePostal`, `ville`, `pathologie`, `nomMedecinPrescripteur`, `serviceAcceuil`, `dateRDV`) VALUES\n" +
+                            "('Techer', 'Leslie', 234567, '1995-02-08', 'Leslie.Techer@gmail.com', 062350563, '26 chemin de la réunion', NULL, 69007, 'Lyon', 'Fracture', 'Cohen', 'Urgence', '2019-02-09 10:00:00');");
             //Récupération des données du statut de la requete d'écriture
             System.out.println("Résultat de la requête d'insertion:" +statut + ".");
-            }
+        }
         catch (Exception e) {
             e.printStackTrace();
         }
@@ -46,4 +46,3 @@ public class EcritureConnexion {
         }
     }
 }
-
