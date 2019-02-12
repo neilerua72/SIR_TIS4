@@ -2,7 +2,7 @@ package BD;
 
 import java.sql.*;
 
-public class Connect {
+public class ConnectLocal {
     public static void main(String[] args) {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");

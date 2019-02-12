@@ -10,9 +10,9 @@ public class LectureExamen {
 
         try {
 
-            String url = "jdbc:mysql://192.168.64.2/bdsir";
-            String user = "hugo";
-            String passwd = "polytech";
+            String url = "jdbc:mysql://mysql-hugdude.alwaysdata.net/hugdude_bdsir?serverTimezone=UTC";
+            String user = "hugdude";
+            String passwd = "hugo";
 
             connexion = DriverManager.getConnection(url, user, passwd);
             System.out.println("Connexion effective !");
