@@ -9,9 +9,9 @@ public class ConnexionBD {
             Class.forName("com.mysql.cj.jdbc.Driver");
             System.out.println("Driver O.K.");
 
-            String url = "jdbc:mysql://mysql-hugdude.alwaysdata.net/hugdude_bdsir?serverTimezone=UTC";
-            String user = "hugdude";
-            String passwd = "hugo";
+            String url = "jdbc:mysql://db4free.net/bdsirtis";
+            String user = "testbd";
+            String passwd = "12345678";
 
             Connection conn = DriverManager.getConnection(url, user, passwd);
             System.out.println("Connexion effective !");
