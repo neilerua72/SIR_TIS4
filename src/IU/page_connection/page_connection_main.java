@@ -1,12 +1,10 @@
-package IU;
+package IU.page_connection;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
-import java.io.IOException;
 
 public class page_connection_main extends Application {
 
@@ -30,4 +28,4 @@ public class page_connection_main extends Application {
         launch(args);
 
     }
-    }
+}

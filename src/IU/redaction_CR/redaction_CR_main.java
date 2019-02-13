@@ -1,4 +1,4 @@
-package IU;
+package IU.redaction_CR;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -6,20 +6,19 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class acceuil_medecin_main extends Application {
+public class redaction_CR_main extends Application {
 
 
     @Override
     public void start(Stage primaryStage) throws Exception {
         // just load fxml file and display it in the stage:
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("acceuil_medecin.fxml"));
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("redaction_CR.fxml"));
         Parent root = loader.load();
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
-        primaryStage.setTitle("acceuil");
         primaryStage.show();
     }
-
 
     // main method to support non-JavaFX-aware environments:
 
@@ -28,4 +27,4 @@ public class acceuil_medecin_main extends Application {
         // and calls start(...) on the FX Application thread:
         launch(args);
     }
-    }
+}

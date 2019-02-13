@@ -1,50 +1,78 @@
 package FC;
 
-import javax.rmi.CORBA.Util;
+import javafx.beans.value.ObservableValue;
+
 import java.util.ArrayList;
 
 public class Connexion {
-    private boolean connect;
+    private boolean connectMed;
+    private boolean connectMan;
     private TypeConnexion type;
-    private Utilisateur user;
+    private Utilisateur med;
+    private Utilisateur man;
     private ArrayList<Utilisateur> user1;
+    private ArrayList<Utilisateur> user2;
+
 
     public Connexion(boolean verif, TypeConnexion type, Utilisateur user){
-        this.connect=verif;
+        this.connectMed=verif;
         this.type=type;
-        this.user=user;
+        this.med=user;
 
     }
 
 
-    public Connexion(Utilisateur user,ArrayList<Utilisateur> user1){
-        connect=false;
+    public Connexion(Utilisateur user,ArrayList<Utilisateur> user1,ArrayList<Utilisateur> user2){
+        connectMed=false;
+        connectMan = false;
         int i=0;
-        while(i<user1.size()&&connect==false){
+        int j = 0;
+        while(i<user1.size()&& connectMed==false){
             if(user1.get(i).equals(user)){
-                this.connect=true;
+                this.connectMed=true;
                 this.type=TypeConnexion.MED;
-                this.user=user;
-                System.out.println("Bien connecté");
+                this.med=user;
+                System.out.println("Connexion medecin");
             }
             i++;
         }
-        if(i>user1.size()-1){
-            this.type=TypeConnexion.MED;
-            this.user=user;
-            System.out.println("Erreur");
+
+        while(j<user2.size()&&connectMan==false) {
+            if (user2.get(j).equals(user)) {
+                this.connectMan = true;
+                this.type = TypeConnexion.MAN;
+                this.man = user;
+                System.out.println("Connexion manip");
+            }
+            j++;
         }
+        if(i>user1.size()){
+            this.type=TypeConnexion.MED;
+            this.med=user;
+            System.out.println("ErreurMed");
+        }
+            if(j>user2.size()){
+                this.type=TypeConnexion.MAN;
+                this.man=user;
+                System.out.println("ErreurMan");
+            }
     }
 
 
-    public boolean isConnect() {
-        return connect;
+    public boolean isConnectMed() {
+        return connectMed;
     }
 
+    public boolean isConnectMan() {
+        return connectMan;
+    }
     public TypeConnexion getType() {
         return type;
     }
-    public Utilisateur getUser(){
-        return this.user;
+    public Utilisateur getMed(){
+        return this.med;
+    }
+    public Utilisateur getMan(){
+        return this.man;
     }
 }

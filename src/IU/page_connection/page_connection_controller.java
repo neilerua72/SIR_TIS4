@@ -1,16 +1,10 @@
-package IU;
+package IU.page_connection;
 
 
 import FC.Connexion;
 import FC.Utilisateur;
-import javafx.fxml.FXML;
-
 import javafx.event.ActionEvent;
-import java.io.IOException;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.ResourceBundle;
-
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -20,7 +14,11 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-
+import java.io.File;
+import java.io.IOException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.ResourceBundle;
 
 public class page_connection_controller {
 /**
@@ -45,28 +43,48 @@ public class page_connection_controller {
 
     @FXML
     private void SeConnecter(ActionEvent e) throws IOException {
-        System.out.println("aaaaaaaaaaaaaaaaaaaaaa");
         String nom = champ_nomUtilisateur.getText();
         String mdp = champ_motDePasse.getText();
         Utilisateur user = new Utilisateur(nom,mdp);
-        ArrayList<Utilisateur> listeUsers = new ArrayList<>();
+        ArrayList<Utilisateur> listeMed = new ArrayList<>();
+        ArrayList<Utilisateur> listeMan = new ArrayList<>();
         Utilisateur user1 = new Utilisateur("Walton","Jack","1","123");
-        listeUsers.add(user1);
-        Connexion connexion = new Connexion(user,listeUsers);
+        Utilisateur user2 = new Utilisateur("Dalton","Max","2","321");
+        listeMed.add(user1);
+        listeMan.add(user2);
+        Connexion connexion = new Connexion(user,listeMed,listeMan);
         if(champ_nomUtilisateur.getText().isEmpty() || champ_motDePasse.getText().isEmpty()){
             button_seConnecter.setText("Erreur");
         }
-        else if(connexion.isConnect()){
-            Parent parent = FXMLLoader.load(getClass().getResource("acceuil_medecin.fxml"));
+        else if(connexion.isConnectMed() == true && connexion.isConnectMan() == false){
+            URL url_accreuil_medecin;
+            //url_accreuil_medecin = new File("IU.acceuil_medecin.acceuil_medecin.fxml").toURL();
+            Parent parent = FXMLLoader.load(getClass().getResource("/IU/acceuil_medecin/acceuil_medecin.fxml"));
             Scene scene = new Scene(parent);
             Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();     //pas compris
             stage.setScene(scene);
             stage.show();
 
+            System.out.println("Medecin");
+
         }
         else{
-            System.out.println("Erreur mdp");
+            if(connexion.isConnectMan() == true && connexion.isConnectMed() == false){
+                URL url_accreuil_medecin;
+                //url_accreuil_medecin = new File("IU.acceuil_medecin.acceuil_medecin.fxml").toURL();
+                Parent parent = FXMLLoader.load(getClass().getResource("/IU/acceuil_medecin/acceuil_medecin.fxml"));
+                Scene scene = new Scene(parent);
+                Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();     //pas compris
+                stage.setScene(scene);
+                stage.show();
 
+                System.out.println("Manipulateur");
+            }
+
+
+        }
+        if(connexion.isConnectMan() == false && connexion.isConnectMed() == false) {
+            System.out.println("Erreur connexion");
         }
     }
         @FXML // This method is called by the FXMLLoader when initialization is complete

@@ -1,11 +1,17 @@
 package IU.ajouter_patient;
 
+import FC.Patient;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 import javax.print.DocFlavor;
 import java.util.ResourceBundle;
+
+
+
 
 public class ajouter_patient_controller {
     @FXML // ResourceBundle that was given to the FXMLLoader
@@ -38,6 +44,11 @@ public class ajouter_patient_controller {
     @FXML // fx:id="ajoutpatient_champ_IDPatient"
     private TextField ajoutpatient_champ_IDPatient; // Value injected by FXMLLoader
 
+
+    private Stage ajoutPatientStage;
+    private Patient patient;
+    private boolean validerClicked = false;
+
     @FXML // This method is called by the FXMLLoader when initialization is complete
     void initialize() {
         assert ajoutpatient_champ_nom != null : "fx:id=\"ajoutpatient_champ_nom\" was not injected: check your FXML file 'ajouter_patient.fxml'.";
@@ -51,6 +62,74 @@ public class ajouter_patient_controller {
 
     }
 
+  /*  public void setAjoutPatientStage(Stage dialogStage){
+        this.ajoutPatientStage = dialogStage;
+    }
+
+    public void setPatient(Patient person) {
+        this.patient = person;
+
+        ajoutpatient_champ_prenom.setText(patient.getNom());
+        ajoutpatient_champ_nom.setText(patient.getPrenom());
+    }*/
+
+    /**
+     * Returns true if the user clicked OK, false otherwise.
+     *
+     * @return
+     */
+ /*   public boolean isValiderClicked() {
+        return validerClicked;
+    }
+
+    *//**
+     * Called when the user clicks Valider.
+     *//*
+    private void handleValider() {
+        if (isInputValid()) {
+            patient.setPrenom(ajoutpatient_champ_prenom.getText());
+            patient.setNom( ajoutpatient_champ_nom.getText());
+
+            validerClicked = true;
+            ajoutPatientStage.close();
+        }
+    }*/
+
+
+    /**
+     * Called when the user clicks Annuler.
+     */
+    @FXML
+    private void handleCancel() {
+        ajoutPatientStage.close();
+    }
+
+    /**
+     * Validates the user input in the text fields.
+     *
+     * @return true if the input is valid
+     */
+    private boolean isInputValid() {
+        String errorMessage = "";
+
+        if (ajoutpatient_champ_prenom.getText() == null || ajoutpatient_champ_nom.getText().length() == 0) {
+            errorMessage += "No valid first name!\n";
+        }
+        if (errorMessage.length() == 0) {
+            return true;
+        } else {
+            // Show the error message.
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.initOwner(ajoutPatientStage);
+            alert.setTitle("Invalid Fields");
+            alert.setHeaderText("Please correct invalid fields");
+            alert.setContentText(errorMessage);
+
+            alert.showAndWait();
+
+            return false;
+        }
+    }
 }
 
 
