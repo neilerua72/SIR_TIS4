@@ -6,6 +6,7 @@ import java.util.ResourceBundle;
 
 import FC.Patient;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,11 +15,13 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import FC.Connexion;
 import javafx.stage.StageStyle;
+import FC.Utilisateur;
 
 import javax.script.Bindings;
 
@@ -133,6 +136,10 @@ public class acceuil_medecin_controller {
 
 
 
+
+
+
+
 /**
      * test
      */
@@ -149,7 +156,7 @@ public class acceuil_medecin_controller {
 
     @FXML
         // This method is called by the FXMLLoader when initialization is complete
-    void initialize() {
+    void initialize(URL url, ResourceBundle rb) {
         assert colonne_CR != null : "fx:id=\"colonne_CR\" was not injected: check your FXML file 'acceuil_medecin.fxml'.";
         assert colonne_dossierPatient != null : "fx:id=\"colonne_dossierPatient\" was not injected: check your FXML file 'acceuil_medecin.fxml'.";
         assert toggle_IDPatient != null : "fx:id=\"toggle_IDPatient\" was not injected: check your FXML file 'acceuil_medecin.fxml'.";
@@ -181,6 +188,16 @@ public class acceuil_medecin_controller {
         toggle_medecinRadiologue.setToggleGroup(groupe_toggle_rechercherPar);
         toggle_IDExamen.setToggleGroup(groupe_toggle_rechercherPar);
 
+        /*final ObservableList<Utilisateur> data = FXCollections.observableArrayList(
+                new Utilisateur("1","Jacob")
+        );
+
+        colonne_patient.setCellValueFactory(new PropertyValueFactory<Utilisateur,String>("Patient"));
+
+        colonne_IDPatient.setCellValueFactory(new PropertyValueFactory<Utilisateur,String>("name"));
+
+
+        myTable.setItems(data);*/
     }
 
 }

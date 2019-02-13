@@ -82,7 +82,7 @@ fx:controller="IU.acceuil_medecin.acceuil_medecin_controller">
             </GridPane>
             <TableView fx:id="tableau_colonnes" layoutY="114.0" prefHeight="444.0" prefWidth="896.0">
               <columns>
-                <TableColumn fx:id="colonne_patient" prefWidth="84.0" text="Patient" />
+                  <TableColumn fx:id="colonne_patient" prefWidth="84.0" text="Patient" />
                 <TableColumn fx:id="colonne_IDPatient" prefWidth="78.0" text="ID Patient" />
                   <TableColumn fx:id="colonne_dateExamen" prefWidth="90.0" text="Date Examen" />
                   <TableColumn fx:id="colonne_medecinRadiologue" prefWidth="125.0" text="Médecin Radiologue" />
