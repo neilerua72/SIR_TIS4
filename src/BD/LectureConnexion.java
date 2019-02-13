@@ -9,12 +9,8 @@ public class LectureConnexion {
         ResultSet resultat = null;
         try {
 
-            String url = "jdbc:mysql://mysql-hugdude.alwaysdata.net/hugdude_bdsir?serverTimezone=UTC";
-            String user = "hugdude";
-            String passwd = "hugo";
-
-            connexion = DriverManager.getConnection(url, user, passwd);
-            System.out.println("Connexion effective !");
+          ConnexionBase cb = new ConnexionBase();
+          connexion=cb.returnConnexion();
 
             //Création de l'objet gérant les requêtes
             statement = connexion.createStatement();
