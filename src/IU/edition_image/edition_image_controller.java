@@ -134,15 +134,30 @@ public class edition_image_controller implements Initializable {
         horizontalFlipCount++;
     }
 
+    int countPair = 0;
+    int countOdd = 0;
+
     int rotateLeftCount = 0;
 
     public void rotateLeftActivated(ActionEvent actionEvent) {
         if (rotateLeftCount % 2 == 0) {
-            this.imageView_editionImage.rotateProperty().setValue(90);
-            System.out.println("rotate left");
+            if (countPair %2 == 0){
+                this.imageView_editionImage.rotateProperty().setValue(90);
+                System.out.println("rotate left 90");
+            } else if (countPair %2 ==1 ){
+                this.imageView_editionImage.rotateProperty().setValue(-90);
+                System.out.println("rotate left -90");
+            }
+            countPair++;
         } else if (rotateLeftCount % 2 == 1) {
-            this.imageView_editionImage.rotateProperty().setValue(0);
-            System.out.println("rotate left again");
+            if (countOdd %2 == 0){
+                this.imageView_editionImage.rotateProperty().setValue(180);
+                System.out.println("rotate left 180");
+            } else if (countOdd %2 ==1){
+                this.imageView_editionImage.rotateProperty().setValue(0);
+                System.out.println("rotate left 0");
+            }
+            countOdd++;
         }
         rotateLeftCount++;
 
@@ -151,13 +166,27 @@ public class edition_image_controller implements Initializable {
 
     int rotateRightCount = 0;
 
+
     public void rotateRightActivated(ActionEvent actionEvent) {
         if (rotateRightCount % 2 == 0) {
-            this.imageView_editionImage.rotateProperty().setValue(-90);
-            System.out.println("rotate right -90");
+            if (countPair % 2 == 0) {
+                this.imageView_editionImage.rotateProperty().setValue(-90);
+                System.out.println("rotate right -90");
+            } else if (countPair % 2 == 1) {
+                this.imageView_editionImage.rotateProperty().setValue(90);
+                System.out.println("rotate right 90");
+            }
+            countPair++;
+
         } else if (rotateRightCount % 2 == 1) {
-            this.imageView_editionImage.rotateProperty().setValue(-180);
-            System.out.println("rotate right -180");
+            if (countOdd % 2 == 0) {
+                this.imageView_editionImage.rotateProperty().setValue(-180);
+                System.out.println("rotate right -180");
+            } else if (countOdd % 2 == 1) {
+                this.imageView_editionImage.rotateProperty().setValue(0);
+                System.out.println("rotate right 0");
+            }
+            countOdd++;
         }
         rotateRightCount++;
     }
@@ -172,7 +201,7 @@ public class edition_image_controller implements Initializable {
         }
     }); */
 
-  //this.slider_contrast.setBlockIncrement(-1);
+//this.slider_contrast.setBlockIncrement(-1);
 
         /*private ColorAdjust colorAdjust;
         private static final int ADJUST_TYPE_CONTRAST = 2;
