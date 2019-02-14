@@ -2,6 +2,7 @@ package IU.page_connection;
 
 
 import FC.Connexion;
+import FC.SIR;
 import FC.Utilisateur;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -9,6 +10,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -41,11 +43,38 @@ public class page_connection_controller {
         @FXML // fx:id="button_seConnecter"
         private Button button_seConnecter; // Value injected by FXMLLoader
 
+
+
     @FXML
     private void SeConnecter(ActionEvent e) throws IOException {
-        String nom = champ_nomUtilisateur.getText();
+        String id = champ_nomUtilisateur.getText();
         String mdp = champ_motDePasse.getText();
-        Utilisateur user = new Utilisateur(nom,mdp);
+        Connexion conn = new Connexion(new Utilisateur(id,mdp));
+        SIR sir = new SIR(conn);
+
+        if(conn.isConnect()){
+            URL url_accreuil_medecin;
+            //url_accreuil_medecin = new File("IU.acceuil_medecin.acceuil_medecin.fxml").toURL();
+            Parent parent = FXMLLoader.load(getClass().getResource("/IU/acceuil_medecin/acceuil_medecin.fxml"));
+
+            Scene scene = new Scene(parent);
+
+            Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();     //pas compris
+            stage.setScene(scene);
+
+            stage.show();
+        }
+        else{
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Mauvaise connexion");
+            alert.setHeaderText("Erreur dans la connexion");
+            alert.setContentText("Mot de passe ou ID incorrect !");
+
+            alert.showAndWait();
+        }
+
+
+        /*Utilisateur user = new Utilisateur(nom,mdp);
         ArrayList<Utilisateur> listeMed = new ArrayList<>();
         ArrayList<Utilisateur> listeMan = new ArrayList<>();
         Utilisateur user1 = new Utilisateur("Walton","Jack","1","123");
@@ -85,7 +114,7 @@ public class page_connection_controller {
         }
         if(connexion.isConnectMan() == false && connexion.isConnectMed() == false) {
             System.out.println("Erreur connexion");
-        }
+        }*/
     }
         @FXML // This method is called by the FXMLLoader when initialization is complete
         void initialize() {
