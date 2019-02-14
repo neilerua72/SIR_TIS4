@@ -11,17 +11,17 @@ import java.sql.SQLException;
 
 public class sauverImage {
     public static void main(String[] args) {
-        String url = "jdbc:mysql://mysql-hugdude.alwaysdata.net/hugdude_bdsir?serverTimezone=UTC";
-        String user = "hugdude";
-        String passwd = "hugo";
+        String url = "jdbc:mysql://db4free.net/bdsirtis";
+        String user = "testbd";
+        String passwd = "12345678";
         String sql = "INSERT INTO Image (name,img) VALUES(?,?)";
 
         try (Connection conn = DriverManager.getConnection(url, user, passwd);) {
-            File image = new File("/Users/hugobosquet/SIR_TIS4/SIR_TIS4/pgm/abdomen/cor494-i43.pgm");
+            File image = new File("/Users/hugobosquet/SIR_TIS4/SIR_TIS4/pgm/sinus/sinus1_0000.pgm");
             try (FileInputStream inputStream = new FileInputStream(image);
                  PreparedStatement stmt = conn.prepareStatement(sql);) {
 
-                stmt.setString(1, "abdomen");
+                stmt.setString(1, "sinus1");
                 stmt.setBinaryStream(2, inputStream, image.length());
                 stmt.executeUpdate();
                 System.out.println("Image sauvegarder dans la BD image");
