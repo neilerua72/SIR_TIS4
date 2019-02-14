@@ -14,7 +14,7 @@ public class sauverImage {
         String url = "jdbc:mysql://db4free.net/bdsirtis";
         String user = "testbd";
         String passwd = "12345678";
-        String sql = "INSERT INTO Image (name,img) VALUES(?,?)";
+        String sql = "INSERT INTO Image (nom,img) VALUES(?,?)";
 
         try (Connection conn = DriverManager.getConnection(url, user, passwd);) {
             File image = new File("/Users/hugobosquet/SIR_TIS4/SIR_TIS4/pgm/sinus/sinus1_0000.pgm");
