@@ -25,21 +25,23 @@ public class LectConnexion {
             //Création de l'objet gérant les requêtes
             statement = connexion.createStatement();
             //Exécution d'une requete de lecture
-            resultat = statement.executeQuery("SELECT id,mdp,prénom,nom,Spécialité FROM Connexion;");
+            resultat = statement.executeQuery("SELECT id,mdp,prenom,nom,type FROM Connexion;");
             //Récupération des données du résultat de la requete de lecture
             while (resultat.next()) {
                 String idConnexion = resultat.getString("id");
                 String motDePasseUtilisateur = resultat.getString("mdp");
-                String prenom = resultat.getString("prénom");
+                String prenom = resultat.getString("prenom");
                 String nom = resultat.getString("nom");
-                String specialite = resultat.getString("Spécialité");
-                Utilisateur u = new Utilisateur(nom,prenom,idConnexion,motDePasseUtilisateur);
+                String type = resultat.getString("type");
+                TypeConnexion typec=TypeConnexion.SEC;
+                        typec=typec.matchType(type);
+                Utilisateur u = new Utilisateur(nom,prenom,idConnexion,motDePasseUtilisateur,typec);
                 this.listeUsers.add(u);
                 System.out.println(idConnexion);
                 System.out.println(motDePasseUtilisateur);
                 System.out.println(prenom);
                 System.out.println(nom);
-                System.out.println(specialite);
+                System.out.println(type);
             }
 
         } catch (Exception e) {

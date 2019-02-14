@@ -9,8 +9,8 @@ public class Radiologue extends Utilisateur {
     private String id;
     private String mdp;
 
-    public Radiologue(String nom, String prenom, String id, String mdp) {
-        super(nom, prenom, id, mdp);
+    public Radiologue(String nom, String prenom, String id, String mdp,TypeConnexion type) {
+        super(nom, prenom, id, mdp,type);
     }
 
     public void setNom(String nom) {

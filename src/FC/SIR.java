@@ -15,7 +15,12 @@ public class SIR {
         LectConnexion lectConnexion = new LectConnexion();
         this.listeUtilisateur=new ArrayList<Utilisateur>(lectConnexion.getListeUsers());
         connexion.setUser1(listeUtilisateur);
+
         System.out.println(connexion.isConnect());
 
+    }
+
+    public Connexion getConnexion(){
+        return connexion;
     }
 }

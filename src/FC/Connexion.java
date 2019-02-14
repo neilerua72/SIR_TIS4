@@ -29,8 +29,8 @@ public class Connexion {
         while(i<user1.size()&& connect==false){
             if(user1.get(i).equals(user)){
                 this.connect=true;
-                this.type=TypeConnexion.MED;
-                this.user=user;
+                this.type=user1.get(i).getType();
+                this.user=user1.get(i);
                 System.out.println("Connexion medecin");
             }
             i++;
@@ -60,15 +60,16 @@ public class Connexion {
         this.connect=false;
         int i=0;
 
-        while(i<user1.size()&& this.connect==false){
+        while(i<user1.size()&& connect==false){
             if(user1.get(i).equals(user)){
                 this.connect=true;
-                this.type=TypeConnexion.MED;
-                this.user=user;
+                this.type=user1.get(i).getType();
+                this.user=user1.get(i);
                 System.out.println("Connexion medecin");
             }
             i++;
         }
+
 
 
         if(i>user1.size()){

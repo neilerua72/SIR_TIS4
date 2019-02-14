@@ -4,6 +4,7 @@ package IU.page_connection;
 import FC.Connexion;
 import FC.SIR;
 import FC.Utilisateur;
+import IU.acceuil_medecin.acceuil_medecin_controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -55,21 +56,29 @@ public class page_connection_controller {
         if(conn.isConnect()){
             URL url_accreuil_medecin;
             //url_accreuil_medecin = new File("IU.acceuil_medecin.acceuil_medecin.fxml").toURL();
-            Parent parent = FXMLLoader.load(getClass().getResource("/IU/acceuil_medecin/acceuil_medecin.fxml"));
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/IU/acceuil_medecin/acceuil_medecin.fxml"));
+            Parent tableViewParent = loader.load();
 
-            Scene scene = new Scene(parent);
+            Scene tableViewScene = new Scene(tableViewParent);
 
-            Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();     //pas compris
-            stage.setScene(scene);
+            //access the controller and call a method
+            acceuil_medecin_controller controller = loader.getController();
+            controller.initData(sir);
 
-            stage.show();
+            //This line gets the Stage information
+            Stage window = (Stage)((Node)e.getSource()).getScene().getWindow();
+
+            window.setScene(tableViewScene);
+            window.show();
+            System.out.println("Connecter");
         }
         else{
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Mauvaise connexion");
             alert.setHeaderText("Erreur dans la connexion");
             alert.setContentText("Mot de passe ou ID incorrect !");
-
+            System.out.println("Erreur ici");
             alert.showAndWait();
         }
 

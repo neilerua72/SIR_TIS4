@@ -5,11 +5,13 @@ public class Utilisateur {
     private String mdp;
     private String nom;
     private String prenom;
-    public Utilisateur (String nom, String prenom, String id, String mdp){
+    private TypeConnexion type;
+    public Utilisateur (String nom, String prenom, String id, String mdp, TypeConnexion type){
         this.nom = nom;
         this.prenom = prenom;
         this.setId(id);
         this.setMdp(mdp);
+        this.type=type;
     }
     public Utilisateur(String id, String mdp){
         this.mdp=mdp;
@@ -54,5 +56,9 @@ public class Utilisateur {
 
         else
             return false;
+    }
+
+    public TypeConnexion getType(){
+        return this.type;
     }
 }

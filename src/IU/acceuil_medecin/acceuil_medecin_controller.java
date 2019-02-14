@@ -5,6 +5,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import FC.Patient;
+import FC.SIR;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -25,8 +26,9 @@ import FC.Utilisateur;
 
 import javax.script.Bindings;
 
-public class acceuil_medecin_controller {
+public class acceuil_medecin_controller implements Initializable{
     Connexion connect;
+    SIR sir;
     /**
      * Sample Skeleton for 'acceuil_medecin.fxml' Controller Class
      */
@@ -135,6 +137,12 @@ public class acceuil_medecin_controller {
     }
 
 
+    public void initData(SIR sir){
+        this.sir=sir;
+        texte_rechercherPar.setText(sir.getConnexion().getType().toString());
+    }
+
+
 
 
 
@@ -155,7 +163,8 @@ public class acceuil_medecin_controller {
     } */
 
     @FXML
-        // This method is called by the FXMLLoader when initialization is complete
+    public
+    // This method is called by the FXMLLoader when initialization is complete
     void initialize(URL url, ResourceBundle rb) {
         assert colonne_CR != null : "fx:id=\"colonne_CR\" was not injected: check your FXML file 'acceuil_medecin.fxml'.";
         assert colonne_dossierPatient != null : "fx:id=\"colonne_dossierPatient\" was not injected: check your FXML file 'acceuil_medecin.fxml'.";

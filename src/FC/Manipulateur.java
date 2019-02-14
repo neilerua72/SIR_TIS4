@@ -6,8 +6,8 @@ public class Manipulateur extends Utilisateur {
     private String id;
     private String mdp;
 
-    public Manipulateur(String nom, String prenom, String id, String mdp) {
-        super(nom, prenom, id, mdp);
+    public Manipulateur(String nom, String prenom, String id, String mdp,TypeConnexion type) {
+        super(nom, prenom, id, mdp,type);
     }
     public void setNom(String nom) {
         this.nom = nom;
