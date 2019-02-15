@@ -1,19 +1,11 @@
 package IU.edition_image;
 
 import javafx.application.Application;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Slider;
-import javafx.scene.effect.ColorAdjust;
-import javafx.scene.image.Image;
 import javafx.stage.Stage;
-import sun.net.www.protocol.https.AbstractDelegateHttpsURLConnection;
 
-import static javafx.scene.image.Image.*;
 
 public class edition_image_main extends Application {
 
@@ -33,7 +25,14 @@ public class edition_image_main extends Application {
             //edition_d_image.getImageView_editionImage().setImage(new Image(getClass().getResourceAsStream("test_image_local/mri-abdomen11.jpg")));
             primaryStage.setScene(scene);
             primaryStage.show();
+/*
+            edition_d_image.getSlider_contrast().valueProperty().addListener(new ChangeListener<Number>() {
+                public void changed (ObservableValue <? extends Number > ov,
+                                     Number old_val, Number new_val){
+                    edition_d_image.getSlider_contrast().setOpacity(new_val.doubleValue());
 
+                }
+            });*/
 
         }
 
