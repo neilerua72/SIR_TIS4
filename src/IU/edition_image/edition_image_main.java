@@ -13,6 +13,8 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import sun.net.www.protocol.https.AbstractDelegateHttpsURLConnection;
 
+import java.io.File;
+
 import static javafx.scene.image.Image.*;
 
 public class edition_image_main extends Application {

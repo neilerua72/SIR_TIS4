@@ -14,7 +14,7 @@
    <children>
        <ImageView fx:id="imageView_editionImage"  fitHeight="575.0" fitWidth="575.0" layoutX="14.0" layoutY="82.0" pickOnBounds="true" preserveRatio="true">
            <image>
-             <Image url="@test_image_local/mri-abdomen11.jpg" />
+             <Image url="@test_image_local/cor494-i43.jpg" />
            </image>
        </ImageView>
 
@@ -170,7 +170,7 @@
                </GridPane.margin>
             </Text>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Symétrie Verticale" textAlignment="CENTER" translateX="12.0" wrappingWidth="67.0" GridPane.rowIndex="1" />
-            <Button fx:id="button_ajoutCommentaire" alignment="CENTER_RIGHT" layoutX="634.0" layoutY="187.0" mnemonicParsing="false" prefHeight="57.0" prefWidth="52.0" translateX="19.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+            <Button fx:id="button_ajoutCommentaire"  onAction="#ajoutCommentaire" alignment="CENTER_RIGHT" layoutX="634.0" layoutY="187.0" mnemonicParsing="false" prefHeight="57.0" prefWidth="52.0" translateX="19.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <graphic>
                   <ImageView fitHeight="47.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true" scaleX="1.4" scaleY="1.4">
                      <image>

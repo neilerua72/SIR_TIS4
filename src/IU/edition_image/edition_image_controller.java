@@ -5,6 +5,7 @@ package IU.edition_image;
  * Sample Skeleton for 'edition_image.fxml' Controller Class
  */
 
+import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -20,8 +21,11 @@ import javafx.scene.effect.ColorAdjust;
 import javafx.scene.effect.Lighting;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.text.TextBuilder;
+
 
 import javax.swing.*;
+import javax.xml.soap.Text;
 
 public class edition_image_controller implements Initializable {
 
@@ -190,7 +194,15 @@ public class edition_image_controller implements Initializable {
         }
         rotateRightCount++;
     }
+
+    public void ajoutCommentaire ( ActionEvent actionEvent){
+
+    }
+
+
 }
+
+
 
 
 /*this.slider_contrast.valueProperty().addListener(new ChangeListener<Number>() {
