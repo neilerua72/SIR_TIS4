@@ -18,8 +18,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Slider;
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.effect.Lighting;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
+import javafx.scene.image.*;
+import javafx.scene.paint.Color;
 
 import javax.swing.*;
 
@@ -73,7 +73,8 @@ public class edition_image_controller implements Initializable {
     private Button button_rotationDroite; // Value injected by FXMLLoader
 
     @FXML
-    private Slider slider_contrast = new Slider(0, 1, 0.5);
+    private Slider slider_contrast = new Slider();
+
 
     public Slider getSlider_contrast() {
         return slider_contrast;
@@ -108,11 +109,11 @@ public class edition_image_controller implements Initializable {
             @Override
             public void changed(ObservableValue<? extends Number> observable, //
                                 Number oldValue, Number newValue) {
-                double newBrightness = (newValue.doubleValue())/100;
+                double newBrightness = (newValue.doubleValue()) / 100;
                 colorAdjust.setBrightness(newBrightness);
                 System.out.println("newBrightness=" + newBrightness);
                 imageView_editionImage.setEffect(colorAdjust);
-                colorAdjust.setContrast((newValue.doubleValue())/100);
+                colorAdjust.setContrast((newValue.doubleValue()) / 100);
                 imageView_editionImage.setEffect(colorAdjust);
             }
         });
@@ -208,6 +209,24 @@ public class edition_image_controller implements Initializable {
         rotateRightCount++;
     }
 
+    public void invertGreyScale() {
+        PixelReader pixelReader = imageView_editionImage.getImage().getPixelReader();
+       WritableImage copyImage
+                = new WritableImage(
+                (int) imageView_editionImage.getImage().getWidth(),
+                (int) imageView_editionImage.getImage().getHeight());
+        PixelWriter pixelWriter = copyImage.getPixelWriter();
+        for (int y = 0; y < imageView_editionImage.getImage().getHeight(); y++) {
+            for (int x = 0; x < imageView_editionImage.getImage().getWidth(); x++) {
+                Color color = pixelReader.getColor(x, y);
+                color = color.invert();
+                pixelWriter.setColor(x, y, color);
+            }
+        }
+        System.out.println("pixelWriter.setColor(x, y, color");
+        imageView_editionImage.setImage(copyImage);
+        //return copyImage;
+    }
 
 
 
