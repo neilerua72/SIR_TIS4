@@ -10,16 +10,21 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="676.0" prefWidth="798.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="676.0" prefWidth="798.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="IU.edition_image.edition_image_controller">
    <children>
-      <ImageView fx:id="imageView_editionImage" fitHeight="575.0" fitWidth="575.0" layoutX="21.0" layoutY="82.0" pickOnBounds="true" preserveRatio="true" />
+       <ImageView fx:id="imageView_editionImage"  fitHeight="575.0" fitWidth="575.0" layoutX="14.0" layoutY="82.0" pickOnBounds="true" preserveRatio="true">
+           <image>
+             <Image url="@test_image_local/mri-abdomen11.jpg" />
+           </image>
+       </ImageView>
+
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#97979700" height="575.0" layoutX="13.0" layoutY="82.0" stroke="#858585" strokeType="INSIDE" width="575.0" />
       <Text layoutX="314.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Edition Image">
          <font>
             <Font name="System Bold" size="26.0" />
          </font>
       </Text>
-      <GridPane layoutX="596.0" layoutY="82.0" prefHeight="551.0" prefWidth="177.0">
+      <GridPane layoutX="601.0" layoutY="79.0" prefHeight="551.0" prefWidth="177.0">
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
@@ -30,7 +35,8 @@
             <RowConstraints maxHeight="57.0" minHeight="57.0" prefHeight="57.0" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="41.0" minHeight="41.0" prefHeight="41.0" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="57.0" minHeight="57.0" prefHeight="57.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="41.0" minHeight="41.0" prefHeight="41.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="15.0" minHeight="15.0" prefHeight="15.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="69.0" minHeight="41.0" prefHeight="69.0" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="57.0" minHeight="57.0" prefHeight="57.0" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="41.0" minHeight="41.0" prefHeight="41.0" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="57.0" minHeight="57.0" prefHeight="57.0" vgrow="SOMETIMES" />
@@ -39,7 +45,7 @@
             <RowConstraints maxHeight="41.0" minHeight="30.0" prefHeight="41.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <Button fx:id="button_symetrieVerticale" alignment="CENTER_RIGHT" layoutX="550.0" layoutY="82.0" mnemonicParsing="false" prefHeight="57.0" prefWidth="52.0" translateX="19.0">
+            <Button fx:id="button_symetrieVerticale"  onAction="#verticalFlipActivated" alignment="CENTER_RIGHT" layoutX="550.0" layoutY="82.0" mnemonicParsing="false" prefHeight="57.0" prefWidth="52.0" translateX="19.0">
                <graphic>
                   <ImageView fitHeight="47.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true" scaleX="1.4" scaleY="1.4">
                      <image>
@@ -51,7 +57,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button fx:id="button_symetrieHorizontale" alignment="CENTER_RIGHT" layoutX="634.0" layoutY="82.0" mnemonicParsing="false" prefHeight="57.0" prefWidth="52.0" translateX="19.0" GridPane.columnIndex="1">
+            <Button fx:id="button_symetrieHorizontale" onAction="#horizontalFlipActivated" alignment="CENTER_RIGHT" layoutX="634.0" layoutY="82.0" mnemonicParsing="false" prefHeight="57.0" prefWidth="52.0" translateX="19.0" GridPane.columnIndex="1">
                <graphic>
                   <ImageView fitHeight="47.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true" scaleX="1.4" scaleY="1.4">
                      <image>
@@ -78,9 +84,9 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Text layoutX="628.0" layoutY="472.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Rotation 90° Droite" textAlignment="CENTER" translateX="12.0" wrappingWidth="67.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+            <Text layoutX="628.0" layoutY="472.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Rotation 90° Droite" textAlignment="CENTER" translateX="12.0" wrappingWidth="67.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
             <Text layoutX="535.0" layoutY="257.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Inversion niveaux de gris" textAlignment="CENTER" translateX="2.0" wrappingWidth="85.0" GridPane.rowIndex="3" />
-            <Button fx:id="button_annuler" alignment="CENTER_RIGHT" layoutX="551.0" layoutY="504.0" mnemonicParsing="false" prefHeight="57.0" prefWidth="52.0" translateX="19.0" GridPane.rowIndex="8">
+            <Button fx:id="button_annuler" alignment="CENTER_RIGHT" layoutX="551.0" layoutY="504.0" mnemonicParsing="false" prefHeight="57.0" prefWidth="52.0" translateX="19.0" GridPane.rowIndex="9">
                <graphic>
                   <ImageView fitHeight="47.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true" scaleX="1.4" scaleY="1.4">
                      <image>
@@ -92,7 +98,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button fx:id="button_rotationDroite" alignment="CENTER_RIGHT" layoutX="634.0" layoutY="401.0" mnemonicParsing="false" prefHeight="57.0" prefWidth="52.0" translateX="19.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
+            <Button fx:id="button_rotationDroite" onAction="#rotateRightActivated" alignment="CENTER_RIGHT" layoutX="634.0" layoutY="401.0" mnemonicParsing="false" prefHeight="57.0" prefWidth="52.0" translateX="19.0" GridPane.columnIndex="1" GridPane.rowIndex="7">
                <graphic>
                   <ImageView fitHeight="47.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true" scaleX="1.4" scaleY="1.4">
                      <image>
@@ -104,7 +110,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button fx:id="button_inversionGris" alignment="CENTER_RIGHT" layoutX="550.0" layoutY="187.0" mnemonicParsing="false" prefHeight="57.0" prefWidth="52.0" translateX="19.0" GridPane.rowIndex="2">
+            <Button fx:id="button_inversionGris" onAction="#invertGreyScale" alignment="CENTER_RIGHT" layoutX="550.0" layoutY="187.0" mnemonicParsing="false" prefHeight="57.0" prefWidth="52.0" translateX="19.0" GridPane.rowIndex="2">
                <graphic>
                   <ImageView fitHeight="47.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true" scaleX="1.4" scaleY="1.4">
                      <image>
@@ -116,7 +122,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Text layoutX="544.0" layoutY="364.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Diminuer Contraste" textAlignment="CENTER" translateX="12.0" wrappingWidth="67.0" GridPane.rowIndex="5" />
+            <Text layoutX="544.0" layoutY="364.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Diminuer Contraste" textAlignment="CENTER" translateX="12.0" translateY="-6.0" wrappingWidth="67.0" GridPane.rowIndex="6" />
             <Text layoutX="628.0" layoutY="151.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Symétrie Horizontale" textAlignment="CENTER" translateX="12.0" wrappingWidth="67.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <Button fx:id="button_augmenterContraste" alignment="CENTER_RIGHT" layoutX="634.0" layoutY="294.0" mnemonicParsing="false" prefHeight="57.0" prefWidth="52.0" translateX="19.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
                <graphic>
@@ -130,7 +136,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button fx:id="button_rotationGauche" alignment="CENTER_RIGHT" layoutX="550.0" layoutY="401.0" mnemonicParsing="false" prefHeight="57.0" prefWidth="52.0" translateX="19.0" GridPane.rowIndex="6">
+            <Button fx:id="button_rotationGauche" onAction="#rotateLeftActivated" alignment="CENTER_RIGHT" layoutX="550.0" layoutY="401.0" mnemonicParsing="false" prefHeight="57.0" prefWidth="52.0" translateX="19.0" GridPane.rowIndex="7">
                <graphic>
                   <ImageView fitHeight="47.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true" scaleX="1.4" scaleY="1.4">
                      <image>
@@ -143,9 +149,9 @@
                </cursor>
             </Button>
             <Text layoutX="625.0" layoutY="257.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ajout Commentaire" textAlignment="CENTER" translateX="11.0" wrappingWidth="74.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <Text layoutX="628.0" layoutY="364.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Augmenter Contraste" textAlignment="CENTER" translateX="12.0" wrappingWidth="67.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-            <Text layoutX="544.0" layoutY="471.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Rotation 90° Gauche" textAlignment="CENTER" translateX="12.0" wrappingWidth="67.0" GridPane.rowIndex="7" />
-            <Button fx:id="button_refaire" alignment="CENTER_RIGHT" layoutX="635.0" layoutY="504.0" mnemonicParsing="false" prefHeight="57.0" prefWidth="52.0" translateX="19.0" GridPane.columnIndex="1" GridPane.rowIndex="8">
+            <Text layoutX="628.0" layoutY="364.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Augmenter Contraste" textAlignment="CENTER" translateX="12.0" translateY="-6.0" wrappingWidth="67.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+            <Text layoutX="544.0" layoutY="471.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Rotation 90° Gauche" textAlignment="CENTER" translateX="12.0" wrappingWidth="67.0" GridPane.rowIndex="8" />
+            <Button fx:id="button_refaire" alignment="CENTER_RIGHT" layoutX="635.0" layoutY="504.0" mnemonicParsing="false" prefHeight="57.0" prefWidth="52.0" translateX="19.0" GridPane.columnIndex="1" GridPane.rowIndex="9">
                <graphic>
                   <ImageView fitHeight="47.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true" scaleX="1.4" scaleY="1.4">
                      <image>
@@ -157,8 +163,8 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Text layoutX="628.0" layoutY="574.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Refaire" textAlignment="CENTER" translateX="11.0" translateY="-4.0" wrappingWidth="67.0" GridPane.columnIndex="1" GridPane.rowIndex="9" />
-            <Text layoutX="545.0" layoutY="574.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Annuler" textAlignment="CENTER" translateX="11.0" translateY="-4.0" wrappingWidth="67.0" GridPane.rowIndex="9">
+            <Text layoutX="628.0" layoutY="574.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Refaire" textAlignment="CENTER" translateX="11.0" translateY="-4.0" wrappingWidth="67.0" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+            <Text layoutX="545.0" layoutY="574.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Annuler" textAlignment="CENTER" translateX="11.0" translateY="-4.0" wrappingWidth="67.0" GridPane.rowIndex="10">
                <GridPane.margin>
                   <Insets />
                </GridPane.margin>
@@ -176,7 +182,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button fx:id="button_supprimer" alignment="CENTER_RIGHT" mnemonicParsing="false" prefHeight="57.0" prefWidth="52.0" translateX="19.0" GridPane.rowIndex="10">
+            <Button fx:id="button_supprimer" alignment="CENTER_RIGHT" mnemonicParsing="false" prefHeight="57.0" prefWidth="52.0" translateX="19.0" GridPane.rowIndex="11">
                <graphic>
                   <ImageView fitHeight="47.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true" scaleX="1.4" scaleY="1.4">
                      <image>
@@ -188,7 +194,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button fx:id="button_valider" alignment="CENTER_RIGHT" mnemonicParsing="false" prefHeight="57.0" prefWidth="52.0" translateX="19.0" GridPane.columnIndex="1" GridPane.rowIndex="10">
+            <Button fx:id="button_valider" alignment="CENTER_RIGHT" mnemonicParsing="false" prefHeight="57.0" prefWidth="52.0" translateX="19.0" GridPane.columnIndex="1" GridPane.rowIndex="11">
                <graphic>
                   <ImageView fitHeight="47.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true" scaleX="1.4" scaleY="1.4">
                      <image>
@@ -200,8 +206,9 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Supprimer" textAlignment="CENTER" translateX="11.0" translateY="-4.0" wrappingWidth="67.0" GridPane.rowIndex="11" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Valider" textAlignment="CENTER" translateX="11.0" translateY="-4.0" wrappingWidth="67.0" GridPane.columnIndex="1" GridPane.rowIndex="11" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Supprimer" textAlignment="CENTER" translateX="11.0" translateY="-4.0" wrappingWidth="67.0" GridPane.rowIndex="12" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Valider" textAlignment="CENTER" translateX="11.0" translateY="-4.0" wrappingWidth="67.0" GridPane.columnIndex="1" GridPane.rowIndex="12" />
+            <Slider fx:id="slider_contrast" maxHeight="3.0" maxWidth="145.0" minHeight="3.0" prefHeight="3.0" prefWidth="145.0" translateX="23.0" GridPane.columnSpan="2147483647" GridPane.rowIndex="5" />
          </children>
       </GridPane>
    </children>
