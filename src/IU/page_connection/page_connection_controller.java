@@ -29,6 +29,7 @@ public class page_connection_controller {
  */
 
 
+
         @FXML // ResourceBundle that was given to the FXMLLoader
         private ResourceBundle resources;
 
@@ -132,6 +133,9 @@ public class page_connection_controller {
             assert button_seConnecter != null : "fx:id=\"button_seConnecter\" was not injected: check your FXML file 'page_connection.fxml'.";
 
         }
+
+
+
 
     }
 
