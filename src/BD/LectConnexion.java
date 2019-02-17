@@ -37,11 +37,7 @@ public class LectConnexion {
                         typec=typec.matchType(type);
                 Utilisateur u = new Utilisateur(nom,prenom,idConnexion,motDePasseUtilisateur,typec);
                 this.listeUsers.add(u);
-                System.out.println(idConnexion);
-                System.out.println(motDePasseUtilisateur);
-                System.out.println(prenom);
-                System.out.println(nom);
-                System.out.println(type);
+
             }
 
         } catch (Exception e) {

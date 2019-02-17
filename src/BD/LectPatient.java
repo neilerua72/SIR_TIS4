@@ -40,19 +40,6 @@ public class LectPatient {
 
                 Patient p = new Patient(nom,prenom,idConnexion,dateDeNaissance,mail,numeroTel,new Adresse(rue,infoComp,codePostal,ville),pathologie,nomMedecinPrescripteur,dateRDV);
                 listePatient.add(p);
-                System.out.println(nom);
-                System.out.println(prenom);
-                System.out.println(idConnexion);
-                System.out.println(dateDeNaissance);
-                System.out.println(mail);
-                System.out.println(numeroTel);
-                System.out.println(rue);
-                System.out.println(infoComp);
-                System.out.println(codePostal);
-                System.out.println(ville);
-                System.out.println(pathologie);
-                System.out.println(nomMedecinPrescripteur);
-                System.out.println(dateRDV);
             }
 
         }catch (Exception e) {

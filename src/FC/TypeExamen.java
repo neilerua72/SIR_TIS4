@@ -2,9 +2,14 @@ package FC;
 
 
 public enum TypeExamen{
-        SCANNER,
-        RADIO,
-        IRM;
+        SCANNER("Scanner"),
+        RADIO("Radio"),
+        IRM("IRM");
+private String nom="";
+
+    TypeExamen(String nom) {
+        this.nom=nom;
+    }
 
     public TypeExamen matchType(String type){
         if(type.equals("SCANNER"))
@@ -15,6 +20,10 @@ public enum TypeExamen{
             return TypeExamen.IRM;
         else
             return null;
+    }
+
+    public String toString(){
+        return nom;
     }
     }
 

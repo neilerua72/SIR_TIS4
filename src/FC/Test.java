@@ -4,10 +4,11 @@ public class Test {
 
 
     public static void main(String[] args) {
-
-        System.out.println("Hello, World!");
-        System.out.println("this is a test");
-
+        String id="1";
+        String mdp="1";
+        Connexion conn = new Connexion(new Utilisateur(id,mdp));
+        SIR sir = new SIR(conn);
+        System.out.println(sir.getNomPatient(123456));
     }
 
 }

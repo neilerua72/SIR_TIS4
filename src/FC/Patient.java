@@ -42,4 +42,44 @@ public class Patient {
 
         return s;
     }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public String getPrenom() {
+        return prenom;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public Date getDateDeNaissance() {
+        return dateDeNaissance;
+    }
+
+    public String getMail() {
+        return mail;
+    }
+
+    public int getNumTel() {
+        return numTel;
+    }
+
+    public Adresse getAdresse() {
+        return adresse;
+    }
+
+    public String getPathologie() {
+        return pathologie;
+    }
+
+    public String getNomMedecinPrescripteur() {
+        return nomMedecinPrescripteur;
+    }
+
+    public Date getDateRDV() {
+        return dateRDV;
+    }
 }
