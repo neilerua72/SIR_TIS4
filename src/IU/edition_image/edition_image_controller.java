@@ -5,7 +5,6 @@ package IU.edition_image;
  * Sample Skeleton for 'edition_image.fxml' Controller Class
  */
 
-import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -19,13 +18,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Slider;
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.effect.Lighting;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.text.TextBuilder;
-
+import javafx.scene.image.*;
+import javafx.scene.paint.Color;
 
 import javax.swing.*;
-import javax.xml.soap.Text;
 
 public class edition_image_controller implements Initializable {
 
@@ -77,7 +73,13 @@ public class edition_image_controller implements Initializable {
     private Button button_rotationDroite; // Value injected by FXMLLoader
 
     @FXML
-    private Slider slider_contrast = new Slider(0, 1, 1);
+    private Slider slider_contrast = new Slider();
+
+
+    public Slider getSlider_contrast() {
+        return slider_contrast;
+    }
+
 
     // @FXML
     //  void 97979700(ActionEvent event) {
@@ -101,6 +103,20 @@ public class edition_image_controller implements Initializable {
             assert button_valider != null : "fx:id=\"button_valider\" was not injected: check your FXML file 'edition_image.fxml'.";
             assert button_rotationDroite != null : "fx:id=\"button_rotationDroite\" was not injected: check your FXML file 'edition_image.fxml'.";
 */
+        slider_contrast.setValue(0.5);
+        ColorAdjust colorAdjust = new ColorAdjust();
+        slider_contrast.valueProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observable, //
+                                Number oldValue, Number newValue) {
+                double newBrightness = (newValue.doubleValue()) / 100;
+                colorAdjust.setBrightness(newBrightness);
+                System.out.println("newBrightness=" + newBrightness);
+                imageView_editionImage.setEffect(colorAdjust);
+                colorAdjust.setContrast((newValue.doubleValue()) / 100);
+                imageView_editionImage.setEffect(colorAdjust);
+            }
+        });
     }
 
     public ImageView getImageView_editionImage() {
@@ -145,31 +161,29 @@ public class edition_image_controller implements Initializable {
 
     public void rotateLeftActivated(ActionEvent actionEvent) {
         if (rotateLeftCount % 2 == 0) {
-            if (countPair %2 == 0){
+            if (countPair % 2 == 0) {
                 this.imageView_editionImage.rotateProperty().setValue(90);
                 System.out.println("rotate left 90");
-            } else if (countPair %2 ==1 ){
+            } else if (countPair % 2 == 1) {
                 this.imageView_editionImage.rotateProperty().setValue(-90);
                 System.out.println("rotate left -90");
             }
             countPair++;
         } else if (rotateLeftCount % 2 == 1) {
-            if (countOdd %2 == 0){
+            if (countOdd % 2 == 0) {
                 this.imageView_editionImage.rotateProperty().setValue(180);
                 System.out.println("rotate left 180");
-            } else if (countOdd %2 ==1){
+            } else if (countOdd % 2 == 1) {
                 this.imageView_editionImage.rotateProperty().setValue(0);
                 System.out.println("rotate left 0");
             }
             countOdd++;
         }
         rotateLeftCount++;
-
     }
 
 
     int rotateRightCount = 0;
-
 
     public void rotateRightActivated(ActionEvent actionEvent) {
         if (rotateRightCount % 2 == 0) {
@@ -195,78 +209,52 @@ public class edition_image_controller implements Initializable {
         rotateRightCount++;
     }
 
-    public void ajoutCommentaire ( ActionEvent actionEvent){
-
+    public void invertGreyScale() {
+        PixelReader pixelReader = imageView_editionImage.getImage().getPixelReader();
+       WritableImage copyImage
+                = new WritableImage(
+                (int) imageView_editionImage.getImage().getWidth(),
+                (int) imageView_editionImage.getImage().getHeight());
+        PixelWriter pixelWriter = copyImage.getPixelWriter();
+        for (int y = 0; y < imageView_editionImage.getImage().getHeight(); y++) {
+            for (int x = 0; x < imageView_editionImage.getImage().getWidth(); x++) {
+                Color color = pixelReader.getColor(x, y);
+                color = color.invert();
+                pixelWriter.setColor(x, y, color);
+            }
+        }
+        System.out.println("pixelWriter.setColor(x, y, color");
+        imageView_editionImage.setImage(copyImage);
+        //return copyImage;
     }
 
 
+
+    /* // Create Slider to Adjust Color
+    private Slider createSlider(final int adjustType) {
+        Slider slider_contrast = this.createSlider(ADJUST_TYPE_CONTRAST);
+        Slider slider = new Slider();
+        slider.setMin(-1);
+        slider.setMax(1);
+        slider.setBlockIncrement(0.1);
+        slider.setValue(0);
+        slider.valueProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observable, //
+                                Number oldValue, Number newValue) {
+                switch (adjustType) {
+                    case ADJUST_TYPE_CONTRAST:
+                        colorAdjust.setContrast(newValue.doubleValue());
+                        break;
+                }
+            }
+        });
+        return slider;
+    }  */
 }
 
 
-
-
-/*this.slider_contrast.valueProperty().addListener(new ChangeListener<Number>() {
-        public void changed(ObservableValue<? extends Number> ov,
-                Number old_val, Number new_val) {
-            this.imageView_editionImage.setOpacity(new_val.doubleValue());
-
-        }
-    }); */
-
-//this.slider_contrast.setBlockIncrement(-1);
-
-        /*private ColorAdjust colorAdjust;
-        private static final int ADJUST_TYPE_CONTRAST = 2;
-
-        Slider slider_contrast = this.createSlider(ADJUST_TYPE_CONTRAST);
-
-        // Create Slider to Adjust Color
-        private Slider createSlider(final int adjustType) {
-                Slider slider = new Slider();
-                slider.setMin(-1);
-                slider.setMax(1);
-                slider.setBlockIncrement(0.1);
-                slider.setValue(0);
-
-                slider.valueProperty().addListener(new ChangeListener<Number>() {
-
-                        @Override
-                        public void changed(ObservableValue<? extends Number> observable, //
-                                            Number oldValue, Number newValue) {
-                                switch (adjustType) {
-
-                                        case ADJUST_TYPE_CONTRAST:
-                                                colorAdjust.setContrast(newValue.doubleValue());
-                                                break;
-                                }
-                        }
-                });
-                return slider;
-        }
-*/
-
-/*
-
-
-
-
-    public ImageView loadImg() {
-
-        try {
-            Image newImg = SwingFXUtils.toFXImage(imgt, null);
-            imageView_editionImage.setImage(newImg);
-            rs.close();
-            stmnt.close();
-
-            con.close();
-        } catch (Exception e) {
-            System.out.println("Not working");
-        }
-        return imageView_editionImage;
-    }
-
-
-    public void changeImage() {
+/*    public void changeImage() {
 
         Image newImg = SwingFXUtils.toFXImage(imgt, null);
         img_1.setImage(newImg);

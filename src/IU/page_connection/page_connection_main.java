@@ -2,19 +2,23 @@ package IU.page_connection;
 
 import FC.SIR;
 import javafx.application.Application;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.PasswordField;
 import javafx.stage.Stage;
 
 public class page_connection_main extends Application {
-
+    @FXML // fx:id="champ_motDePasse"
+    private PasswordField champ_motDePasse; // Value injected by FXMLLoader
     private SIR sir;
     @Override
     public void start(Stage primaryStage) throws Exception {
         // just load fxml file and display it in the stage:
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("page_connection.fxml"));
+
         Parent root = loader.load();
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
@@ -31,4 +35,6 @@ public class page_connection_main extends Application {
 
 
     }
+
+
 }

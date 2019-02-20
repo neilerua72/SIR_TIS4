@@ -4,15 +4,14 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import FC.Patient;
-import FC.SIR;
+import FC.*;
+import ClassTable.TableExamen;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -20,11 +19,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import FC.Connexion;
 import javafx.stage.StageStyle;
-import FC.Utilisateur;
-
-import javax.script.Bindings;
 
 public class acceuil_medecin_controller implements Initializable{
     Connexion connect;
@@ -105,6 +100,10 @@ public class acceuil_medecin_controller implements Initializable{
 
     @FXML // fx:id="colonne_patient"
     private TableColumn<?, ?> colonne_patient; // Value injected by FXMLLoader
+    @FXML // fx:id="colonne_patient"
+    private TableColumn<?, ?> colonne_nom; // Value injected by FXMLLoader
+    @FXML // fx:id="colonne_patient"
+    private TableColumn<?, ?> colonne_prenom; // Value injected by FXMLLoader
 
     @FXML // fx:id="ractangle_recherche"
     private Rectangle ractangle_recherche; // Value injected by FXMLLoader
@@ -113,7 +112,7 @@ public class acceuil_medecin_controller implements Initializable{
     private Text texte_rechercherPar; // Value injected by FXMLLoader
 
     @FXML // fx:id="tableau_colonnes"
-    private TableView<?> tableau_colonnes; // Value injected by FXMLLoader
+    private TableView<TableExamen> tableau_colonnes; // Value injected by FXMLLoader
 
     @FXML // fx:id="champ_date"
     private DatePicker champ_date; // Value injected by FXMLLoader
@@ -121,7 +120,7 @@ public class acceuil_medecin_controller implements Initializable{
     @FXML // fx:id="texte_date"
     private Text texte_date; // Value injected by FXMLLoader
 
-
+    private Examen exam1;
 
 
     @FXML
@@ -139,7 +138,32 @@ public class acceuil_medecin_controller implements Initializable{
 
     public void initData(SIR sir){
         this.sir=sir;
+        TableExamen tb =sir.getTableExamen().get(0);
+        final ObservableList<TableExamen> data= FXCollections.observableArrayList(tb);
+        System.out.println(tb.getIdpatient());
+        for(int i=1;i<sir.getListeExamen().size();i++){
+            data.add(sir.getTableExamen().get(i));
+        }
         texte_rechercherPar.setText(sir.getConnexion().getType().toString());
+
+        colonne_prenom.setCellValueFactory(new PropertyValueFactory<>("prenom"));
+        colonne_nom.setCellValueFactory(new PropertyValueFactory<>("nom"));
+        colonne_IDPatient.setCellValueFactory(new PropertyValueFactory<>("idpatient"));
+        colonne_dateExamen.setCellValueFactory(new PropertyValueFactory<>("dateExamen"));
+        colonne_medecinPrescripteur.setCellValueFactory(new PropertyValueFactory<>("medecinprescri"));
+        colonne_medecinRadiologue.setCellValueFactory(new PropertyValueFactory<>("medecinradio"));
+        colonne_IDExamen.setCellValueFactory(new PropertyValueFactory<>("idexamen"));
+        colonne_typeExamen.setCellValueFactory(new PropertyValueFactory<>("typeExam"));
+        colonne_CR.setCellValueFactory(new PropertyValueFactory<>("cr"));
+        colonne_image.setCellValueFactory(new PropertyValueFactory<>("image"));
+
+
+        colonne_dossierPatient.setCellValueFactory(new PropertyValueFactory<>("dossierPatient"));
+
+
+
+        tableau_colonnes.setItems(data);
+
     }
 
 
@@ -187,8 +211,8 @@ public class acceuil_medecin_controller implements Initializable{
         assert tableau_colonnes != null : "fx:id=\"tableau_colonnes\" was not injected: check your FXML file 'acceuil_medecin.fxml'.";
         assert champ_date != null : "fx:id=\"champ_date\" was not injected: check your FXML file 'acceuil_medecin.fxml'.";
         assert texte_date != null : "fx:id=\"texte_date\" was not injected: check your FXML file 'acceuil_medecin.fxml'.";
-
-
+        assert colonne_nom != null :"fx:id=\"colonne_nom\" was not injected: check your FXML file 'acceuil_medecin.fxml'.";
+        assert colonne_prenom != null :"fx:id=\"colonne_prenom\" was not injected: check your FXML file 'acceuil_medecin.fxml'.";
 
         ToggleGroup groupe_toggle_rechercherPar = new ToggleGroup();
         toggle_nomPatient.setToggleGroup(groupe_toggle_rechercherPar);

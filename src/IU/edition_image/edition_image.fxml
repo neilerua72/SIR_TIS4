@@ -110,7 +110,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button fx:id="button_inversionGris" alignment="CENTER_RIGHT" layoutX="550.0" layoutY="187.0" mnemonicParsing="false" prefHeight="57.0" prefWidth="52.0" translateX="19.0" GridPane.rowIndex="2">
+            <Button fx:id="button_inversionGris" onAction="#invertGreyScale" alignment="CENTER_RIGHT" layoutX="550.0" layoutY="187.0" mnemonicParsing="false" prefHeight="57.0" prefWidth="52.0" translateX="19.0" GridPane.rowIndex="2">
                <graphic>
                   <ImageView fitHeight="47.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true" scaleX="1.4" scaleY="1.4">
                      <image>
