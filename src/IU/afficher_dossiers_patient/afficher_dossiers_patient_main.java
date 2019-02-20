@@ -1,29 +1,23 @@
-package IU.page_connection;
+package IU.afficher_dossiers_patient;
 
-import FC.SIR;
 import javafx.application.Application;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.PasswordField;
 import javafx.stage.Stage;
 
-public class page_connection_main extends Application {
-    @FXML // fx:id="champ_motDePasse"
-    private PasswordField champ_motDePasse; // Value injected by FXMLLoader
-    private SIR sir;
+public class afficher_dossiers_patient_main extends Application {
+
+
     @Override
     public void start(Stage primaryStage) throws Exception {
         // just load fxml file and display it in the stage:
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("page_connection.fxml"));
-
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("afficher_dossiers_patient.fxml"));
         Parent root = loader.load();
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
         primaryStage.show();
-
     }
 
     // main method to support non-JavaFX-aware environments:
@@ -33,8 +27,6 @@ public class page_connection_main extends Application {
         // and calls start(...) on the FX Application thread:
         launch(args);
 
-
     }
-
 
 }
