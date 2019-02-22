@@ -5,23 +5,22 @@ package IU.edition_image;
  * Sample Skeleton for 'edition_image.fxml' Controller Class
  */
 
-import java.net.URL;
-import java.util.ResourceBundle;
-
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Slider;
 import javafx.scene.effect.ColorAdjust;
-import javafx.scene.effect.Lighting;
-import javafx.scene.image.*;
+import javafx.scene.image.ImageView;
+import javafx.scene.image.PixelReader;
+import javafx.scene.image.PixelWriter;
+import javafx.scene.image.WritableImage;
 import javafx.scene.paint.Color;
 
-import javax.swing.*;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 public class edition_image_controller implements Initializable {
 
@@ -228,6 +227,13 @@ public class edition_image_controller implements Initializable {
         //return copyImage;
     }
 
+    public void print (ActionEvent actionEvent){
+
+        }
+
+
+    }
+
 
 
     /* // Create Slider to Adjust Color
@@ -251,7 +257,7 @@ public class edition_image_controller implements Initializable {
         });
         return slider;
     }  */
-}
+
 
 
 /*    public void changeImage() {
