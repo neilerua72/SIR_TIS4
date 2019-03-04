@@ -15,8 +15,10 @@ public class afficher_dossiers_patient_main extends Application {
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("afficher_dossiers_patient.fxml"));
         Parent root = loader.load();
+        //root.autosize();
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
+        //primaryStage.setMaximized(true);
         primaryStage.show();
     }
 

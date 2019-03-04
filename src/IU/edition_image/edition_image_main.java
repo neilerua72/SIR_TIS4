@@ -20,19 +20,23 @@ public class edition_image_main extends Application {
             Parent root = loader.load();
             primaryStage.setTitle("Edition d'Image");
             Scene scene = new Scene(root);
+            root.autosize();
             //edition_image_controller edition_d_image = new edition_image_controller();
             final edition_image_controller edition_d_image = loader.getController();
             //edition_d_image.getImageView_editionImage().setImage(new Image(getClass().getResourceAsStream("test_image_local/mri-abdomen11.jpg")));
             primaryStage.setScene(scene);
-            primaryStage.show();
-/*
-            edition_d_image.getSlider_contrast().valueProperty().addListener(new ChangeListener<Number>() {
-                public void changed (ObservableValue <? extends Number > ov,
-                                     Number old_val, Number new_val){
-                    edition_d_image.getSlider_contrast().setOpacity(new_val.doubleValue());
+            //root.setScaleX(scene.getWidth());
+            //root.setScaleY(scene.getHeight());
+            /*root.setPrefWidth(scene.getWidth());
+            scene.widthProperty().addListener(observable -> {
+                bp.setPrefWidth(scene.getWidth());
+            });
 
-                }
+            bp.setPrefHeight(scene.getHeight());
+            scene.heightProperty().addListener(observable -> {
+                bp.setPrefHeight(scene.getHeight());
             });*/
+            primaryStage.show();
 
         }
 
