@@ -38,7 +38,7 @@ public class LectExamen {
                 boolean examenFait = resultat.getBoolean("ExamenFait");
                 Date dateRDV=resultat.getDate("dateRDV");
                 String typeExamen = resultat.getString("typeExamen");
-                String idPatient=resultat.getString("idPatient");
+                int idPatient=resultat.getInt("idPatient");
                 String idExamen = resultat.getString("idExamen");
                 int salle = resultat.getInt("salle");
                 String compteRendu = resultat.getString("compteRendu");

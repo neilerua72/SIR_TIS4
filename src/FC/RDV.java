@@ -8,10 +8,10 @@ public class RDV {
     private String id;
     private int salle;
     private String cr;
-    private String idPatient;
+    private int idPatient;
     private String medecinPrescri;
 
-    public RDV(Date dateRDV, TypeExamen typeExamen, String id, int salle, String cr,String idPatient,String medecinPrescri) {
+    public RDV(Date dateRDV, TypeExamen typeExamen, String id, int salle, String cr,int idPatient,String medecinPrescri) {
         this.dateRDV = dateRDV;
         this.typeExamen = typeExamen;
         this.id = id;
@@ -42,7 +42,7 @@ public class RDV {
         return cr;
     }
 
-    public String getIdPatient() {
+    public int getIdPatient() {
         return idPatient;
     }
 

@@ -77,7 +77,7 @@ public class SIR {
         return tableExamen;
     }
 
-    public String getNomPatient(String id){
+    public String getNomPatient(int id){
         int i=0;
         String s="";
         boolean rep =false;
@@ -90,7 +90,7 @@ public class SIR {
         }
         return s;
     }
-    public String getPrenomPatient(String id){
+    public String getPrenomPatient(int id){
         int i=0;
         String s="";
         boolean rep=false;

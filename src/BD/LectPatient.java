@@ -26,7 +26,7 @@ public class LectPatient {
             while (resultat.next()) {
                 String nom = resultat.getString("nom");
                 String prenom = resultat.getString("prenom");
-                String idConnexion = resultat.getString("id");
+                int idConnexion = resultat.getInt("id");
                 Date dateDeNaissance = resultat.getDate("dateDeNaissance");
                 String mail = resultat.getString("mail");
                 int numeroTel = resultat.getInt("numeroTel");
