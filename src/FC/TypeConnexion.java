@@ -1,10 +1,13 @@
 package FC;
 
 public enum TypeConnexion {
-    MED,
-    MAN,
-    SEC;
-
+    MED("Médecin Radiologue"),
+    MAN("Manipulateur Radiologue"),
+    SEC("Secrétaire");
+    private String nom="";
+    TypeConnexion(String nom) {
+        this.nom=nom;
+    }
 
     public TypeConnexion matchType(String type){
         if(type.equals("MED"))
@@ -15,6 +18,9 @@ public enum TypeConnexion {
             return TypeConnexion.SEC;
         else
             return null;
+    }
+    public String toString(){
+        return nom;
     }
 }
 

@@ -61,4 +61,7 @@ public class Utilisateur {
     public TypeConnexion getType(){
         return this.type;
     }
+    public String getNomPremnom(){
+        return this.nom + " " + this.prenom;
+    }
 }

@@ -6,6 +6,7 @@ import java.util.ResourceBundle;
 
 import FC.*;
 import ClassTable.TableExamen;
+import IU.menu.menu_controller;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -16,6 +17,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -24,6 +26,7 @@ import javafx.stage.StageStyle;
 public class acceuil_medecin_controller implements Initializable{
     Connexion connect;
     SIR sir;
+    Parent menu;
     /**
      * Sample Skeleton for 'acceuil_medecin.fxml' Controller Class
      */
@@ -40,6 +43,9 @@ public class acceuil_medecin_controller implements Initializable{
     @FXML // fx:id="colonne_dossierPatient"
     private TableColumn<?, ?> colonne_dossierPatient; // Value injected by FXMLLoader
 
+
+    @FXML
+    private AnchorPane top;
     /**
      * Toggle Buttons pour la "recherche par"
      **/
@@ -136,11 +142,13 @@ public class acceuil_medecin_controller implements Initializable{
     }
 
 
-    public void initData(SIR sir){
+    public void initData(SIR sir,Parent menu,FXMLLoader loader){
+        System.out.println("Init data");
         this.sir=sir;
         TableExamen tb =sir.getTableExamen().get(0);
         final ObservableList<TableExamen> data= FXCollections.observableArrayList(tb);
         System.out.println(tb.getIdpatient());
+        this.menu=menu;
         for(int i=1;i<sir.getListeExamen().size();i++){
             data.add(sir.getTableExamen().get(i));
         }
@@ -161,9 +169,11 @@ public class acceuil_medecin_controller implements Initializable{
         colonne_dossierPatient.setCellValueFactory(new PropertyValueFactory<>("dossierPatient"));
 
 
-
+        menu_controller controller = loader.getController();
+        controller.initData(sir);
         tableau_colonnes.setItems(data);
 
+        top.getChildren().add(menu);
     }
 
 
@@ -190,6 +200,7 @@ public class acceuil_medecin_controller implements Initializable{
     public
     // This method is called by the FXMLLoader when initialization is complete
     void initialize(URL url, ResourceBundle rb) {
+        System.out.println("initialize");
         assert colonne_CR != null : "fx:id=\"colonne_CR\" was not injected: check your FXML file 'acceuil_medecin.fxml'.";
         assert colonne_dossierPatient != null : "fx:id=\"colonne_dossierPatient\" was not injected: check your FXML file 'acceuil_medecin.fxml'.";
         assert toggle_IDPatient != null : "fx:id=\"toggle_IDPatient\" was not injected: check your FXML file 'acceuil_medecin.fxml'.";
@@ -213,7 +224,7 @@ public class acceuil_medecin_controller implements Initializable{
         assert texte_date != null : "fx:id=\"texte_date\" was not injected: check your FXML file 'acceuil_medecin.fxml'.";
         assert colonne_nom != null :"fx:id=\"colonne_nom\" was not injected: check your FXML file 'acceuil_medecin.fxml'.";
         assert colonne_prenom != null :"fx:id=\"colonne_prenom\" was not injected: check your FXML file 'acceuil_medecin.fxml'.";
-
+        assert top != null :"fx:id=\"top\" was not injected: check your FXML file 'acceuil_medecin.fxml'.";
         ToggleGroup groupe_toggle_rechercherPar = new ToggleGroup();
         toggle_nomPatient.setToggleGroup(groupe_toggle_rechercherPar);
         toggle_IDPatient.setToggleGroup(groupe_toggle_rechercherPar);

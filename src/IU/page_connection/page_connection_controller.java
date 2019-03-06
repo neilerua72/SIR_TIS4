@@ -4,10 +4,13 @@ package IU.page_connection;
 import FC.Connexion;
 import FC.SIR;
 import FC.Utilisateur;
+
 import IU.acceuil_medecin.acceuil_medecin_controller;
+import IU.menu.menu_controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -15,12 +18,12 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 
-import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class page_connection_controller {
@@ -56,16 +59,21 @@ public class page_connection_controller {
 
         if(conn.isConnect()){
             URL url_accreuil_medecin;
+            FXMLLoader loadermenu = new FXMLLoader();
+            loadermenu.setLocation(getClass().getResource("/IU/menu/menu.fxml"));
+            Parent menu = loadermenu.load();
             //url_accreuil_medecin = new File("IU.acceuil_medecin.acceuil_medecin.fxml").toURL();
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/IU/acceuil_medecin/acceuil_medecin.fxml"));
+            System.out.println(menu.toString());
             Parent tableViewParent = loader.load();
 
             Scene tableViewScene = new Scene(tableViewParent);
 
             //access the controller and call a method
             acceuil_medecin_controller controller = loader.getController();
-            controller.initData(sir);
+            System.out.println(controller);
+            controller.initData(sir,menu,loadermenu);
 
             //This line gets the Stage information
             Stage window = (Stage)((Node)e.getSource()).getScene().getWindow();
@@ -73,6 +81,8 @@ public class page_connection_controller {
             window.setScene(tableViewScene);
             window.show();
             System.out.println("Connecter");
+
+
         }
         else{
             Alert alert = new Alert(Alert.AlertType.ERROR);
