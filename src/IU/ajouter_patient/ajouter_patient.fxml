@@ -5,7 +5,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="363.0" prefWidth="531.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="363.0" prefWidth="531.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="IU.ajouter_patient.ajouter_patient_controller">
    <children>
       <GridPane layoutX="27.0" layoutY="70.0" prefHeight="268.0" prefWidth="482.0">
         <columnConstraints>
@@ -35,10 +35,10 @@
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Médecin Radiologue " GridPane.rowIndex="4" />
             <TextField fx:id="ajoutpatient_champ_medecinRadiologue" GridPane.columnIndex="1" GridPane.rowIndex="4" />
             <Button fx:id="button_annuler" mnemonicParsing="false" text="Annuler" translateX="220.0" translateY="10.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-            <Button fx:id="button_valider" mnemonicParsing="false" text="Valider" translateX="300.0" translateY="10.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+            <Button fx:id="button_valider" onAction="#ajoutPatient" mnemonicParsing="false" text="Valider" translateX="300.0" translateY="10.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
          </children>
       </GridPane>
-      <Text layoutX="154.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ajouter un Patient " wrappingWidth="227.357421875">
+      <Text layoutX="155.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ajouter un Patient " wrappingWidth="227.357421875">
          <font>
             <Font name="System Bold" size="25.0" />
          </font>

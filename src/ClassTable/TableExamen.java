@@ -5,17 +5,17 @@ import java.sql.Date;
 public class TableExamen {
     private String nom;
     private String prenom;
-    private int idpatient;
+    private String idpatient;
     private Date dateExamen;
     private String medecinradio;
     private String medecinprescri;
-    private int idexamen;
+    private String idexamen;
     private String cr;
     private String typeExam;
     private String image;
     private String dossierPatient;
 
-    public TableExamen(String nom, String prenom, int idpatient, Date dateExamen, String medecinradio, String medecinprescri, int idexamen, String typeExam, String image, String dossierPatient,String cr) {
+    public TableExamen(String nom, String prenom, String idpatient, Date dateExamen, String medecinradio, String medecinprescri, String idexamen, String typeExam, String image, String dossierPatient, String cr) {
 
         this.nom = nom;
         this.prenom = prenom;
@@ -39,7 +39,7 @@ public class TableExamen {
         return prenom;
     }
 
-    public int getIdpatient() {
+    public String getIdpatient() {
         return idpatient;
     }
 
@@ -55,7 +55,7 @@ public class TableExamen {
         return medecinprescri;
     }
 
-    public int getIdexamen() {
+    public String getIdexamen() {
         return idexamen;
     }
 

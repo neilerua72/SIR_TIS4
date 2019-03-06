@@ -73,6 +73,9 @@ public class acceuil_medecin_controller implements Initializable{
     private Button button_consulterTousLesDP;// Value injected by FXMLLoader
 
 
+    @FXML //fx:id="button_envoyerDMR"
+    private Button button_envoyerDMR; //Value injected by FXMLLoader
+
 
     @FXML // fx:id="button_ajouterPatient"
     private Button button_ajouterPatient = new Button("Ajouter Patient");// Value injected by FXMLLoader
