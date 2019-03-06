@@ -16,8 +16,7 @@
         <TextField fx:id="Date_Naissance" layoutX="223.0" layoutY="246.0" promptText="Date Naissance" />
         <ComboBox fx:id="Categorie" layoutX="222.0" layoutY="99.0" prefWidth="150.0" promptText="Categorie" />
         <ComboBox fx:id="Sexe" layoutX="222.0" layoutY="281.0" prefWidth="150.0" promptText="Sexe" />
-        <TextField fx:id="Date_Admission" layoutX="223.0" layoutY="319.0" prefHeight="25.0" prefWidth="115.0" promptText="Date admission" />
-        <TextField fx:id="Date_sortie" layoutX="223.0" layoutY="353.0" prefHeight="25.0" prefWidth="115.0" promptText="Date sortie" />
+        <TextField fx:id="Date_Exam" layoutX="223.0" layoutY="319.0" prefHeight="25.0" prefWidth="115.0" promptText="Date Examen" />
         <Button fx:id="Admettre" layoutX="493.0" layoutY="366.0" mnemonicParsing="false" onAction="#Admission" text="Admettre" />
         <Label fx:id="l1" layoutX="14.0" layoutY="285.0" prefHeight="17.0" prefWidth="115.0" />
         <Label fx:id="l2" layoutX="14.0" layoutY="311.0" prefHeight="17.0" prefWidth="115.0" />
@@ -26,4 +25,3 @@
         <TextField fx:id="port" layoutX="14.0" layoutY="211.0" promptText="Port" />
     </children>
 </AnchorPane>
-

@@ -54,10 +54,9 @@ public class TestServeur_controlleur {
     private TextField Date_Naissance;
 
     @FXML //fx:id="Date_Admission"
-    private TextField Date_Admission;
+    private TextField Date_Exam;
 
-    @FXML //fx:id="Date_sortie"
-    private TextField Date_sortie;
+
 
     @FXML //fx:id="Categorie"
     private ComboBox<String> Categorie;
@@ -98,7 +97,7 @@ public class TestServeur_controlleur {
     private void initBackgroundField() {
         this.identification.setStyle("-fx-background-color: white;");   //changer couleur champ texte
         this.Nom.setStyle("-fx-background-color: white;");
-        this.Date_sortie.setStyle("-fx-background-color: white;");
+        this.Date_Exam.setStyle("-fx-background-color: white;");
 
     }
 
@@ -128,10 +127,10 @@ public class TestServeur_controlleur {
         }
         //Date Decharge
         if (this.nbr == 2) {
-            String dateDechargeString = this.Date_sortie.getText();
+            String dateDechargeString = this.Date_Exam.getText();
             if (dateDechargeString.equals("  /  /    ")) {
                 r = false;
-                this.Date_sortie.setStyle("-fx-background-color: red;");
+                this.Date_Exam.setStyle("-fx-background-color: red;");
             }
         }
         return r;
@@ -279,7 +278,7 @@ public class TestServeur_controlleur {
 
         //Date Decharge
         Date dateDecharge = null;
-        String dateDechargeString = this.Date_sortie.getText();
+        String dateDechargeString = this.Date_Exam.getText();
         try {
             if (!dateDechargeString.equals("  /  /    ")) {
                 dateDecharge = formateur.parse(dateDechargeString);
@@ -328,7 +327,7 @@ public class TestServeur_controlleur {
             this.l1.setText("ID message : " + messageAck.getId());
             this.l2.setText(messageAck.getAcknowledgmentCodeString());
             this.l3.setText("ID Ack: " + messageAck.getIdAck());
-
+            System.out.println("Examen fait le: " + patient.getDateDicharge());
         }
 
     }

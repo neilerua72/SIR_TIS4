@@ -37,6 +37,12 @@ public class TestClient_controlleur {
     @FXML
     private Label typeexam;
 
+    @FXML
+    private Label DateExamen;
+
+    @FXML
+    private Label DateAdmission;
+
     private Patient patient;
     private Message message;
     private ServeurHL7 c;
@@ -70,7 +76,9 @@ public class TestClient_controlleur {
             this.typeexam.setText("Type Examen: " + "Scanner");}
         if(patient.getPatClass() == "Outpatient"){
             this.typeexam.setText("Type Examen: " + "Radio");}
+
         this.id.setText("Id Patient :" + patient.getID());
+
         this.nom.setText("Nom : " + patient.getFamillyName());
 
         if (patient.getFirstName() != null) {
@@ -83,6 +91,12 @@ public class TestClient_controlleur {
 
         if (patient.getSex() != null) {
             this.sexe.setText("Sexe : " + patient.getSex());}
+
+
+        if (patient.getDateDicharge() != null) {
+
+            this.DateExamen.setText("Examen fait le: " + patient.getDateDicharge().toString());
+        }
 
     }
 }
