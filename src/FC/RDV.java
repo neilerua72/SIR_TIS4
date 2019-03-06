@@ -5,13 +5,13 @@ import java.util.Date;
 public class RDV {
     private Date dateRDV;
     private TypeExamen typeExamen;
-    private int id;
+    private String id;
     private int salle;
     private String cr;
-    private int idPatient;
+    private String idPatient;
     private String medecinPrescri;
 
-    public RDV(Date dateRDV, TypeExamen typeExamen, int id, int salle, String cr,int idPatient,String medecinPrescri) {
+    public RDV(Date dateRDV, TypeExamen typeExamen, String id, int salle, String cr,String idPatient,String medecinPrescri) {
         this.dateRDV = dateRDV;
         this.typeExamen = typeExamen;
         this.id = id;
@@ -30,7 +30,7 @@ public class RDV {
         return typeExamen;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
@@ -42,7 +42,7 @@ public class RDV {
         return cr;
     }
 
-    public int getIdPatient() {
+    public String getIdPatient() {
         return idPatient;
     }
 
