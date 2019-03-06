@@ -1,4 +1,4 @@
-package IU.afficher_dossiers_patient;
+package IU.ajout_examen;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -6,19 +6,17 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class afficher_dossiers_patient_main extends Application {
+public class ajout_examen_main extends Application {
 
 
     @Override
     public void start(Stage primaryStage) throws Exception {
         // just load fxml file and display it in the stage:
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("afficher_dossiers_patient.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("ajout_examen.fxml"));
         Parent root = loader.load();
-        //root.autosize();
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
-        //primaryStage.setMaximized(true);
         primaryStage.show();
     }
 

@@ -8,6 +8,8 @@ package IU.afficher_dossiers_patient;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.ListView;
@@ -17,6 +19,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
+
+import javax.swing.text.html.ImageView;
 
 public class afficher_dossiers_patient_controller {
 
@@ -33,7 +37,10 @@ public class afficher_dossiers_patient_controller {
     private ToggleButton toggle_IDPatient; // Value injected by FXMLLoader
 
     @FXML // fx:id="listView_imagesExam"
-    private ListView<?> listView_imagesExam; // Value injected by FXMLLoader
+    private ListView<ImageView> listView_imagesExam = new ListView<ImageView>(); // Value injected by FXMLLoader
+
+    ;
+    ObservableList<ImageView> items = FXCollections.observableArrayList();
 
     @FXML // fx:id="colonne_IDPatient"
     private TableColumn<?, ?> colonne_IDPatient; // Value injected by FXMLLoader

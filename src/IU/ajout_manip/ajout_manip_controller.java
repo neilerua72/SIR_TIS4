@@ -4,13 +4,24 @@ package IU.ajout_manip;
  * Sample Skeleton for 'ajout_manip.fxml' Controller Class
  */
 
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Logger;
+
+import javafx.embed.swing.SwingFXUtils;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
+
+import javax.imageio.ImageIO;
 
 public class ajout_manip_controller {
 
@@ -80,8 +91,12 @@ public class ajout_manip_controller {
     @FXML // fx:id="champ_zoneEtudieeManip"
     private TextField champ_zoneEtudieeManip; // Value injected by FXMLLoader
 
+    @FXML
+    private ImageView imageView_dl;
 
-    @FXML // This method is called by the FXMLLoader when initialization is complete
+
+    @FXML
+        // This method is called by the FXMLLoader when initialization is complete
     void initialize() {
         assert button_editionImage != null : "fx:id=\"button_editionImage\" was not injected: check your FXML file 'ajout_manip.fxml'.";
         assert champ_vueManip != null : "fx:id=\"champ_vueManip\" was not injected: check your FXML file 'ajout_manip.fxml'.";
@@ -103,6 +118,34 @@ public class ajout_manip_controller {
         assert champ_prenomPatientManip != null : "fx:id=\"champ_prenomPatientManip\" was not injected: check your FXML file 'ajout_manip.fxml'.";
         assert champ_medecinRadiologueManip != null : "fx:id=\"champ_medecinRadiologueManip\" was not injected: check your FXML file 'ajout_manip.fxml'.";
         assert champ_zoneEtudieeManip != null : "fx:id=\"champ_zoneEtudieeManip\" was not injected: check your FXML file 'ajout_manip.fxml'.";
+
+    }
+
+
+    public void chooseFile(ActionEvent actionEvent) throws MalformedURLException {
+        FileChooser chooser = new FileChooser();
+        chooser.setTitle("Choisir une Image");
+        chooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("Image Files",
+                        "*.bmp", "*.png", "*.jpg")); // limit fileChooser options to image files
+        //File file = chooser.showOpenDialog(new Stage());
+        File file = chooser.showOpenDialog(button_acquisitionImage.getScene().getWindow());
+        if (file != null) {
+            try {
+                BufferedImage bufferedImage = ImageIO.read(file);
+                Image image = SwingFXUtils.toFXImage(bufferedImage, null);
+                imageView_dl.setImage(image);
+            } catch (IOException e) {
+                //e.printStackTrace();
+            }
+
+        } else {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Message d'information");
+            alert.setHeaderText("Vous n'avez pas choisi d'image à traiter!");
+            //alert.setContentText("Veuillez sélectionner une image à traiter");
+            alert.showAndWait();
+        }
 
     }
 }

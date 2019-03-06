@@ -15,7 +15,7 @@ public class afficheImage extends Application {
     @Override
     public void start(Stage primaryStage) {
 
-        final String imageURI = new File("/Users/hugobosquet/Desktop/jpg/abdomen/cor494-i43.jpg").toURI().toString();
+        final String imageURI = new File("/Users/hugobosquet/Desktop/water-2748657_960_720.png").toURI().toString();
         final Image image = new Image(imageURI);
 
         final ImageView imageView = new ImageView(image);

@@ -10,206 +10,246 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="676.0" prefWidth="798.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="IU.edition_image.edition_image_controller">
-   <children>
-       <ImageView fx:id="imageView_editionImage"  fitHeight="575.0" fitWidth="575.0" layoutX="14.0" layoutY="82.0" pickOnBounds="true" preserveRatio="true">
-           <image>
-             <Image url="@test_image_local/cor494-i43.jpg" />
-           </image>
-       </ImageView>
-
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#97979700" height="575.0" layoutX="13.0" layoutY="82.0" stroke="#858585" strokeType="INSIDE" width="575.0" />
-      <Text layoutX="314.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Edition Image">
-         <font>
-            <Font name="System Bold" size="26.0" />
-         </font>
-      </Text>
-      <GridPane layoutX="601.0" layoutY="79.0" prefHeight="551.0" prefWidth="177.0">
-         <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
-         </columnConstraints>
-         <rowConstraints>
-            <RowConstraints maxHeight="57.0" minHeight="57.0" prefHeight="57.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="41.0" minHeight="41.0" prefHeight="41.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="57.0" minHeight="57.0" prefHeight="57.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="41.0" minHeight="41.0" prefHeight="41.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="57.0" minHeight="57.0" prefHeight="57.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="15.0" minHeight="15.0" prefHeight="15.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="69.0" minHeight="41.0" prefHeight="69.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="57.0" minHeight="57.0" prefHeight="57.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="41.0" minHeight="41.0" prefHeight="41.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="57.0" minHeight="57.0" prefHeight="57.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="57.0" minHeight="57.0" prefHeight="57.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="41.0" minHeight="30.0" prefHeight="41.0" vgrow="SOMETIMES" />
-         </rowConstraints>
+<ScrollPane prefHeight="742.0" prefWidth="804.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="IU.edition_image.edition_image_controller">
+   <content>
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="798.0">
          <children>
-            <Button fx:id="button_symetrieVerticale"  onAction="#verticalFlipActivated" alignment="CENTER_RIGHT" layoutX="550.0" layoutY="82.0" mnemonicParsing="false" prefHeight="57.0" prefWidth="52.0" translateX="19.0">
-               <graphic>
-                  <ImageView fitHeight="47.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true" scaleX="1.4" scaleY="1.4">
-                     <image>
-                        <Image url="@Symétrie%20Verticale.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Button>
-            <Button fx:id="button_symetrieHorizontale" onAction="#horizontalFlipActivated" alignment="CENTER_RIGHT" layoutX="634.0" layoutY="82.0" mnemonicParsing="false" prefHeight="57.0" prefWidth="52.0" translateX="19.0" GridPane.columnIndex="1">
-               <graphic>
-                  <ImageView fitHeight="47.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true" scaleX="1.4" scaleY="1.4">
-                     <image>
-                        <Image url="@symétrie%20Horizontale.png" />
-                     </image>
+            <Pane fx:id="pane_image" layoutX="27.0" layoutY="48.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" AnchorPane.bottomAnchor="145.0" AnchorPane.leftAnchor="27.0" AnchorPane.rightAnchor="198.0" AnchorPane.topAnchor="48.0">
+               <children>
+                   <ImageView fx:id="imageView_editionImage" fitHeight="575.0" fitWidth="575.0" pickOnBounds="true" preserveRatio="true">
+                       <image>
+                         <Image url="@test_image_local/mri-abdomen11.jpg" />
+                       </image>
+                   </ImageView>
+               </children>
+            </Pane>
+      
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#97979700" height="575.0" layoutX="26.0" layoutY="48.0" stroke="#858585" strokeType="INSIDE" width="575.0" />
+            <Text layoutX="327.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Edition Image">
+               <font>
+                  <Font name="System Bold" size="26.0" />
+               </font>
+            </Text>
+            <GridPane layoutX="614.0" layoutY="45.0" prefHeight="551.0" prefWidth="177.0">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints maxHeight="57.0" minHeight="57.0" prefHeight="57.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="41.0" minHeight="41.0" prefHeight="41.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="57.0" minHeight="57.0" prefHeight="57.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="41.0" minHeight="41.0" prefHeight="41.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="57.0" minHeight="57.0" prefHeight="57.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="15.0" minHeight="15.0" prefHeight="15.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="69.0" minHeight="41.0" prefHeight="69.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="57.0" minHeight="57.0" prefHeight="57.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="15.0" minHeight="15.0" prefHeight="15.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="41.0" minHeight="41.0" prefHeight="41.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="57.0" minHeight="57.0" prefHeight="57.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="41.0" minHeight="41.0" prefHeight="41.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="57.0" minHeight="57.0" prefHeight="57.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="57.0" minHeight="57.0" prefHeight="57.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="41.0" minHeight="30.0" prefHeight="41.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <Button fx:id="button_symetrieVerticale" alignment="CENTER_RIGHT" layoutX="550.0" layoutY="82.0" mnemonicParsing="false" onAction="#verticalFlipActivated" prefHeight="57.0" prefWidth="52.0" translateX="19.0" GridPane.rowIndex="2">
+                     <graphic>
+                        <ImageView fitHeight="47.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true" scaleX="1.4" scaleY="1.4">
+                           <image>
+                              <Image url="@Symétrie%20Verticale.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
-                  </ImageView>
-               </graphic>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Button>
-            <Button fx:id="button_diminuerContraste" alignment="CENTER_RIGHT" layoutX="550.0" layoutY="294.0" mnemonicParsing="false" prefHeight="57.0" prefWidth="52.0" translateX="19.0" GridPane.rowIndex="4">
-               <graphic>
-                  <ImageView fitHeight="47.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true" scaleX="1.4" scaleY="1.4">
-                     <image>
-                        <Image url="@brigthness.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Button>
-            <Text layoutX="628.0" layoutY="472.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Rotation 90° Droite" textAlignment="CENTER" translateX="12.0" wrappingWidth="67.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
-            <Text layoutX="535.0" layoutY="257.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Inversion niveaux de gris" textAlignment="CENTER" translateX="2.0" wrappingWidth="85.0" GridPane.rowIndex="3" />
-            <Button fx:id="button_annuler" alignment="CENTER_RIGHT" layoutX="551.0" layoutY="504.0" mnemonicParsing="false" prefHeight="57.0" prefWidth="52.0" translateX="19.0" GridPane.rowIndex="9">
-               <graphic>
-                  <ImageView fitHeight="47.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true" scaleX="1.4" scaleY="1.4">
-                     <image>
-                        <Image url="@go%20back.jpg" />
-                     </image>
-                  </ImageView>
-               </graphic>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Button>
-            <Button fx:id="button_rotationDroite" onAction="#rotateRightActivated" alignment="CENTER_RIGHT" layoutX="634.0" layoutY="401.0" mnemonicParsing="false" prefHeight="57.0" prefWidth="52.0" translateX="19.0" GridPane.columnIndex="1" GridPane.rowIndex="7">
-               <graphic>
-                  <ImageView fitHeight="47.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true" scaleX="1.4" scaleY="1.4">
-                     <image>
-                        <Image url="@rotation%20270.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Button>
-            <Button fx:id="button_inversionGris" onAction="#invertGreyScale" alignment="CENTER_RIGHT" layoutX="550.0" layoutY="187.0" mnemonicParsing="false" prefHeight="57.0" prefWidth="52.0" translateX="19.0" GridPane.rowIndex="2">
-               <graphic>
-                  <ImageView fitHeight="47.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true" scaleX="1.4" scaleY="1.4">
-                     <image>
-                        <Image url="@blakc%20and%20white%20flower%20invert.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Button>
-            <Text layoutX="544.0" layoutY="364.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Diminuer Contraste" textAlignment="CENTER" translateX="12.0" translateY="-6.0" wrappingWidth="67.0" GridPane.rowIndex="6" />
-            <Text layoutX="628.0" layoutY="151.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Symétrie Horizontale" textAlignment="CENTER" translateX="12.0" wrappingWidth="67.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Button fx:id="button_augmenterContraste" alignment="CENTER_RIGHT" layoutX="634.0" layoutY="294.0" mnemonicParsing="false" prefHeight="57.0" prefWidth="52.0" translateX="19.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
-               <graphic>
-                  <ImageView fitHeight="47.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true" scaleX="1.4" scaleY="1.4">
-                     <image>
-                        <Image url="@more%20brightness.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Button>
-            <Button fx:id="button_rotationGauche" onAction="#rotateLeftActivated" alignment="CENTER_RIGHT" layoutX="550.0" layoutY="401.0" mnemonicParsing="false" prefHeight="57.0" prefWidth="52.0" translateX="19.0" GridPane.rowIndex="7">
-               <graphic>
-                  <ImageView fitHeight="47.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true" scaleX="1.4" scaleY="1.4">
-                     <image>
-                        <Image url="@rotation%2090.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Button>
-            <Text layoutX="625.0" layoutY="257.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ajout Commentaire" textAlignment="CENTER" translateX="11.0" wrappingWidth="74.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <Text layoutX="628.0" layoutY="364.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Augmenter Contraste" textAlignment="CENTER" translateX="12.0" translateY="-6.0" wrappingWidth="67.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-            <Text layoutX="544.0" layoutY="471.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Rotation 90° Gauche" textAlignment="CENTER" translateX="12.0" wrappingWidth="67.0" GridPane.rowIndex="8" />
-            <Button fx:id="button_refaire" alignment="CENTER_RIGHT" layoutX="635.0" layoutY="504.0" mnemonicParsing="false" prefHeight="57.0" prefWidth="52.0" translateX="19.0" GridPane.columnIndex="1" GridPane.rowIndex="9">
-               <graphic>
-                  <ImageView fitHeight="47.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true" scaleX="1.4" scaleY="1.4">
-                     <image>
-                        <Image url="@go%20forward.jpg" />
-                     </image>
-                  </ImageView>
-               </graphic>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Button>
-            <Text layoutX="628.0" layoutY="574.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Refaire" textAlignment="CENTER" translateX="11.0" translateY="-4.0" wrappingWidth="67.0" GridPane.columnIndex="1" GridPane.rowIndex="10" />
-            <Text layoutX="545.0" layoutY="574.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Annuler" textAlignment="CENTER" translateX="11.0" translateY="-4.0" wrappingWidth="67.0" GridPane.rowIndex="10">
-               <GridPane.margin>
-                  <Insets />
-               </GridPane.margin>
-            </Text>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Symétrie Verticale" textAlignment="CENTER" translateX="12.0" wrappingWidth="67.0" GridPane.rowIndex="1" />
-            <Button fx:id="button_ajoutCommentaire"  onAction="#print" alignment="CENTER_RIGHT" layoutX="634.0" layoutY="187.0" mnemonicParsing="false" prefHeight="57.0" prefWidth="52.0" translateX="19.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
-               <graphic>
-                  <ImageView fitHeight="47.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true" scaleX="1.4" scaleY="1.4">
-                     <image>
-                        <Image url="@ajout%20commentaire.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Button>
-            <Button fx:id="button_supprimer" alignment="CENTER_RIGHT" mnemonicParsing="false" prefHeight="57.0" prefWidth="52.0" translateX="19.0" GridPane.rowIndex="11">
-               <graphic>
-                  <ImageView fitHeight="47.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true" scaleX="1.4" scaleY="1.4">
-                     <image>
-                        <Image url="@delete.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Button>
-            <Button fx:id="button_valider" alignment="CENTER_RIGHT" mnemonicParsing="false" prefHeight="57.0" prefWidth="52.0" translateX="19.0" GridPane.columnIndex="1" GridPane.rowIndex="11">
-               <graphic>
-                  <ImageView fitHeight="47.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true" scaleX="1.4" scaleY="1.4">
-                     <image>
-                        <Image url="@valider.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Button>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Supprimer" textAlignment="CENTER" translateX="11.0" translateY="-4.0" wrappingWidth="67.0" GridPane.rowIndex="12" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Valider" textAlignment="CENTER" translateX="11.0" translateY="-4.0" wrappingWidth="67.0" GridPane.columnIndex="1" GridPane.rowIndex="12" />
-            <Slider fx:id="slider_contrast" maxHeight="3.0" maxWidth="145.0" minHeight="3.0" prefHeight="3.0" prefWidth="145.0" translateX="23.0" GridPane.columnSpan="2147483647" GridPane.rowIndex="5" />
+                  </Button>
+                  <Button fx:id="button_symetrieHorizontale" alignment="CENTER_RIGHT" layoutX="634.0" layoutY="82.0" mnemonicParsing="false" onAction="#horizontalFlipActivated" prefHeight="57.0" prefWidth="52.0" translateX="19.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                     <graphic>
+                        <ImageView fitHeight="47.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true" scaleX="1.4" scaleY="1.4">
+                           <image>
+                              <Image url="@symétrie%20Horizontale.png" />
+                           </image>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </ImageView>
+                     </graphic>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Button fx:id="button_diminuerContraste" alignment="CENTER_RIGHT" layoutX="550.0" layoutY="294.0" mnemonicParsing="false" prefHeight="57.0" prefWidth="52.0" translateX="19.0" GridPane.rowIndex="4">
+                     <graphic>
+                        <ImageView fitHeight="47.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true" scaleX="1.4" scaleY="1.4">
+                           <image>
+                              <Image url="@brigthness.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Text layoutX="628.0" layoutY="472.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Rotation 90° Droite" textAlignment="CENTER" translateX="12.0" wrappingWidth="67.0" GridPane.columnIndex="1" GridPane.rowIndex="11" />
+                  <Text layoutX="535.0" layoutY="257.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Inversion des niveaux de gris" textAlignment="CENTER" translateX="2.0" wrappingWidth="85.0" GridPane.rowIndex="1" />
+                  <Button fx:id="button_annuler" alignment="CENTER_RIGHT" layoutX="551.0" layoutY="504.0" mnemonicParsing="false" prefHeight="57.0" prefWidth="52.0" translateX="19.0" GridPane.rowIndex="12">
+                     <graphic>
+                        <ImageView fitHeight="47.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true" scaleX="1.4" scaleY="1.4">
+                           <image>
+                              <Image url="@go%20back.jpg" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Button fx:id="button_rotationDroite" alignment="CENTER_RIGHT" layoutX="634.0" layoutY="401.0" mnemonicParsing="false" onAction="#rotateRightActivated" prefHeight="57.0" prefWidth="52.0" translateX="19.0" GridPane.columnIndex="1" GridPane.rowIndex="10">
+                     <graphic>
+                        <ImageView fitHeight="47.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true" scaleX="1.4" scaleY="1.4">
+                           <image>
+                              <Image url="@rotation%20270.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Button fx:id="button_inversionGris" alignment="CENTER_RIGHT" layoutX="550.0" layoutY="187.0" mnemonicParsing="false" onAction="#invertGreyScale" prefHeight="57.0" prefWidth="52.0" translateX="19.0">
+                     <graphic>
+                        <ImageView fitHeight="47.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true" scaleX="1.4" scaleY="1.4">
+                           <image>
+                              <Image url="@blakc%20and%20white%20flower%20invert.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Text layoutX="544.0" layoutY="364.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Diminuer Luminosité" textAlignment="CENTER" translateX="12.0" translateY="-6.0" wrappingWidth="67.0" GridPane.rowIndex="6" />
+                  <Text layoutX="628.0" layoutY="151.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Symétrie Horizontale" textAlignment="CENTER" translateX="12.0" wrappingWidth="67.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <Button fx:id="button_augmenterContraste" alignment="CENTER_RIGHT" layoutX="634.0" layoutY="294.0" mnemonicParsing="false" prefHeight="57.0" prefWidth="52.0" translateX="19.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                     <graphic>
+                        <ImageView fitHeight="47.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true" scaleX="1.4" scaleY="1.4">
+                           <image>
+                              <Image url="@more%20brightness.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Button fx:id="button_rotationGauche" alignment="CENTER_RIGHT" layoutX="550.0" layoutY="401.0" mnemonicParsing="false" onAction="#rotateLeftActivated" prefHeight="57.0" prefWidth="52.0" translateX="19.0" GridPane.rowIndex="10">
+                     <graphic>
+                        <ImageView fitHeight="47.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true" scaleX="1.4" scaleY="1.4">
+                           <image>
+                              <Image url="@rotation%2090.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Text layoutX="625.0" layoutY="257.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Imprimer" textAlignment="CENTER" translateX="11.0" wrappingWidth="74.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Text layoutX="628.0" layoutY="364.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Augmenter Luminosité" textAlignment="CENTER" translateX="12.0" translateY="-6.0" wrappingWidth="67.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                  <Text layoutX="544.0" layoutY="471.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Rotation 90° Gauche" textAlignment="CENTER" translateX="12.0" wrappingWidth="67.0" GridPane.rowIndex="11" />
+                  <Button fx:id="button_refaire" alignment="CENTER_RIGHT" layoutX="635.0" layoutY="504.0" mnemonicParsing="false" prefHeight="57.0" prefWidth="52.0" translateX="19.0" GridPane.columnIndex="1" GridPane.rowIndex="12">
+                     <graphic>
+                        <ImageView fitHeight="47.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true" scaleX="1.4" scaleY="1.4">
+                           <image>
+                              <Image url="@go%20forward.jpg" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Text layoutX="628.0" layoutY="574.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Refaire" textAlignment="CENTER" translateX="11.0" translateY="-4.0" wrappingWidth="67.0" GridPane.columnIndex="1" GridPane.rowIndex="13" />
+                  <Text layoutX="545.0" layoutY="574.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Annuler" textAlignment="CENTER" translateX="11.0" translateY="-4.0" wrappingWidth="67.0" GridPane.rowIndex="13">
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin>
+                  </Text>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Symétrie Verticale" textAlignment="CENTER" translateX="12.0" wrappingWidth="67.0" GridPane.rowIndex="3" />
+                  <Button fx:id="button_imprimer" alignment="CENTER_RIGHT" layoutX="634.0" layoutY="187.0" mnemonicParsing="false" onAction="#printImage" prefHeight="57.0" prefWidth="52.0" translateX="19.0" GridPane.columnIndex="1">
+                     <graphic>
+                        <ImageView fitHeight="47.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true" scaleX="1.4" scaleY="1.4">
+                           <image>
+                              <Image url="@print.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Button fx:id="button_supprimer" alignment="CENTER_RIGHT" mnemonicParsing="false" prefHeight="57.0" prefWidth="52.0" translateX="19.0" GridPane.rowIndex="14">
+                     <graphic>
+                        <ImageView fitHeight="47.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true" scaleX="1.4" scaleY="1.4">
+                           <image>
+                              <Image url="@delete.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Button fx:id="button_valider" alignment="CENTER_RIGHT" mnemonicParsing="false" prefHeight="57.0" prefWidth="52.0" translateX="19.0" GridPane.columnIndex="1" GridPane.rowIndex="14">
+                     <graphic>
+                        <ImageView fitHeight="47.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true" scaleX="1.4" scaleY="1.4">
+                           <image>
+                              <Image url="@valider.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Supprimer" textAlignment="CENTER" translateX="11.0" translateY="-4.0" wrappingWidth="67.0" GridPane.rowIndex="15" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Valider" textAlignment="CENTER" translateX="11.0" translateY="-4.0" wrappingWidth="67.0" GridPane.columnIndex="1" GridPane.rowIndex="15" />
+                  <Slider fx:id="slider_brightness" maxHeight="3.0" maxWidth="145.0" minHeight="3.0" prefHeight="3.0" prefWidth="145.0" translateX="23.0" GridPane.columnSpan="2147483647" GridPane.rowIndex="5" />
+                  <Text layoutX="544.0" layoutY="564.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Diminuer Contraste" textAlignment="CENTER" translateX="12.0" translateY="-6.0" wrappingWidth="67.0" GridPane.rowIndex="9" />
+                  <Text layoutX="544.0" layoutY="564.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Augmenter Contraste" textAlignment="CENTER" translateX="12.0" translateY="-6.0" wrappingWidth="67.0" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+                  <Slider fx:id="slider_contrast" maxHeight="3.0" maxWidth="145.0" minHeight="3.0" prefHeight="3.0" prefWidth="145.0" translateX="23.0" GridPane.columnSpan="2147483647" GridPane.rowIndex="8" />
+                  <Button fx:id="button_diminuerContraste1" alignment="CENTER_RIGHT" mnemonicParsing="false" prefHeight="57.0" prefWidth="52.0" translateX="19.0" GridPane.rowIndex="7">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <graphic>
+                        <ImageView fitHeight="47.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true" scaleX="1.4" scaleY="1.4">
+                           <image>
+                              <Image url="@brigthness.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button fx:id="button_diminuerContraste2" alignment="CENTER_RIGHT" mnemonicParsing="false" prefHeight="57.0" prefWidth="52.0" translateX="19.0" GridPane.columnIndex="1" GridPane.rowIndex="7">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <graphic>
+                        <ImageView fitHeight="47.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true" scaleX="1.4" scaleY="1.4">
+                           <image>
+                              <Image url="@brigthness.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+               </children>
+            </GridPane>
+            <Text layoutX="27.0" layoutY="649.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ajouter un Commentaire " />
+            <TextArea layoutX="27.0" layoutY="656.0" prefHeight="69.0" prefWidth="573.0" />
          </children>
-      </GridPane>
-   </children>
-</AnchorPane>
+      </AnchorPane>
+   </content>
+</ScrollPane>
