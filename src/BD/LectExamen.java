@@ -4,7 +4,6 @@ import FC.Examen;
 import FC.RDV;
 import FC.TypeExamen;
 
-import java.lang.reflect.Type;
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -39,8 +38,8 @@ public class LectExamen {
                 boolean examenFait = resultat.getBoolean("ExamenFait");
                 Date dateRDV=resultat.getDate("dateRDV");
                 String typeExamen = resultat.getString("typeExamen");
-                int idPatient=resultat.getInt("idPatient");
-                int idExamen = resultat.getInt("idExamen");
+                String idPatient=resultat.getString("idPatient");
+                String idExamen = resultat.getString("idExamen");
                 int salle = resultat.getInt("salle");
                 String compteRendu = resultat.getString("compteRendu");
                 TypeExamen typeExamenc = TypeExamen.RADIO;
