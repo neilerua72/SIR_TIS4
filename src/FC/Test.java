@@ -7,7 +7,7 @@ public class Test {
         String id="1";
         String mdp="1";
         Connexion conn = new Connexion(new Utilisateur(id,mdp));
-        SIR sir = new SIR(conn);
+        //SIR sir = new SIR(conn);
 
     }
 

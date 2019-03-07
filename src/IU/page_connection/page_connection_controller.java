@@ -14,10 +14,7 @@ import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 
 import javafx.stage.Screen;
 import javafx.stage.Stage;
@@ -48,14 +45,15 @@ public class page_connection_controller {
         @FXML // fx:id="button_seConnecter"
         private Button button_seConnecter; // Value injected by FXMLLoader
 
-
+        @FXML
+        private ProgressBar barreProgression;
 
     @FXML
     private void SeConnecter(ActionEvent e) throws IOException {
         String id = champ_nomUtilisateur.getText();
         String mdp = champ_motDePasse.getText();
         Connexion conn = new Connexion(new Utilisateur(id,mdp));
-        SIR sir = new SIR(conn);
+        SIR sir = new SIR(conn,barreProgression);
 
         if(conn.isConnect()){
             URL url_accreuil_medecin;

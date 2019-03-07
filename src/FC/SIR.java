@@ -4,6 +4,7 @@ import BD.LectConnexion;
 import BD.LectExamen;
 import BD.LectPatient;
 import ClassTable.TableExamen;
+import javafx.scene.control.ProgressBar;
 
 import java.util.ArrayList;
 
@@ -15,12 +16,16 @@ public class SIR {
     private ArrayList<Examen> listeExamen;
     private ArrayList<TableExamen> tableExamen;
 
-    public SIR(Connexion connexion){
+    public SIR(Connexion connexion,ProgressBar pb){
+        pb.setVisible(true);
         this.connexion=connexion;
         TableExamen tb;
         LectConnexion lectConnexion = new LectConnexion();
+        pb.setProgress(0.33);
         LectPatient lectPatient = new LectPatient();
+        pb.setProgress(0.66);
         LectExamen lectExamen=new LectExamen();
+        pb.setProgress(1);
         this.listeUtilisateur=new ArrayList<Utilisateur>(lectConnexion.getListeUsers());
         connexion.setUser1(getListeUtilisateur());
         if(connexion.isConnect()){
