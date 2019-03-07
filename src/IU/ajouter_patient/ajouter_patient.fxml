@@ -11,7 +11,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="439.0" prefWidth="551.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="439.0" prefWidth="551.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="IU.ajouter_patient.ajouter_patient_controller" >
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#8585850d" height="77.0" layoutX="10.0" layoutY="65.0" stroke="#80808085" strokeType="INSIDE" width="533.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#8585850d" height="131.0" layoutX="9.0" layoutY="163.0" stroke="#80808085" strokeType="INSIDE" width="533.0" AnchorPane.bottomAnchor="145.0" AnchorPane.leftAnchor="9.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="163.0" />
@@ -35,7 +35,7 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Médecin Radiologue " translateX="9.0" GridPane.columnIndex="2" GridPane.rowIndex="7" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Service Acceuil " translateX="9.0" GridPane.columnIndex="2" GridPane.rowIndex="7" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="ID Patient" translateX="9.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Ville" translateX="9.0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Prénom" translateX="9.0" GridPane.columnIndex="2" />
@@ -49,9 +49,9 @@
             <TextField fx:id="ajoutpatient_champ_Rue" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Médecin Prescripteur" GridPane.rowIndex="7" />
             <TextField fx:id="ajoutpatient_champ_medecinPrescripteur" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-            <TextField fx:id="ajoutpatient_champ_medecinRadiologue" GridPane.columnIndex="3" GridPane.rowIndex="7" />
+            <TextField fx:id="ajoutpatient_champ_serviceAcceuil" GridPane.columnIndex="3" GridPane.rowIndex="7" />
             <Button fx:id="button_annuler" mnemonicParsing="false" text="Annuler" translateX="250.0" translateY="10.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
-            <Button fx:id="button_valider" mnemonicParsing="false" text="Valider" translateX="330.0" translateY="10.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+            <Button fx:id="button_valider" onAction="#ajoutPatient" mnemonicParsing="false" text="Valider" translateX="330.0" translateY="10.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
             <DatePicker fx:id="date_naissancePatient" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Date de Naissance" GridPane.rowIndex="1" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Rue" GridPane.rowIndex="3" />
