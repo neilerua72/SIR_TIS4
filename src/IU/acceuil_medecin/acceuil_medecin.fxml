@@ -23,7 +23,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="669.0" prefWidth="896.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="IU.acceuil_medecin.acceuil_medecin_controller">
+<AnchorPane prefHeight="669.0" prefWidth="1605.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="IU.acceuil_medecin.acceuil_medecin_controller">
    <children>
       <AnchorPane id="top" fx:id="top" prefHeight="102.0" prefWidth="885.0" />
     <AnchorPane layoutY="110.0" maxHeight="-1.0" maxWidth="-1.0" prefHeight="473.0" prefWidth="896.0" VBox.vgrow="ALWAYS">
@@ -55,7 +55,7 @@
                   <ToggleButton fx:id="toggle_IDExamen" mnemonicParsing="false" text="ID Examen" GridPane.columnIndex="4" />
                </children>
             </GridPane>
-            <TableView fx:id="tableau_colonnes" layoutY="114.0" prefHeight="444.0" prefWidth="896.0">
+            <TableView fx:id="tableau_colonnes" layoutY="114.0" prefHeight="444.0" prefWidth="968.0">
               <columns>
                   <TableColumn fx:id="colonne_patient" prefWidth="84.0" text="Patient">
                      <columns>
@@ -79,5 +79,24 @@
             <Button fx:id="button_consulterTousLesDP" layoutX="687.0" layoutY="24.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="204.0" text="Consulter tous les Dossiers Patients" />
          </children>
     </AnchorPane>
+      <AnchorPane fx:id="afficheExam" layoutX="975.0" layoutY="5.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="669.0" prefWidth="636.0" visible="false">
+         <children>
+            <Text fx:id="nomPatient" layoutX="49.0" layoutY="113.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nom :" />
+            <Text fx:id="prenomPatient" layoutX="49.0" layoutY="149.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Prénom :" />
+            <Text layoutX="75.0" layoutY="78.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PATIENT" />
+            <Text layoutX="424.0" layoutY="77.0" strokeType="OUTSIDE" strokeWidth="0.0" text="EXAMEN" />
+            <Text fx:id="idExamen" layoutX="417.0" layoutY="113.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Id :" />
+            <Text fx:id="typeExamen" layoutX="417.0" layoutY="149.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Type d'examen :" />
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="1185.0" layoutY="289.0" prefHeight="200.0" prefWidth="200.0">
+         <children>
+            <Text fx:id="aucunExamen" layoutX="14.0" layoutY="106.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Aucun examen séléctionné" textAlignment="CENTER">
+               <font>
+                  <Font name="System Italic" size="15.0" />
+               </font>
+            </Text>
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>
