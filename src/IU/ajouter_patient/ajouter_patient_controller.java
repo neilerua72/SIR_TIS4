@@ -25,6 +25,7 @@ import java.util.ResourceBundle;
 
 
 public class ajouter_patient_controller implements Initializable {
+    SIR sir;
 
     public ajouter_patient_controller(){
     }
@@ -95,6 +96,10 @@ public class ajouter_patient_controller implements Initializable {
         assert button_valider != null : "fx:id=\"button_valider\" was not injected: check your FXML file 'ajouter_patient.fxml'.";
         assert ajoutpatient_champ_IDPatient != null : "fx:id=\"ajoutpatient_champ_IDPatient\" was not injected: check your FXML file 'ajouter_patient.fxml'.";
 
+    }
+
+    public void initData(SIR sir){
+        this.sir=sir;
     }
 
   /*  public void setAjoutPatientStage(Stage dialogStage){
@@ -169,7 +174,7 @@ public class ajouter_patient_controller implements Initializable {
     public void ajoutPatient(ActionEvent actionEvent) throws IOException {
         String nom = ajoutpatient_champ_nom.getText();
         String prenom = ajoutpatient_champ_prenom.getText();
-        String idPatient = ajoutpatient_champ_IDPatient.getText();
+
         String rue = ajoutpatient_champ_Rue.getText();
         String medecinPrescripteur = ajoutpatient_champ_medecinPrescripteur.getText();
         String serviceAcceuil = ajoutpatient_champ_serviceAcceuil.getText();
@@ -181,8 +186,10 @@ public class ajouter_patient_controller implements Initializable {
         String telephone = ajoutpatient_champ_telephonePortable.getText();
 
 
-
-
+        int idPat=(int)(Math.random() * ( 999999 - 100000 )+1);;
+        System.out.println(idPat);
+        String idPatient= String.valueOf(idPat);
+        System.out.println(idPatient);
         Connection connexion = null;
         Statement statement = null;
 

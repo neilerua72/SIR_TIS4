@@ -6,6 +6,7 @@ import java.util.ResourceBundle;
 
 import FC.*;
 import ClassTable.TableExamen;
+import IU.ajouter_patient.ajouter_patient_controller;
 import IU.menu.menu_controller;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -134,7 +135,14 @@ public class acceuil_medecin_controller implements Initializable{
 
     @FXML
     private void AjouterPat (ActionEvent event) throws IOException {
-        Parent parent = FXMLLoader.load(getClass().getResource("/IU/ajouter_patient/ajouter_patient.fxml"));
+
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/IU/ajouter_patient/ajouter_patient.fxml"));
+        Parent parent = loader.load();
+        ajouter_patient_controller controller = loader.getController();
+        System.out.println(controller.toString());
+
+        controller.initData(sir);
         Scene scene = new Scene(parent);
         //Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();     //pas compris
         Stage stage = new Stage(StageStyle.DECORATED);
