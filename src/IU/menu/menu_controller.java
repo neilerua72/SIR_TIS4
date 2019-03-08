@@ -8,6 +8,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
@@ -32,6 +33,7 @@ public class menu_controller{
 
     public void initData(SIR sir){
         nomprenom.setText(sir.getConnexion().getUser().getNomPremnom()+" / "+sir.getConnexion().getType().toString());
+        img.setImage(new Image("/IU/menu/doctor.png"));
     }
     public void seDeco(ActionEvent e) throws IOException {
         FXMLLoader loader = new FXMLLoader();
