@@ -48,7 +48,7 @@
                   <Text fx:id="texte_date" strokeType="OUTSIDE" strokeWidth="0.0" text="Date" translateX="7.0" GridPane.columnIndex="5" />
                   <TextField fx:id="champ_rechercherParNomPatient" prefHeight="25.0" prefWidth="294.0" promptText="Entrez la recherche... " GridPane.columnSpan="5" GridPane.rowIndex="1" />
                   <DatePicker fx:id="champ_date" prefHeight="25.0" prefWidth="152.0" promptText="JJ/MM/AAAA" translateX="4.0" GridPane.columnIndex="5" GridPane.rowIndex="1" />
-                  <ToggleButton fx:id="toggle_nomPatient" mnemonicParsing="false" text="Nom Patient" />
+                  <ToggleButton fx:id="toggle_nomPatient" mnemonicParsing="false" selected="true" text="Nom Patient" />
                   <ToggleButton fx:id="toggle_IDPatient" mnemonicParsing="false" text="ID Patient" GridPane.columnIndex="1" />
                   <ToggleButton fx:id="toggle_medecinPrescripteur" mnemonicParsing="false" text="Médecin Prescripteur" GridPane.columnIndex="2" />
                   <ToggleButton fx:id="toggle_medecinRadiologue" mnemonicParsing="false" text="Médecin Radiologue" GridPane.columnIndex="3" />
