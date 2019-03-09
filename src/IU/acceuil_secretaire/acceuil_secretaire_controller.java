@@ -5,9 +5,16 @@ package IU.acceuil_secretaire;
  */
 
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import IU.ajouter_patient.ajouter_patient_controller;
+import IU.redaction_CR.redaction_CR_controller;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
@@ -19,6 +26,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.stage.Window;
 
 public class acceuil_secretaire_controller {
@@ -77,7 +86,22 @@ public class acceuil_secretaire_controller {
             assert button_AjouterPatient != null : "fx:id=\"button_AjouterPatient\" was not injected: check your FXML file 'acceuil_secretaire.fxml'.";
 
         }
+
+    public void redigerCompteRendu(ActionEvent actionEvent) throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/IU/redaction_CR/redaction_CR.fxml"));
+        Parent parent = loader.load();
+        redaction_CR_controller controller = loader.getController();
+        System.out.println(controller.toString());
+
+        Scene scene = new Scene(parent);
+        Stage stage = new Stage(StageStyle.DECORATED);
+        stage.setScene(scene);
+        stage.show();
+
     }
+
+}
 
 
 
