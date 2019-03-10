@@ -3,11 +3,13 @@ package BD;
 import FC.Adresse;
 import FC.Patient;
 
+
 import java.sql.*;
 import java.util.ArrayList;
 
 public class LectPatient {
     private ArrayList<Patient> listePatient = new ArrayList<Patient>();
+
     public LectPatient(){
         Connection connexion = null;
         Statement statement = null;

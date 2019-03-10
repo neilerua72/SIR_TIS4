@@ -1,5 +1,6 @@
 package FC;
 
+import BD.LectCR;
 import BD.LectConnexion;
 import BD.LectExamen;
 import BD.LectPatient;
@@ -14,6 +15,7 @@ public class SIR {
     private ArrayList<RDV> listeRDV;
     private ArrayList<Examen> listeExamen;
     private ArrayList<TableExamen> tableExamen;
+    private ArrayList<CR> listeCR;
 
     public SIR(Connexion connexion){
         this.connexion=connexion;
@@ -21,6 +23,8 @@ public class SIR {
         LectConnexion lectConnexion = new LectConnexion();
         LectPatient lectPatient = new LectPatient();
         LectExamen lectExamen=new LectExamen();
+        LectCR lectCR= new LectCR();
+
         this.listeUtilisateur=new ArrayList<Utilisateur>(lectConnexion.getListeUsers());
         connexion.setUser1(getListeUtilisateur());
         if(connexion.isConnect()){
@@ -28,6 +32,8 @@ public class SIR {
             //this.listeRDV=new ArrayList<>(lectExamen.getListeRDV());
             this.listeExamen=new ArrayList<>(lectExamen.getListeExamen());
             this.tableExamen=new ArrayList<>();
+            this.listeCR=new ArrayList<>(lectCR.getListeCR());
+
             for(int i=0;i<listeExamen.size();i++){
                 Examen e = listeExamen.get(i);
                 String image;
@@ -60,6 +66,8 @@ public class SIR {
     public ArrayList<Patient> getListePatient() {
         return listePatient;
     }
+
+    public ArrayList<CR> getListeCR() { return listeCR; }
 
     public ArrayList<Utilisateur> getListeUtilisateur() {
         return listeUtilisateur;
