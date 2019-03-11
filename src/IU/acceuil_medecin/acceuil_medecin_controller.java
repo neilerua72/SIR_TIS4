@@ -6,6 +6,8 @@ import java.util.ResourceBundle;
 
 import FC.*;
 import ClassTable.TableExamen;
+import IU.afficher_dossiers_patient.afficher_dossiers_patient_controller;
+import IU.ajouter_patient.ajouter_patient_controller;
 import IU.menu.menu_controller;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -30,7 +32,10 @@ public class acceuil_medecin_controller implements Initializable{
     /**
      * Sample Skeleton for 'acceuil_medecin.fxml' Controller Class
      */
-
+    @FXML
+    private AnchorPane afficheExam;
+    @FXML
+    private Text aucunExamen;
     @FXML // ResourceBundle that was given to the FXMLLoader
     private ResourceBundle resources;
 
@@ -49,7 +54,17 @@ public class acceuil_medecin_controller implements Initializable{
     /**
      * Toggle Buttons pour la "recherche par"
      **/
+    @FXML
+    private Text idExamen;
 
+    @FXML
+    private Text prenomPatient;
+
+    @FXML
+    private Text typeExamen;
+
+    @FXML
+    private Text nomPatient;
     @FXML // fx:id="toggle_IDPatient"
     private ToggleButton toggle_IDPatient = new ToggleButton("ID Patient");// Value injected by FXMLLoader
 
@@ -75,6 +90,7 @@ public class acceuil_medecin_controller implements Initializable{
 
     @FXML //fx:id="button_envoyerDMR"
     private Button button_envoyerDMR; //Value injected by FXMLLoader
+
 
 
     @FXML // fx:id="button_ajouterPatient"
@@ -132,9 +148,16 @@ public class acceuil_medecin_controller implements Initializable{
     private Examen exam1;
 
 
-    @FXML
-    private void AjouterPat (ActionEvent event) throws IOException {
-        Parent parent = FXMLLoader.load(getClass().getResource("/IU/ajouter_patient/ajouter_patient.fxml"));
+
+    public void AjouterPat (ActionEvent event) throws IOException {
+
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/IU/ajouter_patient/ajouter_patient.fxml"));
+        Parent parent = loader.load();
+        ajouter_patient_controller controller = loader.getController();
+        System.out.println(controller.toString());
+
+        controller.initData(sir);
         Scene scene = new Scene(parent);
         //Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();     //pas compris
         Stage stage = new Stage(StageStyle.DECORATED);
@@ -170,7 +193,9 @@ public class acceuil_medecin_controller implements Initializable{
 
 
         colonne_dossierPatient.setCellValueFactory(new PropertyValueFactory<>("dossierPatient"));
-
+        if(!sir.getConnexion().getType().equals(TypeConnexion.MED)){
+            button_consulterTousLesDP.setDisable(true);
+        }
 
         menu_controller controller = loader.getController();
         controller.initData(sir);
@@ -234,7 +259,8 @@ public class acceuil_medecin_controller implements Initializable{
         toggle_medecinPrescripteur.setToggleGroup(groupe_toggle_rechercherPar);
         toggle_medecinRadiologue.setToggleGroup(groupe_toggle_rechercherPar);
         toggle_IDExamen.setToggleGroup(groupe_toggle_rechercherPar);
-
+        tableau_colonnes.getSelectionModel().selectedItemProperty().addListener(
+                (observable, oldValue, newValue) -> showExamDetails(newValue));
         /*final ObservableList<Utilisateur> data = FXCollections.observableArrayList(
                 new Utilisateur("1","Jacob")
         );
@@ -247,6 +273,35 @@ public class acceuil_medecin_controller implements Initializable{
         myTable.setItems(data);*/
     }
 
+    private void showExamDetails(TableExamen examen) {
+
+        if(examen!=null){
+            aucunExamen.setVisible(false);
+            afficheExam.setVisible(true);
+            idExamen.setText("ID: "+examen.getIdexamen());
+            prenomPatient.setText("Prénom : "+examen.getPrenom());
+            nomPatient.setText("Nom : "+examen.getNom());
+            typeExamen.setText("Type Examen "+examen.getTypeExam());}
+        else{
+            System.out.println("Erreur chargement examen");
+            aucunExamen.setVisible(true);
+            afficheExam.setVisible(false);
+        }
+    }
+
+
+    public void afficheDossierPatient(ActionEvent actionEvent) throws IOException {
+
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/IU/afficher_dossiers_patient/afficher_dossiers_patient.fxml"));
+        Parent parent = loader.load();
+        Scene scene = new Scene(parent);
+        Stage stage = new Stage(StageStyle.DECORATED);
+        stage.setScene(scene);
+        stage.show();
+
+
+    }
 }
 
 

@@ -1,19 +1,20 @@
-package IU.ajouter_patient;
+package HL7;
 
+import FC.SIR;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class ajouter_patient_main extends Application {
+public class TestClient_main extends Application {
 
-
+    private SIR sir;
     @Override
     public void start(Stage primaryStage) throws Exception {
         // just load fxml file and display it in the stage:
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("ajouter_patient.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("TestClient.fxml"));
         Parent root = loader.load();
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
@@ -28,6 +29,6 @@ public class ajouter_patient_main extends Application {
         // and calls start(...) on the FX Application thread:
         launch(args);
 
-    }
 
+    }
 }
