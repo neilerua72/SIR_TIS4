@@ -85,6 +85,7 @@ public class liste_patient_secretaire_controller {
         colonne_prenomPatient.setCellValueFactory(new PropertyValueFactory<>("prenom"));
         menu_controller controller = loader.getController();
         controller.initData(sir);
+        top.getChildren().add(menu);
         tableau.setItems(data);
     }
 }
