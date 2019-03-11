@@ -19,7 +19,7 @@
             </font>
         </Text>
         <Button fx:id="button_acquisitionImage" layoutX="15.0" layoutY="72.0" mnemonicParsing="false" onAction="#chooseFileForList" prefHeight="25.0" prefWidth="127.0" text="Acquisition d'Image" />
-        <Button fx:id="button_editionImage" layoutX="154.0" layoutY="72.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="127.0" text="Edition d'Image" />
+        <Button fx:id="button_editionImage" onAction="#editionImage" layoutX="154.0" layoutY="72.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="127.0" text="Edition d'Image" />
         <Button fx:id="button_validerManipulation" layoutX="442.0" layoutY="72.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="316.0" text="Valider Manipulation" />
         <Button fx:id="button_annulerEdition" cancelButton="true" layoutX="295.0" layoutY="72.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="127.0" text="Annuler Edition" />
         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#97979700" height="502.0" layoutX="12.0" layoutY="106.0" stroke="#858585" strokeType="INSIDE" width="410.0" />
