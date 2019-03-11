@@ -6,6 +6,7 @@ import java.util.ResourceBundle;
 
 import FC.*;
 import ClassTable.TableExamen;
+import IU.afficher_dossiers_patient.afficher_dossiers_patient_controller;
 import IU.ajouter_patient.ajouter_patient_controller;
 import IU.menu.menu_controller;
 import javafx.collections.FXCollections;
@@ -289,6 +290,18 @@ public class acceuil_medecin_controller implements Initializable{
     }
 
 
+    public void afficheDossierPatient(ActionEvent actionEvent) throws IOException {
+
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/IU/afficher_dossiers_patient/afficher_dossiers_patient.fxml"));
+        Parent parent = loader.load();
+        Scene scene = new Scene(parent);
+        Stage stage = new Stage(StageStyle.DECORATED);
+        stage.setScene(scene);
+        stage.show();
+
+
+    }
 }
 
 

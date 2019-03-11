@@ -76,7 +76,7 @@
       
                     </columns>
             </TableView>
-            <Button fx:id="button_consulterTousLesDP" layoutX="687.0" layoutY="24.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="204.0" text="Consulter tous les Dossiers Patients" />
+            <Button fx:id="button_consulterTousLesDP" onAction="#afficheDossierPatient" layoutX="687.0" layoutY="24.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="204.0" text="Consulter tous les Dossiers Patients" />
          </children>
     </AnchorPane>
       <AnchorPane fx:id="afficheExam" layoutX="975.0" layoutY="5.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="669.0" prefWidth="636.0" visible="false">
