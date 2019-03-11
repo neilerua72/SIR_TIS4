@@ -147,8 +147,8 @@ public class acceuil_medecin_controller implements Initializable{
     private Examen exam1;
 
 
-    @FXML
-    private void AjouterPat (ActionEvent event) throws IOException {
+
+    public void AjouterPat (ActionEvent event) throws IOException {
 
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/IU/ajouter_patient/ajouter_patient.fxml"));

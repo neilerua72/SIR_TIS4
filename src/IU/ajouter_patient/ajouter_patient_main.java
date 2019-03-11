@@ -18,6 +18,7 @@ public class ajouter_patient_main extends Application {
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
         primaryStage.show();
+
     }
 
     // main method to support non-JavaFX-aware environments:

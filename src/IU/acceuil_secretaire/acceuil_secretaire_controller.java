@@ -101,6 +101,23 @@ public class acceuil_secretaire_controller {
 
     }
 
+    public void AjouterPat (ActionEvent event) throws IOException {
+
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/IU/ajouter_patient/ajouter_patient.fxml"));
+        Parent parent = loader.load();
+        ajouter_patient_controller controller = loader.getController();
+        System.out.println(controller.toString());
+
+        Scene scene = new Scene(parent);
+        //Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();     //pas compris
+        Stage stage = new Stage(StageStyle.DECORATED);
+        stage.setScene(scene);
+        stage.show();
+
+
+    }
+
 }
 
 

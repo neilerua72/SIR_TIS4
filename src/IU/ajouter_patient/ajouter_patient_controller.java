@@ -221,8 +221,10 @@ public class ajouter_patient_controller implements Initializable {
                 } catch (SQLException ignore) {
                 }
             }
-        }
 
+
+        }
+        System.exit(0);
     }
 }
 
