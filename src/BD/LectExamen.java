@@ -58,13 +58,6 @@ public class LectExamen {
                     listeExamen.add(examen);
                 }
 
-
-
-
-
-
-
-
             }
 
         } catch (Exception e) {
