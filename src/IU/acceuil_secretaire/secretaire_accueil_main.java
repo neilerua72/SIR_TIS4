@@ -1,5 +1,7 @@
 package IU.acceuil_secretaire;
 
+import FC.SIR;
+import IU.menu.menu_controller;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -8,7 +10,7 @@ import javafx.stage.Stage;
 
 public class secretaire_accueil_main extends Application{
 
-
+        SIR sir;
         @Override
         public void start(Stage primaryStage) throws Exception {
             // just load fxml file and display it in the stage:

@@ -21,6 +21,7 @@ public class LectExamen {
 
     public LectExamen(){
     listeExamen=new ArrayList<>();
+    listeRDV=new ArrayList<>();
         Connection connexion = null;
         Statement statement = null;
         ResultSet resultat = null;
