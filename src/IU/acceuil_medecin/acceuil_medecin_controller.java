@@ -192,7 +192,9 @@ public class acceuil_medecin_controller implements Initializable{
 
 
         colonne_dossierPatient.setCellValueFactory(new PropertyValueFactory<>("dossierPatient"));
-
+        if(!sir.getConnexion().getType().equals(TypeConnexion.MED)){
+            button_consulterTousLesDP.setDisable(true);
+        }
 
         menu_controller controller = loader.getController();
         controller.initData(sir);
