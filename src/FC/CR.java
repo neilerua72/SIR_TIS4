@@ -40,6 +40,7 @@ public class CR {
                 ", quantiteProduitContraste=" + quantiteProduitContraste +
                 ", comparaisonExamenAnt='" + comparaisonExamenAnt + '\'' +
                 ", dateCR=" + dateCR +
+                ", specialiteRadiologue='" + specialiteRadiologue + '\'' +
                 ", protocoleStandardise='" + protocoleStandardise + '\'' +
                 ", resultat='" + resultat + '\'' +
                 ", synthese='" + synthese + '\'' +
