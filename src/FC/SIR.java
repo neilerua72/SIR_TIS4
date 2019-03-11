@@ -5,6 +5,7 @@ import BD.LectConnexion;
 import BD.LectExamen;
 import BD.LectPatient;
 import ClassTable.TableExamen;
+import ClassTable.TableRDV;
 
 import java.util.ArrayList;
 
@@ -16,6 +17,7 @@ public class SIR {
     private ArrayList<Examen> listeExamen;
     private ArrayList<TableExamen> tableExamen;
     private ArrayList<CR> listeCR;
+    private ArrayList<TableRDV> tableRDV;
 
     public SIR(Connexion connexion){
         this.connexion=connexion;
@@ -33,7 +35,8 @@ public class SIR {
             this.listeExamen=new ArrayList<>(lectExamen.getListeExamen());
             this.tableExamen=new ArrayList<>();
             this.listeCR=new ArrayList<>(lectCR.getListeCR());
-
+            this.listeRDV=new ArrayList<>(lectExamen.getListeRDV());
+            this.tableRDV=new ArrayList<>();
             for(int i=0;i<listeExamen.size();i++){
                 Examen e = listeExamen.get(i);
                 String image;
@@ -52,6 +55,11 @@ public class SIR {
                 tb=new TableExamen(this.getNomPatient(e.getIdPatient()),this.getPrenomPatient(e.getIdPatient()),e.getIdPatient(),e.getDateExamen(),e.getMedecinPrescri(),e.getMedecinRadio(),e.getId(),e.getTypeExamen().toString(),image,validation,e.getCr());
 
                 tableExamen.add(tb);
+            }
+            for (int i=0;i<listeRDV.size();i++){
+                RDV rdv = listeRDV.get(i);
+                TableRDV tr = new TableRDV(rdv.getDateRDV(),rdv.getTypeExamen().toString(),rdv.getId(),String.valueOf(rdv.getSalle()),"Test",rdv.getIdPatient(),rdv.getMedecinPrescri(),this.getNomPatient(rdv.getIdPatient()),this.getPrenomPatient(rdv.getIdPatient()));
+                this.tableRDV.add(tr);
             }
             System.out.println("Fin de la lecture de la BD");
         }
@@ -110,5 +118,9 @@ public class SIR {
             i++;
         }
         return s;
+    }
+
+    public ArrayList<TableRDV> getTableRDV() {
+        return tableRDV;
     }
 }

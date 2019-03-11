@@ -9,8 +9,13 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import ClassTable.TableRDV;
+import FC.SIR;
 import IU.ajouter_patient.ajouter_patient_controller;
+import IU.menu.menu_controller;
 import IU.redaction_CR.redaction_CR_controller;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -18,11 +23,17 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 public class secretaire_accueil_controller {
+    SIR sir;
 
+    @FXML
+    private TableView<TableRDV> tableau;
     @FXML // ResourceBundle that was given to the FXMLLoader
     private ResourceBundle resources;
 
@@ -30,7 +41,7 @@ public class secretaire_accueil_controller {
     private URL location;
 
     @FXML // fx:id="colonne_CR"
-    private TableColumn<?, ?> colonne_CR; // Value injected by FXMLLoader
+    private TableColumn<?, ?> colonne_id; // Value injected by FXMLLoader
 
     @FXML // fx:id="colonne_nomPatient"
     private TableColumn<?, ?> colonne_nomPatient; // Value injected by FXMLLoader
@@ -39,7 +50,7 @@ public class secretaire_accueil_controller {
     private Button button_creationRDV; // Value injected by FXMLLoader
 
     @FXML // fx:id="colonne_medecinRadiologue"
-    private TableColumn<?, ?> colonne_medecinRadiologue; // Value injected by FXMLLoader
+    private TableColumn<?, ?> colonne_salle; // Value injected by FXMLLoader
 
     @FXML // fx:id="colonne_medecinPrescripteur"
     private TableColumn<?, ?> colonne_medecinPrescripteur; // Value injected by FXMLLoader
@@ -58,14 +69,16 @@ public class secretaire_accueil_controller {
 
     @FXML // fx:id="colonne_prenomPatient"
     private TableColumn<?, ?> colonne_prenomPatient; // Value injected by FXMLLoader
+    @FXML
+    AnchorPane top;
 
     @FXML
         // This method is called by the FXMLLoader when initialization is complete
     void initialize() {
-        assert colonne_CR != null : "fx:id=\"colonne_CR\" was not injected: check your FXML file 'secretaire_accueil_controller.fxml'.";
+        assert colonne_id != null : "fx:id=\"colonne_CR\" was not injected: check your FXML file 'secretaire_accueil_controller.fxml'.";
         assert colonne_nomPatient != null : "fx:id=\"colonne_nomPatient\" was not injected: check your FXML file 'secretaire_accueil_controller.fxml'.";
         assert button_creationRDV != null : "fx:id=\"button_creationRDV\" was not injected: check your FXML file 'secretaire_accueil_controller.fxml'.";
-        assert colonne_medecinRadiologue != null : "fx:id=\"colonne_medecinRadiologue\" was not injected: check your FXML file 'secretaire_accueil_controller.fxml'.";
+        assert colonne_salle != null : "fx:id=\"colonne_medecinRadiologue\" was not injected: check your FXML file 'secretaire_accueil_controller.fxml'.";
         assert colonne_medecinPrescripteur != null : "fx:id=\"colonne_medecinPrescripteur\" was not injected: check your FXML file 'secretaire_accueil_controller.fxml'.";
         assert colonne_patient != null : "fx:id=\"colonne_patient\" was not injected: check your FXML file 'secretaire_accueil_controller.fxml'.";
         assert colonne_dateRDV != null : "fx:id=\"colonne_dateRDV\" was not injected: check your FXML file 'secretaire_accueil_controller.fxml'.";
@@ -103,5 +116,25 @@ public class secretaire_accueil_controller {
 
 
     }
+    public void initData(SIR sir, Parent menu, FXMLLoader loader){
+        this.sir=sir;
+        TableRDV rdv = sir.getTableRDV().get(0);
+        final ObservableList<TableRDV> data = FXCollections.observableArrayList(rdv);
+        for(int i=1;i<sir.getTableRDV().size();i++){
+            data.add(sir.getTableRDV().get(i));
+        }
+        menu_controller menu_controller = loader.getController();
+        menu_controller.initData(sir);
+        top.getChildren().add(menu);
+        colonne_IDPatient.setCellValueFactory(new PropertyValueFactory<>("idPatient"));
+        colonne_dateRDV.setCellValueFactory(new PropertyValueFactory<>("dateRDV"));
+        colonne_medecinPrescripteur.setCellValueFactory(new PropertyValueFactory<>("medecinPrescri"));
+        colonne_nomPatient.setCellValueFactory(new PropertyValueFactory<>("nom"));
+        colonne_prenomPatient.setCellValueFactory(new PropertyValueFactory<>("prenom"));
+        colonne_salle.setCellValueFactory(new PropertyValueFactory<>("salle"));
+        colonne_id.setCellValueFactory(new PropertyValueFactory<>("idExam"));
+        tableau.setItems(data);
+    }
+
 }
 

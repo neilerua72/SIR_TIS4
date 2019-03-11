@@ -1,6 +1,6 @@
 package FC;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class RDV {
     private Date dateRDV;
