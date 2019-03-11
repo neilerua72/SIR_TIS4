@@ -1,8 +1,16 @@
 package BD;
 
+
+
+
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.*;
 import java.sql.*;
 
+
 public class lectureImage {
+
     public static void main(String[] args) {
         Connection connexion = null;
         Statement statement = null;
@@ -20,10 +28,20 @@ public class lectureImage {
             while (resultat.next()) {
 
                 String name = resultat.getString("nom");
-                Blob img = resultat.getBlob("img");
+               //Blob img = resultat.getBlob("img");
+                byte[] imgData= resultat.getBytes("img");
 
                 System.out.println(name);
-                System.out.println(img);
+                System.out.println(imgData);
+
+                // convert byte array back to BufferedImage
+                InputStream in = new ByteArrayInputStream(imgData);
+                BufferedImage bImageFromConvert = ImageIO.read(in);
+
+                ImageIO.write(bImageFromConvert, "jpg", new File(
+                        "/Users/hugobosquet/Desktop/new-sinus.jpg"));
+                System.out.println("copie de l'image sur le bureau");
+
 
             }
 
