@@ -27,8 +27,6 @@ import java.util.ResourceBundle;
 public class ajouter_patient_controller implements Initializable {
     SIR sir;
 
-    public ajouter_patient_controller(){
-    }
     @FXML // ResourceBundle that was given to the FXMLLoader
     private ResourceBundle resources;
 

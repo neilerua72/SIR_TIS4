@@ -4,18 +4,27 @@ package IU.redaction_CR;
  * Sample Skeleton for 'redaction_CR.fxml' Controller Class
  */
 
+import BD.ConnexionBase;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
-import javafx.scene.control.ToggleButton;
+import javafx.fxml.Initializable;
+import javafx.scene.control.*;
 
 import javax.print.DocFlavor;
+import javax.swing.*;
+import java.io.IOException;
+import java.net.URL;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 
-public class redaction_CR_controller {
+public class redaction_CR_controller implements Initializable {
+
+    public redaction_CR_controller(){
+
+    }
 
     @FXML // ResourceBundle that was given to the FXMLLoader
     private ResourceBundle resources;
@@ -41,8 +50,8 @@ public class redaction_CR_controller {
     @FXML // fx:id="champ_typeContrasteCR"
     private TextField champ_typeContrasteCR; // Value injected by FXMLLoader
 
-    @FXML // fx:id="champ_fonctionRadiologueCR"
-    private TextField champ_fonctionRadiologueCR; // Value injected by FXMLLoader
+    @FXML // fx:id="combobox_fonctionRadiologueCR "
+    private ComboBox combobox_fonctionRadiologueCR; // Value injected by FXMLLoader
 
     @FXML // fx:id="champ_conclusionCR"
     private TextArea champ_conclusionCR; // Value injected by FXMLLoader
@@ -106,14 +115,14 @@ public class redaction_CR_controller {
 
 
     @FXML // This method is called by the FXMLLoader when initialization is complete
-    void initialize() {
+    public void initialize(URL location, ResourceBundle resources) {
         assert champ_typeExamenCR != null : "fx:id=\"champ_typeExamenCR\" was not injected: check your FXML file 'redaction_CR.fxml'.";
         assert enum_specialitePrescripteurCR != null : "fx:id=\"enum_specialitePrescripteurCR\" was not injected: check your FXML file 'redaction_CR.fxml'.";
         assert champ_nomPatientCR != null : "fx:id=\"champ_nomPatientCR\" was not injected: check your FXML file 'redaction_CR.fxml'.";
         assert champ_coordonneesPrescripteurCR != null : "fx:id=\"champ_coordonneesPrescripteurCR\" was not injected: check your FXML file 'redaction_CR.fxml'.";
         assert champ_descriptionTechniqueCR != null : "fx:id=\"champ_descriptionTechniqueCR\" was not injected: check your FXML file 'redaction_CR.fxml'.";
         assert champ_typeContrasteCR != null : "fx:id=\"champ_typeContrasteCR\" was not injected: check your FXML file 'redaction_CR.fxml'.";
-        assert champ_fonctionRadiologueCR != null : "fx:id=\"champ_fonctionRadiologueCR\" was not injected: check your FXML file 'redaction_CR.fxml'.";
+        assert combobox_fonctionRadiologueCR !=null: "fx:id=\"combobox_fonctionRadiologueCR\" was not injected: check your FXML file 'redaction_CR.fxml'.";
         assert champ_conclusionCR != null : "fx:id=\"champ_conclusionCR\" was not injected: check your FXML file 'redaction_CR.fxml'.";
         assert toggle_editerCR != null : "fx:id=\"toggle_editerCR\" was not injected: check your FXML file 'redaction_CR.fxml'.";
         assert champ_prenomPatientCR != null : "fx:id=\"champ_prenomPatientCR\" was not injected: check your FXML file 'redaction_CR.fxml'.";
@@ -134,7 +143,65 @@ public class redaction_CR_controller {
         assert champ_syntheseCR != null : "fx:id=\"champ_syntheseCR\" was not injected: check your FXML file 'redaction_CR.fxml'.";
         assert button_validerBisCR != null : "fx:id=\"button_validerBisCR\" was not injected: check your FXML file 'redaction_CR.fxml'.";
         assert date_naissancePatientCR != null : "fx:id=\"date_naissancePatientCR\" was not injected: check your FXML file 'redaction_CR.fxml'.";
-
     }
 
-}
+    public void validerCR(ActionEvent actionEvent) throws IOException{
+        LocalDate dateCR =date_CRCR.getValue();
+        Object specialiteRadio = combobox_fonctionRadiologueCR.getValue();
+        String resumeProblemeClinique= champ_resumeProblemeCliniqueCR.getText();
+        String descriptionTechnique= champ_descriptionTechniqueCR.getText();
+        String protocoleStandarise= champ_protocoleStandardiseCR.getText();
+        String examenAnt= champ_comparaisonExamensExterieursCR.getText();
+        String typeContraste= champ_typeContrasteCR.getText();
+        String quantite= champ_quantiteContrasteCR.getText();
+        String resultatCR= champ_resultatCR.getText();
+        String synthese = champ_syntheseCR.getText();
+        String conclusion= champ_conclusionCR.getText();
+        int idCRaleatoire = 0+(int)(Math.random()*((999999-0)+1));
+
+        Connection connexion = null;
+        Statement statement = null;
+
+        try {
+
+            ConnexionBase cb = new ConnexionBase();
+            connexion=cb.returnConnexion();
+
+            //Création de l'objet gérant les requêtes
+            statement = connexion.createStatement();
+            //Exécution d'une requete d'écriture
+
+        int statut = statement.executeUpdate("INSERT INTO `CR` (`idCR`,`problemeClinique`," +
+                " `technique`, `produitContrasteType`, `quantiteProduitContraste`," +
+                " `comparaisonExamenAnt`, `dateCR`, `specialiteRadiologue`, `protocoleStandardise`" +
+                ", `resultat`, `synthese`, `conclusion`) VALUES\n" +
+                "('"+idCRaleatoire+"' ,'"+resumeProblemeClinique+"', '"+descriptionTechnique+"','"+typeContraste+"'," +
+                "'"+quantite+"','"+examenAnt+"','"+dateCR+"','"+specialiteRadio+"','"+protocoleStandarise+"'," +
+                "'"+resultatCR+"','"+synthese+"','"+conclusion+"');");
+        //Récupération des données du statut de la requete d'écriture
+        System.out.println("Résultat de la requête d'insertion:" +statut + ".");
+    }
+        catch (Exception e) {
+        e.printStackTrace();
+    }
+        finally {
+
+        if (statement != null) {
+            try {
+                statement.close();
+            } catch (SQLException ignore) {
+            }
+        }
+        if (connexion != null) {
+            try {
+                connexion.close();
+            } catch (SQLException ignore) {
+            }
+        }
+    }
+
+
+
+    }}
+
+
