@@ -2,12 +2,11 @@ package HL7;
 
 import java.io.IOException;
 import java.net.URL;
-import java.text.DateFormat;
 import java.text.ParseException;
-import java.time.LocalDate;
 import java.util.Date;
 import java.util.ResourceBundle;
 
+import ClassTable.TableExamen;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -20,7 +19,7 @@ import library.interfaces.Patient;
 import java.text.SimpleDateFormat;
 import java.util.logging.Logger;
 import java.util.logging.Level;
-
+import IU.acceuil_medecin.acceuil_medecin_controller;
 public class TestServeur_controlleur {
     private Patient patient;
     private Action action;
@@ -28,10 +27,9 @@ public class TestServeur_controlleur {
     private String card = "cardAdmettre";
     private int nbr;
     private final SimpleDateFormat formateur = new SimpleDateFormat("dd/MM/yyyy");
+private acceuil_medecin_controller acceuil;
 
-   /* TestServeur_controlleur(Patient p){
-        p = this.patient;
-    }*/
+
 
 
 
@@ -91,7 +89,21 @@ public class TestServeur_controlleur {
     void initialize() {
         Categorie.setItems(cat);
         Sexe.setItems(sexe);
+
     }
+
+   /* public void RemplirChamps(TableExamen table){
+        prenom.setText(table.getPrenom());
+    }*/
+
+public void initData(TableExamen table){
+    prenom.setText(table.getPrenom());
+}
+    public void transferMessage(String message) {
+        //Display the message
+        prenom.setText(message);
+    }
+
 
 
     //set couleurs des camps
