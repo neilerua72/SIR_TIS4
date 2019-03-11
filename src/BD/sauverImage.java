@@ -17,11 +17,11 @@ public class sauverImage {
         String sql = "INSERT INTO Image (nom,img) VALUES(?,?)";
 
         try (Connection conn = DriverManager.getConnection(url, user, passwd);) {
-            File image = new File("/Users/hugobosquet/SIR_TIS4/SIR_TIS4/pgm/sinus/sinus1_0000.pgm");
+            File image = new File("/Users/hugobosquet/Desktop/Projet/jpg/abdomen/cor494-i78.jpg");
             try (FileInputStream inputStream = new FileInputStream(image);
                  PreparedStatement stmt = conn.prepareStatement(sql);) {
 
-                stmt.setString(1, "sinus1");
+                stmt.setString(1, "cor494");
                 stmt.setBinaryStream(2, inputStream, image.length());
                 stmt.executeUpdate();
                 System.out.println("Image sauvegarder dans la BD image");
