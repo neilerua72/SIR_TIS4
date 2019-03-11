@@ -5,12 +5,21 @@
 
 package IU.acceuil_secretaire;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import IU.ajouter_patient.ajouter_patient_controller;
+import IU.redaction_CR.redaction_CR_controller;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 public class secretaire_accueil_controller {
 
@@ -63,6 +72,35 @@ public class secretaire_accueil_controller {
         assert button_ajoutPatient != null : "fx:id=\"button_ajoutPatient\" was not injected: check your FXML file 'secretaire_accueil_controller.fxml'.";
         assert colonne_IDPatient != null : "fx:id=\"colonne_IDPatient\" was not injected: check your FXML file 'secretaire_accueil_controller.fxml'.";
         assert colonne_prenomPatient != null : "fx:id=\"colonne_prenomPatient\" was not injected: check your FXML file 'secretaire_accueil_controller.fxml'.";
+
+    }
+    public void redigerCompteRendu(ActionEvent actionEvent) throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/IU/redaction_CR/redaction_CR.fxml"));
+        Parent parent = loader.load();
+        redaction_CR_controller controller = loader.getController();
+        System.out.println(controller.toString());
+
+        Scene scene = new Scene(parent);
+        Stage stage = new Stage(StageStyle.DECORATED);
+        stage.setScene(scene);
+        stage.show();
+
+    }
+    public void AjouterPat (ActionEvent event) throws IOException {
+
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/IU/ajouter_patient/ajouter_patient.fxml"));
+        Parent parent = loader.load();
+        ajouter_patient_controller controller = loader.getController();
+        System.out.println(controller.toString());
+
+        Scene scene = new Scene(parent);
+        //Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();     //pas compris
+        Stage stage = new Stage(StageStyle.DECORATED);
+        stage.setScene(scene);
+        stage.show();
+
 
     }
 }
