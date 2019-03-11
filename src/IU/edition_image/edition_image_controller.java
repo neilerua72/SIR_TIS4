@@ -178,11 +178,28 @@ public class edition_image_controller implements Initializable {
         button_valider.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
+                //Image image =  SwingFXUtils.fromFXImage(imageView_editionImage.getImage());  // javafx.scene.image.Image
+                String format = "png";
+                File file = new File("C:\\Users\\Utilisateur\\Documents\\Polytech\\Cours TIS4\\Semestre 8\\SIR\\SIR_TIS4\\src\\IU\\edition_image\\test_image_local\\formattedImage.jpg.");
+                try {
+                    ImageIO.write(SwingFXUtils.fromFXImage(imageView_editionImage.getImage(), null), format, file);
+                    System.out.println("writer");
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                System.out.println("writer");
+
+
+            }
+        });
+    }
+            /*
+
                 //recreates the image to save
                 WritableImage writableImage = new WritableImage(imageView_editionImage.getImage().getPixelReader(),(int) imageView_editionImage.getImage().getWidth(), (int) imageView_editionImage.getImage().getHeight());
                 // Scaling the image gives it a higher resolution which results in a better image quality when the image is exported
                 SnapshotParameters snapshotParameters = new SnapshotParameters();
-                snapshotParameters.setTransform(new Scale(0.85, 0.8));
+                //snapshotParameters.setTransform(new Scale(0.85, 0.8));
                 WritableImage snapshot = pane_image.snapshot(snapshotParameters, writableImage);
                 RenderedImage renderedImage = SwingFXUtils.fromFXImage(snapshot, null);
 
@@ -199,7 +216,6 @@ public class edition_image_controller implements Initializable {
                 iwp.setCompressionMode(ImageWriteParam.MODE_EXPLICIT);
                 iwp.setCompressionQuality(1);   // an integer between 0 and 1,  1 specifies minimum compression and maximum quality
 
-
                 // Output the file:
                 File file = new File("C:\\Users\\Utilisateur\\Documents\\Polytech\\Cours TIS4\\Semestre 8\\SIR\\SIR_TIS4\\src\\IU\\edition_image\\test_image_local\\formattedImage.jpg");
                 FileImageOutputStream output;
@@ -211,12 +227,10 @@ public class edition_image_controller implements Initializable {
                 }
                 IIOImage image = new IIOImage(imageToSave, null, null);
 
-
                 ImageWriteParam param = writer.getDefaultWriteParam();
                 ImageTypeSpecifier type = new ImageTypeSpecifier(renderedImage);
 
                 IIOMetadata imgMetadata = writer.getDefaultImageMetadata(type, param);
-
 
                 try {
                     writer.write(imgMetadata, image, iwp);
@@ -227,7 +241,9 @@ public class edition_image_controller implements Initializable {
                 writer.dispose();
             }
         });
+
     }
+    */
 
 
     public Node printNode;
@@ -238,7 +254,8 @@ public class edition_image_controller implements Initializable {
      */
     private Stage owner;
 
-    public void printImage() throws NoSuchMethodException, InstantiationException, IllegalAccessException, InvocationTargetException {
+    public void printImage() throws
+            NoSuchMethodException, InstantiationException, IllegalAccessException, InvocationTargetException {
         System.out.println("pressed");
         Printer printer = Printer.getDefaultPrinter();
         PageLayout pageLayout = printer.createPageLayout(Paper.A4, PageOrientation.PORTRAIT, Printer.MarginType.HARDWARE_MINIMUM);
@@ -381,5 +398,3 @@ public class edition_image_controller implements Initializable {
     }
 
 }
-
-
