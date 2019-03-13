@@ -154,4 +154,15 @@ public class SIR {
         }
         return rep;
     }
+    public boolean checkIdExamen(int idtest){
+        int i=0;
+        boolean rep = false;
+        while(i<this.listeExamen.size()&&rep==false){
+            if(idtest==Integer.parseInt(this.listeExamen.get(i).getId())){
+                rep = true;
+            }
+            i++;
+        }
+        return rep;
+    }
 }
