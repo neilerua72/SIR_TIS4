@@ -179,7 +179,7 @@ public class edition_image_controller implements Initializable {
             @Override
             public void handle(ActionEvent event) {
                 //Image image =  SwingFXUtils.fromFXImage(imageView_editionImage.getImage());  // javafx.scene.image.Image
-                String format = "png";
+                String format = "jpg";
                 File file = new File("C:\\Users\\Utilisateur\\Documents\\Polytech\\Cours TIS4\\Semestre 8\\SIR\\SIR_TIS4\\src\\IU\\edition_image\\test_image_local\\formattedImage.jpg.");
                 try {
                     ImageIO.write(SwingFXUtils.fromFXImage(imageView_editionImage.getImage(), null), format, file);
