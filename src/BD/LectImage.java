@@ -29,14 +29,14 @@ public class LectImage {
             //Création de l'objet gérant les requêtes
             statement = connexion.createStatement();
             //Exécution d'une requete de lecture
-            resultat = statement.executeQuery("SELECT nom,img,idExamen FROM Image;");
+            resultat = statement.executeQuery("SELECT nom,image,idExamen FROM Image;");
             //Récupération des données du résultat de la requete de lecture
             while (resultat.next()) {
 
                 String name = resultat.getString("nom");
                 int idExamen = resultat.getInt("idExamen");
                 //Blob img = resultat.getBlob("img");
-                byte[] imgData= resultat.getBytes("img");
+                byte[] imgData= resultat.getBytes("image");
 
                 System.out.println(name);
                 System.out.println(imgData);

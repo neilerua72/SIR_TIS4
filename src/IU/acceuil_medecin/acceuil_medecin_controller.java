@@ -9,6 +9,7 @@ import FC.*;
 import ClassTable.TableExamen;
 import IU.afficher_dossiers_patient.afficher_dossiers_patient_controller;
 import IU.ajouter_patient.ajouter_patient_controller;
+import IU.choix_rdv.choix_rdv_controller;
 import IU.menu.menu_controller;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -390,6 +391,21 @@ public class acceuil_medecin_controller implements Initializable{
         stage.show();
 
 
+    }
+
+    public void DoExamen(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/IU/choix_rdv/choix_rdv.fxml"));
+        Parent parent = loader.load();
+        choix_rdv_controller controller = loader.getController();
+        System.out.println(controller.toString());
+
+        controller.initData(this.sir,menu,loader);
+        Scene scene = new Scene(parent);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();     //pas compris
+
+        stage.setScene(scene);
+        stage.show();
     }
 }
 

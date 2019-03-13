@@ -61,6 +61,7 @@ public class SIR {
                 RDV rdv = listeRDV.get(i);
                 TableRDV tr = new TableRDV(rdv.getDateRDV(),rdv.getTypeExamen().toString(),rdv.getId(),String.valueOf(rdv.getSalle()),"Test",rdv.getIdPatient(),rdv.getMedecinPrescri(),this.getNomPatient(rdv.getIdPatient()),this.getPrenomPatient(rdv.getIdPatient()));
                 this.tableRDV.add(tr);
+                System.out.println(rdv.getIdPatient());
             }
             System.out.println("Fin de la lecture de la BD");
         }

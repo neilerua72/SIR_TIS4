@@ -123,6 +123,7 @@ public class secretaire_accueil_controller {
         this.sir=sir;
         this.loaderMenu=loader;
         this.menu=menu;
+        if(sir.getTableRDV().size()!=0){
         TableRDV rdv = sir.getTableRDV().get(0);
         final ObservableList<TableRDV> data = FXCollections.observableArrayList(rdv);
         for(int i=1;i<sir.getTableRDV().size();i++){
@@ -138,7 +139,7 @@ public class secretaire_accueil_controller {
         colonne_prenomPatient.setCellValueFactory(new PropertyValueFactory<>("prenom"));
         colonne_salle.setCellValueFactory(new PropertyValueFactory<>("salle"));
         colonne_id.setCellValueFactory(new PropertyValueFactory<>("idExam"));
-        tableau.setItems(data);
+        tableau.setItems(data);}
     }
 
 }
