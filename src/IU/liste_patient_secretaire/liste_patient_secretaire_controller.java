@@ -83,6 +83,9 @@ public class liste_patient_secretaire_controller {
     @FXML
     private TextField ajoutpatient_champ_Rue;
     SIR sir;
+    @FXML
+    private Button retour;
+
     private Parent menu;
     private FXMLLoader loader;
     private Patient p;
@@ -168,5 +171,17 @@ public class liste_patient_secretaire_controller {
         stage.setScene(scene);
         stage.show();
 
+    }
+    public void retour(ActionEvent event) throws IOException{
+        FXMLLoader loadera = new FXMLLoader();
+        loadera.setLocation(getClass().getResource("/IU/acceuil_secretaire/secretaire_accueil.fxml"));
+        Parent root= loadera.load();
+        secretaire_accueil_controller secretaire_accueil_controller = loadera.getController();
+        secretaire_accueil_controller.initData(sir,menu,loader);
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();     //pas compris
+
+        stage.setScene(scene);
+        stage.show();
     }
 }
