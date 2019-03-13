@@ -148,6 +148,7 @@ public class ajout_examen_controller {
         //File file = chooser.showOpenDialog(new Stage());
         //File file = file_chooser.showOpenDialog(button_acquisitionImage.getScene().getWindow());
 
+
         /**
          * bloc qui rajoute les noms de fichiers images
          */
