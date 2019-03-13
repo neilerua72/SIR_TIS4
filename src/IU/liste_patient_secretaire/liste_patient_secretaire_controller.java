@@ -3,11 +3,15 @@ package IU.liste_patient_secretaire;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
 import java.util.ResourceBundle;
 
+import BD.ConnexionBase;
 import ClassTable.TableExamen;
 import ClassTable.TableRDV;
 import FC.Patient;
@@ -167,8 +171,49 @@ public class liste_patient_secretaire_controller {
         int id = 0+(int)(Math.random()*((999999-0)+1));
         while(sir.checkIdRDV(id)){
             id = 0+(int)(Math.random()*((999999-0)+1));
+
         }
+
         String medecinPrescri = ajoutpatient_champ_Rue.getText();
+        Connection connexion = null;
+        Statement statement = null;
+
+        try {
+
+            ConnexionBase cb = new ConnexionBase();
+            connexion=cb.returnConnexion();
+
+            //Création de l'objet gérant les requêtes
+            statement = connexion.createStatement();
+            //Exécution d'une requete d'écriture
+            int statut = statement.executeUpdate("INSERT INTO `Examen` (`idExamen`,`idPatient`, `dateRDV`," +
+                    " `ExamenFait`, `dateExamen`, `image`, `validation`, `compteRendu`,`CRExamen`,`typeExamen`," +
+                    "`Salle`,`medecinPrescri`,`medecinRadio`) VALUES\n" +
+                    "(NULL,'"+idPat+"','"+date+"',NULL,NULL,NULL,NULL,NULL,NULL,'"+type+"','"+salle+"','"+medecinPrescri+"',NULL);");
+            //Récupération des données du statut de la requete d'écriture
+            System.out.println("Résultat de la requête d'insertion:" +statut + ".");
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+        finally {
+
+            if (statement != null) {
+                try {
+                    /* Puis on ferme le Statement */
+                    statement.close();
+                } catch (SQLException ignore) {
+                }
+            }
+            if (connexion != null) {
+                try {
+                    /* Et enfin on ferme la connexion */
+                    connexion.close();
+                } catch (SQLException ignore) {
+                }
+            }
+        }
+
         RDV rdv = new RDV(gooddate,typeExamEnum,String.valueOf(id),Integer.parseInt(salle),"TEST",p.getId(),medecinPrescri);
         this.sir.getListeRDV().add(rdv);
         sir.UpdateTableRDV();
