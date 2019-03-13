@@ -10,11 +10,11 @@ public class Patient {
     private String mail;
     private int numTel;
     private Adresse adresse;
-    private String pathologie;
+    private String service_acceuil;
     private String nomMedecinPrescripteur;
-    private Date dateRDV;
 
-    public Patient(String nom, String prenom, int id, Date dateDeNaissance, String mail, int numTel, Adresse adresse, String pathologie, String nomMedecinPrescripteur, Date dateRDV) {
+
+    public Patient(String nom, String prenom, int id, Date dateDeNaissance, String mail, int numTel, Adresse adresse, String service_acceuil, String nomMedecinPrescripteur) {
         this.nom = nom;
         this.prenom = prenom;
         this.id = id;
@@ -22,9 +22,9 @@ public class Patient {
         this.mail = mail;
         this.numTel = numTel;
         this.adresse = adresse;
-        this.pathologie = pathologie;
+        this.service_acceuil = service_acceuil;
         this.nomMedecinPrescripteur = nomMedecinPrescripteur;
-        this.dateRDV = dateRDV;
+
     }
     public Patient(){
 
@@ -39,9 +39,9 @@ public class Patient {
         s+="\n "+mail;
         s+="\n "+numTel;
         s+="\n "+adresse;
-        s+="\n "+pathologie;
+        s+="\n "+service_acceuil;
         s+="\n "+nomMedecinPrescripteur;
-        s+="\n "+dateRDV;
+
 
         return s;
     }
@@ -75,14 +75,12 @@ public class Patient {
     }
 
     public String getPathologie() {
-        return pathologie;
+        return service_acceuil;
     }
 
     public String getNomMedecinPrescripteur() {
         return nomMedecinPrescripteur;
     }
 
-    public Date getDateRDV() {
-        return dateRDV;
-    }
+
 }

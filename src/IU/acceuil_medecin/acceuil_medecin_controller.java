@@ -36,6 +36,7 @@ public class acceuil_medecin_controller implements Initializable{
     Connexion connect;
     SIR sir;
     Parent menu;
+    FXMLLoader loadermenu;
 
     String nom;
 
@@ -173,7 +174,7 @@ public class acceuil_medecin_controller implements Initializable{
         ajouter_patient_controller controller = loader.getController();
         System.out.println(controller.toString());
 
-        controller.initData(sir);
+        controller.initData(sir,menu,loader);
         Scene scene = new Scene(parent);
         //Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();     //pas compris
         Stage stage = new Stage(StageStyle.DECORATED);
@@ -191,6 +192,7 @@ public class acceuil_medecin_controller implements Initializable{
         final ObservableList<TableExamen> data= FXCollections.observableArrayList(tb);
         System.out.println(tb.getIdpatient());
         this.menu=menu;
+        this.loadermenu=loader;
         for(int i=1;i<sir.getListeExamen().size();i++){
             data.add(sir.getTableExamen().get(i));
         }

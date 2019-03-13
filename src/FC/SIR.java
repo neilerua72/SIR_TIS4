@@ -142,4 +142,15 @@ public class SIR {
         }
         return rep;
     }
+    public boolean checkIdRDV(int idtest){
+        int i=0;
+        boolean rep = false;
+        while(i<this.listeRDV.size()&&rep==false){
+            if(idtest==Integer.parseInt(this.listeRDV.get(i).getId())){
+                rep = true;
+            }
+            i++;
+        }
+        return rep;
+    }
 }

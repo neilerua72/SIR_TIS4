@@ -15,6 +15,7 @@ import FC.RDV;
 import FC.SIR;
 import FC.TypeExamen;
 import IU.acceuil_secretaire.secretaire_accueil_controller;
+import IU.ajouter_patient.ajouter_patient_controller;
 import IU.menu.menu_controller;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -90,7 +91,18 @@ public class liste_patient_secretaire_controller {
     private FXMLLoader loader;
     private Patient p;
     @FXML
-    void AjouterPat(ActionEvent event) {
+    void AjouterPat(ActionEvent event) throws IOException {
+        FXMLLoader loadera = new FXMLLoader();
+        loadera.setLocation(getClass().getResource("/IU/ajouter_patient/ajouter_patient.fxml"));
+        Parent root= loadera.load();
+        ajouter_patient_controller secretaire_accueil_controller = loadera.getController();
+        secretaire_accueil_controller.initData(sir,menu,loader);
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();     //pas compris
+
+        stage.setScene(scene);
+        stage.show();
+
 
     }
 
@@ -153,7 +165,7 @@ public class liste_patient_secretaire_controller {
         String salle = salle_champ.getText();
         String idPat = idPatient.getText();
         int id = 0+(int)(Math.random()*((999999-0)+1));
-        while(sir.checkIdPatient(id)){
+        while(sir.checkIdRDV(id)){
             id = 0+(int)(Math.random()*((999999-0)+1));
         }
         String medecinPrescri = ajoutpatient_champ_Rue.getText();
