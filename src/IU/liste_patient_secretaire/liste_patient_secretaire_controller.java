@@ -154,7 +154,7 @@ public class liste_patient_secretaire_controller {
 
     }
     @FXML
-    public void ajoutCR(ActionEvent event) throws IOException {
+    public void ajoutRDV(ActionEvent event) throws IOException {
         LocalDate date = date_RDV.getValue();
         Date resultDate = Date.from(date.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
         java.sql.Date gooddate = new java.sql.Date(resultDate.getTime());
@@ -172,6 +172,7 @@ public class liste_patient_secretaire_controller {
         RDV rdv = new RDV(gooddate,typeExamEnum,String.valueOf(id),Integer.parseInt(salle),"TEST",p.getId(),medecinPrescri);
         this.sir.getListeRDV().add(rdv);
         sir.UpdateTableRDV();
+
         FXMLLoader loadera = new FXMLLoader();
         loadera.setLocation(getClass().getResource("/IU/acceuil_secretaire/secretaire_accueil.fxml"));
         Parent root= loadera.load();
