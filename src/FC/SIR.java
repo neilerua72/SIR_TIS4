@@ -123,4 +123,23 @@ public class SIR {
     public ArrayList<TableRDV> getTableRDV() {
         return tableRDV;
     }
+
+
+    public void UpdateTableRDV(){
+        RDV rdv = listeRDV.get(listeRDV.size()-1);
+        TableRDV tr = new TableRDV(rdv.getDateRDV(),rdv.getTypeExamen().toString(),rdv.getId(),String.valueOf(rdv.getSalle()),"Test",rdv.getIdPatient(),rdv.getMedecinPrescri(),this.getNomPatient(rdv.getIdPatient()),this.getPrenomPatient(rdv.getIdPatient()));
+        this.tableRDV.add(tr);
+
+    }
+    public boolean checkIdPatient(int idtest){
+        int i=0;
+        boolean rep = false;
+        while(i<this.listePatient.size()&&rep==false){
+            if(idtest==this.listePatient.get(i).getId()){
+                rep = true;
+            }
+            i++;
+        }
+        return rep;
+    }
 }

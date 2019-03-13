@@ -20,6 +20,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -111,8 +112,8 @@ public class secretaire_accueil_controller {
         System.out.println(controller.toString());
         controller.initData(sir,menu,loaderMenu);
         Scene scene = new Scene(parent);
-        //Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();     //pas compris
-        Stage stage = new Stage(StageStyle.DECORATED);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();     //pas compris
+
         stage.setScene(scene);
         stage.show();
 

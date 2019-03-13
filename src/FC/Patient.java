@@ -26,6 +26,9 @@ public class Patient {
         this.nomMedecinPrescripteur = nomMedecinPrescripteur;
         this.dateRDV = dateRDV;
     }
+    public Patient(){
+
+    }
 
 
     public String toString(){
