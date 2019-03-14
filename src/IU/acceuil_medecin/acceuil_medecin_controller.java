@@ -400,7 +400,7 @@ public class acceuil_medecin_controller implements Initializable{
         choix_rdv_controller controller = loader.getController();
         System.out.println(controller.toString());
 
-        controller.initData(this.sir,menu,loader);
+        controller.initData(this.sir,menu,loadermenu);
         Scene scene = new Scene(parent);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();     //pas compris
 

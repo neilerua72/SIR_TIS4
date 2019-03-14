@@ -177,6 +177,7 @@ public class liste_patient_secretaire_controller {
         String medecinPrescri = ajoutpatient_champ_Rue.getText();
         Connection connexion = null;
         Statement statement = null;
+        int nombre =0;
 
         try {
 
@@ -189,7 +190,7 @@ public class liste_patient_secretaire_controller {
             int statut = statement.executeUpdate("INSERT INTO `Examen` (`idExamen`,`idPatient`, `dateRDV`," +
                     " `ExamenFait`, `dateExamen`, `image`, `validation`, `compteRendu`,`CRExamen`,`typeExamen`," +
                     "`Salle`,`medecinPrescri`,`medecinRadio`) VALUES\n" +
-                    "(NULL,'"+idPat+"','"+date+"',NULL,NULL,NULL,NULL,NULL,NULL,'"+type+"','"+salle+"','"+medecinPrescri+"',NULL);");
+                    "(NULL,'"+idPat+"','"+date+"','"+nombre+"',NULL,NULL,NULL,NULL,NULL,'"+type+"','"+salle+"','"+medecinPrescri+"',NULL);");
             //Récupération des données du statut de la requete d'écriture
             System.out.println("Résultat de la requête d'insertion:" +statut + ".");
         }
