@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="644.0" prefWidth="885.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="IU.choix_rdv.choix_rdv_controller">
+   <children>
+      <AnchorPane layoutY="105.0" prefHeight="539.0" prefWidth="885.0">
+         <children>
+            <TableView fx:id="tableau" layoutY="100.0" prefHeight="441.0" prefWidth="885.0">
+              <columns>
+                  <TableColumn fx:id="colonne_id" minWidth="4.0" prefWidth="115.0" text="id Exam" />
+                <TableColumn fx:id="colonne_patient" prefWidth="263.0" text="Patient">
+                     <columns>
+                        <TableColumn fx:id="colonne_nomPatient" prefWidth="71.0" text="Nom" />
+                        <TableColumn fx:id="colonne_prenomPatient" prefWidth="70.0" text="Prénom" />
+                        <TableColumn fx:id="colonne_IDPatient" minWidth="0.0" prefWidth="84.0" text="ID" />
+                     </columns>
+                  </TableColumn>
+                <TableColumn fx:id="colonne_dateRDV" prefWidth="128.0" text="Date RDV" />
+                  <TableColumn fx:id="colonne_salle" prefWidth="158.0" text="Salle" />
+                  <TableColumn fx:id="colonne_medecinPrescripteur" prefWidth="147.0" text="Médecin Prescripteur" />
+              </columns>
+            </TableView>
+            <Text layoutX="22.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="RDV Patients">
+               <font>
+                  <Font name="System Bold" size="26.0" />
+               </font>
+            </Text>
+            <DatePicker fx:id="date" layoutX="393.0" layoutY="34.0" />
+            <Button fx:id="recherche" layoutX="635.0" layoutY="34.0" mnemonicParsing="false" text="Rechercher" />
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="top" prefHeight="102.0" prefWidth="885.0" />
+   </children>
+</AnchorPane>
