@@ -280,14 +280,16 @@ public class acceuil_medecin_controller implements Initializable{
             afficheExam.setVisible(true);
             idExamen.setText("ID: "+examen.getIdexamen());
             prenomPatient.setText("Prénom : "+examen.getPrenom());
-            nomPatient.setText("Nom : "+examen.getNom());
-            typeExamen.setText("Type Examen "+examen.getTypeExam());}
+            nomPatient.setText("Nom : "+examen.getNom() + "aogfdksopqejiorgdfkloseijrguthbfnkvlkdms ogjodf gh hezoe zhguizr hgzuif peziofze hfuises fuzejig ruigj dfnuizepgh zruvi fjiep hruig hufi zepgh rzuipbfvnsduiqpf hezig zehfuei fphezuig zrhui vpghzruip hrui phzeuitp h_ae^f hui hrugi rzh fueip heui paehvuisdpvhueizp ehi ae^hruei psdujipg rzhui aeprheuipzrnui jg zrhu izep rhaeuiovnguizr pghzrupf heauiovhf duighrui hezuif euip hggusipui gehuzeio pvzhui fpzehui dnfuizepghrzuiv nuij hzeguizr haeo^vbfzruo  ghaeio^fehiog zrh uoeah uozf heoghzeu depige qufhqf uohfu iqdpcnudqjip fheauipf zUCIJB SDUIF EZUI H EUIGHSUFOQ FHIOEHEIOOhoGHSOUBHSF ODH HEOGHZROP Ohuis ghrzui psduivjs hguipf zhuif ehfueip hezuipf ezhuipf ezhui zehue ");
+            typeExamen.setText("Type Examen "+examen.getTypeExam());
+        }
         else{
             System.out.println("Erreur chargement examen");
             aucunExamen.setVisible(true);
             afficheExam.setVisible(false);
         }
     }
+
 
 
     public void afficheDossierPatient(ActionEvent actionEvent) throws IOException {

@@ -20,6 +20,8 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Logger;
 
+import IU.edition_image.edition_image_controller;
+import javafx.scene.image.Image;
 import javafx.collections.ObservableList;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
@@ -109,6 +111,17 @@ public class ajout_examen_controller {
     private ListView<ImageView> listView_images;
 
     ArrayList<File> selectedImage = new ArrayList<>();
+    String st = new String();
+    private int indice;
+
+    private BufferedImage image_to_edit;
+    public Image getImage_to_edit(){
+        return SwingFXUtils.toFXImage(image_to_edit, null);
+    }
+
+    public Image setImage_to_edit(BufferedImage image){
+        return SwingFXUtils.toFXImage(image, null);
+    }
 
     @FXML
         // This method is called by the FXMLLoader when initialization is complete
@@ -134,7 +147,22 @@ public class ajout_examen_controller {
         assert champ_medecinRadiologueManip != null : "fx:id=\"champ_medecinRadiologueManip\" was not injected: check your FXML file 'ajout_manip.fxml'.";
         assert champ_zoneEtudieeManip != null : "fx:id=\"champ_zoneEtudieeManip\" was not injected: check your FXML file 'ajout_manip.fxml'.";
 
+        listView_images.getSelectionModel().selectedItemProperty().addListener(observable ->
+                //st =  listView_images.getSelectionModel().getSelectedItem().getId());
+                //System.out.println("st"+st);
+                //   int indice = listView_images.getSelectionModel().getSelectedIndex();
+        {
+            try {
+                image_to_edit = ImageIO.read(selectedImage.get(listView_images.getSelectionModel().getSelectedIndex()));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            System.out.println("??" + selectedImage.get(listView_images.getSelectionModel().getSelectedIndex()));
+            //  System.out.println("Valeur Selectionnée"+ listView_images.getSelectionModel().getSelectedIndices()));
+        });
     }
+
+    //faire liaison bouton
 
     ObservableList<BufferedImage> list_images;
 
@@ -166,20 +194,22 @@ public class ajout_examen_controller {
          */
         listView_images.getItems().clear();
         List<File> selectedImages = file_chooser.showOpenMultipleDialog(null);
-        System.out.println("selectedImages"+selectedImages);
-        //problème avec contains check doc
+        System.out.println("selectedImages" + selectedImages);
+
         File item = selectedImages.get(0);
-       // System.out.println(selectedImages.get(0));
+        // System.out.println(selectedImages.get(0));
         //System.out.println("contains"+ selectedImage.contains(item));
-        if (selectedImage.contains(item) != true) {selectedImage.add(item); }
-       // System.out.println("selectedImage before"+selectedImage);
+        if (selectedImage.contains(item) != true) {
+            selectedImage.add(item);
+        }
+        // System.out.println("selectedImage before"+selectedImage);
         if (selectedImages != null) {
             for (int i = 1; i < selectedImages.size(); i++) {
                 item = selectedImages.get(i);
                 //System.out.println("item boucle"+item);
                 if (selectedImage.contains(item) != true) {
                     selectedImage.add(item);
-                  //  System.out.println("image" + selectedImage);
+                    //  System.out.println("image" + selectedImage);
                 }
             }
             System.out.println("liste selected files" + selectedImages);
@@ -198,7 +228,7 @@ public class ajout_examen_controller {
                     //
                     //int lastItem = listView_images.getItems().size()-1;
                     //listView_images.getItems().size();
-                   // listView_images.getItems().remove(listView_images.getItems().get(0),listView_images.getItems().get(lastItem)); //vider le truc qui affiche et le re remplir
+                    // listView_images.getItems().remove(listView_images.getItems().get(0),listView_images.getItems().get(lastItem)); //vider le truc qui affiche et le re remplir
 
                     Image image = SwingFXUtils.toFXImage(buffered_image, null);
                     ImageView imageview = new ImageView(image);
@@ -213,8 +243,13 @@ public class ajout_examen_controller {
     public void editionImage(ActionEvent actionEvent) throws IOException {
 
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/IU/afficher_dossiers_patient/afficher_dossiers_patient.fxml"));
+        loader.setLocation(getClass().getResource("/IU/edition_image/edition_image.fxml"));
         Parent parent = loader.load();
+
+        //access the controller and get a method
+        edition_image_controller controller = loader.getController();
+        System.out.println(controller);
+        controller.setImageView_editionImage(this.getImage_to_edit());
         Scene scene = new Scene(parent);
         Stage stage = new Stage(StageStyle.DECORATED);
         stage.setScene(scene);
