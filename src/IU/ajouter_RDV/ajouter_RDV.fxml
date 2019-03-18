@@ -39,10 +39,10 @@
         </rowConstraints>
          <children>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Date d'examen" translateX="9.0" GridPane.columnIndex="2" GridPane.rowIndex="5" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="ID Patient" translateX="9.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <Text fx:id="idPatient" strokeType="OUTSIDE" strokeWidth="0.0" text="ID Patient" translateX="9.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Médecin Radiologue" translateX="9.0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Prénom" translateX="9.0" GridPane.columnIndex="2" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nom" />
+            <Text fx:id="prenom" strokeType="OUTSIDE" strokeWidth="0.0" text="Prénom" translateX="9.0" GridPane.columnIndex="2" />
+            <Text fx:id="nom" strokeType="OUTSIDE" strokeWidth="0.0" text="Nom" />
             <TextField fx:id="ajoutpatient_champ_Rue" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Date de RDV" GridPane.rowIndex="5" />
             <Button fx:id="button_annuler" mnemonicParsing="false" text="Annuler" translateX="250.0" translateY="10.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />

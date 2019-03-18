@@ -12,6 +12,7 @@ import java.util.ResourceBundle;
 import ClassTable.TableRDV;
 import FC.SIR;
 import IU.ajouter_patient.ajouter_patient_controller;
+import IU.liste_patient_secretaire.liste_patient_secretaire_controller;
 import IU.menu.menu_controller;
 import IU.redaction_CR.redaction_CR_controller;
 import javafx.collections.FXCollections;
@@ -19,6 +20,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -31,7 +33,8 @@ import javafx.stage.StageStyle;
 
 public class secretaire_accueil_controller {
     SIR sir;
-
+    private FXMLLoader loaderMenu;
+    private Parent menu;
     @FXML
     private TableView<TableRDV> tableau;
     @FXML // ResourceBundle that was given to the FXMLLoader
@@ -102,15 +105,15 @@ public class secretaire_accueil_controller {
     }
     public void AjouterPat (ActionEvent event) throws IOException {
 
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/IU/ajouter_patient/ajouter_patient.fxml"));
-        Parent parent = loader.load();
-        ajouter_patient_controller controller = loader.getController();
+        FXMLLoader loaderListe = new FXMLLoader();
+        loaderListe.setLocation(getClass().getResource("/IU/liste_patient_secretaire/liste_patient_secretaire.fxml"));
+        Parent parent = loaderListe.load();
+        liste_patient_secretaire_controller controller = loaderListe.getController();
         System.out.println(controller.toString());
-
+        controller.initData(sir,menu,loaderMenu);
         Scene scene = new Scene(parent);
-        //Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();     //pas compris
-        Stage stage = new Stage(StageStyle.DECORATED);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();     //pas compris
+
         stage.setScene(scene);
         stage.show();
 
@@ -118,6 +121,9 @@ public class secretaire_accueil_controller {
     }
     public void initData(SIR sir, Parent menu, FXMLLoader loader){
         this.sir=sir;
+        this.loaderMenu=loader;
+        this.menu=menu;
+        if(sir.getTableRDV().size()!=0){
         TableRDV rdv = sir.getTableRDV().get(0);
         final ObservableList<TableRDV> data = FXCollections.observableArrayList(rdv);
         for(int i=1;i<sir.getTableRDV().size();i++){
@@ -133,7 +139,7 @@ public class secretaire_accueil_controller {
         colonne_prenomPatient.setCellValueFactory(new PropertyValueFactory<>("prenom"));
         colonne_salle.setCellValueFactory(new PropertyValueFactory<>("salle"));
         colonne_id.setCellValueFactory(new PropertyValueFactory<>("idExam"));
-        tableau.setItems(data);
+        tableau.setItems(data);}
     }
 
 }

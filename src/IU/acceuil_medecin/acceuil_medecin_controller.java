@@ -2,12 +2,14 @@ package IU.acceuil_medecin;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import FC.*;
 import ClassTable.TableExamen;
 import IU.afficher_dossiers_patient.afficher_dossiers_patient_controller;
 import IU.ajouter_patient.ajouter_patient_controller;
+import IU.choix_rdv.choix_rdv_controller;
 import IU.menu.menu_controller;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -15,20 +17,36 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.fxml.JavaFXBuilderFactory;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import HL7.TestServeur_controlleur;
 
 public class acceuil_medecin_controller implements Initializable{
     Connexion connect;
     SIR sir;
     Parent menu;
+    FXMLLoader loadermenu;
+
+    String nom;
+
+
+
+    private ObservableList data;
+
+
+
     /**
      * Sample Skeleton for 'acceuil_medecin.fxml' Controller Class
      */
@@ -157,7 +175,7 @@ public class acceuil_medecin_controller implements Initializable{
         ajouter_patient_controller controller = loader.getController();
         System.out.println(controller.toString());
 
-        controller.initData(sir);
+        controller.initData(sir,menu,loader);
         Scene scene = new Scene(parent);
         //Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();     //pas compris
         Stage stage = new Stage(StageStyle.DECORATED);
@@ -175,6 +193,7 @@ public class acceuil_medecin_controller implements Initializable{
         final ObservableList<TableExamen> data= FXCollections.observableArrayList(tb);
         System.out.println(tb.getIdpatient());
         this.menu=menu;
+        this.loadermenu=loader;
         for(int i=1;i<sir.getListeExamen().size();i++){
             data.add(sir.getTableExamen().get(i));
         }
@@ -205,12 +224,34 @@ public class acceuil_medecin_controller implements Initializable{
     }
 
 
+    /*@FXML
+    private void Envoyer (ActionEvent e) throws IOException {
+        nom =tableau_colonnes.getSelectionModel().getSelectedItem().getNom();
+        id = tableau_colonnes.getSelectionModel().getSelectedItem().getIdpatient();
+        prenom =tableau_colonnes.getSelectionModel().getSelectedItem().getPrenom();
+
+
+
+        Parent parent = FXMLLoader.load(getClass().getResource("/HL7/TestServeur.fxml"));
+
+        Scene scene = new Scene(parent);
+
+        Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();     //pas compris
+        stage.setScene(scene);
+
+        stage.show();
+
+                    }*/
 
 
 
 
 
-/**
+
+
+
+
+    /**
      * test
      */
 
@@ -250,9 +291,9 @@ public class acceuil_medecin_controller implements Initializable{
         assert tableau_colonnes != null : "fx:id=\"tableau_colonnes\" was not injected: check your FXML file 'acceuil_medecin.fxml'.";
         assert champ_date != null : "fx:id=\"champ_date\" was not injected: check your FXML file 'acceuil_medecin.fxml'.";
         assert texte_date != null : "fx:id=\"texte_date\" was not injected: check your FXML file 'acceuil_medecin.fxml'.";
-        assert colonne_nom != null :"fx:id=\"colonne_nom\" was not injected: check your FXML file 'acceuil_medecin.fxml'.";
-        assert colonne_prenom != null :"fx:id=\"colonne_prenom\" was not injected: check your FXML file 'acceuil_medecin.fxml'.";
-        assert top != null :"fx:id=\"top\" was not injected: check your FXML file 'acceuil_medecin.fxml'.";
+        assert colonne_nom != null : "fx:id=\"colonne_nom\" was not injected: check your FXML file 'acceuil_medecin.fxml'.";
+        assert colonne_prenom != null : "fx:id=\"colonne_prenom\" was not injected: check your FXML file 'acceuil_medecin.fxml'.";
+        assert top != null : "fx:id=\"top\" was not injected: check your FXML file 'acceuil_medecin.fxml'.";
         ToggleGroup groupe_toggle_rechercherPar = new ToggleGroup();
         toggle_nomPatient.setToggleGroup(groupe_toggle_rechercherPar);
         toggle_IDPatient.setToggleGroup(groupe_toggle_rechercherPar);
@@ -271,6 +312,55 @@ public class acceuil_medecin_controller implements Initializable{
 
 
         myTable.setItems(data);*/
+
+
+
+    }
+
+
+   /* @FXML
+    private void Envoyer(ActionEvent event) throws IOException{
+
+
+
+       *//* //charger interface HL7
+        Parent parent = FXMLLoader.load(getClass().getResource("/HL7/TestServeur.fxml"));
+
+        Scene scene = new Scene(parent);
+
+        //Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();     //pas compris
+        Stage stage = new Stage(StageStyle.DECORATED);
+        stage.setScene(scene);
+
+        stage.show();
+*//*
+
+        //context.setSelection(tableau_colonnes.getSelectionModel().getSelectedItem().getPrenom());
+
+
+
+
+    }*/
+   @FXML
+    private void Envoyer(ActionEvent event) throws IOException {
+        try {
+            //Load second scene
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/HL7/TestServeur.fxml"));
+            Parent root = loader.load();
+
+            //Get controller of scene2
+           TestServeur_controlleur scene2Controller = loader.getController();
+            //Pass whatever data you want. You can have multiple method calls here
+            scene2Controller.transferMessage(tableau_colonnes.getSelectionModel().getSelectedItem().getPrenom());
+
+            //Show scene 2 in new window
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Second Window");
+            stage.show();
+        } catch (IOException ex) {
+            System.err.println(ex);
+        }
     }
 
     private void showExamDetails(TableExamen examen) {
@@ -303,6 +393,21 @@ public class acceuil_medecin_controller implements Initializable{
         stage.show();
 
 
+    }
+
+    public void DoExamen(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/IU/choix_rdv/choix_rdv.fxml"));
+        Parent parent = loader.load();
+        choix_rdv_controller controller = loader.getController();
+        System.out.println(controller.toString());
+
+        controller.initData(this.sir,menu,loadermenu);
+        Scene scene = new Scene(parent);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();     //pas compris
+
+        stage.setScene(scene);
+        stage.show();
     }
 }
 

@@ -1,17 +1,23 @@
 package BD;
 
-
-
+import FC.RWImage;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
-import java.io.*;
-import java.sql.*;
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.InputStream;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 
 
-public class lectureImage {
-
-    public static void main(String[] args) {
+public class LectImage {
+    ArrayList<RWImage> listeImage;
+    public LectImage(){
+        listeImage = new ArrayList<>();
         Connection connexion = null;
         Statement statement = null;
         ResultSet resultat = null;
@@ -23,16 +29,15 @@ public class lectureImage {
             //Création de l'objet gérant les requêtes
             statement = connexion.createStatement();
             //Exécution d'une requete de lecture
-            resultat = statement.executeQuery("SELECT idExamen,nom,image FROM Image;");
+            resultat = statement.executeQuery("SELECT nom,image,idExamen FROM Image;");
             //Récupération des données du résultat de la requete de lecture
             while (resultat.next()) {
 
-                int idExamen = resultat.getInt("idExamen");
                 String name = resultat.getString("nom");
-               //Blob img = resultat.getBlob("img");
+                int idExamen = resultat.getInt("idExamen");
+                //Blob img = resultat.getBlob("img");
                 byte[] imgData= resultat.getBytes("image");
 
-                System.out.println(idExamen);
                 System.out.println(name);
                 System.out.println(imgData);
 
@@ -40,8 +45,10 @@ public class lectureImage {
                 InputStream in = new ByteArrayInputStream(imgData);
                 BufferedImage bImageFromConvert = ImageIO.read(in);
 
-                ImageIO.write(bImageFromConvert, "jpg", new File(
-                        "/Users/hugobosquet/Desktop/new-sinus.jpg"));
+               /* ImageIO.write(bImageFromConvert, "jpg", new File(
+                        "/Users/hugobosquet/Desktop/new-sinus.jpg"));*/
+               RWImage rwImage = new RWImage(name,idExamen,bImageFromConvert);
+               listeImage.add(rwImage);
                 System.out.println("copie de l'image sur le bureau");
 
 
@@ -74,6 +81,9 @@ public class lectureImage {
                 }
             }
         }
+    }
 
+    public ArrayList<RWImage> getListeImage() {
+        return listeImage;
     }
 }

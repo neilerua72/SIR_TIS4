@@ -156,6 +156,7 @@ public class ajout_manip_controller {
     public void editionImage(ActionEvent actionEvent) throws IOException {
 
         FXMLLoader loader = new FXMLLoader();
+
         loader.setLocation(getClass().getResource("/IU/edition_image/edition_image.fxml"));
         Parent parent = loader.load();
         Scene scene = new Scene(parent);
