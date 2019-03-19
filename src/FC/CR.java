@@ -4,6 +4,7 @@ import java.util.Date;
 
 public class CR {
     private int idCR;
+    private int idExam;
     private String problemeClinique;
     private String technique;
     private String produitContrasteType;
@@ -15,9 +16,13 @@ public class CR {
     private String resultat;
     private String synthese;
     private String conclusion;
+    public CR(){
 
-    public CR(int idCR, String problemeClinique, String technique, String produitContrasteType, int quantiteProduitContraste, String comparaisonExamenAnt, Date dateCR, String specialiteRadiologue, String protocoleStandardise, String resultat, String synthese, String conclusion) {
+    }
+
+    public CR(int idCR,int idExam, String problemeClinique, String technique, String produitContrasteType, int quantiteProduitContraste, String comparaisonExamenAnt, Date dateCR, String specialiteRadiologue, String protocoleStandardise, String resultat, String synthese, String conclusion) {
         this.idCR = idCR;
+        this.idExam=idExam;
         this.problemeClinique = problemeClinique;
         this.technique = technique;
         this.produitContrasteType = produitContrasteType;
@@ -46,6 +51,11 @@ public class CR {
                 ", synthese='" + synthese + '\'' +
                 ", conclusion='" + conclusion + '\'' +
                 '}';
+    }
+
+
+    public int getIdExam() {
+        return idExam;
     }
 
     public int getIdCR() {

@@ -22,6 +22,10 @@ public class RDV {
 
     }
 
+    public RDV() {
+
+    }
+
     public Date getDateRDV() {
         return dateRDV;
     }

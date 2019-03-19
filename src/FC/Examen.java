@@ -10,6 +10,7 @@ public class Examen extends RDV {
     private String medecinRadio;
 
 
+
     public Examen(Date dateRDV, TypeExamen typeExamen, String id, int salle, String cr, int idPatient,String medecinPrescri,Date dateExamen, boolean image, boolean validation, String crExamen,String medecinRadio) {
         super(dateRDV, typeExamen, id, salle, cr,idPatient,medecinPrescri);
         this.dateExamen = dateExamen;
@@ -17,6 +18,10 @@ public class Examen extends RDV {
         this.validation = validation;
         this.crExamen = crExamen;
         this.medecinRadio=medecinRadio;
+    }
+
+    public Examen() {
+        super();
     }
 
     public Date getDateExamen() {

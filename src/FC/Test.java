@@ -8,8 +8,7 @@ public class Test {
         String mdp="1";
         Connexion conn = new Connexion(new Utilisateur(id,mdp));
         SIR sir = new SIR(conn);
-        int idPat=(int)(Math.random() * ( 999999 - 0 )+1);;
-        System.out.println(idPat);
+        System.out.println(sir.getCRFromIdExam(304865).getProduitContrasteType());
 
     }
 

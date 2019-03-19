@@ -39,6 +39,7 @@ public class SIR {
             this.listeRDV=new ArrayList<>(lectExamen.getListeRDV());
             this.tableRDV=new ArrayList<>();
             this.listeImage=new ArrayList<>(lectImage.getListeImage());
+            System.out.println("TEST ::: " +listeCR.get(0).getConclusion());
             for(int i=0;i<listeExamen.size();i++){
                 Examen e = listeExamen.get(i);
                 String image;
@@ -180,13 +181,46 @@ public class SIR {
        }
         return result;
     }
-    public ArrayList<Examen> getListeExamenFromIdPatient(int idPatient){
-        ArrayList<Examen> result = new ArrayList<>();
-        for(int i=0;i<this.listeExamen.size();i++){
-            if(listeExamen.get(i).getIdPatient()==idPatient){
-                result.add(listeExamen.get(i));
+    public Examen getExamenFromId(int idExam){
+        Examen examen=new Examen();
+        boolean rep = false;
+        int i=0;
+        while(i<listeExamen.size()&&rep==false){
+            if(Integer.parseInt(this.listeExamen.get(i).getId())==idExam) {
+                examen = this.listeExamen.get(i);
+                rep=true;
             }
+            i++;
+
         }
-        return result;
+        return examen;
+    }
+
+    public CR getCRFromIdExam(int idExamen){
+        CR cr = new CR();
+        boolean rep = false;
+        int i=0;
+        while(i<listeCR.size()&&rep==false){
+            if(this.listeCR.get(i).getIdExam()==idExamen) {
+                cr = this.listeCR.get(i);
+                rep=true;
+            }
+            i++;
+
+        }
+        return cr;
+    }
+    public Patient getPatientFromId(int id){
+        int i=0;
+        Patient p = new Patient();
+        boolean rep=false;
+        while(i<listePatient.size()&&rep){
+            if(id==listePatient.get(i).getId()){
+                p=listePatient.get(i);
+                rep=true;
+            }
+            i++;
+        }
+        return p;
     }
 }

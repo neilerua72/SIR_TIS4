@@ -22,13 +22,14 @@ public class LectCR {
             //Création de l'objet gérant les requêtes
             statement = connexion.createStatement();
             //Exécution d'une requete de lecture
-            resultat = statement.executeQuery("SELECT idCR,problemeClinique,technique,produitContrasteType," +
+            resultat = statement.executeQuery("SELECT idCR,idExam,problemeClinique,technique,produitContrasteType," +
                     "quantiteProduitContraste,comparaisonExamenAnt,dateCR,specialiteRadiologue,protocoleStandardise," +
                     "resultat,synthese,conclusion FROM CR;");
             //Récupération des données du résultat de la requete de lecture
             while (resultat.next()) {
                 int idCR = resultat.getInt("idCR");
                 String problemeClinique = resultat.getString("problemeClinique");
+                int idExam = resultat.getInt("idExam");
                 String technique = resultat.getString("technique");
                 String produitContrasteType= resultat.getString("produitContrasteType");
                 int quantiteProduitContraste = resultat.getInt("quantiteProduitContraste");
@@ -42,7 +43,7 @@ public class LectCR {
 
 
 
-                CR cr = new CR(idCR, problemeClinique,technique,produitContrasteType,quantiteProduitContraste,comparaisonExamenAnt,dateCR,specialiteRadiologue,
+                CR cr = new CR(idCR,idExam,problemeClinique,technique,produitContrasteType,quantiteProduitContraste,comparaisonExamenAnt,dateCR,specialiteRadiologue,
                         protocoleStandardise,resultatCR,synthese,conclusion);
                 listeCR.add(cr);
             }

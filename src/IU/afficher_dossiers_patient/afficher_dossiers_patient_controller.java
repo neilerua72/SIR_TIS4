@@ -11,6 +11,8 @@ import java.util.ResourceBundle;
 
 import ClassTable.TableExamen;
 import ClassTable.TablePatient;
+import FC.CR;
+import FC.Examen;
 import FC.Patient;
 import FC.SIR;
 import IU.menu.menu_controller;
@@ -19,12 +21,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
-import javafx.scene.control.ToggleButton;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
@@ -37,16 +34,10 @@ public class afficher_dossiers_patient_controller {
     private ToggleButton toggle_medecinRadiologue;
 
     @FXML
-    private ToggleButton toggle_IDPatient;
+    private TableColumn<?, ?> colonne_date;
 
     @FXML
-    private Text text_comparaisonExamensExterieursCR;
-
-    @FXML
-    private TableColumn<?, ?> colonne_nom;
-
-    @FXML
-    private Text text_typeContrasteCR;
+    private Text protocole;
 
     @FXML
     private TextField champ_rechercherParNomPatient;
@@ -55,25 +46,13 @@ public class afficher_dossiers_patient_controller {
     private TableView<TableExamen> listeExam;
 
     @FXML
-    private TableColumn<?, ?> colonne_prenom;
+    private Text radio;
 
     @FXML
     private TableColumn<?, ?> colonne_patient;
 
     @FXML
-    private Text text_nomJeuneFilleCR;
-
-    @FXML
-    private Text text_prenomPrescripteurCR;
-
-    @FXML
     private Text text_descriptionTechniqueCR;
-
-    @FXML
-    private TableView<Patient> tableau_colonnes;
-
-    @FXML
-    private Text text_specialiteRadiologueCR;
 
     @FXML
     private ListView<?> listView_examensRealises;
@@ -91,6 +70,69 @@ public class afficher_dossiers_patient_controller {
     private Text date_examenCR;
 
     @FXML
+    private Text quantite;
+
+    @FXML
+    private Text text_nomPatientCR;
+
+    @FXML
+    private Text text_typeExamenCR;
+
+    @FXML
+    private Text resumePbClinique;
+
+    @FXML
+    private Text prescri;
+
+    @FXML
+    private ToggleButton toggle_medecinPrescripteur;
+
+    @FXML
+    private Rectangle ractangle_recherche;
+
+    @FXML
+    private Text texte_rechercherPar;
+
+    @FXML
+    private DatePicker champ_date;
+
+    @FXML
+    private ToggleButton toggle_IDPatient;
+
+    @FXML
+    private Text text_comparaisonExamensExterieursCR;
+
+    @FXML
+    private TableColumn<?, ?> colonne_radio;
+
+    @FXML
+    private TableColumn<?, ?> colonne_nom;
+
+    @FXML
+    private Text text_typeContrasteCR;
+
+    @FXML
+    private Text nom;
+
+    @FXML
+    private Text typeExam;
+
+    @FXML
+    private TableColumn<?, ?> colonne_prenom;
+
+    @FXML
+    private ScrollPane comparaison;
+
+    @FXML
+    private TableView<Patient> tableau_colonnes;
+
+    @FXML
+    private Text text_specialiteRadiologueCR;
+
+    @FXML
+    private Text prenom;
+
+    @FXML
     private Text texte_date;
 
     @FXML
@@ -98,9 +140,6 @@ public class afficher_dossiers_patient_controller {
 
     @FXML
     private Text text_prenomPatientCR;
-
-    @FXML
-    private Text text_nomPatientCR;
 
     @FXML
     private ListView<?> listView_imagesExam;
@@ -112,55 +151,37 @@ public class afficher_dossiers_patient_controller {
     private TableColumn<?, ?> colonne_IDPatient;
 
     @FXML
-    private Text text_typeExamenCR;
+    private Text typeProduit;
 
     @FXML
-    private Text text_nomPrescripteurCR;
-
-    @FXML
-    private Text text_specialitePrescripteurCR;
-
-    @FXML
-    private Text text_coordonneesPrescripteurCR;
+    private Text dateDeNaissance;
 
     @FXML
     private Text text_conclusionCR;
 
     @FXML
-    private Text text_sexePatientCR;
+    private Text dateRDV;
 
     @FXML
     private Text text_protocoleStandardiseCR;
 
     @FXML
-    private ToggleButton toggle_medecinPrescripteur;
-
-    @FXML
     private Text text_resultatCR;
-
-    @FXML
-    private Rectangle ractangle_recherche;
-
-    @FXML
-    private Text texte_rechercherPar;
 
     @FXML
     private ToggleButton toggle_nomPatient;
 
     @FXML
-    private DatePicker champ_date;
+    private TableColumn<?, ?> colonne_prescri;
 
     @FXML
     private Text date_naissancePatientCR;
-    @FXML
-    private TableColumn<?, ?> colonne_date;
 
     @FXML
-    private TableColumn<?, ?> colonne_prescri;
-    @FXML
     private TableColumn<?, ?> colonne_type;
+
     @FXML
-    private TableColumn<?, ?> colonne_radio;
+            private Text dateExamen;
 
 
     FXMLLoader loadermenu;
@@ -187,6 +208,34 @@ public class afficher_dossiers_patient_controller {
         assert texte_date != null : "fx:id=\"texte_date\" was not injected: check your FXML file 'afficher_dossiers_patient.fxml'.";
         tableau_colonnes.getSelectionModel().selectedItemProperty().addListener(
                 (observable, oldValue, newValue) -> showListeExam(newValue));
+
+        listeExam.getSelectionModel().selectedItemProperty().addListener(
+                (observable, oldValue, newValue) -> showDetailExam(newValue));
+
+    }
+
+    private void showDetailExam(TableExamen tableExamen) {
+            Examen examen = sir.getExamenFromId(Integer.parseInt(tableExamen.getIdexamen()));
+            CR cr = sir.getCRFromIdExam(Integer.parseInt(examen.getId()));
+            if(cr!=null){
+            Patient patient = sir.getPatientFromId(examen.getIdPatient());
+            nom.setText(patient.getNom());
+            prenom.setText(patient.getNom());
+            //dateDeNaissance.setText(patient.getDateDeNaissance().toString());
+            dateRDV.setText(examen.getDateRDV().toString());
+            dateExamen.setText(examen.getDateExamen().toString());
+            radio.setText(examen.getMedecinRadio());
+            prescri.setText(examen.getMedecinPrescri());
+            typeExam.setText(examen.getTypeExamen().toString());
+            text_descriptionTechniqueCR.setText(cr.getTechnique());
+            text_comparaisonExamensExterieursCR.setText(cr.getComparaisonExamenAnt());
+            text_conclusionCR.setText(cr.getConclusion());
+            text_protocoleStandardiseCR.setText(cr.getProtocoleStandardise());
+            text_resultatCR.setText(cr.getResultat());
+            text_syntheseCR.setText(cr.getSynthese());
+            typeProduit.setText(cr.getProduitContrasteType());
+            quantite.setText(cr.getQuantiteProduitContraste()+"");}
+
 
     }
 

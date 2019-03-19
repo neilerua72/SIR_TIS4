@@ -27,7 +27,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="583.0" prefWidth="553.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="IU.afficher_dossiers_patient.afficher_dossiers_patient_controller">
+<AnchorPane prefHeight="836.0" prefWidth="1276.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="IU.afficher_dossiers_patient.afficher_dossiers_patient_controller">
    <children>
       <MenuBar prefHeight="25.0" prefWidth="1276.0" VBox.vgrow="NEVER">
          <menus>
@@ -68,11 +68,11 @@
             </Menu>
          </menus>
       </MenuBar>
-      <StackPane layoutY="25.0" prefHeight="617.0" prefWidth="1276.0">
+      <StackPane layoutY="25.0" prefHeight="788.0" prefWidth="1276.0">
          <children>
-            <SplitPane dividerPositions="0.47566718995290425" layoutY="25.0" prefHeight="581.0" prefWidth="1257.0">
+            <SplitPane dividerPositions="0.47566718995290425" layoutY="25.0" prefHeight="905.0" prefWidth="1276.0">
                <items>
-                  <AnchorPane layoutY="25.0" maxHeight="-1.0" maxWidth="-1.0" VBox.vgrow="ALWAYS">
+                  <AnchorPane layoutY="25.0" maxHeight="-1.0" maxWidth="-1.0" prefHeight="715.0" prefWidth="607.0" VBox.vgrow="ALWAYS">
                      <children>
                         <Text fx:id="texte_rechercherPar" layoutX="14.0" layoutY="21.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Rechercher par" />
                         <Rectangle fx:id="ractangle_recherche" arcHeight="5.0" arcWidth="5.0" fill="#b8cada00" height="77.0" layoutX="4.0" layoutY="25.0" stroke="#6f6e6ead" strokeLineCap="ROUND" strokeType="INSIDE" width="591.0" />
@@ -143,14 +143,13 @@
                                        <children>
                                           <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nom" wrappingWidth="139.630859375" />
                                           <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Prénom " GridPane.rowIndex="1" />
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Date de Naissance" GridPane.rowIndex="4" />
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Sexe" GridPane.rowIndex="2" />
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nom de Jeune Fille" wrappingWidth="101.81640625" GridPane.rowIndex="3" />
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Date de Naissance" GridPane.rowIndex="2" />
                                           <Text fx:id="text_nomPatientCR" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" visible="false" GridPane.columnIndex="1" />
                                           <Text fx:id="text_prenomPatientCR" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                          <Text fx:id="text_sexePatientCR" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                          <Text fx:id="text_nomJeuneFilleCR" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                                          <Text fx:id="date_naissancePatientCR" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                          <Text fx:id="date_naissancePatientCR" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                          <Text fx:id="nom" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" />
+                                          <Text fx:id="prenom" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                          <Text fx:id="dateDeNaissance" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                                        </children>
                                        <columnConstraints>
                                           <ColumnConstraints hgrow="SOMETIMES" maxWidth="174.0" minWidth="10.0" prefWidth="157.0" />
@@ -160,24 +159,27 @@
                                           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                        </rowConstraints>
                                     </GridPane>
                                     <Text layoutX="339.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Informations Relatives à l'Examen" />
                                     <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#5e5e5e00" height="168.0" layoutX="335.0" layoutY="33.0" stroke="#797979" strokeType="INSIDE" width="310.0" />
                                     <GridPane layoutX="341.0" layoutY="36.0" prefHeight="158.0" prefWidth="298.0">
                                        <children>
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Date d'Examen" wrappingWidth="101.630859375" />
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Date de RDV" wrappingWidth="101.630859375" />
                                           <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Type d'Examen" GridPane.rowIndex="1" />
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Date du CR" GridPane.rowIndex="2" />
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Date Examen" GridPane.rowIndex="2" />
                                           <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nom du Radiologue" wrappingWidth="115.81640625" GridPane.rowIndex="3" />
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Spécialité radiologue" GridPane.rowIndex="4" />
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nom du prescripteur" GridPane.rowIndex="4" />
                                           <Text fx:id="text_typeExamenCR" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                           <Text fx:id="text_nomRadiologueCR" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                                           <Text fx:id="text_specialiteRadiologueCR" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                                           <Text fx:id="date_examenCR" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" visible="false" GridPane.columnIndex="1" />
                                           <Text fx:id="date_CRCR" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                          <Text fx:id="dateRDV" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" />
+                                          <Text fx:id="typeExam" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                          <Text fx:id="dateExamen" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                          <Text fx:id="radio" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                          <Text fx:id="prescri" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                                        </children>
                                        <columnConstraints>
                                           <ColumnConstraints hgrow="SOMETIMES" maxWidth="174.0" minWidth="10.0" prefWidth="126.0" />
@@ -191,44 +193,21 @@
                                           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                        </rowConstraints>
                                     </GridPane>
-                                    <Text layoutX="13.0" layoutY="240.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Identité du Prescripteur" />
-                                    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#5e5e5e00" height="148.0" layoutX="8.0" layoutY="245.0" stroke="#797979" strokeType="INSIDE" width="304.0" />
-                                    <GridPane layoutX="13.0" layoutY="248.0" prefHeight="139.0" prefWidth="292.0">
-                                       <children>
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nom" wrappingWidth="139.630859375" />
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Prénom " GridPane.rowIndex="1" />
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Spécialité" GridPane.rowIndex="2" />
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Coordonnées" wrappingWidth="101.81640625" GridPane.rowIndex="3" />
-                                          <Text fx:id="text_nomPrescripteurCR" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" visible="false" GridPane.columnIndex="1" />
-                                          <Text fx:id="text_prenomPrescripteurCR" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                          <Text fx:id="text_specialitePrescripteurCR" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                          <Text fx:id="text_coordonneesPrescripteurCR" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                                       </children>
-                                       <columnConstraints>
-                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="174.0" minWidth="10.0" prefWidth="157.0" />
-                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="291.0" minWidth="10.0" prefWidth="220.0" />
-                                       </columnConstraints>
-                                       <rowConstraints>
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                       </rowConstraints>
-                                    </GridPane>
                                     <Text layoutX="341.0" layoutY="241.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Résumé du Problème Clinique " />
                                     <ScrollPane layoutX="338.0" layoutY="245.0" prefHeight="60.0" prefWidth="304.0">
                                       <content>
                                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="246.0" prefWidth="289.0">
                                              <children>
                                                 <Text fx:id="text_resumeProblemeCliniqueCR" layoutX="3.0" layoutY="13.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="JUSTIFY" visible="false" />
+                                                <Text fx:id="resumePbClinique" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
                                              </children>
                                           </AnchorPane>
                                       </content>
                                     </ScrollPane>
-                                    <Text layoutX="341.0" layoutY="329.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description de la Technique " />
-                                    <ScrollPane layoutX="338.0" layoutY="334.0" prefHeight="60.0" prefWidth="304.0">
+                                    <Text layoutX="14.0" layoutY="241.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description de la Technique " />
+                                    <ScrollPane layoutX="14.0" layoutY="245.0" prefHeight="60.0" prefWidth="304.0">
                                        <content>
-                                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="248.0" prefWidth="289.0">
+                                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="265.0" prefWidth="289.0">
                                              <children>
                                                 <Text fx:id="text_descriptionTechniqueCR" layoutX="3.0" layoutY="13.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="JUSTIFY" visible="false" />
                                              </children>
@@ -241,6 +220,7 @@
                                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="240.0" prefWidth="289.0">
                                              <children>
                                                 <Text fx:id="text_protocoleStandardiseCR" layoutX="3.0" layoutY="13.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="JUSTIFY" visible="false" />
+                                                <Text fx:id="protocole" layoutX="3.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
                                              </children>
                                           </AnchorPane>
                                        </content>
@@ -253,6 +233,8 @@
                                           <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Quantité" GridPane.rowIndex="1" />
                                           <Text fx:id="text_typeContrasteCR" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" visible="false" GridPane.columnIndex="1" />
                                           <Text fx:id="text_quantiteContrasteCR" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                          <Text fx:id="typeProduit" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" />
+                                          <Text fx:id="quantite" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                        </children>
                                        <columnConstraints>
                                           <ColumnConstraints hgrow="SOMETIMES" maxWidth="174.0" minWidth="10.0" prefWidth="81.0" />
@@ -264,7 +246,7 @@
                                        </rowConstraints>
                                     </GridPane>
                                     <Text layoutX="12.0" layoutY="520.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Comparaison avec Examens Antérieurs" />
-                                    <ScrollPane layoutX="8.0" layoutY="524.0" prefHeight="60.0" prefWidth="634.0">
+                                    <ScrollPane fx:id="comparaison" layoutX="8.0" layoutY="524.0" prefHeight="60.0" prefWidth="634.0">
                                        <content>
                                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="184.0" prefWidth="620.0">
                                              <children>
