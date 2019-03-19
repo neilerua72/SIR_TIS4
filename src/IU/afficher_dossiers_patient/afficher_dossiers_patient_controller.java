@@ -6,17 +6,26 @@ package IU.afficher_dossiers_patient;
  */
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+import ClassTable.TableExamen;
+import ClassTable.TablePatient;
+import FC.Patient;
+import FC.SIR;
+import IU.menu.menu_controller;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 
@@ -24,62 +33,139 @@ import javax.swing.text.html.ImageView;
 
 public class afficher_dossiers_patient_controller {
 
-    @FXML // ResourceBundle that was given to the FXMLLoader
-    private ResourceBundle resources;
+    @FXML
+    private ToggleButton toggle_medecinRadiologue;
 
-    @FXML // URL location of the FXML file that was given to the FXMLLoader
-    private URL location;
+    @FXML
+    private ToggleButton toggle_IDPatient;
 
-    @FXML // fx:id="toggle_medecinRadiologue"
-    private ToggleButton toggle_medecinRadiologue; // Value injected by FXMLLoader
+    @FXML
+    private Text text_comparaisonExamensExterieursCR;
 
-    @FXML // fx:id="toggle_IDPatient"
-    private ToggleButton toggle_IDPatient; // Value injected by FXMLLoader
+    @FXML
+    private TableColumn<?, ?> colonne_nom;
 
-    @FXML // fx:id="listView_imagesExam"
-    private ListView<ImageView> listView_imagesExam = new ListView<ImageView>(); // Value injected by FXMLLoader
+    @FXML
+    private Text text_typeContrasteCR;
 
-    ;
-    ObservableList<ImageView> items = FXCollections.observableArrayList();
+    @FXML
+    private TextField champ_rechercherParNomPatient;
 
-    @FXML // fx:id="colonne_IDPatient"
-    private TableColumn<?, ?> colonne_IDPatient; // Value injected by FXMLLoader
+    @FXML
+    private TableView<TableExamen> listeExam;
 
-    @FXML // fx:id="champ_rechercherParNomPatient"
-    private TextField champ_rechercherParNomPatient; // Value injected by FXMLLoader
+    @FXML
+    private TableColumn<?, ?> colonne_prenom;
 
-    @FXML // fx:id="colonne_medecinRadiologue"
-    private TableColumn<?, ?> colonne_medecinRadiologue; // Value injected by FXMLLoader
+    @FXML
+    private TableColumn<?, ?> colonne_patient;
 
-    @FXML // fx:id="colonne_medecinPrescripteur"
-    private TableColumn<?, ?> colonne_medecinPrescripteur; // Value injected by FXMLLoader
+    @FXML
+    private Text text_nomJeuneFilleCR;
 
-    @FXML // fx:id="toggle_medecinPrescripteur"
-    private ToggleButton toggle_medecinPrescripteur; // Value injected by FXMLLoader
+    @FXML
+    private Text text_prenomPrescripteurCR;
 
-    @FXML // fx:id="colonne_patient"
-    private TableColumn<?, ?> colonne_patient; // Value injected by FXMLLoader
+    @FXML
+    private Text text_descriptionTechniqueCR;
 
-    @FXML // fx:id="ractangle_recherche"
-    private Rectangle ractangle_recherche; // Value injected by FXMLLoader
+    @FXML
+    private TableView<Patient> tableau_colonnes;
 
-    @FXML // fx:id="texte_rechercherPar"
-    private Text texte_rechercherPar; // Value injected by FXMLLoader
+    @FXML
+    private Text text_specialiteRadiologueCR;
 
-    @FXML // fx:id="toggle_nomPatient"
-    private ToggleButton toggle_nomPatient; // Value injected by FXMLLoader
+    @FXML
+    private ListView<?> listView_examensRealises;
 
-    @FXML // fx:id="tableau_colonnes"
-    private TableView<?> tableau_colonnes; // Value injected by FXMLLoader
+    @FXML
+    private Text date_CRCR;
 
-    @FXML // fx:id="champ_date"
-    private DatePicker champ_date; // Value injected by FXMLLoader
+    @FXML
+    private Text text_quantiteContrasteCR;
 
-    @FXML // fx:id="listView_examensRealises"
-    private ListView<?> listView_examensRealises; // Value injected by FXMLLoader
+    @FXML
+    private Text text_resumeProblemeCliniqueCR;
 
-    @FXML // fx:id="texte_date"
-    private Text texte_date; // Value injected by FXMLLoader
+    @FXML
+    private Text date_examenCR;
+
+    @FXML
+    private Text texte_date;
+
+    @FXML
+    private Text text_syntheseCR;
+
+    @FXML
+    private Text text_prenomPatientCR;
+
+    @FXML
+    private Text text_nomPatientCR;
+
+    @FXML
+    private ListView<?> listView_imagesExam;
+
+    @FXML
+    private Text text_nomRadiologueCR;
+
+    @FXML
+    private TableColumn<?, ?> colonne_IDPatient;
+
+    @FXML
+    private Text text_typeExamenCR;
+
+    @FXML
+    private Text text_nomPrescripteurCR;
+
+    @FXML
+    private Text text_specialitePrescripteurCR;
+
+    @FXML
+    private Text text_coordonneesPrescripteurCR;
+
+    @FXML
+    private Text text_conclusionCR;
+
+    @FXML
+    private Text text_sexePatientCR;
+
+    @FXML
+    private Text text_protocoleStandardiseCR;
+
+    @FXML
+    private ToggleButton toggle_medecinPrescripteur;
+
+    @FXML
+    private Text text_resultatCR;
+
+    @FXML
+    private Rectangle ractangle_recherche;
+
+    @FXML
+    private Text texte_rechercherPar;
+
+    @FXML
+    private ToggleButton toggle_nomPatient;
+
+    @FXML
+    private DatePicker champ_date;
+
+    @FXML
+    private Text date_naissancePatientCR;
+    @FXML
+    private TableColumn<?, ?> colonne_date;
+
+    @FXML
+    private TableColumn<?, ?> colonne_prescri;
+    @FXML
+    private TableColumn<?, ?> colonne_type;
+    @FXML
+    private TableColumn<?, ?> colonne_radio;
+
+
+    FXMLLoader loadermenu;
+    Parent menu;
+    SIR sir;
 
 
     @FXML
@@ -90,8 +176,6 @@ public class afficher_dossiers_patient_controller {
         assert listView_imagesExam != null : "fx:id=\"listView_imagesExam\" was not injected: check your FXML file 'afficher_dossiers_patient.fxml'.";
         assert colonne_IDPatient != null : "fx:id=\"colonne_IDPatient\" was not injected: check your FXML file 'afficher_dossiers_patient.fxml'.";
         assert champ_rechercherParNomPatient != null : "fx:id=\"champ_rechercherParNomPatient\" was not injected: check your FXML file 'afficher_dossiers_patient.fxml'.";
-        assert colonne_medecinRadiologue != null : "fx:id=\"colonne_medecinRadiologue\" was not injected: check your FXML file 'afficher_dossiers_patient.fxml'.";
-        assert colonne_medecinPrescripteur != null : "fx:id=\"colonne_medecinPrescripteur\" was not injected: check your FXML file 'afficher_dossiers_patient.fxml'.";
         assert toggle_medecinPrescripteur != null : "fx:id=\"toggle_medecinPrescripteur\" was not injected: check your FXML file 'afficher_dossiers_patient.fxml'.";
         assert colonne_patient != null : "fx:id=\"colonne_patient\" was not injected: check your FXML file 'afficher_dossiers_patient.fxml'.";
         assert ractangle_recherche != null : "fx:id=\"ractangle_recherche\" was not injected: check your FXML file 'afficher_dossiers_patient.fxml'.";
@@ -101,8 +185,55 @@ public class afficher_dossiers_patient_controller {
         assert champ_date != null : "fx:id=\"champ_date\" was not injected: check your FXML file 'afficher_dossiers_patient.fxml'.";
         assert listView_examensRealises != null : "fx:id=\"listView_examensRealises\" was not injected: check your FXML file 'afficher_dossiers_patient.fxml'.";
         assert texte_date != null : "fx:id=\"texte_date\" was not injected: check your FXML file 'afficher_dossiers_patient.fxml'.";
+        tableau_colonnes.getSelectionModel().selectedItemProperty().addListener(
+                (observable, oldValue, newValue) -> showListeExam(newValue));
 
     }
+
+
+    public void initData(SIR sir, Parent menu, FXMLLoader loadermenu){
+        this.sir=sir;
+        this.menu=menu;
+        this.loadermenu=loadermenu;
+        Patient patient =sir.getListePatient().get(0);
+        final ObservableList<Patient> data= FXCollections.observableArrayList(patient);
+
+        for(int i=1;i<sir.getListePatient().size();i++){
+            data.add(sir.getListePatient().get(i));
+        }
+        menu_controller menu_controller = loadermenu.getController();
+        menu_controller.initData(sir);
+
+        colonne_nom.setCellValueFactory(new PropertyValueFactory<>("nom"));
+        colonne_prenom.setCellValueFactory(new PropertyValueFactory<>("prenom"));
+        colonne_IDPatient.setCellValueFactory(new PropertyValueFactory<>("id"));
+        tableau_colonnes.setItems(data);
+
+
+
+
+
+    }
+
+
+    public void showListeExam(Patient patient){
+        ArrayList<TableExamen> listetableExamen = new ArrayList<>(sir.getTableExamenFromIdPatient(patient.getId()));
+        if(listetableExamen.size()!=0){
+            TableExamen tableExamen = listetableExamen.get(0);
+            final ObservableList<TableExamen> data= FXCollections.observableArrayList(tableExamen);
+            for(int i=1;i<listetableExamen.size();i++){
+                data.add(listetableExamen.get(i));
+            }
+            colonne_date.setCellValueFactory(new PropertyValueFactory<>("dateExamen"));
+            colonne_prescri.setCellValueFactory(new PropertyValueFactory<>("medecinprescri"));
+            colonne_radio.setCellValueFactory(new PropertyValueFactory<>("medecinradio"));
+            colonne_type.setCellValueFactory(new PropertyValueFactory<>("typeExam"));
+            listeExam.setItems(data);
+
+        }
+    }
+
+
 }
 
 

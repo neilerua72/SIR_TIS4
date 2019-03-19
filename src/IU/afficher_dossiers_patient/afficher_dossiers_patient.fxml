@@ -1,13 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.collections.*?>
+<?import java.lang.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
-<?import java.lang.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="583.0" prefWidth="553.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="583.0" prefWidth="553.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="IU.afficher_dossiers_patient.afficher_dossiers_patient_controller">
    <children>
       <MenuBar prefHeight="25.0" prefWidth="1276.0" VBox.vgrow="NEVER">
          <menus>
@@ -78,22 +98,24 @@
                               <RowConstraints maxHeight="33.0" minHeight="10.0" prefHeight="33.0" vgrow="SOMETIMES" />
                            </rowConstraints>
                         </GridPane>
-                        <TableView fx:id="tableau_colonnes" layoutY="115.0" prefHeight="93.0" prefWidth="597.0">
+                        <TableView fx:id="tableau_colonnes" layoutY="115.0" prefHeight="219.0" prefWidth="597.0">
                            <columns>
-                              <TableColumn fx:id="colonne_patient" prefWidth="118.0" text="Patient" />
-                              <TableColumn fx:id="colonne_IDPatient" prefWidth="132.0" text="ID Patient" />
-                              <TableColumn fx:id="colonne_medecinRadiologue" prefWidth="168.0" text="Médecin Radiologue" />
-                              <TableColumn fx:id="colonne_medecinPrescripteur" minWidth="0.0" prefWidth="178.0" text="Médecin Prescripteur" />
+                              <TableColumn fx:id="colonne_IDPatient" prefWidth="84.0" text="ID Patient" />
+                              <TableColumn fx:id="colonne_patient" prefWidth="463.0" text="Patient">
+                                 <columns>
+                                    <TableColumn fx:id="colonne_nom" prefWidth="168.0" text="Nom" />
+                                    <TableColumn fx:id="colonne_prenom" minWidth="0.0" prefWidth="178.0" text="Prénom" />
+                                 </columns></TableColumn>
                            </columns>
                         </TableView>
-                        <Text layoutX="14.0" layoutY="236.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Liste d'examens réalisés " />
-                        <ListView fx:id="listView_examensRealises" layoutY="240.0" prefHeight="376.0" prefWidth="603.0" />
-                        <TableView layoutX="-2.0" layoutY="240.0" prefHeight="376.0" prefWidth="603.0">
+                        <Text layoutX="14.0" layoutY="357.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Liste d'examens réalisés " />
+                        <ListView fx:id="listView_examensRealises" layoutY="373.0" prefHeight="243.0" prefWidth="603.0" />
+                        <TableView fx:id="listeExam" layoutX="-2.0" layoutY="373.0" prefHeight="243.0" prefWidth="603.0">
                           <columns>
-                            <TableColumn prefWidth="117.0" text="Date" />
-                            <TableColumn prefWidth="156.0" text="Médecin Radiologue" />
-                              <TableColumn prefWidth="165.0" text="Médecin Prescripteur" />
-                              <TableColumn prefWidth="164.0" text="Compte Rendu Rédigé" />
+                            <TableColumn fx:id="colonne_date" prefWidth="117.0" text="Date" />
+                            <TableColumn fx:id="colonne_type" prefWidth="156.0" text="Type" />
+                              <TableColumn fx:id="colonne_prescri" prefWidth="165.0" text="Médecin Prescripteur" />
+                              <TableColumn fx:id="colonne_radio" prefWidth="164.0" text="Medecin Radiologue" />
                           </columns>
                         </TableView>
                      </children>

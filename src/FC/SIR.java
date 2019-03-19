@@ -4,6 +4,7 @@ import BD.*;
 import ClassTable.TableExamen;
 import ClassTable.TableRDV;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class SIR {
@@ -165,5 +166,27 @@ public class SIR {
             i++;
         }
         return rep;
+    }
+
+    public ArrayList<RWImage> getListeImage() {
+        return listeImage;
+    }
+    public ArrayList<TableExamen> getTableExamenFromIdPatient(int idPatient){
+        ArrayList<TableExamen> result = new ArrayList<>();
+       for(int i=0;i<this.tableExamen.size();i++){
+           if(tableExamen.get(i).getIdpatient()==idPatient){
+               result.add(tableExamen.get(i));
+           }
+       }
+        return result;
+    }
+    public ArrayList<Examen> getListeExamenFromIdPatient(int idPatient){
+        ArrayList<Examen> result = new ArrayList<>();
+        for(int i=0;i<this.listeExamen.size();i++){
+            if(listeExamen.get(i).getIdPatient()==idPatient){
+                result.add(listeExamen.get(i));
+            }
+        }
+        return result;
     }
 }

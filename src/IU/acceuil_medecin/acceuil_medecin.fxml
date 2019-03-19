@@ -68,7 +68,7 @@
       
                     </columns>
             </TableView>
-            <Button fx:id="button_consulterTousLesDP" layoutX="687.0" layoutY="24.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="204.0" text="Consulter tous les Dossiers Patients" />
+            <Button fx:id="button_consulterTousLesDP" layoutX="687.0" layoutY="24.0" mnemonicParsing="false" onAction="#afficheDossierPatient" prefHeight="33.0" prefWidth="204.0" text="Consulter tous les Dossiers Patients" />
             <Button fx:id="message" layoutX="811.0" layoutY="67.0" mnemonicParsing="false" onAction="#Envoyer" prefHeight="33.0" prefWidth="80.0" text="Envoyer" />
             <Button fx:id="DoExam" layoutX="891.0" layoutY="68.0" mnemonicParsing="false" onAction="#DoExamen" text="Faire Examen" />
          </children>

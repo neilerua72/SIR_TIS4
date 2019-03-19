@@ -197,7 +197,7 @@ public class acceuil_medecin_controller implements Initializable{
         for(int i=1;i<sir.getListeExamen().size();i++){
             data.add(sir.getTableExamen().get(i));
         }
-        texte_rechercherPar.setText(sir.getConnexion().getType().toString());
+
 
         colonne_prenom.setCellValueFactory(new PropertyValueFactory<>("prenom"));
         colonne_nom.setCellValueFactory(new PropertyValueFactory<>("nom"));
@@ -397,8 +397,10 @@ public class acceuil_medecin_controller implements Initializable{
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/IU/afficher_dossiers_patient/afficher_dossiers_patient.fxml"));
         Parent parent = loader.load();
+        afficher_dossiers_patient_controller afficher_dossiers_patient_controller = loader.getController();
+        afficher_dossiers_patient_controller.initData(sir,menu,loadermenu);
         Scene scene = new Scene(parent);
-        Stage stage = new Stage(StageStyle.DECORATED);
+         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();     //pas compris
         stage.setScene(scene);
         stage.show();
 
