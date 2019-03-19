@@ -168,17 +168,33 @@ public class SIR {
         }
         return rep;
     }
+    public RDV getRDVfromTableRDV(TableRDV trdv){
+        int i=0;
+        boolean rep=false;
+        while(i<this.listeRDV.size()&&rep==false){
+           if(trdv.getIdExam()==listeRDV.get(i).getId()){
+
+               rep=true;
+           }
+           i++;
+        }
+        if(rep==true){
+            return listeRDV.get(i-1);
+        }
+        else return null;
+
+    }
 
     public ArrayList<RWImage> getListeImage() {
         return listeImage;
     }
     public ArrayList<TableExamen> getTableExamenFromIdPatient(int idPatient){
         ArrayList<TableExamen> result = new ArrayList<>();
-       for(int i=0;i<this.tableExamen.size();i++){
-           if(tableExamen.get(i).getIdpatient()==idPatient){
-               result.add(tableExamen.get(i));
-           }
-       }
+        for(int i=0;i<this.tableExamen.size();i++){
+            if(tableExamen.get(i).getIdpatient()==idPatient){
+                result.add(tableExamen.get(i));
+            }
+        }
         return result;
     }
     public Examen getExamenFromId(int idExam){
