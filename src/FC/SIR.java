@@ -166,4 +166,36 @@ public class SIR {
         }
         return rep;
     }
+    public RDV getRDVfromTableRDV(TableRDV trdv){
+        int i=0;
+        boolean rep=false;
+        while(i<this.listeRDV.size()&&rep==false){
+           if(trdv.getIdExam()==listeRDV.get(i).getId()){
+
+               rep=true;
+           }
+           i++;
+        }
+        if(rep==true){
+            return listeRDV.get(i-1);
+        }
+        else return null;
+
+    }
+    public Patient getPatientFromId(int idPatient){
+        int i=0;
+        boolean rep=false;
+        while(i<this.listePatient.size()&&rep==false){
+            if(idPatient==listePatient.get(i).getId()){
+
+                rep=true;
+            }
+            i++;
+        }
+        System.out.println(i);
+        if(rep==true){
+            return listePatient.get(i-1);
+        }
+        else return null;
+    }
 }

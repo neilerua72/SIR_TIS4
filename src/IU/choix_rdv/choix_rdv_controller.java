@@ -1,23 +1,30 @@
 package IU.choix_rdv;
 
+import java.awt.event.ActionEvent;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 import ClassTable.TableRDV;
 import FC.RDV;
 import FC.SIR;
+import IU.ajout_examen.ajout_examen_controller;
 import IU.menu.menu_controller;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 public class choix_rdv_controller {
     @FXML
@@ -79,6 +86,14 @@ public class choix_rdv_controller {
         assert colonne_prenomPatient != null : "fx:id=\"colonne_prenomPatient\" was not injected: check your FXML file 'choix_rdv.fxml'.";
         assert colonne_salle != null : "fx:id=\"colonne_salle\" was not injected: check your FXML file 'choix_rdv.fxml'.";
         assert recherche != null : "fx:id=\"recherche\" was not injected: check your FXML file 'choix_rdv.fxml'.";
+        tableau.getSelectionModel().selectedItemProperty().addListener(
+                (observable, oldValue, newValue) -> {
+                    try {
+                        selectionRDV(newValue);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                });
 
     }
 
@@ -103,6 +118,21 @@ public class choix_rdv_controller {
             colonne_salle.setCellValueFactory(new PropertyValueFactory<>("salle"));
             colonne_id.setCellValueFactory(new PropertyValueFactory<>("idExam"));
             tableau.setItems(data);
+
         }
+    }
+    public void selectionRDV(TableRDV rdv) throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/IU/ajout_examen/ajout_examen.fxml"));
+        Parent parent = loader.load();
+        ajout_examen_controller controller = loader.getController();
+        System.out.println(controller.toString());
+
+        controller.initData(this.sir,this.sir.getRDVfromTableRDV(rdv));
+        Scene scene = new Scene(parent);
+        Stage stage = new Stage(StageStyle.DECORATED);
+        stage.setScene(scene);
+        stage.show();
+
     }
 }
