@@ -23,6 +23,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 
@@ -182,6 +183,8 @@ public class afficher_dossiers_patient_controller {
 
     @FXML
             private Text dateExamen;
+    @FXML
+            private AnchorPane cranchor;
 
 
     FXMLLoader loadermenu;
@@ -234,7 +237,13 @@ public class afficher_dossiers_patient_controller {
             text_resultatCR.setText(cr.getResultat());
             text_syntheseCR.setText(cr.getSynthese());
             typeProduit.setText(cr.getProduitContrasteType());
-            quantite.setText(cr.getQuantiteProduitContraste()+"");}
+            quantite.setText(cr.getQuantiteProduitContraste()+"");
+            cranchor.setVisible(true);
+            }
+            else{
+                cranchor.setVisible(false);
+                System.out.println("CR NULL");
+            }
 
 
     }

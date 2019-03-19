@@ -122,7 +122,7 @@
                   </AnchorPane>
                   <ScrollPane prefHeight="558.0" prefViewportHeight="1209.0" prefViewportWidth="652.0" prefWidth="725.0">
                      <content>
-                        <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                        <AnchorPane fx:id="cranchor" prefHeight="200.0" prefWidth="200.0" visible="false">
                            <children>
                               <ListView fx:id="listView_imagesExam" layoutX="7.0" layoutY="22.0" prefHeight="103.0" prefWidth="641.0" />
                               <Text layoutX="14.0" layoutY="18.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Images de l'examen">
@@ -209,7 +209,7 @@
                                        <content>
                                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="265.0" prefWidth="289.0">
                                              <children>
-                                                <Text fx:id="text_descriptionTechniqueCR" layoutX="3.0" layoutY="13.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="JUSTIFY" visible="false" />
+                                                <Text fx:id="text_descriptionTechniqueCR" layoutX="3.0" layoutY="13.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="JUSTIFY" />
                                              </children>
                                           </AnchorPane>
                                        </content>
