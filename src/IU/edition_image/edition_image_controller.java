@@ -51,10 +51,11 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.awt.image.RenderedImage;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.net.URL;
-import java.sql.Date;
+import java.sql.*;
 import java.text.Format;
 import java.util.Iterator;
 import java.util.ResourceBundle;
@@ -257,6 +258,31 @@ public class edition_image_controller implements Initializable {
                     writer.write(imgMetadata, image, iwp);
                     System.out.println("writer");
                     System.out.println(new_file);
+
+                    String url = "jdbc:mysql://db4free.net/bdsirtis";
+                    String user = "testbd";
+                    String passwd = "12345678";
+                    String sql = "INSERT INTO Image (idExamen,nom,image) VALUES(?,?,?)";
+
+                    int idExamen = 0+(int)(Math.random()*((999999-0)+1));
+
+
+                    try (Connection conn = DriverManager.getConnection(url, user, passwd);) {
+                        File imagemodif = new File(new_file);
+                        try (FileInputStream inputStream = new FileInputStream(imagemodif);
+                             PreparedStatement stmt = conn.prepareStatement(sql);) {
+                            stmt.setInt(1,idExamen);
+                            stmt.setString(2, "cor494");
+                            stmt.setBinaryStream(3, inputStream, imagemodif.length());
+                            stmt.executeUpdate();
+                            System.out.println("Image sauvegarder dans la BD image");
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

@@ -146,7 +146,7 @@ public class TestClient_controlleur {
 
     @FXML
     private void OuvrirText() {
-        String FILENAME = "C:\\Users\\glebb\\Desktop\\projet SIS\\examRadio.txt";
+        String FILENAME = "/Users/hugobosquet/Desktop/examRadio.txt";
 
 
 
