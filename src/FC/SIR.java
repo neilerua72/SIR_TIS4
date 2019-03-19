@@ -1,9 +1,6 @@
 package FC;
 
-import BD.LectCR;
-import BD.LectConnexion;
-import BD.LectExamen;
-import BD.LectPatient;
+import BD.*;
 import ClassTable.TableExamen;
 import ClassTable.TableRDV;
 
@@ -18,6 +15,7 @@ public class SIR {
     private ArrayList<TableExamen> tableExamen;
     private ArrayList<CR> listeCR;
     private ArrayList<TableRDV> tableRDV;
+    private ArrayList<RWImage> listeImage;
 
     public SIR(Connexion connexion){
         this.connexion=connexion;
@@ -25,6 +23,8 @@ public class SIR {
         LectConnexion lectConnexion = new LectConnexion();
         LectPatient lectPatient = new LectPatient();
         LectExamen lectExamen=new LectExamen();
+        LectImage lectImage = new LectImage();
+
         LectCR lectCR= new LectCR();
 
         this.listeUtilisateur=new ArrayList<Utilisateur>(lectConnexion.getListeUsers());
@@ -37,6 +37,7 @@ public class SIR {
             this.listeCR=new ArrayList<>(lectCR.getListeCR());
             this.listeRDV=new ArrayList<>(lectExamen.getListeRDV());
             this.tableRDV=new ArrayList<>();
+            this.listeImage=new ArrayList<>(lectImage.getListeImage());
             for(int i=0;i<listeExamen.size();i++){
                 Examen e = listeExamen.get(i);
                 String image;
@@ -60,6 +61,7 @@ public class SIR {
                 RDV rdv = listeRDV.get(i);
                 TableRDV tr = new TableRDV(rdv.getDateRDV(),rdv.getTypeExamen().toString(),rdv.getId(),String.valueOf(rdv.getSalle()),"Test",rdv.getIdPatient(),rdv.getMedecinPrescri(),this.getNomPatient(rdv.getIdPatient()),this.getPrenomPatient(rdv.getIdPatient()));
                 this.tableRDV.add(tr);
+                System.out.println(rdv.getIdPatient());
             }
             System.out.println("Fin de la lecture de la BD");
         }
@@ -122,5 +124,46 @@ public class SIR {
 
     public ArrayList<TableRDV> getTableRDV() {
         return tableRDV;
+    }
+
+
+    public void UpdateTableRDV(){
+        RDV rdv = listeRDV.get(listeRDV.size()-1);
+        TableRDV tr = new TableRDV(rdv.getDateRDV(),rdv.getTypeExamen().toString(),rdv.getId(),String.valueOf(rdv.getSalle()),"Test",rdv.getIdPatient(),rdv.getMedecinPrescri(),this.getNomPatient(rdv.getIdPatient()),this.getPrenomPatient(rdv.getIdPatient()));
+        this.tableRDV.add(tr);
+
+    }
+    public boolean checkIdPatient(int idtest){
+        int i=0;
+        boolean rep = false;
+        while(i<this.listePatient.size()&&rep==false){
+            if(idtest==this.listePatient.get(i).getId()){
+                rep = true;
+            }
+            i++;
+        }
+        return rep;
+    }
+    public boolean checkIdRDV(int idtest){
+        int i=0;
+        boolean rep = false;
+        while(i<this.listeRDV.size()&&rep==false){
+            if(idtest==Integer.parseInt(this.listeRDV.get(i).getId())){
+                rep = true;
+            }
+            i++;
+        }
+        return rep;
+    }
+    public boolean checkIdExamen(int idtest){
+        int i=0;
+        boolean rep = false;
+        while(i<this.listeExamen.size()&&rep==false){
+            if(idtest==Integer.parseInt(this.listeExamen.get(i).getId())){
+                rep = true;
+            }
+            i++;
+        }
+        return rep;
     }
 }

@@ -9,6 +9,7 @@ import FC.*;
 import ClassTable.TableExamen;
 import IU.afficher_dossiers_patient.afficher_dossiers_patient_controller;
 import IU.ajouter_patient.ajouter_patient_controller;
+import IU.choix_rdv.choix_rdv_controller;
 import IU.menu.menu_controller;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -36,6 +37,7 @@ public class acceuil_medecin_controller implements Initializable{
     Connexion connect;
     SIR sir;
     Parent menu;
+    FXMLLoader loadermenu;
 
     String nom;
 
@@ -173,7 +175,7 @@ public class acceuil_medecin_controller implements Initializable{
         ajouter_patient_controller controller = loader.getController();
         System.out.println(controller.toString());
 
-        controller.initData(sir);
+        controller.initData(sir,menu,loader);
         Scene scene = new Scene(parent);
         //Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();     //pas compris
         Stage stage = new Stage(StageStyle.DECORATED);
@@ -191,6 +193,7 @@ public class acceuil_medecin_controller implements Initializable{
         final ObservableList<TableExamen> data= FXCollections.observableArrayList(tb);
         System.out.println(tb.getIdpatient());
         this.menu=menu;
+        this.loadermenu=loader;
         for(int i=1;i<sir.getListeExamen().size();i++){
             data.add(sir.getTableExamen().get(i));
         }
@@ -377,14 +380,16 @@ public class acceuil_medecin_controller implements Initializable{
             afficheExam.setVisible(true);
             idExamen.setText("ID: "+examen.getIdexamen());
             prenomPatient.setText("Prénom : "+examen.getPrenom());
-            nomPatient.setText("Nom : "+examen.getNom());
-            typeExamen.setText("Type Examen "+examen.getTypeExam());}
+            nomPatient.setText("Nom : "+examen.getNom() + "aogfdksopqejiorgdfkloseijrguthbfnkvlkdms ogjodf gh hezoe zhguizr hgzuif peziofze hfuises fuzejig ruigj dfnuizepgh zruvi fjiep hruig hufi zepgh rzuipbfvnsduiqpf hezig zehfuei fphezuig zrhui vpghzruip hrui phzeuitp h_ae^f hui hrugi rzh fueip heui paehvuisdpvhueizp ehi ae^hruei psdujipg rzhui aeprheuipzrnui jg zrhu izep rhaeuiovnguizr pghzrupf heauiovhf duighrui hezuif euip hggusipui gehuzeio pvzhui fpzehui dnfuizepghrzuiv nuij hzeguizr haeo^vbfzruo  ghaeio^fehiog zrh uoeah uozf heoghzeu depige qufhqf uohfu iqdpcnudqjip fheauipf zUCIJB SDUIF EZUI H EUIGHSUFOQ FHIOEHEIOOhoGHSOUBHSF ODH HEOGHZROP Ohuis ghrzui psduivjs hguipf zhuif ehfueip hezuipf ezhuipf ezhui zehue ");
+            typeExamen.setText("Type Examen "+examen.getTypeExam());
+        }
         else{
             System.out.println("Erreur chargement examen");
             aucunExamen.setVisible(true);
             afficheExam.setVisible(false);
         }
     }
+
 
 
     public void afficheDossierPatient(ActionEvent actionEvent) throws IOException {
@@ -398,6 +403,21 @@ public class acceuil_medecin_controller implements Initializable{
         stage.show();
 
 
+    }
+
+    public void DoExamen(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/IU/choix_rdv/choix_rdv.fxml"));
+        Parent parent = loader.load();
+        choix_rdv_controller controller = loader.getController();
+        System.out.println(controller.toString());
+
+        controller.initData(this.sir,menu,loadermenu);
+        Scene scene = new Scene(parent);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();     //pas compris
+
+        stage.setScene(scene);
+        stage.show();
     }
 }
 

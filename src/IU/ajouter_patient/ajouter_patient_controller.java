@@ -2,9 +2,15 @@ package IU.ajouter_patient;
 
 import BD.ConnexionBase;
 import FC.*;
+import IU.acceuil_secretaire.secretaire_accueil_controller;
+import IU.liste_patient_secretaire.liste_patient_secretaire_controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
@@ -18,6 +24,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Date;
 import java.util.ResourceBundle;
 
@@ -82,6 +89,8 @@ public class ajouter_patient_controller implements Initializable {
     private Stage ajoutPatientStage;
     private Patient patient;
     private boolean validerClicked = false;
+    Parent menu;
+    FXMLLoader loader;
 
     @FXML // This method is called by the FXMLLoader when initialization is complete
     public void initialize(URL location, ResourceBundle resources) {
@@ -96,8 +105,10 @@ public class ajouter_patient_controller implements Initializable {
 
     }
 
-    public void initData(SIR sir){
+    public void initData(SIR sir,Parent menu, FXMLLoader loader){
         this.sir=sir;
+        this.menu=menu;
+        this.loader=loader;
     }
 
   /*  public void setAjoutPatientStage(Stage dialogStage){
@@ -177,6 +188,8 @@ public class ajouter_patient_controller implements Initializable {
         String medecinPrescripteur = ajoutpatient_champ_medecinPrescripteur.getText();
         String serviceAcceuil = ajoutpatient_champ_serviceAcceuil.getText();
         LocalDate dateNaissancePatient = date_naissancePatient.getValue();
+        Date resultDate = Date.from(dateNaissancePatient.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
+        java.sql.Date gooddate = new java.sql.Date(resultDate.getTime());
         String ville = ajoutPatient_champVille.getText();
         String info= ajoutPatient_champ_InfoComp.getText();
         String codeP= ajoutPatient_champ_CodePostal.getText();
@@ -184,9 +197,14 @@ public class ajouter_patient_controller implements Initializable {
         String telephone = ajoutpatient_champ_telephonePortable.getText();
 
 
-        int idPat=(int)(Math.random() * ( 999999 - 100000 )+1);;
+        int idPat=(int)(Math.random() * ( 999999 - 100000 )+1);
+        while(sir.checkIdPatient(idPat)){
+            idPat = 0+(int)(Math.random()*((999999-0)+1));
+        }
         System.out.println(idPat);
         String idPatient= String.valueOf(idPat);
+        Patient p = new Patient(nom,prenom,idPat,gooddate,email,Integer.valueOf(telephone),new Adresse(rue,info,Integer.parseInt(codeP),ville),serviceAcceuil,medecinPrescripteur);
+        sir.getListePatient().add(p);
         System.out.println(idPatient);
         Connection connexion = null;
         Statement statement = null;
@@ -224,7 +242,16 @@ public class ajouter_patient_controller implements Initializable {
 
 
         }
-        System.exit(0);
+        FXMLLoader loadera = new FXMLLoader();
+        loadera.setLocation(getClass().getResource("/IU/liste_patient_secretaire/liste_patient_secretaire.fxml"));
+        Parent root= loadera.load();
+        liste_patient_secretaire_controller secretaire_accueil_controller = loadera.getController();
+        secretaire_accueil_controller.initData(sir,menu,loader);
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();     //pas compris
+
+        stage.setScene(scene);
+        stage.show();
     }
 }
 

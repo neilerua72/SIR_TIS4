@@ -36,11 +36,11 @@ public class LectPatient {
                 String infoComp = resultat.getString("infoComp");
                 int codePostal = resultat.getInt("codePostal");
                 String ville = resultat.getString("ville");
-                String pathologie = resultat.getString("pathologie");
+                String serviceAcceuil = resultat.getString("serviceAcceuil");
                 String nomMedecinPrescripteur = resultat.getString("nomMedecinPrescripteur");
                 Date dateRDV = resultat.getDate("dateRDV");
 
-                Patient p = new Patient(nom,prenom,idConnexion,dateDeNaissance,mail,numeroTel,new Adresse(rue,infoComp,codePostal,ville),pathologie,nomMedecinPrescripteur,dateRDV);
+                Patient p = new Patient(nom,prenom,idConnexion,dateDeNaissance,mail,numeroTel,new Adresse(rue,infoComp,codePostal,ville),serviceAcceuil,nomMedecinPrescripteur);
                 listePatient.add(p);
             }
 

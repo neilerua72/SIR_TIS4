@@ -5,9 +5,11 @@ package IU.edition_image;
  * Sample Skeleton for 'edition_image.fxml' Controller Class
  */
 
+import FC.*;
 import com.sun.xml.internal.bind.v2.runtime.unmarshaller.LocatorEx;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.print.*;
 import javafx.scene.Node;
@@ -16,7 +18,10 @@ import javafx.scene.SnapshotParameters;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+import javafx.scene.image.*;
+import javafx.scene.image.Image;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.transform.Scale;
 import javafx.stage.Stage;
@@ -34,10 +39,6 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Slider;
 import javafx.scene.effect.ColorAdjust;
-import javafx.scene.image.ImageView;
-import javafx.scene.image.PixelReader;
-import javafx.scene.image.PixelWriter;
-import javafx.scene.image.WritableImage;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.Window;
@@ -45,6 +46,7 @@ import javafx.stage.Window;
 import javax.imageio.*;
 import javax.imageio.metadata.IIOMetadata;
 import javax.imageio.stream.FileImageOutputStream;
+import javax.swing.plaf.basic.BasicOptionPaneUI;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.awt.image.RenderedImage;
@@ -52,13 +54,18 @@ import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.net.URL;
+import java.sql.Date;
+import java.text.Format;
 import java.util.Iterator;
 import java.util.ResourceBundle;
 
+import IU.ajout_examen.*;
+
+import static FC.TypeExamen.IRM;
 import static sun.plugin.javascript.navig.JSType.Window;
 
 public class edition_image_controller implements Initializable {
-
+    private ajout_examen_controller ajout_examen;
 
     @FXML // ResourceBundle that was given to the FXMLLoader
     private ResourceBundle resources;
@@ -113,17 +120,23 @@ public class edition_image_controller implements Initializable {
 
     @FXML
     private Slider slider_contrast = new Slider();
+    Date date = new Date(2019, 03, 02);
 
+    private javafx.scene.image.Image image_edit;
+
+    private StackPane stackPane = new StackPane();
+
+    private RDV rdv = new RDV(date, IRM, "deux", 07, "fres", 01020102, "bourat");
 
     public Slider getSlider_contrast() {
         return slider_contrast;
     }
 
-
-    // @FXML
-    //  void 97979700(ActionEvent event) {
-    //
-    // }
+    int countPair = 0;
+    int countOdd = 0;
+    int rotateLeftCount = 0;
+    int verticalFlipCount = 0;
+    int rotateRightCount = 0;
 
 
     @FXML
@@ -144,7 +157,7 @@ public class edition_image_controller implements Initializable {
             assert button_rotationDroite != null : "fx:id=\"button_rotationDroite\" was not injected: check your FXML file 'edition_image.fxml'.";
 */
 
-
+        pane_image.setMinSize(imageView_editionImage.getFitWidth(), imageView_editionImage.getFitHeight());
         slider_contrast.setValue(0.5);
         ColorAdjust colorAdjust = new ColorAdjust();
         slider_contrast.valueProperty().addListener(new ChangeListener<Number>() {
@@ -174,12 +187,12 @@ public class edition_image_controller implements Initializable {
         //imageView_editionImage.setCacheHint(CacheHint.SPEED);
 
 
-        BufferedImage BUFFEREDIMAGE = SwingFXUtils.fromFXImage(imageView_editionImage.getImage(), null);
+        //BufferedImage BUFFEREDIMAGE = SwingFXUtils.fromFXImage(imageView_editionImage.getImage(), null);
         button_valider.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
                 //Image image =  SwingFXUtils.fromFXImage(imageView_editionImage.getImage());  // javafx.scene.image.Image
-                String format = "png";
+           /*     String format = "png";
                 File file = new File("C:\\Users\\Utilisateur\\Documents\\Polytech\\Cours TIS4\\Semestre 8\\SIR\\SIR_TIS4\\src\\IU\\edition_image\\test_image_local\\formattedImage.jpg.");
                 try {
                     ImageIO.write(SwingFXUtils.fromFXImage(imageView_editionImage.getImage(), null), format, file);
@@ -192,15 +205,19 @@ public class edition_image_controller implements Initializable {
 
             }
         });
-    }
-            /*
+    } */
 
-                //recreates the image to save
-                WritableImage writableImage = new WritableImage(imageView_editionImage.getImage().getPixelReader(),(int) imageView_editionImage.getImage().getWidth(), (int) imageView_editionImage.getImage().getHeight());
+               /*
+               //recreates the image to save
+                imageView_editionImage.setPreserveRatio(false);
+                WritableImage writableImage = new WritableImage((int) imageView_editionImage.getFitWidth(), (int) imageView_editionImage.getFitHeight());
+                WritableImage writableImage = new WritableImage(imageView_editionImage.getImage().getPixelReader(), (int) imageView_editionImage.getImage().getWidth(), (int) imageView_editionImage.getImage().getHeight());
+                */
+
                 // Scaling the image gives it a higher resolution which results in a better image quality when the image is exported
                 SnapshotParameters snapshotParameters = new SnapshotParameters();
-                //snapshotParameters.setTransform(new Scale(0.85, 0.8));
-                WritableImage snapshot = pane_image.snapshot(snapshotParameters, writableImage);
+                snapshotParameters.setTransform(new Scale(0.445, 0.44444));
+                WritableImage snapshot = pane_image.snapshot(snapshotParameters, null);
                 RenderedImage renderedImage = SwingFXUtils.fromFXImage(snapshot, null);
 
                 //Copy the image so that it won't save pink colored
@@ -209,15 +226,19 @@ public class edition_image_controller implements Initializable {
 
                 Iterator iter = ImageIO.getImageWritersByFormatName("jpg");
                 //Then, choose the first image writer available and create an ImageWriter instance:
-                ImageWriter writer = (ImageWriter) iter.next();
+                 ImageWriter writer = (ImageWriter) iter.next();
                 // instantiate an ImageWriteParam object with default compression options
                 ImageWriteParam iwp = writer.getDefaultWriteParam();
                 //Now, we can set the compression quality:
-                iwp.setCompressionMode(ImageWriteParam.MODE_EXPLICIT);
+                iwp.setCompressionMode(ImageWriteParam.MODE_EXPLICIT); //set to Explicit mode in order to specify the compression quality
                 iwp.setCompressionQuality(1);   // an integer between 0 and 1,  1 specifies minimum compression and maximum quality
 
                 // Output the file:
-                File file = new File("C:\\Users\\Utilisateur\\Documents\\Polytech\\Cours TIS4\\Semestre 8\\SIR\\SIR_TIS4\\src\\IU\\edition_image\\test_image_local\\formattedImage.jpg");
+                String new_file = new String();
+                new_file = "C:\\Users\\Utilisateur\\Documents\\Polytech\\Cours TIS4\\Semestre 8\\SIR\\SIR_TIS4\\src\\IU\\edition_image\\test_image_local\\";
+                //new_file = new_file + "formattedImage.jpg";
+                new_file = new_file + rdv.getIdPatient() + rdv.getSalle() + ".jpg";
+                File file = new File(new_file);
                 FileImageOutputStream output;
                 try {
                     output = new FileImageOutputStream(file);
@@ -235,15 +256,14 @@ public class edition_image_controller implements Initializable {
                 try {
                     writer.write(imgMetadata, image, iwp);
                     System.out.println("writer");
+                    System.out.println(new_file);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
                 writer.dispose();
             }
         });
-
     }
-    */
 
 
     public Node printNode;
@@ -293,23 +313,22 @@ public class edition_image_controller implements Initializable {
         return imageView_editionImage;
     }
 
-    public void setImageView_editionImage(ImageView imageView_editionImage) {
-        this.imageView_editionImage = imageView_editionImage;
+    public void setImageView_editionImage(Image Image) {
+        this.imageView_editionImage.setImage(Image);
     }
 
-    int verticalFlipCount = 0;
 
     public void verticalFlipActivated(ActionEvent actionEvent) {
-
         if (verticalFlipCount % 2 == 0) {
-            this.imageView_editionImage.setScaleY(-1.0);
+            imageView_editionImage.setScaleY(-1.0);
             System.out.println("verticalFlipActivated");
         } else if (verticalFlipCount % 2 == 1) {
-            this.imageView_editionImage.setScaleY(1.0);
+            imageView_editionImage.setScaleY(1.0);
             System.out.println("verticalFlipActivated again");
         }
         verticalFlipCount++;
     }
+
 
     int horizontalFlipCount = 0;
 
@@ -324,10 +343,6 @@ public class edition_image_controller implements Initializable {
         horizontalFlipCount++;
     }
 
-    int countPair = 0;
-    int countOdd = 0;
-
-    int rotateLeftCount = 0;
 
     public void rotateLeftActivated(ActionEvent actionEvent) {
         if (rotateLeftCount % 2 == 0) {
@@ -353,8 +368,6 @@ public class edition_image_controller implements Initializable {
     }
 
 
-    int rotateRightCount = 0;
-
     public void rotateRightActivated(ActionEvent actionEvent) {
         if (rotateRightCount % 2 == 0) {
             if (countPair % 2 == 0) {
@@ -379,12 +392,10 @@ public class edition_image_controller implements Initializable {
         rotateRightCount++;
     }
 
+
     public void invertGreyScale() {
         PixelReader pixelReader = imageView_editionImage.getImage().getPixelReader();
-        WritableImage copyImage
-                = new WritableImage(
-                (int) imageView_editionImage.getImage().getWidth(),
-                (int) imageView_editionImage.getImage().getHeight());
+        WritableImage copyImage = new WritableImage((int) imageView_editionImage.getImage().getWidth(), (int) imageView_editionImage.getImage().getHeight());
         PixelWriter pixelWriter = copyImage.getPixelWriter();
         for (int y = 0; y < imageView_editionImage.getImage().getHeight(); y++) {
             for (int x = 0; x < imageView_editionImage.getImage().getWidth(); x++) {
