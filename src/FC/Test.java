@@ -8,7 +8,7 @@ public class Test {
         String mdp="1";
         Connexion conn = new Connexion(new Utilisateur(id,mdp));
         SIR sir = new SIR(conn);
-        System.out.println(sir.getCRFromIdExam(304865).getProduitContrasteType());
+        System.out.println(sir.getPatientFromId(123456).getNom());
 
     }
 

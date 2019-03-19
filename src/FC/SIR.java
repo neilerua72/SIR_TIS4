@@ -230,7 +230,8 @@ public class SIR {
         int i=0;
         Patient p = new Patient();
         boolean rep=false;
-        while(i<listePatient.size()&&rep){
+        while(i<listePatient.size()&&rep==false){
+            System.out.println(i);
             if(id==listePatient.get(i).getId()){
                 p=listePatient.get(i);
                 rep=true;
