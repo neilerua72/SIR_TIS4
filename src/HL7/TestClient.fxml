@@ -8,15 +8,18 @@
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="HL7.TestClient_controlleur">
    <children>
       <Button fx:id="connect" layoutX="343.0" layoutY="109.0" mnemonicParsing="false" onAction="#Connecter" text="Connexion" />
-      <Button fx:id="deconnect" layoutX="171.0" layoutY="109.0" mnemonicParsing="false" text="Deconnexion" />
+      <Button fx:id="Texte" layoutX="171.0" layoutY="109.0" mnemonicParsing="false" onAction="#OuvrirText" text="Voir Texte" />
       <TextField fx:id="port" layoutX="257.0" layoutY="65.0" prefHeight="25.0" prefWidth="86.0" promptText="Port" />
-      <Label fx:id="id" layoutX="272.0" layoutY="175.0" prefHeight="17.0" prefWidth="227.0" />
-      <Label fx:id="nom" layoutX="272.0" layoutY="192.0" prefHeight="17.0" prefWidth="227.0" />
-      <Label fx:id="prenom" layoutX="272.0" layoutY="209.0" prefHeight="17.0" prefWidth="227.0" />
-      <Label fx:id="datenaiss" layoutX="272.0" layoutY="226.0" prefHeight="17.0" prefWidth="227.0" />
-      <Label fx:id="sexe" layoutX="272.0" layoutY="243.0" prefHeight="17.0" prefWidth="227.0" />
-      <Label fx:id="typeexam" layoutX="274.0" layoutY="270.0" prefHeight="17.0" prefWidth="227.0" />
+      <Label fx:id="id" layoutX="272.0" layoutY="152.0" prefHeight="17.0" prefWidth="279.0" visible="false" />
+      <Label fx:id="nom" layoutX="272.0" layoutY="176.0" prefHeight="17.0" prefWidth="279.0" visible="false" />
+      <Label fx:id="prenom" layoutX="272.0" layoutY="200.0" prefHeight="17.0" prefWidth="279.0" visible="false" />
+      <Label fx:id="idExamen" layoutX="272.0" layoutY="217.0" prefHeight="17.0" prefWidth="279.0" visible="false" />
+      <Label fx:id="medradio" layoutX="272.0" layoutY="252.0" prefHeight="17.0" prefWidth="279.0" visible="false" />
+      <Label fx:id="typeexam" layoutX="274.0" layoutY="285.0" prefHeight="17.0" prefWidth="279.0" visible="false" />
       
-      <Label fx:id="DateExamen" layoutX="274.0" layoutY="313.0" prefHeight="17.0" prefWidth="227.0" text="1" />
+      <Label fx:id="DateExamen" layoutX="274.0" layoutY="313.0" prefHeight="17.0" prefWidth="279.0" visible="false" />
+      <Label fx:id="medpresc" layoutX="274.0" layoutY="348.0" prefHeight="17.0" prefWidth="279.0" visible="false" />
+      <TextField fx:id="MessageCode" layoutX="130.0" layoutY="205.0" prefHeight="25.0" prefWidth="365.0" />
+      <Label layoutX="130.0" layoutY="185.0" text="Message code" />
    </children>
 </AnchorPane>

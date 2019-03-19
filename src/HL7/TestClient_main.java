@@ -9,7 +9,7 @@ import javafx.stage.Stage;
 
 public class TestClient_main extends Application {
 
-    private SIR sir;
+
     @Override
     public void start(Stage primaryStage) throws Exception {
         // just load fxml file and display it in the stage:

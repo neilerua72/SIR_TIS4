@@ -11,11 +11,14 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
-import library.interfaces.Action;
-import library.interfaces.ClientHL7;
-import library.interfaces.MessageInterface;
-import library.interfaces.Patient;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+import library.interfaces.*;
+
 import java.text.SimpleDateFormat;
 import java.util.logging.Logger;
 import java.util.logging.Level;
@@ -26,7 +29,7 @@ public class TestServeur_controlleur {
     private char sex = 'X';
     private String card = "cardAdmettre";
     private int nbr;
-    private final SimpleDateFormat formateur = new SimpleDateFormat("dd/MM/yyyy");
+    private final SimpleDateFormat formateur = new SimpleDateFormat("yyyy-MM-dd");
 private acceuil_medecin_controller acceuil;
 
 
@@ -51,10 +54,19 @@ private acceuil_medecin_controller acceuil;
     private TextField prenom;
 
     @FXML //fx:id="Date_Naissance"
-    private TextField Date_Naissance;
+    private TextField Date_Exam;
 
     @FXML
-    private TextField Date_Exam;
+    private TextField TypeExamen;
+
+    @FXML
+    private TextField MedPrescripteur;
+
+    @FXML
+    private TextField MedRadio;
+
+    @FXML
+    private TextField IDExam;
 
     @FXML //fx:id="Categorie"
     private ComboBox<String> Categorie;
@@ -64,6 +76,9 @@ private acceuil_medecin_controller acceuil;
 
     @FXML //fx:id="Admettre"
     private Button Admettre ;
+
+    @FXML
+    private Button Connecter ;
 
     @FXML
     private Label l1 ;
@@ -81,30 +96,52 @@ private acceuil_medecin_controller acceuil;
     private TextField port;
 
 
-    ObservableList<String> cat = FXCollections.observableArrayList("IRM","Scanner","Radio");
-    ObservableList<String> sexe = FXCollections.observableArrayList("Homme","Femme","Autre");
+   // ObservableList<String> cat = FXCollections.observableArrayList("IRM","Scanner","Radio");
+   // ObservableList<String> sexe = FXCollections.observableArrayList("Homme","Femme","Autre");
 
     @FXML
         // This method is called by the FXMLLoader when initialization is complete
     void initialize() {
-        Categorie.setItems(cat);
-        Sexe.setItems(sexe);
+      //  Categorie.setItems(cat);
+       // Sexe.setItems(sexe);
 
     }
 
-   /* public void RemplirChamps(TableExamen table){
-        prenom.setText(table.getPrenom());
-    }*/
-
-public void initData(TableExamen table){
-    prenom.setText(table.getPrenom());
-}
-    public void transferMessage(String message) {
+    //remplissage champs texte avec les données de la table acceuil medecin
+    public void transferNom(String message) {
+        //Display the message
+        Nom.setText(message);
+    }
+    public void transferPrenom(String message) {
         //Display the message
         prenom.setText(message);
     }
 
+    public void transferID(int message) {
+        //Display the message
+        identification.setText(String.valueOf(message));
+    }
 
+    public void transferIDExam(String message) {
+        //Display the message
+        IDExam.setText(String.valueOf(message));
+    }
+    public void transferDate(Date message) {
+        //Display the message
+        Date_Exam.setText(message.toString());
+    }
+    public void transferMedPresc(String message) {
+        //Display the message
+        MedPrescripteur.setText(message);
+    }
+    public void transferMedRadio(String message) {
+        //Display the message
+        MedRadio.setText(message);
+    }
+    public void transferType(String message) {
+        //Display the message
+        TypeExamen.setText(message);
+    }
 
     //set couleurs des camps
     private void initBackgroundField() {
@@ -138,14 +175,6 @@ public void initData(TableExamen table){
                 this.identification.setStyle("-fx-background-color: red;");
             }
         }
-        //Date Decharge
-        /*if (this.nbr == 2) {
-            String dateDechargeString = this.Date_Exam.getText();
-            if (dateDechargeString.equals("  /  /    ")) {
-                r = false;
-                this.Date_Exam.setStyle("-fx-background-color: red;");
-            }
-        }*/
         return r;
 
     }
@@ -161,49 +190,18 @@ public void initData(TableExamen table){
 
                 Integer id = Integer.parseInt(this.identification.getText());
 
-                int classePat = this.Categorie.getSelectionModel().getSelectedIndex();
+                String classePat = this.TypeExamen.getText();
                 char classe = 'U';
 
-                switch (classePat) {
-                    case -1: {
-                        break;
-                    }
-                    case 0: {
-                        classe = 'E';
-                        break;
-                    }
-                    case 1: {
-                        classe = 'I';
-                        break;
-                    }
-                    case 2: {
-                        classe = 'O';
-                        break;
-                    }
-                    case 3: {
-                        classe = 'P';
-                        break;
-                    }
-                    case 4: {
-                        classe = 'R';
-                        break;
-                    }
-                    case 5: {
-                        classe = 'B';
-                        break;
-                    }
-                    case 6: {
-                        classe = 'C';
-                        break;
-                    }
-                    case 7: {
-                        classe = 'N';
-                        break;
-                    }
-                    case 8: {
-                        classe = 'U';
-                        break;
-                    }
+                if(classePat == "IRM"){
+                    classe = 'E';
+                }
+                if(classePat == "Scanner"){
+                    classe = 'I';
+                }
+
+                if(classePat == "Radio"){
+                    classe = 'O';
                 }
 
                 this.patient = new Patient(id, surname, classe);
@@ -211,6 +209,33 @@ public void initData(TableExamen table){
         } catch (NumberFormatException e) {
             System.out.println("Erreur d'identification patient : " + e.getMessage());
         }
+
+    }
+
+    private PatientLocation setValPatLoc(PatientLocation patLocation) {
+
+        //Type examen
+        String field = this.TypeExamen.getText();
+        if (field != null) {
+            patLocation.setPointOfCare(field);
+        }
+        //Medecin Radiologue
+        field = this.MedRadio.getText();
+        if (field != null) {
+            patLocation.setRoom(field);
+        }
+
+        //Medecin prescripteur
+        field = this.MedPrescripteur.getText();
+        if (field != null) {
+            patLocation.setBed(field);
+        }
+
+        field = this.IDExam.getText();
+        if (field != null) {
+            patLocation.setBuilding(field);
+        }
+        return patLocation;
     }
 
 
@@ -220,9 +245,9 @@ public void initData(TableExamen table){
         this.patient.setFirstName(this.prenom.getText());
 
 
-        //Date de naissance
+        //Date de Exam
         Date dateBirth = null;
-        String s = this.Date_Naissance.getText();
+        String s = this.Date_Exam.getText();
         try {
             if (!s.equals("  /  /    ")) {
                 dateBirth = formateur.parse(s);
@@ -231,33 +256,10 @@ public void initData(TableExamen table){
         } catch (ParseException ex) {
             Logger.getLogger(TestServeur_controlleur.class.getName()).log(Level.SEVERE, null, ex);
         }
-        //Date Exam
-
-        Date dateDeath = null;
-        String dateDeathString = this.Date_Exam.getText();
-        try {
-            if (!dateDeathString.equals("  /  /    ")) {
-                dateDeath = formateur.parse(dateDeathString);
-                this.patient.setDeath(dateDeath);
-            }
-        } catch (ParseException ex) {
-            Logger.getLogger(TestServeur_controlleur.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        /*Date dateEx ;
-        String exam = this.Date_Exam.getText();
 
 
-        try {
-            if (!exam.equals("  /  /    ")) {
-                dateEx = formateur.parse(exam);
-                this.patient.setDateDicharge(dateEx);
-            }
-        } catch (ParseException ex) {
-            Logger.getLogger(TestServeur_controlleur.class.getName()).log(Level.SEVERE, null, ex);
-        }*/
 
-        int i = this.Sexe.getSelectionModel().getSelectedIndex();
+        /*int i = this.Sexe.getSelectionModel().getSelectedIndex();
         switch (i) {
             case 0: {
                 this.sex = 'M';
@@ -279,44 +281,40 @@ public void initData(TableExamen table){
                 this.sex = 'A';
                 break;
             }
-        }
+        }*/
 
-        //sexe
+      /*  //sexe
         if (this.sex != 'X') {
             this.patient.setSex(this.sex);
         }
+*/
+        PatientLocation assignedLocation = new PatientLocation(this.patient);
+        assignedLocation = this.setValPatLoc(assignedLocation);
+        this.patient.setAssignedPatLocation(assignedLocation);
+    }
 
 
-
-
-        //Date Admission
-
-
+    @FXML
+    private void Connecter()  throws IOException{
+       FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("TestClient.fxml"));
+        Parent parent = loader.load();
+        Scene scene = new Scene(parent);
+        Stage stage = new Stage(StageStyle.DECORATED);
+        stage.setScene(scene);
+        stage.show();
     }
 
     @FXML
-    private void Admission(ActionEvent e)  throws IOException {
+    private void Admission() {
         if (this.champsPatOk()) {
 
             this.creePatient();
 
             this.setValPatient();
 
+
             //changer de panel
-           /* java.awt.CardLayout c = (CardLayout) this.panelCard.getLayout();
-            c.show(this.panelCard, "cardAction");
-            c = (CardLayout) this.panelSousAction.getLayout();
-            c.show(this.panelSousAction, card);*/
-            /*URL url_accreuil_medecin;
-            //url_accreuil_medecin = new File("IU.acceuil_medecin.acceuil_medecin.fxml").toURL();
-            Parent parent = FXMLLoader.load(getClass().getResource("/HL7/TestServeur1.fxml"));
-
-            Scene scene = new Scene(parent);
-
-            Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();     //pas compris
-            stage.setScene(scene);
-
-            stage.show();*/
 
             String host = this.host.getText();
             Integer port = Integer.parseInt(this.port.getText());
@@ -327,7 +325,7 @@ public void initData(TableExamen table){
             this.l1.setText("ID message : " + messageAck.getId());
             this.l2.setText(messageAck.getAcknowledgmentCodeString());
             this.l3.setText("ID Ack: " + messageAck.getIdAck());
-            System.out.println(patient.getDateDicharge().toString());
+
         }
 
     }

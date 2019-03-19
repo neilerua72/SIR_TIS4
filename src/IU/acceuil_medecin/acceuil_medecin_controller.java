@@ -339,7 +339,9 @@ public class acceuil_medecin_controller implements Initializable{
 
     }*/
    @FXML
-    private void Envoyer(ActionEvent event) throws IOException {
+    private void Envoyer() {
+
+
         try {
             //Load second scene
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/HL7/TestServeur.fxml"));
@@ -348,16 +350,24 @@ public class acceuil_medecin_controller implements Initializable{
             //Get controller of scene2
            TestServeur_controlleur scene2Controller = loader.getController();
             //Pass whatever data you want. You can have multiple method calls here
-            scene2Controller.transferMessage(tableau_colonnes.getSelectionModel().getSelectedItem().getPrenom());
+            scene2Controller.transferNom(tableau_colonnes.getSelectionModel().getSelectedItem().getNom());
+            scene2Controller.transferPrenom(tableau_colonnes.getSelectionModel().getSelectedItem().getPrenom());
+            scene2Controller.transferID(tableau_colonnes.getSelectionModel().getSelectedItem().getIdpatient());
+            scene2Controller.transferDate(tableau_colonnes.getSelectionModel().getSelectedItem().getDateExamen());
+            scene2Controller.transferMedPresc(tableau_colonnes.getSelectionModel().getSelectedItem().getMedecinprescri());
+            scene2Controller.transferMedRadio(tableau_colonnes.getSelectionModel().getSelectedItem().getMedecinradio());
+            scene2Controller.transferType(tableau_colonnes.getSelectionModel().getSelectedItem().getTypeExam());
+            scene2Controller.transferIDExam(tableau_colonnes.getSelectionModel().getSelectedItem().getIdexamen());
 
             //Show scene 2 in new window
-            Stage stage = new Stage();
+            Stage stage = new Stage(StageStyle.DECORATED);
             stage.setScene(new Scene(root));
             stage.setTitle("Second Window");
             stage.show();
         } catch (IOException ex) {
             System.err.println(ex);
         }
+
     }
 
     private void showExamDetails(TableExamen examen) {
