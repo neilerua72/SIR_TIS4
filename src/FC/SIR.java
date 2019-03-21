@@ -240,4 +240,14 @@ public class SIR {
         }
         return p;
     }
+
+    public ArrayList<TableExamen> rechercheExam(String s){
+        ArrayList<TableExamen> result = new ArrayList<>();
+        for(int i=0;i<tableExamen.size();i++){
+            if(s.length()<=tableExamen.get(i).getNom().length()&&s.toLowerCase().equals(tableExamen.get(i).getNom().substring(0,s.length()).toLowerCase())){
+                result.add(tableExamen.get(i));
+            }
+        }
+        return result;
+    }
 }

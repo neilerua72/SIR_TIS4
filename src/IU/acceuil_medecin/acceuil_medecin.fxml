@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.TableColumn?>
@@ -15,39 +21,56 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="669.0" prefWidth="1605.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="IU.acceuil_medecin.acceuil_medecin_controller">
+<AnchorPane prefHeight="669.0" prefWidth="1605.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="IU.acceuil_medecin.acceuil_medecin_controller">
    <children>
       <AnchorPane id="top" fx:id="top" prefHeight="102.0" prefWidth="885.0" />
-    <AnchorPane layoutY="110.0" maxHeight="-1.0" maxWidth="-1.0" prefHeight="473.0" prefWidth="896.0" VBox.vgrow="ALWAYS">
+    <AnchorPane layoutY="110.0" maxHeight="-1.0" maxWidth="-1.0" prefHeight="558.0" prefWidth="1039.0" VBox.vgrow="ALWAYS">
          <children>
             <Button fx:id="button_ajouterPatient" layoutX="687.0" layoutY="67.0" mnemonicParsing="false" onAction="#AjouterPat" prefHeight="33.0" prefWidth="119.0" text="Ajouter un Patient" />
             <Text fx:id="texte_rechercherPar" layoutX="14.0" layoutY="21.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Rechercher par" />
-            <Rectangle fx:id="ractangle_recherche" arcHeight="5.0" arcWidth="5.0" fill="#b8cada00" height="77.0" layoutX="4.0" layoutY="25.0" stroke="#6f6e6ead" strokeLineCap="ROUND" strokeType="INSIDE" width="677.0" />
+            <Rectangle fx:id="ractangle_recherche" arcHeight="5.0" arcWidth="5.0" fill="#b8cada00" height="108.0" layoutX="4.0" layoutY="25.0" stroke="#6f6e6ead" strokeLineCap="ROUND" strokeType="INSIDE" width="677.0" />
             <GridPane layoutX="14.0" layoutY="27.0" prefHeight="70.0" prefWidth="684.0">
               <columnConstraints>
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="206.0" minWidth="10.0" prefWidth="86.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="297.0" minWidth="10.0" prefWidth="74.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="323.0" minWidth="10.0" prefWidth="134.0" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="327.0" minWidth="10.0" prefWidth="131.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="327.0" minWidth="10.0" prefWidth="74.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="206.0" minWidth="10.0" prefWidth="109.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="297.0" minWidth="10.0" prefWidth="90.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="323.0" minWidth="10.0" prefWidth="99.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="327.0" minWidth="10.0" prefWidth="94.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="327.0" minWidth="10.0" prefWidth="97.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="376.0" minWidth="10.0" prefWidth="17.0" />
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="376.0" minWidth="10.0" prefWidth="182.0" />
               </columnConstraints>
               <rowConstraints>
-                <RowConstraints maxHeight="33.0" minHeight="10.0" prefHeight="33.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="33.0" minHeight="10.0" prefHeight="33.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="66.0" minHeight="0.0" prefHeight="66.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="66.0" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Text fx:id="texte_date" strokeType="OUTSIDE" strokeWidth="0.0" text="Date" translateX="7.0" GridPane.columnIndex="5" />
                   <TextField fx:id="champ_rechercherParNomPatient" prefHeight="25.0" prefWidth="294.0" promptText="Entrez la recherche... " GridPane.columnSpan="5" GridPane.rowIndex="1" />
-                  <DatePicker fx:id="champ_date" prefHeight="25.0" prefWidth="152.0" promptText="JJ/MM/AAAA" translateX="4.0" GridPane.columnIndex="5" GridPane.rowIndex="1" />
-                  <ToggleButton fx:id="toggle_nomPatient" mnemonicParsing="false" text="Nom Patient" />
+                  <DatePicker fx:id="champ_date" onAction="#rechercherParDate" prefHeight="25.0" prefWidth="152.0" promptText="JJ/MM/AAAA" translateX="4.0" GridPane.columnIndex="6" GridPane.rowIndex="1" />
+                  <ToggleButton fx:id="toggle_nomPatient" mnemonicParsing="false" selected="true" text="Nom Patient" />
                   <ToggleButton fx:id="toggle_IDPatient" mnemonicParsing="false" text="ID Patient" GridPane.columnIndex="1" />
                   <ToggleButton fx:id="toggle_medecinPrescripteur" mnemonicParsing="false" text="Médecin Prescripteur" GridPane.columnIndex="2" />
-                  <ToggleButton fx:id="toggle_medecinRadiologue" mnemonicParsing="false" text="Médecin Radiologue" GridPane.columnIndex="3" />
-                  <ToggleButton fx:id="toggle_IDExamen" mnemonicParsing="false" text="ID Examen" GridPane.columnIndex="4" />
+                  <ToggleButton fx:id="toggle_medecinRadiologue" mnemonicParsing="false" prefHeight="31.0" prefWidth="97.0" text="Médecin Radiologue" GridPane.columnIndex="3" />
+                  <ToggleButton fx:id="toggle_IDExamen" mnemonicParsing="false" prefHeight="31.0" prefWidth="94.0" text="ID Examen" GridPane.columnIndex="4" />
+                  <GridPane GridPane.columnIndex="6">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="123.0" minWidth="10.0" prefWidth="62.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="121.0" minWidth="10.0" prefWidth="120.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <ToggleButton fx:id="date_button" mnemonicParsing="false" prefHeight="31.0" prefWidth="55.0" text="Date" textAlignment="CENTER">
+                           <GridPane.margin>
+                              <Insets />
+                           </GridPane.margin>
+                        </ToggleButton>
+                        <Button fx:id="buttonRechercher" mnemonicParsing="false" onAction="#reset" text="Reset" GridPane.columnIndex="1" />
+                     </children>
+                  </GridPane>
                </children>
             </GridPane>
-            <TableView fx:id="tableau_colonnes" layoutY="114.0" prefHeight="444.0" prefWidth="968.0">
+            <TableView fx:id="tableau_colonnes" layoutY="163.0" prefHeight="395.0" prefWidth="968.0">
               <columns>
                   <TableColumn fx:id="colonne_patient" prefWidth="84.0" text="Patient">
                      <columns>

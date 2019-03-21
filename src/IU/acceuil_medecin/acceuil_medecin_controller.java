@@ -2,7 +2,10 @@ package IU.acceuil_medecin;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.ResourceBundle;
 
 import FC.*;
@@ -23,6 +26,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Rectangle;
@@ -162,6 +166,11 @@ public class acceuil_medecin_controller implements Initializable{
 
     @FXML // fx:id="texte_date"
     private Text texte_date; // Value injected by FXMLLoader
+    @FXML
+    private ToggleButton date_button;
+
+    @FXML
+    private Button buttonRechercher;
 
     private Examen exam1;
 
@@ -223,48 +232,6 @@ public class acceuil_medecin_controller implements Initializable{
         top.getChildren().add(menu);
     }
 
-
-    /*@FXML
-    private void Envoyer (ActionEvent e) throws IOException {
-        nom =tableau_colonnes.getSelectionModel().getSelectedItem().getNom();
-        id = tableau_colonnes.getSelectionModel().getSelectedItem().getIdpatient();
-        prenom =tableau_colonnes.getSelectionModel().getSelectedItem().getPrenom();
-
-
-
-        Parent parent = FXMLLoader.load(getClass().getResource("/HL7/TestServeur.fxml"));
-
-        Scene scene = new Scene(parent);
-
-        Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();     //pas compris
-        stage.setScene(scene);
-
-        stage.show();
-
-                    }*/
-
-
-
-
-
-
-
-
-
-    /**
-     * test
-     */
-
-    /* @FXML
-    void b8cada00(ActionEvent event) {
-
-    } */
-
-   /* @FXML
-    void 6f6e6ead(ActionEvent event) {
-
-    } */
-
     @FXML
     public
     // This method is called by the FXMLLoader when initialization is complete
@@ -298,49 +265,70 @@ public class acceuil_medecin_controller implements Initializable{
         toggle_nomPatient.setToggleGroup(groupe_toggle_rechercherPar);
         toggle_IDPatient.setToggleGroup(groupe_toggle_rechercherPar);
         toggle_medecinPrescripteur.setToggleGroup(groupe_toggle_rechercherPar);
+        toggle_medecinPrescripteur.setText("Médecin"+"\n"+"Préscripteur");
         toggle_medecinRadiologue.setToggleGroup(groupe_toggle_rechercherPar);
+        toggle_medecinRadiologue.setText("Médecin"+"\n"+"radiologue");
         toggle_IDExamen.setToggleGroup(groupe_toggle_rechercherPar);
+        date_button.setToggleGroup(groupe_toggle_rechercherPar);
         tableau_colonnes.getSelectionModel().selectedItemProperty().addListener(
                 (observable, oldValue, newValue) -> showExamDetails(newValue));
-        /*final ObservableList<Utilisateur> data = FXCollections.observableArrayList(
-                new Utilisateur("1","Jacob")
-        );
-
-        colonne_patient.setCellValueFactory(new PropertyValueFactory<Utilisateur,String>("Patient"));
-
-        colonne_IDPatient.setCellValueFactory(new PropertyValueFactory<Utilisateur,String>("name"));
 
 
-        myTable.setItems(data);*/
+        champ_rechercherParNomPatient.setOnKeyPressed(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent event) {
+                if (event.getCode().toString().equals("BACK_SPACE") && champ_rechercherParNomPatient.getText().length() < 2) {
+                    MaJTableau maJTableau = new MaJTableau(sir.getTableExamen());
+                    tableau_colonnes.setItems(maJTableau.getData());
+                }
+                if (toggle_nomPatient.isSelected()) {
+
+                    if (champ_rechercherParNomPatient.getText().length() > 0) {
+                        Recherche recherche = new Recherche(sir, event, champ_rechercherParNomPatient.getText());
+                        MaJTableau maJTableau = new MaJTableau(recherche.rechercheExamenNom());
+                        tableau_colonnes.setItems(maJTableau.getData());
+                    }
+
+                } else if (toggle_IDPatient.isSelected()) {
+                    if (champ_rechercherParNomPatient.getText().length() > 0) {
+                        Recherche recherche = new Recherche(sir, event, champ_rechercherParNomPatient.getText());
+                        MaJTableau maJTableau = new MaJTableau(recherche.rechercheExamenIDPat());
+                        tableau_colonnes.setItems(maJTableau.getData());
+                    }
+
+
+                }else if(toggle_IDExamen.isSelected()){
+                    if (champ_rechercherParNomPatient.getText().length() > 0) {
+                        Recherche recherche = new Recherche(sir, event, champ_rechercherParNomPatient.getText());
+                        MaJTableau maJTableau = new MaJTableau(recherche.rechercheExamenIDExamn());
+                        tableau_colonnes.setItems(maJTableau.getData());
+                    }
+                }
+                else if(toggle_medecinPrescripteur.isSelected()){
+                    if (champ_rechercherParNomPatient.getText().length() > 0) {
+                        Recherche recherche = new Recherche(sir, event, champ_rechercherParNomPatient.getText());
+                        MaJTableau maJTableau = new MaJTableau(recherche.rechercherExamenParMedecinPrescri());
+                        tableau_colonnes.setItems(maJTableau.getData());
+                    }
+
+                }
+                else if(toggle_medecinRadiologue.isSelected()){
+                    if (champ_rechercherParNomPatient.getText().length() > 0) {
+                        Recherche recherche = new Recherche(sir, event, champ_rechercherParNomPatient.getText());
+                        MaJTableau maJTableau = new MaJTableau(recherche.rechercherExamenParMedecinRadio());
+                        tableau_colonnes.setItems(maJTableau.getData());
+                    }
+                }
 
 
 
-    }
 
 
-   /* @FXML
-    private void Envoyer(ActionEvent event) throws IOException{
-
-
-
-       *//* //charger interface HL7
-        Parent parent = FXMLLoader.load(getClass().getResource("/HL7/TestServeur.fxml"));
-
-        Scene scene = new Scene(parent);
-
-        //Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();     //pas compris
-        Stage stage = new Stage(StageStyle.DECORATED);
-        stage.setScene(scene);
-
-        stage.show();
-*//*
-
-        //context.setSelection(tableau_colonnes.getSelectionModel().getSelectedItem().getPrenom());
+            }});
+       }
 
 
 
-
-    }*/
    @FXML
     private void Envoyer() {
 
@@ -421,6 +409,23 @@ public class acceuil_medecin_controller implements Initializable{
         stage.setScene(scene);
         stage.show();
     }
+    public void rechercherParDate(ActionEvent event){
+        if(!date_button.isSelected()){
+            date_button.setSelected(true);
+        }
+        LocalDate date = champ_date.getValue();
+        Date resultDate = Date.from(date.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
+        java.sql.Date gooddate = new java.sql.Date(resultDate.getTime());
+        Recherche recherche = new Recherche(sir, event, gooddate.toString());
+        MaJTableau maJTableau = new MaJTableau(recherche.rechercherExamenParDate());
+        tableau_colonnes.setItems(maJTableau.getData());
+    }
+    public void reset(ActionEvent event){
+        MaJTableau maJTableau = new MaJTableau(sir.getTableExamen());
+        tableau_colonnes.setItems(maJTableau.getData());
+    }
+
+
 }
 
 
