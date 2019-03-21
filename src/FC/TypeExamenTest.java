@@ -1,3 +1,4 @@
+/*
 package FC;
 
 import junit.framework.Assert;
@@ -13,4 +14,4 @@ public class TypeExamenTest extends TestCase {
     public void testToString() {
 
     }
-}
+}*/

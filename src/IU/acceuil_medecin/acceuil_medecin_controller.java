@@ -177,8 +177,8 @@ public class acceuil_medecin_controller implements Initializable{
 
         controller.initData(sir,menu,loader);
         Scene scene = new Scene(parent);
-        //Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();     //pas compris
-        Stage stage = new Stage(StageStyle.DECORATED);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();     //pas compris
+        //Stage stage = new Stage(StageStyle.DECORATED);
         stage.setScene(scene);
         stage.show();
 
@@ -216,7 +216,7 @@ public class acceuil_medecin_controller implements Initializable{
             button_consulterTousLesDP.setDisable(true);
         }
 
-        menu_controller controller = loader.getController();
+        menu_controller controller = loadermenu.getController();
         controller.initData(sir);
         tableau_colonnes.setItems(data);
 

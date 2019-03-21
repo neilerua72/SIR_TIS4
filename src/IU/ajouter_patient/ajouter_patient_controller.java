@@ -2,6 +2,7 @@ package IU.ajouter_patient;
 
 import BD.ConnexionBase;
 import FC.*;
+import IU.acceuil_medecin.acceuil_medecin_controller;
 import IU.acceuil_secretaire.secretaire_accueil_controller;
 import IU.liste_patient_secretaire.liste_patient_secretaire_controller;
 import javafx.event.ActionEvent;
@@ -242,16 +243,31 @@ public class ajouter_patient_controller implements Initializable {
 
 
         }
-        FXMLLoader loadera = new FXMLLoader();
-        loadera.setLocation(getClass().getResource("/IU/liste_patient_secretaire/liste_patient_secretaire.fxml"));
-        Parent root= loadera.load();
-        liste_patient_secretaire_controller secretaire_accueil_controller = loadera.getController();
-        secretaire_accueil_controller.initData(sir,menu,loader);
-        Scene scene = new Scene(root);
-        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();     //pas compris
 
-        stage.setScene(scene);
-        stage.show();
+        if(sir.getConnexion().getType().equals(TypeConnexion.SEC)) {
+            FXMLLoader loadera = new FXMLLoader();
+            loadera.setLocation(getClass().getResource("/IU/liste_patient_secretaire/liste_patient_secretaire.fxml"));
+            Parent root = loadera.load();
+            liste_patient_secretaire_controller secretaire_accueil_controller = loadera.getController();
+            secretaire_accueil_controller.initData(sir, menu, loader);
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();     //pas compris
+
+            stage.setScene(scene);
+            stage.show();
+        }
+        else{
+            FXMLLoader loadera = new FXMLLoader();
+            loadera.setLocation(getClass().getResource("/IU/acceuil_medecin/acceuil_medecin.fxml"));
+            Parent root = loadera.load();
+            acceuil_medecin_controller acceuil_medecin_controller= loadera.getController();
+            acceuil_medecin_controller.initData(sir, menu, loader);
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();     //pas compris
+
+            stage.setScene(scene);
+            stage.show();
+        }
     }
 }
 
