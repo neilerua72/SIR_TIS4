@@ -281,39 +281,35 @@ public class acceuil_medecin_controller implements Initializable{
                     MaJTableau maJTableau = new MaJTableau(sir.getTableExamen());
                     tableau_colonnes.setItems(maJTableau.getData());
                 }
-                if (toggle_nomPatient.isSelected()) {
+                if (champ_rechercherParNomPatient.getText().length() > 0) {
+                    if (toggle_nomPatient.isSelected()) {
 
-                    if (champ_rechercherParNomPatient.getText().length() > 0) {
+
                         Recherche recherche = new Recherche(sir, event, champ_rechercherParNomPatient.getText());
                         MaJTableau maJTableau = new MaJTableau(recherche.rechercheExamenNom());
                         tableau_colonnes.setItems(maJTableau.getData());
-                    }
+                    } else if (toggle_IDPatient.isSelected()) {
 
-                } else if (toggle_IDPatient.isSelected()) {
-                    if (champ_rechercherParNomPatient.getText().length() > 0) {
                         Recherche recherche = new Recherche(sir, event, champ_rechercherParNomPatient.getText());
                         MaJTableau maJTableau = new MaJTableau(recherche.rechercheExamenIDPat());
                         tableau_colonnes.setItems(maJTableau.getData());
-                    }
 
 
-                }else if(toggle_IDExamen.isSelected()){
-                    if (champ_rechercherParNomPatient.getText().length() > 0) {
+                    } else if (toggle_IDExamen.isSelected()) {
+
                         Recherche recherche = new Recherche(sir, event, champ_rechercherParNomPatient.getText());
                         MaJTableau maJTableau = new MaJTableau(recherche.rechercheExamenIDExamn());
                         tableau_colonnes.setItems(maJTableau.getData());
-                    }
-                }
-                else if(toggle_medecinPrescripteur.isSelected()){
-                    if (champ_rechercherParNomPatient.getText().length() > 0) {
+
+                    } else if (toggle_medecinPrescripteur.isSelected()) {
+
                         Recherche recherche = new Recherche(sir, event, champ_rechercherParNomPatient.getText());
                         MaJTableau maJTableau = new MaJTableau(recherche.rechercherExamenParMedecinPrescri());
                         tableau_colonnes.setItems(maJTableau.getData());
-                    }
 
-                }
-                else if(toggle_medecinRadiologue.isSelected()){
-                    if (champ_rechercherParNomPatient.getText().length() > 0) {
+
+                    } else if (toggle_medecinRadiologue.isSelected()) {
+
                         Recherche recherche = new Recherche(sir, event, champ_rechercherParNomPatient.getText());
                         MaJTableau maJTableau = new MaJTableau(recherche.rechercherExamenParMedecinRadio());
                         tableau_colonnes.setItems(maJTableau.getData());

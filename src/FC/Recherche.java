@@ -76,5 +76,27 @@ public class Recherche {
 
         return result;
     }
+
+    public ArrayList<Patient> rechercherPatient(){
+        ArrayList<Patient> result = new ArrayList<>();
+        for(int i=0;i<sir.getTableExamen().size();i++){
+            if(s.length()<=sir.getListePatient().get(i).getNom().length()&&s.toLowerCase().equals(sir.getListePatient().get(i).getNom().substring(0,s.length()).toLowerCase())){
+                result.add(sir.getListePatient().get(i));
+            }
+        }
+
+        return result;
+    }
+    public ArrayList<Patient> rechercherIdPatient(){
+        ArrayList<Patient> result = new ArrayList<>();
+        for(int i=0;i<sir.getTableExamen().size();i++){
+            if(s.length()<=String.valueOf(sir.getListePatient().get(i).getId()).length()&&s.toLowerCase().equals(String.valueOf(sir.getListePatient().get(i).getId()).substring(0,s.length()).toLowerCase())){
+                result.add(sir.getListePatient().get(i));
+            }
+        }
+
+        return result;
+    }
+
     }
 

@@ -5,27 +5,33 @@ package IU.afficher_dossiers_patient;
  * Sample Skeleton for 'afficher_dossiers_patient.fxml' Controller Class
  */
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import ClassTable.TableExamen;
 import ClassTable.TablePatient;
-import FC.CR;
-import FC.Examen;
-import FC.Patient;
-import FC.SIR;
+import FC.*;
+import IU.acceuil_medecin.acceuil_medecin_controller;
+import IU.acceuil_secretaire.secretaire_accueil_controller;
 import IU.menu.menu_controller;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
 import javax.swing.text.html.ImageView;
 
@@ -182,9 +188,14 @@ public class afficher_dossiers_patient_controller {
     private TableColumn<?, ?> colonne_type;
 
     @FXML
-            private Text dateExamen;
+    private Text dateExamen;
     @FXML
-            private AnchorPane cranchor;
+    private AnchorPane cranchor;
+
+    @FXML
+    private AnchorPane top;
+    @FXML
+    private Button retour;
 
 
     FXMLLoader loadermenu;
@@ -214,6 +225,29 @@ public class afficher_dossiers_patient_controller {
 
         listeExam.getSelectionModel().selectedItemProperty().addListener(
                 (observable, oldValue, newValue) -> showDetailExam(newValue));
+
+        champ_rechercherParNomPatient.setOnKeyPressed(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent event) {
+                if (event.getCode().toString().equals("BACK_SPACE") && champ_rechercherParNomPatient.getText().length() < 2) {
+                    MaJTableau maJTableau = new MaJTableau(sir.getListePatient());
+                    tableau_colonnes.setItems(maJTableau.getData());
+
+                }
+                if(champ_rechercherParNomPatient.getText().length()>0){
+                if(toggle_nomPatient.isSelected()){
+                    Recherche recherche=new Recherche(sir,event,champ_rechercherParNomPatient.getText());
+                    MaJTableau maj = new MaJTableau(recherche.rechercherPatient());
+                    tableau_colonnes.setItems(maj.getData());
+                }
+                else if(toggle_IDPatient.isSelected()){
+                    Recherche recherche=new Recherche(sir,event,champ_rechercherParNomPatient.getText());
+                    MaJTableau maj = new MaJTableau(recherche.rechercherIdPatient());
+                    tableau_colonnes.setItems(maj.getData());
+                }
+
+            }}
+        });
 
     }
 
@@ -267,7 +301,7 @@ public class afficher_dossiers_patient_controller {
         colonne_IDPatient.setCellValueFactory(new PropertyValueFactory<>("id"));
         tableau_colonnes.setItems(data);
 
-
+        top.getChildren().add(menu);
 
 
 
@@ -289,6 +323,18 @@ public class afficher_dossiers_patient_controller {
             listeExam.setItems(data);
 
         }
+    }
+    public void retour(ActionEvent event) throws IOException {
+        FXMLLoader loadera = new FXMLLoader();
+        loadera.setLocation(getClass().getResource("/IU/acceuil_medecin/acceuil_medecin.fxml"));
+        Parent root= loadera.load();
+        acceuil_medecin_controller acceuil_medecin_controller= loadera.getController();
+        acceuil_medecin_controller.initData(sir,menu,loadermenu);
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();     //pas compris
+
+        stage.setScene(scene);
+        stage.show();
     }
 
 
