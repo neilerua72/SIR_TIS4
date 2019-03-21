@@ -1,6 +1,7 @@
 package IU.menu;
 
 import FC.SIR;
+import FC.TypeConnexion;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -33,7 +34,12 @@ public class menu_controller{
 
     public void initData(SIR sir){
         nomprenom.setText(sir.getConnexion().getUser().getNomPremnom()+" / "+sir.getConnexion().getType().toString());
-        img.setImage(new Image("/IU/menu/doctor.png"));
+        if(sir.getConnexion().getType().equals(TypeConnexion.SEC))
+        img.setImage(new Image("/IU/icone/sec.jpg"));
+        else if(sir.getConnexion().getType().equals(TypeConnexion.MED))
+            img.setImage(new Image("/IU/icone/med.jpg"));
+        else
+            img.setImage(new Image("/IU/icone/man.jpg"));
     }
     public void seDeco(ActionEvent e) throws IOException {
         FXMLLoader loader = new FXMLLoader();
