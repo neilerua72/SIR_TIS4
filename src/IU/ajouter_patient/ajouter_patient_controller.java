@@ -5,6 +5,8 @@ import FC.*;
 import IU.acceuil_medecin.acceuil_medecin_controller;
 import IU.acceuil_secretaire.secretaire_accueil_controller;
 import IU.liste_patient_secretaire.liste_patient_secretaire_controller;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,10 +14,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import javax.print.DocFlavor;
@@ -85,6 +84,8 @@ public class ajouter_patient_controller implements Initializable {
 
     @FXML //fx:id="ajoutpatient_champ_telephonePortable"
     private TextField ajoutpatient_champ_telephonePortable;
+    @FXML
+    private ComboBox sexe;
 
 
     private Stage ajoutPatientStage;
@@ -110,6 +111,9 @@ public class ajouter_patient_controller implements Initializable {
         this.sir=sir;
         this.menu=menu;
         this.loader=loader;
+        ObservableList<String> data =FXCollections.observableArrayList("F");
+        data.add("H");
+        sexe.setItems(data);
     }
 
   /*  public void setAjoutPatientStage(Stage dialogStage){
@@ -185,7 +189,8 @@ public class ajouter_patient_controller implements Initializable {
 
         String nom = ajoutpatient_champ_nom.getText();
         String prenom = ajoutpatient_champ_prenom.getText();
-
+        Object s = sexe.getValue();
+        String sexeP=(String)s;
         String rue = ajoutpatient_champ_Rue.getText();
         String medecinPrescripteur = ajoutpatient_champ_medecinPrescripteur.getText();
         String serviceAcceuil = ajoutpatient_champ_serviceAcceuil.getText();
@@ -228,7 +233,7 @@ public class ajouter_patient_controller implements Initializable {
         }
         System.out.println(idPat);
         String idPatient= String.valueOf(idPat);
-        Patient p = new Patient(nom,prenom,idPat,gooddate,email,Integer.valueOf(telephone),new Adresse(rue,info,Integer.parseInt(codeP),ville),serviceAcceuil,medecinPrescripteur);
+        Patient p = new Patient(nom,prenom,idPat,gooddate,sexeP,email,Integer.valueOf(telephone),new Adresse(rue,info,Integer.parseInt(codeP),ville),serviceAcceuil,medecinPrescripteur);
         sir.getListePatient().add(p);
         System.out.println(idPatient);
         Connection connexion = null;
@@ -242,8 +247,8 @@ public class ajouter_patient_controller implements Initializable {
             //Création de l'objet gérant les requêtes
             statement = connexion.createStatement();
             //Exécution d'une requete d'écriture
-            int statut = statement.executeUpdate("INSERT INTO `Patient` (`nom`, `prenom`, `id`, `dateDeNaissance`, `mail`, `numeroTel`, `rue`, `infoComp`, `codePostal`, `ville`, `pathologie`, `nomMedecinPrescripteur`, `serviceAcceuil`, `dateRDV`) VALUES\n" +
-                    "('"+nom+"', '"+prenom+"','"+idPatient+"','"+dateNaissancePatient+"','"+email+"','"+telephone+"','"+rue+"','"+info+"','"+codeP+"','"+ville+"', NULL,'"+medecinPrescripteur+"','"+serviceAcceuil+"', NULL);");
+            int statut = statement.executeUpdate("INSERT INTO `Patient` (`nom`, `prenom`, `id`, `dateDeNaissance`, `sexe`, `mail`, `numeroTel`, `rue`, `infoComp`, `codePostal`, `ville`, `pathologie`, `nomMedecinPrescripteur`, `serviceAcceuil`, `dateRDV`) VALUES\n" +
+                    "('"+nom+"', '"+prenom+"','"+idPatient+"','"+dateNaissancePatient+"','"+sexeP+"','"+email+"','"+telephone+"','"+rue+"','"+info+"','"+codeP+"','"+ville+"', NULL,'"+medecinPrescripteur+"','"+serviceAcceuil+"', NULL);");
             //Récupération des données du statut de la requete d'écriture
             System.out.println("Résultat de la requête d'insertion:" +statut + ".");
         }

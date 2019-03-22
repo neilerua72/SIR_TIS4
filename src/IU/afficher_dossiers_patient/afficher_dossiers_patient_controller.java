@@ -196,6 +196,8 @@ public class afficher_dossiers_patient_controller {
     private AnchorPane top;
     @FXML
     private Button retour;
+    @FXML
+            private TableColumn<?,?> sexe;
 
 
     FXMLLoader loadermenu;
@@ -299,6 +301,7 @@ public class afficher_dossiers_patient_controller {
         colonne_nom.setCellValueFactory(new PropertyValueFactory<>("nom"));
         colonne_prenom.setCellValueFactory(new PropertyValueFactory<>("prenom"));
         colonne_IDPatient.setCellValueFactory(new PropertyValueFactory<>("id"));
+        sexe.setCellValueFactory(new PropertyValueFactory<>("sexe"));
         tableau_colonnes.setItems(data);
 
         top.getChildren().add(menu);

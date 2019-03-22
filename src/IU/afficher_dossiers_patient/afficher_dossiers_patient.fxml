@@ -50,6 +50,7 @@
                               <ColumnConstraints hgrow="SOMETIMES" maxWidth="206.0" minWidth="10.0" prefWidth="87.0" />
                               <ColumnConstraints hgrow="SOMETIMES" maxWidth="297.0" minWidth="10.0" prefWidth="73.0" />
                               <ColumnConstraints hgrow="SOMETIMES" maxWidth="327.0" minWidth="10.0" prefWidth="131.0" />
+                              <ColumnConstraints />
                            </columnConstraints>
                            <rowConstraints>
                               <RowConstraints maxHeight="34.0" minHeight="10.0" prefHeight="33.0" vgrow="SOMETIMES" />
@@ -64,6 +65,7 @@
                                     <TableColumn fx:id="colonne_nom" prefWidth="168.0" text="Nom" />
                                     <TableColumn fx:id="colonne_prenom" minWidth="0.0" prefWidth="178.0" text="Prénom" />
                                  </columns></TableColumn>
+                              <TableColumn fx:id="sexe" prefWidth="75.0" text="Sexe" />
                            </columns>
                         </TableView>
                         <Text layoutX="14.0" layoutY="357.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Liste d'examens réalisés " />

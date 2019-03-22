@@ -90,6 +90,8 @@ public class liste_patient_secretaire_controller {
     SIR sir;
     @FXML
     private Button retour;
+    @FXML
+    private TableColumn<?, ?> sexe;
 
     private Parent menu;
     private FXMLLoader loader;
@@ -140,6 +142,7 @@ public class liste_patient_secretaire_controller {
         colonne_IDPatient.setCellValueFactory(new PropertyValueFactory<>("id"));
         colonne_nomPatient.setCellValueFactory(new PropertyValueFactory<>("nom"));
         colonne_prenomPatient.setCellValueFactory(new PropertyValueFactory<>("prenom"));
+        sexe.setCellValueFactory(new PropertyValueFactory<>("sexe"));
         menu_controller controller = loader.getController();
         controller.initData(sir);
         top.getChildren().add(menu);
