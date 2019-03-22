@@ -182,6 +182,7 @@ public class ajouter_patient_controller implements Initializable {
     }
 
     public void ajoutPatient(ActionEvent actionEvent) throws IOException {
+
         String nom = ajoutpatient_champ_nom.getText();
         String prenom = ajoutpatient_champ_prenom.getText();
 
@@ -197,7 +198,30 @@ public class ajouter_patient_controller implements Initializable {
         String email= ajoutpatient_champ_email.getText();
         String telephone = ajoutpatient_champ_telephonePortable.getText();
 
+        if(nom.length()==0||prenom.length()==0||rue.length()==0||medecinPrescripteur.length()==0||serviceAcceuil.length()==0||gooddate.toString().length()==0||ville.length()==0||codeP.length()==0||email.length()==0||telephone.length()==0){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Impossible de rajouter le patient");
+            alert.setHeaderText("Erreur de saisie");
+            alert.setContentText("Une des cases n'est pas remplie");
 
+            alert.showAndWait();
+        }
+
+        else if(!codeP.matches("[0-9]+")||codeP.length()>5){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Impossible de rajouter le patient");
+            alert.setHeaderText("Erreur de saisie");
+            alert.setContentText("Le code postale que vous avez tapez ne contient pas uniquement des chiffres, ou dépasse 5 caractères");
+
+            alert.showAndWait();
+        }else if (!telephone.matches("[0-9]+")||telephone.length()>10){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Impossible de rajouter le patient");
+            alert.setHeaderText("Erreur de saisie");
+            alert.setContentText("Le numéro de téléphone que vous avez tapez ne contient pas uniquement des chiffres, ou dépasse 10 caractères");
+
+        }
+        else{
         int idPat=(int)(Math.random() * ( 999999 - 100000 )+1);
         while(sir.checkIdPatient(idPat)){
             idPat = 0+(int)(Math.random()*((999999-0)+1));
@@ -252,8 +276,14 @@ public class ajouter_patient_controller implements Initializable {
             secretaire_accueil_controller.initData(sir, menu, loader);
             Scene scene = new Scene(root);
             Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();     //pas compris
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Succès");
+            alert.setHeaderText("Le patient a bien été ajouté");
 
+
+            alert.showAndWait();
             stage.setScene(scene);
+
             stage.show();
         }
         else{
@@ -268,6 +298,7 @@ public class ajouter_patient_controller implements Initializable {
             stage.setScene(scene);
             stage.show();
         }
+    }
     }
 }
 
