@@ -15,6 +15,10 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -24,6 +28,7 @@ import java.util.ResourceBundle;
 import java.util.logging.Logger;
 import java.util.Date;
 
+import BD.ConnexionBase;
 import FC.*;
 import IU.acceuil_medecin.acceuil_medecin_controller;
 import IU.edition_image.edition_image_controller;
@@ -308,6 +313,48 @@ public class ajout_examen_controller {
         Examen examen= new Examen(produit,dose,lateralite,vue,zoneetudie,date,type,id,salle,idPatient,medecinPrescri,dateEx,image,validation,cr,medecinRadio);
         sir.getListeExamen().add(examen);
         sir.supprimerRDV(id);
+
+        Connection connexion = null;
+        Statement statement = null;
+
+        try {
+
+            ConnexionBase cb = new ConnexionBase();
+            connexion=cb.returnConnexion();
+            String query = "UPDATE Examen SET idExamen=?,idPatient=?,dateRDV=?,ExamenFait=?,dateExamen=?," +
+                    "CRExamen=?,image=?,validation=?,typeExamen=?,Salle=?,medecinPrescri=?,medecinRadio=?," +
+                    "vue=?,lateralite=?,zoneetudie=?,dose=?,produit=? WHERE idExamen='"+id+"'";
+            //Création de l'objet gérant les requêtes
+            PreparedStatement preparedStmt= connexion.prepareStatement(query);
+            preparedStmt.setString(1,id);
+            preparedStmt.setInt(2,idPatient);
+            preparedStmt.setDate(3,date);
+            preparedStmt.setInt(4,1);
+            preparedStmt.setDate(5,dateEx);
+            preparedStmt.setInt(6,0);
+            preparedStmt.setInt(7,1);
+            preparedStmt.setInt(8,0);
+            preparedStmt.setString(9,type.returnType());
+            preparedStmt.setInt(10,salle);
+            preparedStmt.setString(11,medecinPrescri);
+            preparedStmt.setString(12,medecinRadio);
+            preparedStmt.setString(13,vue);
+            preparedStmt.setString(14,lateralite);
+            preparedStmt.setString(15,zoneetudie);
+            preparedStmt.setString(16,dose);
+            preparedStmt.setString(17,produit);
+
+
+
+            //Récupération des données du statut de la requete d'update
+            preparedStmt.executeUpdate();
+            System.out.println("update de la BD examen");
+
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+
 
 
         for(int i=0;i<this.selectedImages.size();i++){
