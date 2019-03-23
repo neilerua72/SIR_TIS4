@@ -22,8 +22,8 @@ public class LectCR {
             //Création de l'objet gérant les requêtes
             statement = connexion.createStatement();
             //Exécution d'une requete de lecture
-            resultat = statement.executeQuery("SELECT idCR,idExam,problemeClinique,technique,produitContrasteType," +
-                    "quantiteProduitContraste,comparaisonExamenAnt,dateCR,specialiteRadiologue,protocoleStandardise," +
+            resultat = statement.executeQuery("SELECT idCR,idExam,problemeClinique,technique," +
+                    "comparaisonExamenAnt,dateCR,protocoleStandardise," +
                     "resultat,synthese,conclusion FROM CR;");
             //Récupération des données du résultat de la requete de lecture
             while (resultat.next()) {
@@ -31,11 +31,11 @@ public class LectCR {
                 String problemeClinique = resultat.getString("problemeClinique");
                 int idExam = resultat.getInt("idExam");
                 String technique = resultat.getString("technique");
-                String produitContrasteType= resultat.getString("produitContrasteType");
-                int quantiteProduitContraste = resultat.getInt("quantiteProduitContraste");
+
                 String comparaisonExamenAnt= resultat.getString("comparaisonExamenAnt");
+                System.out.println("TEST :"+comparaisonExamenAnt);
                 Date dateCR = resultat.getDate("dateCR");
-                String specialiteRadiologue=resultat.getString("specialiteRadiologue");
+
                 String protocoleStandardise= resultat.getString("protocoleStandardise");
                 String resultatCR = resultat.getString("resultat");
                 String synthese = resultat.getString("synthese");
@@ -44,7 +44,7 @@ public class LectCR {
 
 
 
-                CR cr = new CR(idCR,idExam,problemeClinique,technique,produitContrasteType,quantiteProduitContraste,comparaisonExamenAnt,dateCR,specialiteRadiologue,
+                CR cr = new CR(idCR,idExam,problemeClinique,technique,comparaisonExamenAnt,dateCR,
                         protocoleStandardise,resultatCR,synthese,conclusion);
                 listeCR.add(cr);
             }

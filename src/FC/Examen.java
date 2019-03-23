@@ -53,4 +53,31 @@ public class Examen extends RDV {
     public String getMedecinRadio() {
         return medecinRadio;
     }
+    public void setCrExamen(boolean set){
+        this.crExamen=set;
+    }
+
+    public boolean isCrExamen() {
+        return crExamen;
+    }
+
+    public String getLateralite() {
+        return lateralite;
+    }
+
+    public String getVue() {
+        return vue;
+    }
+
+    public String getZoneetudie() {
+        return zoneetudie;
+    }
+
+    public String getProduit() {
+        return produit;
+    }
+
+    public String getDose() {
+        return dose;
+    }
 }

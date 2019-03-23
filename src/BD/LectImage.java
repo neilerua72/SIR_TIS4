@@ -29,10 +29,10 @@ public class LectImage {
             //Création de l'objet gérant les requêtes
             statement = connexion.createStatement();
             //Exécution d'une requete de lecture
-            resultat = statement.executeQuery("SELECT nom,image,idExamen FROM Image;");
+            resultat = statement.executeQuery("SELECT nom,image,idExamen,id FROM Image;");
             //Récupération des données du résultat de la requete de lecture
             while (resultat.next()) {
-
+                int id =resultat.getInt("id");
                 String name = resultat.getString("nom");
                 int idExamen = resultat.getInt("idExamen");
                 //Blob img = resultat.getBlob("img");
@@ -47,7 +47,7 @@ public class LectImage {
 
                /* ImageIO.write(bImageFromConvert, "jpg", new File(
                         "/Users/hugobosquet/Desktop/new-sinus.jpg"));*/
-               RWImage rwImage = new RWImage(name,idExamen,bImageFromConvert,String.valueOf(idExamen));
+               RWImage rwImage = new RWImage(name,id,bImageFromConvert,String.valueOf(idExamen));
                listeImage.add(rwImage);
                 System.out.println("copie de l'image sur le bureau");
 

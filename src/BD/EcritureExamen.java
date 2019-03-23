@@ -9,17 +9,13 @@ public class EcritureExamen {
 
         try {
 
-            String url = "jdbc:mysql://mysql-hugdude.alwaysdata.net/hugdude_bdsir?serverTimezone=UTC";
-            String user = "hugdude";
-            String passwd = "hugo";
-
-            connexion = DriverManager.getConnection(url, user, passwd);
-            System.out.println("Connexion effective !");
-
+            ConnexionBase cb = new ConnexionBase();
+            connexion=cb.returnConnexion();
             //Création de l'objet gérant les requêtes
             statement = connexion.createStatement();
             //Exécution d'une requete d'écriture
-            int statut = statement.executeUpdate("INSERT INTO `Examen` (`idExamen`, `dateExamen`, `image`, `validation`, `compteRendu`, `typeExamen`, `Salle`) VALUES\n" +
+            int statut = statement.executeUpdate("INSERT INTO `Examen` (`idExamen`,`idPatient`,`dateRDV`,`ExamenFait`,`medecinPrescri`,`medecinRadio`,`dateExamen`,`image`,`validation`" +
+                    ",`CRExamen`,`typeExamen`,`Salle`,`vue`,`zoneetudie`,`lateralite`,`produit,dose`) VALUES\n" +
                     "(234567, '2019-02-09 12:00:00', 1, 1, 'présence frature ouverte', 'Radiographie', 5);");
             //Récupération des données du statut de la requete d'écriture
             System.out.println("Résultat de la requête d'insertion:" +statut + ".");

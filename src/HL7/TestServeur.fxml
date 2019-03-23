@@ -13,16 +13,23 @@
         <TextField fx:id="Date_Exam" layoutX="403.0" layoutY="194.0" promptText="Date Examen" />
         <TextField fx:id="IDExam" layoutX="223.0" layoutY="194.0" prefHeight="25.0" prefWidth="115.0" promptText="ID Examen" />
         <Button fx:id="Admettre" layoutX="493.0" layoutY="366.0" mnemonicParsing="false" onAction="#Admission" text="Admettre" />
-        <Label fx:id="l1" layoutX="14.0" layoutY="285.0" prefHeight="17.0" prefWidth="115.0" />
-        <Label fx:id="l2" layoutX="14.0" layoutY="311.0" prefHeight="17.0" prefWidth="115.0" />
-        <Label fx:id="l3" layoutX="14.0" layoutY="336.0" prefHeight="17.0" prefWidth="115.0" />
+        <Label fx:id="l1" layoutX="14.0" layoutY="285.0" prefHeight="17.0" prefWidth="115.0" visible="false" />
+        <Label fx:id="l2" layoutX="14.0" layoutY="311.0" prefHeight="17.0" prefWidth="115.0" visible="false" />
+        <Label fx:id="l3" layoutX="14.0" layoutY="336.0" prefHeight="17.0" prefWidth="115.0" visible="false" />
         <TextField fx:id="host" layoutX="14.0" layoutY="163.0" promptText="Host" text="localhost" />
         <TextField fx:id="port" layoutX="14.0" layoutY="211.0" promptText="Port" />
       <TextField fx:id="TypeExamen" layoutX="223.0" layoutY="250.0" promptText="Type Examen" />
       <TextField fx:id="MedPrescripteur" layoutX="403.0" layoutY="250.0" promptText="Medecin Prescripteur" />
       <TextField fx:id="MedRadio" layoutX="223.0" layoutY="304.0" promptText="Medecin Radiologue" />
-      <Button fx:id="Connecter" layoutX="61.0" layoutY="324.0" mnemonicParsing="false" onAction="#Connecter" text="Button" />
       <Label layoutX="224.0" layoutY="16.0" prefHeight="17.0" prefWidth="90.0" text="ID Patient" />
       <Label layoutX="224.0" layoutY="65.0" text="Nom Patient" />
+      <Label layoutX="223.0" layoutY="122.0" text="Prenom patient" />
+      <Label layoutX="224.0" layoutY="176.0" text="ID Examen" />
+      <Label layoutX="403.0" layoutY="176.0" text="Date examen" />
+      <Label layoutX="224.0" layoutY="233.0" text="Type examen" />
+      <Label layoutX="403.0" layoutY="234.0" text="Medecin prescripteur" />
+      <Label layoutX="223.0" layoutY="285.0" text="Medecin radiologue" />
+      <Label layoutX="14.0" layoutY="143.0" text="Adresse du destinataire" />
+      <Label layoutX="14.0" layoutY="192.0" text="Numero de port" />
     </children>
 </AnchorPane>
