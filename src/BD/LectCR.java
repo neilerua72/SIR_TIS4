@@ -34,6 +34,7 @@ public class LectCR {
                 String produitContrasteType= resultat.getString("produitContrasteType");
                 int quantiteProduitContraste = resultat.getInt("quantiteProduitContraste");
                 String comparaisonExamenAnt= resultat.getString("comparaisonExamenAnt");
+                System.out.println("TEST :"+comparaisonExamenAnt);
                 Date dateCR = resultat.getDate("dateCR");
                 String specialiteRadiologue=resultat.getString("specialiteRadiologue");
                 String protocoleStandardise= resultat.getString("protocoleStandardise");

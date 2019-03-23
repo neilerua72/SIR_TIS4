@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.ScrollPane?>
@@ -20,12 +26,12 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="836.0" prefWidth="1276.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="IU.afficher_dossiers_patient.afficher_dossiers_patient_controller">
+<AnchorPane prefHeight="879.0" prefWidth="1276.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="IU.afficher_dossiers_patient.afficher_dossiers_patient_controller">
    <children>
       <AnchorPane fx:id="top" prefHeight="102.0" prefWidth="885.0" />
-      <StackPane layoutY="103.0" prefHeight="710.0" prefWidth="1276.0">
+      <StackPane layoutY="103.0" prefHeight="777.0" prefWidth="1276.0">
          <children>
-            <SplitPane dividerPositions="0.47566718995290425" layoutY="25.0" prefHeight="701.0" prefWidth="1276.0">
+            <SplitPane dividerPositions="0.47566718995290425" layoutY="25.0" prefHeight="871.0" prefWidth="1276.0">
                <items>
                   <AnchorPane layoutY="25.0" maxHeight="-1.0" maxWidth="-1.0" prefHeight="715.0" prefWidth="607.0" VBox.vgrow="ALWAYS">
                      <children>
@@ -80,9 +86,9 @@
                         </Button>
                      </children>
                   </AnchorPane>
-                  <ScrollPane prefHeight="558.0" prefViewportHeight="1209.0" prefViewportWidth="652.0" prefWidth="725.0">
+                  <ScrollPane prefHeight="839.0" prefViewportHeight="1209.0" prefViewportWidth="652.0" prefWidth="663.0">
                      <content>
-                        <AnchorPane fx:id="cranchor" prefHeight="200.0" prefWidth="200.0" visible="false">
+                        <AnchorPane fx:id="cranchor" prefHeight="200.0" prefWidth="200.0">
                            <children>
                               <ListView fx:id="listView_imagesExam" layoutX="7.0" layoutY="22.0" prefHeight="103.0" prefWidth="641.0" />
                               <Text layoutX="14.0" layoutY="18.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Images de l'examen">
@@ -103,19 +109,22 @@
                                        <children>
                                           <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nom" wrappingWidth="139.630859375" />
                                           <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Prénom " GridPane.rowIndex="1" />
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Date de Naissance" GridPane.rowIndex="2" />
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Date de Naissance" GridPane.rowIndex="3" />
                                           <Text fx:id="text_nomPatientCR" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" visible="false" GridPane.columnIndex="1" />
                                           <Text fx:id="text_prenomPatientCR" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                          <Text fx:id="date_naissancePatientCR" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                          <Text fx:id="date_naissancePatientCR" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                                           <Text fx:id="nom" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" />
                                           <Text fx:id="prenom" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                          <Text fx:id="dateDeNaissance" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                          <Text fx:id="dateDeNaissance" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Sexe" GridPane.rowIndex="2" />
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                                        </children>
                                        <columnConstraints>
                                           <ColumnConstraints hgrow="SOMETIMES" maxWidth="174.0" minWidth="10.0" prefWidth="157.0" />
                                           <ColumnConstraints hgrow="SOMETIMES" maxWidth="291.0" minWidth="10.0" prefWidth="220.0" />
                                        </columnConstraints>
                                        <rowConstraints>
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -156,7 +165,7 @@
                                     <Text layoutX="341.0" layoutY="241.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Résumé du Problème Clinique " />
                                     <ScrollPane layoutX="338.0" layoutY="245.0" prefHeight="60.0" prefWidth="304.0">
                                       <content>
-                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="246.0" prefWidth="289.0">
+                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="60.0" prefWidth="289.0">
                                              <children>
                                                 <Text fx:id="text_resumeProblemeCliniqueCR" layoutX="3.0" layoutY="13.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="JUSTIFY" visible="false" />
                                                 <Text fx:id="resumePbClinique" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
@@ -167,15 +176,14 @@
                                     <Text layoutX="14.0" layoutY="241.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description de la Technique " />
                                     <ScrollPane layoutX="14.0" layoutY="245.0" prefHeight="60.0" prefWidth="304.0">
                                        <content>
-                                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="265.0" prefWidth="289.0">
+                                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="62.0" prefWidth="289.0">
                                              <children>
                                                 <Text fx:id="text_descriptionTechniqueCR" layoutX="3.0" layoutY="13.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="JUSTIFY" />
                                              </children>
                                           </AnchorPane>
                                        </content>
                                     </ScrollPane>
-                                    <Text layoutX="11.0" layoutY="433.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Protocole Standardisé " />
-                                    <ScrollPane layoutX="8.0" layoutY="437.0" prefHeight="52.0" prefWidth="304.0">
+                                    <ScrollPane layoutX="14.0" layoutY="339.0" prefHeight="52.0" prefWidth="304.0">
                                        <content>
                                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="240.0" prefWidth="289.0">
                                              <children>
@@ -185,9 +193,8 @@
                                           </AnchorPane>
                                        </content>
                                     </ScrollPane>
-                                    <Text layoutX="341.0" layoutY="430.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Produit de Contraste" />
-                                    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#5e5e5e00" height="60.0" layoutX="338.0" layoutY="434.0" stroke="#797979" strokeType="INSIDE" width="304.0" />
-                                    <GridPane layoutX="353.0" layoutY="434.0" prefHeight="60.0" prefWidth="276.0">
+                                    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#5e5e5e00" height="77.0" layoutX="338.0" layoutY="338.0" stroke="#797979" strokeType="INSIDE" width="304.0" />
+                                    <GridPane layoutX="340.0" layoutY="347.0" prefHeight="60.0" prefWidth="276.0">
                                        <children>
                                           <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Type" wrappingWidth="84.630859375" />
                                           <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Quantité" GridPane.rowIndex="1" />
@@ -205,46 +212,48 @@
                                           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                        </rowConstraints>
                                     </GridPane>
-                                    <Text layoutX="12.0" layoutY="520.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Comparaison avec Examens Antérieurs" />
-                                    <ScrollPane fx:id="comparaison" layoutX="8.0" layoutY="524.0" prefHeight="60.0" prefWidth="634.0">
+                                    <Text layoutX="12.0" layoutY="435.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Comparaison avec Examens Antérieurs" />
+                                    <ScrollPane fx:id="comparaison" layoutX="8.0" layoutY="441.0" prefHeight="60.0" prefWidth="634.0">
                                        <content>
                                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="184.0" prefWidth="620.0">
                                              <children>
-                                                <Text fx:id="text_comparaisonExamensExterieursCR" layoutX="3.0" layoutY="13.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="JUSTIFY" visible="false" />
+                                                <Text fx:id="text_comparaisonExamensExterieursCR" layoutX="3.0" layoutY="13.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="JUSTIFY" />
                                              </children>
                                           </AnchorPane>
                                        </content>
                                     </ScrollPane>
-                                    <Text layoutX="13.0" layoutY="614.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Résultat" />
-                                    <ScrollPane layoutX="8.0" layoutY="619.0" prefHeight="104.0" prefWidth="634.0">
+                                    <Text layoutX="13.0" layoutY="519.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Résultat" />
+                                    <ScrollPane layoutX="8.0" layoutY="524.0" prefHeight="104.0" prefWidth="634.0">
                                        <content>
                                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="184.0" prefWidth="620.0">
                                              <children>
-                                                <Text fx:id="text_resultatCR" layoutX="3.0" layoutY="13.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="JUSTIFY" visible="false" />
+                                                <Text fx:id="text_resultatCR" layoutX="3.0" layoutY="13.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="JUSTIFY" />
                                              </children>
                                           </AnchorPane>
                                        </content>
                                     </ScrollPane>
-                                    <Text layoutX="13.0" layoutY="745.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Synthèse" />
-                                    <ScrollPane layoutX="8.0" layoutY="750.0" prefHeight="104.0" prefWidth="634.0">
+                                    <Text layoutX="13.0" layoutY="646.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Synthèse" />
+                                    <ScrollPane layoutX="8.0" layoutY="651.0" prefHeight="104.0" prefWidth="634.0">
                                        <content>
                                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="184.0" prefWidth="620.0">
                                              <children>
-                                                <Text fx:id="text_syntheseCR" layoutX="3.0" layoutY="13.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="JUSTIFY" visible="false" />
+                                                <Text fx:id="text_syntheseCR" layoutX="3.0" layoutY="12.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="JUSTIFY" />
                                              </children>
                                           </AnchorPane>
                                        </content>
                                     </ScrollPane>
-                                    <Text layoutX="13.0" layoutY="875.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Conclusion" />
-                                    <ScrollPane layoutX="8.0" layoutY="879.0" prefHeight="104.0" prefWidth="634.0">
+                                    <Text layoutX="13.0" layoutY="775.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Conclusion" />
+                                    <ScrollPane layoutX="8.0" layoutY="783.0" prefHeight="104.0" prefWidth="634.0">
                                        <content>
                                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="184.0" prefWidth="620.0">
                                              <children>
-                                                <Text fx:id="text_conclusionCR" layoutX="3.0" layoutY="13.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text " textAlignment="JUSTIFY" visible="false" />
+                                                <Text fx:id="text_conclusionCR" layoutX="3.0" layoutY="13.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text " textAlignment="JUSTIFY" />
                                              </children>
                                           </AnchorPane>
                                        </content>
                                     </ScrollPane>
+                                    <Text layoutX="14.0" layoutY="334.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Protocole Standardisé " />
+                                    <Text layoutX="341.0" layoutY="334.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Produit de Contraste" />
                                  </children>
                               </AnchorPane>
                            </children>
