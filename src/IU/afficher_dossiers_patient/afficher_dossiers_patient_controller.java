@@ -205,6 +205,10 @@ public class afficher_dossiers_patient_controller {
     private AnchorPane cranchor;
     @FXML
     private Text synthese;
+    @FXML
+    private ScrollPane scrolpane;
+    @FXML
+    private Button agrandir;
 
     @FXML
     private AnchorPane top;
@@ -212,6 +216,8 @@ public class afficher_dossiers_patient_controller {
     private Button retour;
     @FXML
             private TableColumn<?,?> sexe;
+    @FXML
+            private Text aucunExamen;
 
 
     FXMLLoader loadermenu;
@@ -288,7 +294,7 @@ public class afficher_dossiers_patient_controller {
             CR cr = sir.getCRFromIdExam(Integer.parseInt(examen.getId()));
             ArrayList<RWImage>listeIMG=new ArrayList<>(sir.recupImageExam(Integer.parseInt(examen.getId())));
 
-            if(cr!=null){
+            if(examen.getCr()){
             Patient patient = sir.getPatientFromId(examen.getIdPatient());
             nom.setText(patient.getNom());
             prenom.setText(patient.getPrenom());
@@ -307,10 +313,13 @@ public class afficher_dossiers_patient_controller {
             text_syntheseCR.setText(cr.getSynthese());
             typeProduit.setText(cr.getProduitContrasteType());
             quantite.setText(cr.getQuantiteProduitContraste()+"");
-            cranchor.setVisible(true);
+            scrolpane.setVisible(true);
+            aucunExamen.setVisible(false);
             }
             else{
-                cranchor.setVisible(false);
+                scrolpane.setVisible(false);
+                aucunExamen.setText("Aucun Compte-Rendu de rédigé pour l'instant");
+                aucunExamen.setVisible(true);
                 System.out.println("CR NULL");
             }
             if(listeIMG.size()>0){
@@ -334,7 +343,12 @@ public class afficher_dossiers_patient_controller {
                     javafx.scene.image.ImageView imageview = new ImageView(image);
                     listView_imagesExam.getItems().add(imageview);
                 }
+                    listView_imagesExam.setDisable(false);
+                    agrandir.setDisable(false);
                 }
+            }else{
+                listView_imagesExam.setDisable(true);
+                agrandir.setDisable(true);
             }
 
 
@@ -381,7 +395,16 @@ public class afficher_dossiers_patient_controller {
             colonne_type.setCellValueFactory(new PropertyValueFactory<>("typeExam"));
             listeExam.setItems(data);
 
+
+
         }
+        else{
+            listeExam.getItems().clear();
+        }
+       scrolpane.setVisible(false);
+        aucunExamen.setText("Aucun examen sélectionné");
+        aucunExamen.setVisible(true);
+
     }
     public void retour(ActionEvent event) throws IOException {
         FXMLLoader loadera = new FXMLLoader();

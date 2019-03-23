@@ -77,7 +77,8 @@ public class acceuil_medecin_controller implements Initializable{
     @FXML // fx:id="colonne_dossierPatient"
     private TableColumn<?, ?> colonne_dossierPatient; // Value injected by FXMLLoader
 
-
+    @FXML
+    private Button agrandir;
     @FXML
     private AnchorPane top;
     /**
@@ -420,7 +421,7 @@ public class acceuil_medecin_controller implements Initializable{
         CR cr = sir.getCRFromIdExam(Integer.parseInt(examen.getId()));
         ArrayList<RWImage>listeIMG=new ArrayList<>(sir.recupImageExam(Integer.parseInt(examen.getId())));
 
-        if(cr!=null){
+        if(examen.getCr()){
             Patient patient = sir.getPatientFromId(examen.getIdPatient());
             nom.setText(patient.getNom());
             prenom.setText(patient.getPrenom());
@@ -440,9 +441,12 @@ public class acceuil_medecin_controller implements Initializable{
             typeProduit.setText(cr.getProduitContrasteType());
             quantite.setText(cr.getQuantiteProduitContraste()+"");
             cranchor.setVisible(true);
+            aucunExamen.setVisible(false);
         }
         else{
             cranchor.setVisible(false);
+            aucunExamen.setText("Aucun Compte-Rendu de rédigé pour l'instant");
+            aucunExamen.setVisible(true);
             System.out.println("CR NULL");
         }
         if(listeIMG.size()>0){
@@ -466,11 +470,18 @@ public class acceuil_medecin_controller implements Initializable{
                     javafx.scene.image.ImageView imageview = new ImageView(image);
                     listView_imagesExam.getItems().add(imageview);
                 }
-            }
+            }listView_imagesExam.setDisable(false);
+            agrandir.setDisable(false);
         }
-
-
+    else{
+        listView_imagesExam.setDisable(true);
+        agrandir.setDisable(true);
     }
+    }
+
+
+
+
 
 
 
