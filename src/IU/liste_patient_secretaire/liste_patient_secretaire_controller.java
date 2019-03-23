@@ -191,9 +191,9 @@ public class liste_patient_secretaire_controller {
             statement = connexion.createStatement();
             //Exécution d'une requete d'écriture
             int statut = statement.executeUpdate("INSERT INTO `Examen` (`idExamen`,`idPatient`, `dateRDV`," +
-                    " `ExamenFait`, `dateExamen`, `image`, `validation`, `compteRendu`,`CRExamen`,`typeExamen`," +
+                    " `ExamenFait`, `dateExamen`, `image`, `validation`,`CRExamen`,`typeExamen`," +
                     "`Salle`,`medecinPrescri`,`medecinRadio`) VALUES\n" +
-                    "(NULL,'"+idPat+"','"+date+"','"+nombre+"',NULL,NULL,NULL,NULL,NULL,'"+type+"','"+salle+"','"+medecinPrescri+"',NULL);");
+                    "('"+id+"','"+idPat+"','"+gooddate+"','"+nombre+"',NULL,'"+nombre+"','"+nombre+"','"+nombre+"','"+type+"','"+salle+"','"+medecinPrescri+"',NULL);");
             //Récupération des données du statut de la requete d'écriture
             System.out.println("Résultat de la requête d'insertion:" +statut + ".");
         }
