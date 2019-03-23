@@ -222,6 +222,9 @@ public class afficher_dossiers_patient_controller {
         assert champ_date != null : "fx:id=\"champ_date\" was not injected: check your FXML file 'afficher_dossiers_patient.fxml'.";
         assert listView_examensRealises != null : "fx:id=\"listView_examensRealises\" was not injected: check your FXML file 'afficher_dossiers_patient.fxml'.";
         assert texte_date != null : "fx:id=\"texte_date\" was not injected: check your FXML file 'afficher_dossiers_patient.fxml'.";
+        ToggleGroup groupe_toggle_rechercherPar = new ToggleGroup();
+        toggle_nomPatient.setToggleGroup(groupe_toggle_rechercherPar);
+        toggle_IDPatient.setToggleGroup(groupe_toggle_rechercherPar);
         tableau_colonnes.getSelectionModel().selectedItemProperty().addListener(
                 (observable, oldValue, newValue) -> showListeExam(newValue));
 

@@ -1,24 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.image.*?>
-<?import javafx.geometry.*?>
-<?import java.lang.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.shape.*?>
-<?import javafx.scene.text.*?>
-<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.Menu?>
-<?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.SeparatorMenuItem?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -29,7 +20,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="836.0" prefWidth="1276.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="IU.afficher_dossiers_patient.afficher_dossiers_patient_controller">
+<AnchorPane prefHeight="836.0" prefWidth="1276.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="IU.afficher_dossiers_patient.afficher_dossiers_patient_controller">
    <children>
       <AnchorPane fx:id="top" prefHeight="102.0" prefWidth="885.0" />
       <StackPane layoutY="103.0" prefHeight="710.0" prefWidth="1276.0">
@@ -43,7 +34,7 @@
                         <GridPane layoutX="101.0" layoutY="27.0" prefHeight="70.0" prefWidth="483.0">
                            <children>
                               <TextField fx:id="champ_rechercherParNomPatient" prefHeight="25.0" prefWidth="421.0" promptText="Entrez la recherche... " GridPane.columnSpan="4" GridPane.rowIndex="1" />
-                              <ToggleButton fx:id="toggle_nomPatient" mnemonicParsing="false" prefHeight="31.0" prefWidth="195.0" text="Nom Patient" />
+                              <ToggleButton fx:id="toggle_nomPatient" mnemonicParsing="false" prefHeight="31.0" prefWidth="195.0" selected="true" text="Nom Patient" />
                               <ToggleButton fx:id="toggle_IDPatient" mnemonicParsing="false" prefHeight="31.0" prefWidth="159.0" text="ID Patient" GridPane.columnIndex="1" />
                            </children>
                            <columnConstraints>
