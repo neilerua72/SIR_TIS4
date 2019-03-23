@@ -311,8 +311,8 @@ public class afficher_dossiers_patient_controller {
             protocole.setText(cr.getProtocoleStandardise());
             text_resultatCR.setText(cr.getResultat());
             text_syntheseCR.setText(cr.getSynthese());
-            typeProduit.setText(cr.getProduitContrasteType());
-            quantite.setText(cr.getQuantiteProduitContraste()+"");
+            typeProduit.setText(examen.getProduit());
+            quantite.setText(examen.getDose());
             scrolpane.setVisible(true);
             aucunExamen.setVisible(false);
             }

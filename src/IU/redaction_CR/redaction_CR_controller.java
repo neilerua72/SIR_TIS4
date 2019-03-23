@@ -5,20 +5,31 @@ package IU.redaction_CR;
  */
 
 import BD.ConnexionBase;
+import FC.CR;
+import FC.Examen;
 import FC.SIR;
+import IU.acceuil_medecin.acceuil_medecin_controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
 import javax.print.DocFlavor;
 import javax.swing.*;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.ResourceBundle;
 
 public class redaction_CR_controller implements Initializable {
@@ -27,134 +38,88 @@ public class redaction_CR_controller implements Initializable {
 
     }
 
-    @FXML // ResourceBundle that was given to the FXMLLoader
-    private ResourceBundle resources;
 
-    @FXML // URL location of the FXML file that was given to the FXMLLoader
-    private DocFlavor.URL location;
+    @FXML
+    private TextArea champ_resumeProblemeCliniqueCR;
 
-    @FXML // fx:id="champ_typeExamenCR"
-    private TextField champ_typeExamenCR; // Value injected by FXMLLoader
+    @FXML
+    private Text DateExamen;
 
-    @FXML // fx:id="enum_specialitePrescripteurCR"
-    private ChoiceBox<?> enum_specialitePrescripteurCR; // Value injected by FXMLLoader
+    @FXML
+    private Text dateNaissance;
 
-    @FXML // fx:id="champ_nomPatientCR"
-    private TextField champ_nomPatientCR; // Value injected by FXMLLoader
+    @FXML
+    private Button button_annulerCR;
 
-    @FXML // fx:id="champ_coordonneesPrescripteurCR"
-    private TextField champ_coordonneesPrescripteurCR; // Value injected by FXMLLoader
+    @FXML
+    private Text sexe;
 
-    @FXML // fx:id="champ_descriptionTechniqueCR"
-    private TextArea champ_descriptionTechniqueCR; // Value injected by FXMLLoader
+    @FXML
+    private TextArea champ_protocoleStandardiseCR;
 
-    @FXML // fx:id="champ_typeContrasteCR"
-    private TextField champ_typeContrasteCR; // Value injected by FXMLLoader
+    @FXML
+    private Text type;
 
-    @FXML // fx:id="combobox_fonctionRadiologueCR "
-    private ComboBox combobox_fonctionRadiologueCR; // Value injected by FXMLLoader
+    @FXML
+    private Text nom;
 
-    @FXML // fx:id="champ_conclusionCR"
-    private TextArea champ_conclusionCR; // Value injected by FXMLLoader
+    @FXML
+    private TextArea champ_descriptionTechniqueCR;
 
-    @FXML // fx:id="toggle_editerCR"
-    private ToggleButton toggle_editerCR; // Value injected by FXMLLoader
+    @FXML
+    private Text dateRDV;
 
-    @FXML // fx:id="champ_prenomPatientCR"
-    private TextField champ_prenomPatientCR; // Value injected by FXMLLoader
+    @FXML
+    private Text NomPrescri;
 
-    @FXML // fx:id="champ_resultatCR"
-    private TextArea champ_resultatCR; // Value injected by FXMLLoader
+    @FXML
+    private TextArea champ_comparaisonExamensExterieursCR;
 
-    @FXML // fx:id="date_CRCR"
-    private DatePicker date_CRCR; // Value injected by FXMLLoader
+    @FXML
+    private TextArea champ_conclusionCR;
 
-    @FXML // fx:id="champ_prenomPrescripteurCR"
-    private TextField champ_prenomPrescripteurCR; // Value injected by FXMLLoader
+    @FXML
+    private TextArea champ_syntheseCR;
 
-    @FXML // fx:id="date_examenCR"
-    private DatePicker date_examenCR; // Value injected by FXMLLoader
+    @FXML
+    private TextArea champ_resultatCR;
 
-    @FXML // fx:id="champ_quantiteContrasteCR"
-    private TextField champ_quantiteContrasteCR; // Value injected by FXMLLoader
+    @FXML
+    private Button button_validerBisCR;
 
-    @FXML // fx:id="champ_resumeProblemeCliniqueCR"
-    private TextArea champ_resumeProblemeCliniqueCR; // Value injected by FXMLLoader
+    @FXML
+    private Text prenom;
 
-    @FXML // fx:id="champ_nomJeuneFilleCR"
-    private TextField champ_nomJeuneFilleCR; // Value injected by FXMLLoader
+    @FXML
+    private Text typeExamen;
 
-    @FXML // fx:id="button_annulerCR"
-    private Button button_annulerCR; // Value injected by FXMLLoader
+    @FXML
+    private Text NomRadiologue;
 
-    @FXML // fx:id="champ_protocoleStandardiseCR"
-    private TextArea champ_protocoleStandardiseCR; // Value injected by FXMLLoader
-
-    @FXML // fx:id="button_validerCR"
-    private Button button_validerCR; // Value injected by FXMLLoader
-
-    @FXML // fx:id="enum_sexePatientCR"
-    private ChoiceBox<?> enum_sexePatientCR; // Value injected by FXMLLoader
-
-    @FXML // fx:id="champ_nomPrescripteurCR"
-    private TextField champ_nomPrescripteurCR; // Value injected by FXMLLoader
-
-    @FXML // fx:id="champ_comparaisonExamensExterieursCR"
-    private TextArea champ_comparaisonExamensExterieursCR; // Value injected by FXMLLoader
-
-    @FXML // fx:id="champ_nomRadiologueCR"
-    private TextField champ_nomRadiologueCR; // Value injected by FXMLLoader
-
-    @FXML // fx:id="champ_syntheseCR"
-    private TextArea champ_syntheseCR; // Value injected by FXMLLoader
-
-    @FXML // fx:id="button_validerBisCR"
-    private Button button_validerBisCR; // Value injected by FXMLLoader
-
-    @FXML // fx:id="date_naissancePatientCR"
-    private DatePicker date_naissancePatientCR; // Value injected by FXMLLoader
+    @FXML
+    private Text quantite;
 
 
+
+    private SIR sir;
+    private Examen examen;
+    private Parent menu;
+    private FXMLLoader loadermenu;
     @FXML // This method is called by the FXMLLoader when initialization is complete
     public void initialize(URL location, ResourceBundle resources) {
-        assert champ_typeExamenCR != null : "fx:id=\"champ_typeExamenCR\" was not injected: check your FXML file 'redaction_CR.fxml'.";
-        assert enum_specialitePrescripteurCR != null : "fx:id=\"enum_specialitePrescripteurCR\" was not injected: check your FXML file 'redaction_CR.fxml'.";
-        assert champ_nomPatientCR != null : "fx:id=\"champ_nomPatientCR\" was not injected: check your FXML file 'redaction_CR.fxml'.";
-        assert champ_coordonneesPrescripteurCR != null : "fx:id=\"champ_coordonneesPrescripteurCR\" was not injected: check your FXML file 'redaction_CR.fxml'.";
-        assert champ_descriptionTechniqueCR != null : "fx:id=\"champ_descriptionTechniqueCR\" was not injected: check your FXML file 'redaction_CR.fxml'.";
-        assert champ_typeContrasteCR != null : "fx:id=\"champ_typeContrasteCR\" was not injected: check your FXML file 'redaction_CR.fxml'.";
-        assert combobox_fonctionRadiologueCR !=null: "fx:id=\"combobox_fonctionRadiologueCR\" was not injected: check your FXML file 'redaction_CR.fxml'.";
-        assert champ_conclusionCR != null : "fx:id=\"champ_conclusionCR\" was not injected: check your FXML file 'redaction_CR.fxml'.";
-        assert toggle_editerCR != null : "fx:id=\"toggle_editerCR\" was not injected: check your FXML file 'redaction_CR.fxml'.";
-        assert champ_prenomPatientCR != null : "fx:id=\"champ_prenomPatientCR\" was not injected: check your FXML file 'redaction_CR.fxml'.";
-        assert champ_resultatCR != null : "fx:id=\"champ_resultatCR\" was not injected: check your FXML file 'redaction_CR.fxml'.";
-        assert date_CRCR != null : "fx:id=\"date_CRCR\" was not injected: check your FXML file 'redaction_CR.fxml'.";
-        assert champ_prenomPrescripteurCR != null : "fx:id=\"champ_prenomPrescripteurCR\" was not injected: check your FXML file 'redaction_CR.fxml'.";
-        assert date_examenCR != null : "fx:id=\"date_examenCR\" was not injected: check your FXML file 'redaction_CR.fxml'.";
-        assert champ_quantiteContrasteCR != null : "fx:id=\"champ_quantiteContrasteCR\" was not injected: check your FXML file 'redaction_CR.fxml'.";
-        assert champ_resumeProblemeCliniqueCR != null : "fx:id=\"champ_resumeProblemeCliniqueCR\" was not injected: check your FXML file 'redaction_CR.fxml'.";
-        assert champ_nomJeuneFilleCR != null : "fx:id=\"champ_nomJeuneFilleCR\" was not injected: check your FXML file 'redaction_CR.fxml'.";
-        assert button_annulerCR != null : "fx:id=\"button_annulerCR\" was not injected: check your FXML file 'redaction_CR.fxml'.";
-        assert champ_protocoleStandardiseCR != null : "fx:id=\"champ_protocoleStandardiseCR\" was not injected: check your FXML file 'redaction_CR.fxml'.";
-        assert button_validerCR != null : "fx:id=\"button_validerCR\" was not injected: check your FXML file 'redaction_CR.fxml'.";
-        assert enum_sexePatientCR != null : "fx:id=\"enum_sexePatientCR\" was not injected: check your FXML file 'redaction_CR.fxml'.";
-        assert champ_nomPrescripteurCR != null : "fx:id=\"champ_nomPrescripteurCR\" was not injected: check your FXML file 'redaction_CR.fxml'.";
-        assert champ_comparaisonExamensExterieursCR != null : "fx:id=\"champ_comparaisonExamensExterieursCR\" was not injected: check your FXML file 'redaction_CR.fxml'.";
-        assert champ_nomRadiologueCR != null : "fx:id=\"champ_nomRadiologueCR\" was not injected: check your FXML file 'redaction_CR.fxml'.";
-        assert champ_syntheseCR != null : "fx:id=\"champ_syntheseCR\" was not injected: check your FXML file 'redaction_CR.fxml'.";
-        assert button_validerBisCR != null : "fx:id=\"button_validerBisCR\" was not injected: check your FXML file 'redaction_CR.fxml'.";
-        assert date_naissancePatientCR != null : "fx:id=\"date_naissancePatientCR\" was not injected: check your FXML file 'redaction_CR.fxml'.";
+
     }
 
     public void validerCR(ActionEvent actionEvent) throws IOException{
-        LocalDate dateCR =date_CRCR.getValue();
-        Object specialiteRadio = combobox_fonctionRadiologueCR.getValue();
+
+
+        java.sql.Date dateEx = new java.sql.Date(new java.util.Date().getTime());
+
         String resumeProblemeClinique= champ_resumeProblemeCliniqueCR.getText();
         String descriptionTechnique= champ_descriptionTechniqueCR.getText();
         String protocoleStandarise= champ_protocoleStandardiseCR.getText();
         String examenAnt= champ_comparaisonExamensExterieursCR.getText();
-        String typeContraste= champ_typeContrasteCR.getText();
-        String quantite= champ_quantiteContrasteCR.getText();
+        String comparairon = champ_comparaisonExamensExterieursCR.getText();
         String resultatCR= champ_resultatCR.getText();
         String synthese = champ_syntheseCR.getText();
         String conclusion= champ_conclusionCR.getText();
@@ -162,6 +127,9 @@ public class redaction_CR_controller implements Initializable {
 
         Connection connexion = null;
         Statement statement = null;
+        CR cr = new CR(idCRaleatoire,Integer.valueOf(examen.getId()),resumeProblemeClinique,descriptionTechnique,comparairon,dateEx,protocoleStandarise,resultatCR,synthese,conclusion);
+        sir.getListeCR().add(cr);
+        examen.setCrExamen(true);
 
         try {
 
@@ -172,13 +140,13 @@ public class redaction_CR_controller implements Initializable {
             statement = connexion.createStatement();
             //Exécution d'une requete d'écriture
 
-        int statut = statement.executeUpdate("INSERT INTO `CR` (`idCR`,`problemeClinique`," +
-                " `technique`, `produitContrasteType`, `quantiteProduitContraste`," +
-                " `comparaisonExamenAnt`, `dateCR`, `specialiteRadiologue`, `protocoleStandardise`" +
-                ", `resultat`, `synthese`, `conclusion`) VALUES\n" +
-                "('"+idCRaleatoire+"' ,'"+resumeProblemeClinique+"', '"+descriptionTechnique+"','"+typeContraste+"'," +
-                "'"+quantite+"','"+examenAnt+"','"+dateCR+"','"+specialiteRadio+"','"+protocoleStandarise+"'," +
-                "'"+resultatCR+"','"+synthese+"','"+conclusion+"');");
+            int statut = statement.executeUpdate("INSERT INTO `CR` (`idCR`,`idExam`,`problemeClinique`," +
+                    " `technique`," +
+                    " `comparaisonExamenAnt`, `dateCR`, `protocoleStandardise`" +
+                    ", `resultat`, `synthese`, `conclusion`) VALUES\n" +
+                    "('"+idCRaleatoire+"' ,'"+examen.getId()+"','"+resumeProblemeClinique+"', '"+descriptionTechnique+"'," +
+                    "'"+examenAnt+"','"+dateEx+"','"+protocoleStandarise+"'," +
+                    "'"+resultatCR+"','"+synthese+"','"+conclusion+"');");
         //Récupération des données du statut de la requete d'écriture
         System.out.println("Résultat de la requête d'insertion:" +statut + ".");
     }
@@ -201,11 +169,60 @@ public class redaction_CR_controller implements Initializable {
         }
     }
 
+        Connection connexion2 = null;
+        Statement statement2 = null;
+        try {
+
+            ConnexionBase cb = new ConnexionBase();
+            connexion2=cb.returnConnexion();
+            String query = "UPDATE Examen SET idExamen=?,idPatient=?,dateRDV=?,ExamenFait=?,dateExamen=?," +
+                    "CRExamen=?,image=?,validation=?,typeExamen=?,Salle=?,medecinPrescri=?,medecinRadio=?," +
+                    "vue=?,lateralite=?,zoneetudie=?,dose=?,produit=? WHERE idExamen='"+examen.getId()+"'";
+            //Création de l'objet gérant les requêtes
+            PreparedStatement preparedStmt= connexion2.prepareStatement(query);
+            preparedStmt.setString(1,examen.getId());
+            preparedStmt.setInt(2,examen.getIdPatient());
+            preparedStmt.setDate(3,examen.getDateRDV());
+            preparedStmt.setInt(4,1);
+            preparedStmt.setDate(5,dateEx);
+            preparedStmt.setInt(6,1);
+            preparedStmt.setInt(7,1);
+            preparedStmt.setInt(8,0);
+            preparedStmt.setString(9,examen.getTypeExamen().returnType());
+            preparedStmt.setInt(10,examen.getSalle());
+            preparedStmt.setString(11,examen.getMedecinPrescri());
+            preparedStmt.setString(12,examen.getMedecinRadio());
+            preparedStmt.setString(13,examen.getVue());
+            preparedStmt.setString(14,examen.getLateralite());
+            preparedStmt.setString(15,examen.getZoneetudie());
+            preparedStmt.setString(16,examen.getDose());
+            preparedStmt.setString(17,examen.getProduit());
 
 
+
+            //Récupération des données du statut de la requete d'update
+            preparedStmt.executeUpdate();
+            System.out.println("update de la BD examen");
+
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+    FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/IU/acceuil_medecin/acceuil_medecin.fxml"));
+        Parent parent = loader.load();
+        acceuil_medecin_controller acceuil_medecin_controller = loader.getController();
+        acceuil_medecin_controller.initData(sir,menu,loadermenu);
+        Scene scene= new Scene(parent);
+        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
     }
-public void initData(SIR sir){
-
+public void initData(SIR sir, Examen examen,Parent menu,FXMLLoader loadermenu){
+this.sir=sir;
+this.examen=examen;
+this.menu=menu;
+this.loadermenu=loadermenu;
 }
 
 }

@@ -7,11 +7,9 @@ public class CR {
     private int idExam;
     private String problemeClinique;
     private String technique;
-    private String produitContrasteType;
-    private int quantiteProduitContraste;
+
     private String comparaisonExamenAnt;
     private Date dateCR;
-    private String specialiteRadiologue;
     private String protocoleStandardise;
     private String resultat;
     private String synthese;
@@ -21,16 +19,14 @@ public class CR {
 
     }
 
-    public CR(int idCR,int idExam, String problemeClinique, String technique, String produitContrasteType, int quantiteProduitContraste, String comparaisonExamenAnt, Date dateCR, String specialiteRadiologue, String protocoleStandardise, String resultat, String synthese, String conclusion) {
+    public CR(int idCR,int idExam, String problemeClinique, String technique, String comparaisonExamenAnt, Date dateCR, String protocoleStandardise, String resultat, String synthese, String conclusion) {
         this.idCR = idCR;
         this.idExam=idExam;
         this.problemeClinique = problemeClinique;
         this.technique = technique;
-        this.produitContrasteType = produitContrasteType;
-        this.quantiteProduitContraste = quantiteProduitContraste;
+
         this.comparaisonExamenAnt = comparaisonExamenAnt;
         this.dateCR = dateCR;
-        this.specialiteRadiologue = specialiteRadiologue;
         this.protocoleStandardise = protocoleStandardise;
         this.resultat = resultat;
         this.synthese = synthese;
@@ -43,12 +39,11 @@ public class CR {
         return "CR{" +
                 "idCR=" + idCR +
                 ", problemeClinique='" + problemeClinique + '\'' +
-                ", technique='" + technique + '\'' +
-                ", produitContrasteType='" + produitContrasteType + '\'' +
-                ", quantiteProduitContraste=" + quantiteProduitContraste +
+
+
                 ", comparaisonExamenAnt='" + comparaisonExamenAnt + '\'' +
                 ", dateCR=" + dateCR +
-                ", specialiteRadiologue='" + specialiteRadiologue + '\'' +
+
                 ", protocoleStandardise='" + protocoleStandardise + '\'' +
                 ", resultat='" + resultat + '\'' +
                 ", synthese='" + synthese + '\'' +
@@ -73,13 +68,6 @@ public class CR {
         return technique;
     }
 
-    public String getProduitContrasteType() {
-        return produitContrasteType;
-    }
-
-    public int getQuantiteProduitContraste() {
-        return quantiteProduitContraste;
-    }
 
     public String getComparaisonExamenAnt() {
         return comparaisonExamenAnt;
@@ -89,9 +77,7 @@ public class CR {
         return dateCR;
     }
 
-    public String getSpecialiteRadiologue() {
-        return specialiteRadiologue;
-    }
+
 
     public String getProtocoleStandardise() {
         return protocoleStandardise;

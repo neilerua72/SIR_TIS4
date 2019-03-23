@@ -282,7 +282,7 @@
                   <Font name="System Italic" size="15.0" />
                </font>
             </Text>
-            <Button fx:id="rediger" layoutX="336.0" layoutY="134.0" mnemonicParsing="false" text="Rédiger le CR" visible="false" />
+            <Button fx:id="rediger" layoutX="336.0" layoutY="134.0" mnemonicParsing="false" onAction="#rediger" text="Rédiger le CR" visible="false" />
          </children>
       </AnchorPane>
    </children>

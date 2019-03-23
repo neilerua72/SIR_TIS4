@@ -18,6 +18,7 @@ import IU.ajouter_patient.ajouter_patient_controller;
 import IU.choix_rdv.choix_rdv_controller;
 import IU.img_grand.img_grand_controller;
 import IU.menu.menu_controller;
+import IU.redaction_CR.redaction_CR_controller;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.embed.swing.SwingFXUtils;
@@ -439,8 +440,8 @@ public class acceuil_medecin_controller implements Initializable{
             protocole.setText(cr.getProtocoleStandardise());
             text_resultatCR.setText(cr.getResultat());
             text_syntheseCR.setText(cr.getSynthese());
-            typeProduit.setText(cr.getProduitContrasteType());
-            quantite.setText(cr.getQuantiteProduitContraste()+"");
+            typeProduit.setText(examen.getProduit());
+            quantite.setText(examen.getDose()+"");
             cranchor.setVisible(true);
             aucunExamen.setVisible(false);
             rediger.setVisible(false);
@@ -549,6 +550,18 @@ public class acceuil_medecin_controller implements Initializable{
         stage.setScene(scene);
         stage.show();
 
+
+    }
+    public void rediger(ActionEvent event) throws IOException {
+        FXMLLoader loader =new FXMLLoader();
+        loader.setLocation(getClass().getResource("/IU/redaction_CR/redaction_CR.fxml"));
+        Parent parent = loader.load();
+        redaction_CR_controller redaction_cr = loader.getController();
+        redaction_cr.initData(sir,examen,this.menu,this.loadermenu);
+        Scene scene = new Scene(parent);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
 
     }
 
