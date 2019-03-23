@@ -6,18 +6,28 @@ public class Examen extends RDV {
     private Date dateExamen;
     private boolean image;
     private boolean validation;
-    private String crExamen;
+    private boolean crExamen;
     private String medecinRadio;
+    private String lateralite;
+    private String vue;
+    private String zoneetudie;
+    private String produit;
+    private String dose;
 
 
 
-    public Examen(Date dateRDV, TypeExamen typeExamen, String id, int salle, String cr, int idPatient,String medecinPrescri,Date dateExamen, boolean image, boolean validation, String crExamen,String medecinRadio) {
-        super(dateRDV, typeExamen, id, salle, cr,idPatient,medecinPrescri);
+    public Examen(String produit, String dose,String lateralite,String vue,String zoneetudie,Date dateRDV, TypeExamen typeExamen, String id, int salle, int idPatient,String medecinPrescri,Date dateExamen, boolean image, boolean validation, boolean crExamen,String medecinRadio) {
+        super(dateRDV, typeExamen, id, salle,idPatient,medecinPrescri);
         this.dateExamen = dateExamen;
         this.image = image;
         this.validation = validation;
         this.crExamen = crExamen;
         this.medecinRadio=medecinRadio;
+        this.lateralite=lateralite;
+        this.vue=vue;
+        this.zoneetudie=zoneetudie;
+        this.dose=dose;
+        this.produit=produit;
     }
 
     public Examen() {
@@ -36,7 +46,7 @@ public class Examen extends RDV {
         return validation;
     }
 
-    public String getCrExamen() {
+    public boolean getCr() {
         return crExamen;
     }
 

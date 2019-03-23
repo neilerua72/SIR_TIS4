@@ -33,7 +33,7 @@ public class LectExamen {
             //Création de l'objet gérant les requêtes
             statement = connexion.createStatement();
             //Exécution d'une requete de lecture
-            resultat = statement.executeQuery("SELECT idExamen,idPatient,dateRDV,ExamenFait,medecinPrescri,medecinRadio,dateExamen,image,validation,compteRendu,CRExamen,typeExamen,Salle FROM Examen;");
+            resultat = statement.executeQuery("SELECT idExamen,idPatient,dateRDV,ExamenFait,medecinPrescri,medecinRadio,dateExamen,image,validation,CRExamen,typeExamen,Salle,vue,zoneetudie,lateralite,produit,dose FROM Examen;");
             //Récupération des données du résultat de la requete de lecture
             while (resultat.next()) {
                 boolean examenFait = resultat.getBoolean("ExamenFait");
@@ -42,20 +42,26 @@ public class LectExamen {
                 int idPatient=resultat.getInt("idPatient");
                 String idExamen = resultat.getString("idExamen");
                 int salle = resultat.getInt("salle");
-                String compteRendu = resultat.getString("compteRendu");
+
                 TypeExamen typeExamenc = TypeExamen.RADIO;
                 typeExamenc= typeExamenc.matchType(typeExamen);
                  String medecinPrescri = resultat.getString("medecinPrescri");
+
                 if(!examenFait){
-                    RDV rdv = new RDV(dateRDV,typeExamenc,idExamen,salle,compteRendu,idPatient,medecinPrescri);
+                    RDV rdv = new RDV(dateRDV,typeExamenc,idExamen,salle,idPatient,medecinPrescri);
                     listeRDV.add(rdv);
                 }else{
                     Date dateExamen = resultat.getDate("dateExamen");
                     boolean image = resultat.getBoolean("image");
                     boolean validation = resultat.getBoolean("validation");
-                    String crExamen = resultat.getString("CRExamen");
+                    boolean crExamen = resultat.getBoolean("CRExamen");
                     String medecinRadio = resultat.getString("medecinRadio");
-                    Examen examen=new Examen(dateRDV,typeExamenc,idExamen,salle,compteRendu,idPatient,medecinPrescri,dateExamen,image,validation,crExamen,medecinRadio);
+                    String lateralite= resultat.getString("lateralite");
+                    String vue = resultat.getString("vue");
+                    String zoneetudie = resultat.getString("zoneetudie");
+                    String produit = resultat.getString("produit");
+                    String dose = resultat.getString("dose");
+                    Examen examen=new Examen(produit,dose,lateralite,vue,zoneetudie,dateRDV,typeExamenc,idExamen,salle,idPatient,medecinPrescri,dateExamen,image,validation,crExamen,medecinRadio);
                     listeExamen.add(examen);
                 }
 

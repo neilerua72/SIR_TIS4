@@ -47,7 +47,7 @@ public class LectImage {
 
                /* ImageIO.write(bImageFromConvert, "jpg", new File(
                         "/Users/hugobosquet/Desktop/new-sinus.jpg"));*/
-               RWImage rwImage = new RWImage(name,idExamen,bImageFromConvert);
+               RWImage rwImage = new RWImage(name,idExamen,bImageFromConvert,String.valueOf(idExamen));
                listeImage.add(rwImage);
                 System.out.println("copie de l'image sur le bureau");
 

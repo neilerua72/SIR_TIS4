@@ -5,6 +5,7 @@ package IU.redaction_CR;
  */
 
 import BD.ConnexionBase;
+import FC.SIR;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -202,6 +203,11 @@ public class redaction_CR_controller implements Initializable {
 
 
 
-    }}
+    }
+public void initData(SIR sir){
+
+}
+
+}
 
 

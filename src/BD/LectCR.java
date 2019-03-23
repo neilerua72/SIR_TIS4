@@ -43,6 +43,7 @@ public class LectCR {
 
 
 
+
                 CR cr = new CR(idCR,idExam,problemeClinique,technique,produitContrasteType,quantiteProduitContraste,comparaisonExamenAnt,dateCR,specialiteRadiologue,
                         protocoleStandardise,resultatCR,synthese,conclusion);
                 listeCR.add(cr);

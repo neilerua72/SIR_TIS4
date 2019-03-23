@@ -11,7 +11,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="624.0" prefWidth="773.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="IU.ajout_examen.ajout_examen_controller">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="624.0" prefWidth="852.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="IU.ajout_examen.ajout_examen_controller">
     <children>
         <Text layoutX="311.0" layoutY="49.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Examen">
             <font>
@@ -20,13 +20,13 @@
         </Text>
         <Button fx:id="button_acquisitionImage" layoutX="15.0" layoutY="72.0" mnemonicParsing="false" onAction="#chooseFileForList" prefHeight="25.0" prefWidth="127.0" text="Acquisition d'Image" />
         <Button fx:id="button_editionImage" layoutX="154.0" layoutY="72.0" mnemonicParsing="false" onAction="#editionImage" prefHeight="25.0" prefWidth="127.0" text="Edition d'Image" />
-        <Button fx:id="button_validerManipulation" layoutX="442.0" layoutY="72.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="316.0" text="Valider Manipulation" />
+        <Button fx:id="button_validerManipulation" layoutX="442.0" layoutY="72.0" mnemonicParsing="false" onAction="#ValiderManip" prefHeight="25.0" prefWidth="316.0" text="Valider Manipulation" />
         <Button fx:id="button_annulerEdition" cancelButton="true" layoutX="295.0" layoutY="72.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="127.0" text="Annuler Edition" />
         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#97979700" height="502.0" layoutX="12.0" layoutY="106.0" stroke="#858585" strokeType="INSIDE" width="410.0" />
       <ListView fx:id="listView_images" layoutX="12.0" layoutY="106.0" prefHeight="502.0" prefWidth="410.0" />
         <Text layoutX="445.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Informations Relatives au Patient" />
-        <Rectangle id="Infos Patient" arcHeight="5.0" arcWidth="5.0" fill="#97979700" height="121.0" layoutX="442.0" layoutY="123.0" stroke="#858585" strokeType="INSIDE" width="316.0" />
-        <GridPane layoutX="448.0" layoutY="126.0" prefHeight="114.0" prefWidth="304.0">
+        <Rectangle id="Infos Patient" arcHeight="5.0" arcWidth="5.0" fill="#97979700" height="121.0" layoutX="442.0" layoutY="123.0" stroke="#858585" strokeType="INSIDE" width="397.0" />
+        <GridPane layoutX="448.0" layoutY="126.0" prefHeight="114.0" prefWidth="385.0">
             <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="131.0" minWidth="10.0" prefWidth="99.0" />
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="172.0" minWidth="0.0" prefWidth="107.0" />
@@ -49,19 +49,19 @@
             </children>
         </GridPane>
         <Text layoutX="442.0" layoutY="269.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Informations Relatives à l'Examen" />
-        <Rectangle id="Infos Patient" arcHeight="5.0" arcWidth="5.0" fill="#97979700" height="93.0" layoutX="442.0" layoutY="273.0" stroke="#858585" strokeType="INSIDE" width="316.0" />
-        <GridPane layoutX="448.0" layoutY="277.0" prefHeight="85.0" prefWidth="304.0">
+        <Rectangle id="Infos Patient" arcHeight="5.0" arcWidth="5.0" fill="#97979700" height="93.0" layoutX="442.0" layoutY="273.0" stroke="#858585" strokeType="INSIDE" width="397.0" />
+        <GridPane layoutX="448.0" layoutY="277.0" prefHeight="85.0" prefWidth="377.0">
             <children>
                 <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Médecin Prescripteur" />
                 <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Médecin Radiologue" GridPane.rowIndex="1" />
                 <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Manipulateur" GridPane.rowIndex="2" />
-                <TextField fx:id="champ_medecinPrescripteurManip" GridPane.columnIndex="1" GridPane.columnSpan="3" />
-                <TextField fx:id="champ_medecinRadiologueManip" GridPane.columnIndex="1" GridPane.columnSpan="2147483647" GridPane.rowIndex="1" />
+                <TextField fx:id="champ_medecinRadiologueManip" prefHeight="31.0" prefWidth="188.0" GridPane.columnIndex="1" GridPane.columnSpan="2147483647" GridPane.rowIndex="1" />
                 <TextField fx:id="champ_manipulateurManip" GridPane.columnIndex="1" GridPane.columnSpan="2147483647" GridPane.rowIndex="2" />
+            <Text fx:id="champ_medecinPrescripteurManip" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="145.6708984375" GridPane.columnIndex="1" />
             </children>
             <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="131.0" minWidth="10.0" prefWidth="118.0" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="172.0" minWidth="0.0" prefWidth="92.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="178.0" minWidth="10.0" prefWidth="172.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="172.0" minWidth="0.0" prefWidth="71.0" />
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="172.0" minWidth="10.0" prefWidth="44.0" />
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="172.0" minWidth="10.0" prefWidth="47.0" />
             </columnConstraints>
@@ -71,14 +71,14 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             </rowConstraints>
         </GridPane>
-        <Rectangle id="Infos Patient" arcHeight="5.0" arcWidth="5.0" fill="#97979700" height="121.0" layoutX="442.0" layoutY="380.0" stroke="#858585" strokeType="INSIDE" width="316.0" />
-        <GridPane layoutX="448.0" layoutY="383.0" prefHeight="114.0" prefWidth="304.0">
+        <Rectangle id="Infos Patient" arcHeight="5.0" arcWidth="5.0" fill="#97979700" height="121.0" layoutX="442.0" layoutY="380.0" stroke="#858585" strokeType="INSIDE" width="397.0" />
+        <GridPane layoutX="448.0" layoutY="383.0" prefHeight="114.0" prefWidth="385.0">
             <children>
                 <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Zone étudiée" />
                 <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Type d'Examen" GridPane.rowIndex="1" />
                 <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Date d'Examen" GridPane.rowIndex="3" />
                 <Text strokeType="OUTSIDE" strokeWidth="0.0" text="ID Examen" GridPane.rowIndex="2" />
-                <TextField fx:id="champ_zoneEtudieeManip" GridPane.columnIndex="1" GridPane.columnSpan="3" />
+                <TextField fx:id="champ_zoneEtudieeManip" prefHeight="31.0" prefWidth="246.0" GridPane.columnIndex="1" GridPane.columnSpan="3" />
             <Text fx:id="textTypeExam" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <Text fx:id="textIdExamen" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <Text fx:id="textDateExam" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" GridPane.rowIndex="3" />
@@ -96,23 +96,23 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             </rowConstraints>
         </GridPane>
-        <Rectangle id="Infos Patient" arcHeight="5.0" arcWidth="5.0" fill="#97979700" height="93.0" layoutX="442.0" layoutY="514.0" stroke="#858585" strokeType="INSIDE" width="316.0" />
-        <GridPane layoutX="448.0" layoutY="517.0" prefHeight="85.0" prefWidth="304.0">
+        <Rectangle id="Infos Patient" arcHeight="5.0" arcWidth="5.0" fill="#97979700" height="93.0" layoutX="442.0" layoutY="514.0" stroke="#858585" strokeType="INSIDE" width="397.0" />
+        <GridPane layoutX="448.0" layoutY="517.0" prefHeight="85.0" prefWidth="385.0">
             <children>
                 <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Vue" />
                 <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Latéralité" GridPane.rowIndex="1" />
                 <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Dose Reçue" GridPane.rowIndex="2" />
-                <ChoiceBox fx:id="choice_uniteDoseManip" prefWidth="150.0" GridPane.columnIndex="3" GridPane.rowIndex="2" />
                 <TextField fx:id="champ_vueManip" GridPane.columnIndex="1" GridPane.columnSpan="3" />
-                <Text layoutX="5.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Unité" translateX="35.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                <Text layoutX="5.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Produit de contraste" GridPane.columnIndex="2" GridPane.rowIndex="2" />
                 <TextField fx:id="champ_lateraliteManip" GridPane.columnIndex="1" GridPane.columnSpan="2147483647" GridPane.rowIndex="1" />
                 <TextField fx:id="champ_doseRecueManip" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="produitdecontraste" GridPane.columnIndex="3" GridPane.rowIndex="2" />
             </children>
             <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="131.0" minWidth="10.0" prefWidth="99.0" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="172.0" minWidth="0.0" prefWidth="85.0" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="172.0" minWidth="10.0" prefWidth="70.0" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="172.0" minWidth="10.0" prefWidth="47.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="131.0" minWidth="10.0" prefWidth="83.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="172.0" minWidth="0.0" prefWidth="79.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="186.0" minWidth="10.0" prefWidth="134.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="172.0" minWidth="10.0" prefWidth="78.0" />
             </columnConstraints>
             <rowConstraints>
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />

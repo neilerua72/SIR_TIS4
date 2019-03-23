@@ -55,7 +55,14 @@ public class SIR {
                 else
                     validation="Non validé";
 
-                tb=new TableExamen(this.getNomPatient(e.getIdPatient()),this.getPrenomPatient(e.getIdPatient()),e.getIdPatient(),e.getDateExamen(),e.getMedecinPrescri(),e.getMedecinRadio(),e.getId(),e.getTypeExamen().toString(),image,validation,e.getCr());
+                String cr;
+                if(e.getCr()){
+                    cr="Ecrit";
+                }
+                else
+                    cr="Non écrit";
+
+                tb=new TableExamen(this.getNomPatient(e.getIdPatient()),this.getPrenomPatient(e.getIdPatient()),e.getIdPatient(),e.getDateExamen(),e.getMedecinPrescri(),e.getMedecinRadio(),e.getId(),e.getTypeExamen().toString(),image,validation,cr);
 
                 tableExamen.add(tb);
             }
@@ -249,5 +256,28 @@ public class SIR {
             }
         }
         return result;
+    }
+
+    public void supprimerRDV(String id){
+        int i=0;
+        boolean rep = true;
+        while(i<listeRDV.size()&&rep==false){
+            if(listeRDV.get(i).getId().equals(id)){
+                rep =true;
+                listeRDV.remove(i);
+            }
+            i++;
+        }
+    }
+    public boolean checkIdImage(int idtest){
+        int i=0;
+        boolean rep = false;
+        while(i<this.listeImage.size()&&rep==false){
+            if(idtest==this.listeImage.get(i).getId()){
+                rep = true;
+            }
+            i++;
+        }
+        return rep;
     }
 }

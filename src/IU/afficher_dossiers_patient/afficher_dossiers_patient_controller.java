@@ -259,8 +259,8 @@ public class afficher_dossiers_patient_controller {
             if(cr!=null){
             Patient patient = sir.getPatientFromId(examen.getIdPatient());
             nom.setText(patient.getNom());
-            prenom.setText(patient.getNom());
-            //dateDeNaissance.setText(patient.getDateDeNaissance().toString());
+            prenom.setText(patient.getPrenom());
+            dateDeNaissance.setText(patient.getDateDeNaissance().toString());
             dateRDV.setText(examen.getDateRDV().toString());
             dateExamen.setText(examen.getDateExamen().toString());
             radio.setText(examen.getMedecinRadio());

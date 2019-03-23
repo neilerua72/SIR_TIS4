@@ -127,7 +127,8 @@ public class edition_image_controller implements Initializable {
 
     private StackPane stackPane = new StackPane();
 
-    private RDV rdv = new RDV(date, IRM, "deux", 07, "fres", 01020102, "bourat");
+    //private RDV rdv = new RDV(date, IRM, "deux", 07, "fres", 01020102, "bourat");
+    private RDV rdv;
 
     public Slider getSlider_contrast() {
         return slider_contrast;
@@ -339,8 +340,9 @@ public class edition_image_controller implements Initializable {
         return imageView_editionImage;
     }
 
-    public void setImageView_editionImage(Image Image) {
+    public void setImageView_editionImage(Image Image,RDV rdv) {
         this.imageView_editionImage.setImage(Image);
+        this.rdv=rdv;
     }
 
 

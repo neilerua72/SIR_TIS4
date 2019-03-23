@@ -218,7 +218,7 @@ public class liste_patient_secretaire_controller {
             }
         }
 
-        RDV rdv = new RDV(gooddate,typeExamEnum,String.valueOf(id),Integer.parseInt(salle),"TEST",p.getId(),medecinPrescri);
+        RDV rdv = new RDV(gooddate,typeExamEnum,String.valueOf(id),Integer.parseInt(salle),p.getId(),medecinPrescri);
         this.sir.getListeRDV().add(rdv);
         sir.UpdateTableRDV();
 

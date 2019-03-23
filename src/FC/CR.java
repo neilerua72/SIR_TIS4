@@ -16,6 +16,7 @@ public class CR {
     private String resultat;
     private String synthese;
     private String conclusion;
+
     public CR(){
 
     }
@@ -34,6 +35,8 @@ public class CR {
         this.resultat = resultat;
         this.synthese = synthese;
         this.conclusion = conclusion;
+
+
     }
 
     public String toString() {

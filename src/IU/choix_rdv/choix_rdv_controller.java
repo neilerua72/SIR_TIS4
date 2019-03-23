@@ -128,7 +128,7 @@ public class choix_rdv_controller {
         ajout_examen_controller controller = loader.getController();
         System.out.println(controller.toString());
 
-        controller.initData(this.sir,this.sir.getRDVfromTableRDV(rdv));
+        controller.initData(this.sir,this.sir.getRDVfromTableRDV(rdv),menu,loadermenu);
         Scene scene = new Scene(parent);
         Stage stage = new Stage(StageStyle.DECORATED);
         stage.setScene(scene);
