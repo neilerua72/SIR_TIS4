@@ -276,9 +276,9 @@ public class ajout_examen_controller {
         //access the controller and get a method
         edition_image_controller controller = loader.getController();
         System.out.println(controller);
-        controller.setImageView_editionImage(this.getImage_to_edit(),this.rdv);
+        controller.setImageView_editionImage(this.getImage_to_edit(),this.rdv,this.selectedImage,sir,menu,loadermenu);
         Scene scene = new Scene(parent);
-        Stage stage = new Stage(StageStyle.DECORATED);
+        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         stage.setScene(scene);
         stage.show();
 
@@ -348,34 +348,33 @@ public class ajout_examen_controller {
             stage.show();
         }
     }
+    public void initImg(ArrayList<File> listeImg) throws IOException {
+        for(int i=0;i<listeImg.size();i++){
+            selectedImage.add(listeImg.get(i));
+        }
+        for (File file : selectedImage) {
+            BufferedImage buffered_image = ImageIO.read(file);
+            //if trop grand: rescale -> Il faut qu'elles fassent toutes la même taille
+            if ((buffered_image.getHeight() > 275) && (buffered_image.getWidth() > 275)) {
+                AffineTransform tx = new AffineTransform();
+                tx.scale(0.2, 0.2);
+                AffineTransformOp op = new AffineTransformOp(tx, AffineTransformOp.TYPE_BILINEAR);
+                BufferedImage bufferedimage = op.filter(buffered_image, null);
+                Image image = SwingFXUtils.toFXImage(bufferedimage, null);
+                ImageView imageview = new ImageView(image);
+                listView_images.getItems().add(imageview);
+            } else {
+                //
+                //int lastItem = listView_images.getItems().size()-1;
+                //listView_images.getItems().size();
+                // listView_images.getItems().remove(listView_images.getItems().get(0),listView_images.getItems().get(lastItem)); //vider le truc qui affiche et le re remplir
+
+                Image image = SwingFXUtils.toFXImage(buffered_image, null);
+                ImageView imageview = new ImageView(image);
+                listView_images.getItems().add(imageview);
+            }
+        }
+    }
 }
 
 
-
-   /* public void chooseFile(ActionEvent actionEvent) throws MalformedURLException {
-FileChooser chooser = new FileChooser();
-chooser.setTitle("Choisir une Image");
-chooser.getExtensionFilters().addAll(
-new FileChooser.ExtensionFilter("Image Files",
-"*.bmp", "*.png", "*.jpg")); // limit fileChooser options to image files
-//File file = chooser.showOpenDialog(new Stage());
-File file = chooser.showOpenDialog(button_acquisitionImage.getScene().getWindow());  * /
-if (file != null) {
-try {
-BufferedImage bufferedImage = ImageIO.read(file);
-Image image = SwingFXUtils.toFXImage(bufferedImage, null);
-imageView_dl.setImage(image);
-} catch (IOException e) {
-//e.printStackTrace();
-}
-
-} else {
-Alert alert = new Alert(Alert.AlertType.INFORMATION);
-alert.setTitle("Message d'information");
-alert.setHeaderText("Vous n'avez pas choisi d'image à traiter!");
-//alert.setContentText("Veuillez sélectionner une image à traiter");
-alert.showAndWait();
-}
-
-}
-}  */

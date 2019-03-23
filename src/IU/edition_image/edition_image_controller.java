@@ -11,10 +11,9 @@ import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
+import javafx.fxml.FXMLLoader;
 import javafx.print.*;
-import javafx.scene.Node;
-import javafx.scene.Scene;
-import javafx.scene.SnapshotParameters;
+import javafx.scene.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
@@ -41,6 +40,7 @@ import javafx.scene.control.Slider;
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.stage.StageStyle;
 import javafx.stage.Window;
 
 import javax.imageio.*;
@@ -57,6 +57,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.net.URL;
 import java.sql.*;
 import java.text.Format;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.ResourceBundle;
 
@@ -126,9 +127,13 @@ public class edition_image_controller implements Initializable {
     private javafx.scene.image.Image image_edit;
 
     private StackPane stackPane = new StackPane();
+    private ArrayList<File> listImg;
 
     //private RDV rdv = new RDV(date, IRM, "deux", 07, "fres", 01020102, "bourat");
     private RDV rdv;
+    private SIR sir;
+    private Parent menu;
+    private FXMLLoader loadermenu;
 
     public Slider getSlider_contrast() {
         return slider_contrast;
@@ -190,10 +195,20 @@ public class edition_image_controller implements Initializable {
 
 
         //BufferedImage BUFFEREDIMAGE = SwingFXUtils.fromFXImage(imageView_editionImage.getImage(), null);
-        button_valider.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                //Image image =  SwingFXUtils.fromFXImage(imageView_editionImage.getImage());  // javafx.scene.image.Image
+    }
+
+
+    public Node printNode;
+
+
+    /*
+    PRINT IMAGE
+     */
+    private Stage owner;
+
+    public void validerImg(ActionEvent event) throws IOException {
+
+            //Image image =  SwingFXUtils.fromFXImage(imageView_editionImage.getImage());  // javafx.scene.image.Image
            /*     String format = "png";
                 File file = new File("C:\\Users\\Utilisateur\\Documents\\Polytech\\Cours TIS4\\Semestre 8\\SIR\\SIR_TIS4\\src\\IU\\edition_image\\test_image_local\\formattedImage.jpg.");
                 try {
@@ -216,90 +231,120 @@ public class edition_image_controller implements Initializable {
                 WritableImage writableImage = new WritableImage(imageView_editionImage.getImage().getPixelReader(), (int) imageView_editionImage.getImage().getWidth(), (int) imageView_editionImage.getImage().getHeight());
                 */
 
-                // Scaling the image gives it a higher resolution which results in a better image quality when the image is exported
-                SnapshotParameters snapshotParameters = new SnapshotParameters();
-                snapshotParameters.setTransform(new Scale(0.445, 0.44444));
-                WritableImage snapshot = pane_image.snapshot(snapshotParameters, null);
-                RenderedImage renderedImage = SwingFXUtils.fromFXImage(snapshot, null);
+            // Scaling the image gives it a higher resolution which results in a better image quality when the image is exported
+            SnapshotParameters snapshotParameters = new SnapshotParameters();
+            snapshotParameters.setTransform(new Scale(0.445, 0.44444));
+            WritableImage snapshot = pane_image.snapshot(snapshotParameters, null);
+            RenderedImage renderedImage = SwingFXUtils.fromFXImage(snapshot, null);
 
-                //Copy the image so that it won't save pink colored
-                BufferedImage imageToSave = new BufferedImage(renderedImage.getWidth(), renderedImage.getHeight(), BufferedImage.TYPE_3BYTE_BGR);
-                imageToSave.getGraphics().drawImage((BufferedImage) renderedImage, 0, 0, null);
+            //Copy the image so that it won't save pink colored
+            BufferedImage imageToSave = new BufferedImage(renderedImage.getWidth(), renderedImage.getHeight(), BufferedImage.TYPE_3BYTE_BGR);
+            imageToSave.getGraphics().drawImage((BufferedImage) renderedImage, 0, 0, null);
 
-                Iterator iter = ImageIO.getImageWritersByFormatName("jpg");
-                //Then, choose the first image writer available and create an ImageWriter instance:
-                 ImageWriter writer = (ImageWriter) iter.next();
-                // instantiate an ImageWriteParam object with default compression options
-                ImageWriteParam iwp = writer.getDefaultWriteParam();
-                //Now, we can set the compression quality:
-                iwp.setCompressionMode(ImageWriteParam.MODE_EXPLICIT); //set to Explicit mode in order to specify the compression quality
-                iwp.setCompressionQuality(1);   // an integer between 0 and 1,  1 specifies minimum compression and maximum quality
+            Iterator iter = ImageIO.getImageWritersByFormatName("jpg");
+            //Then, choose the first image writer available and create an ImageWriter instance:
+            ImageWriter writer = (ImageWriter) iter.next();
+            // instantiate an ImageWriteParam object with default compression options
+            ImageWriteParam iwp = writer.getDefaultWriteParam();
+            //Now, we can set the compression quality:
+            iwp.setCompressionMode(ImageWriteParam.MODE_EXPLICIT); //set to Explicit mode in order to specify the compression quality
+            iwp.setCompressionQuality(1);   // an integer between 0 and 1,  1 specifies minimum compression and maximum quality
 
-                // Output the file:
-                String new_file = new String();
-                new_file = "C:\\Users\\Utilisateur\\Documents\\Polytech\\Cours TIS4\\Semestre 8\\SIR\\SIR_TIS4\\src\\IU\\edition_image\\test_image_local\\";
-                //new_file = new_file + "formattedImage.jpg";
-                new_file = new_file + rdv.getIdPatient() + rdv.getSalle() + ".jpg";
-                File file = new File(new_file);
-                FileImageOutputStream output;
-                try {
-                    output = new FileImageOutputStream(file);
-                    writer.setOutput(output);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                IIOImage image = new IIOImage(imageToSave, null, null);
+            // Output the file:
+            String new_file = new String();
+            new_file=System.getProperty("user.dir")+"\\Images";
+            File dossier=new File(new_file);
 
-                ImageWriteParam param = writer.getDefaultWriteParam();
-                ImageTypeSpecifier type = new ImageTypeSpecifier(renderedImage);
+            if (!dossier.exists() || !dossier.isDirectory()){
+                dossier.mkdir();
+            }
+            new_file=new_file+"\\"+rdv.getIdPatient();
+            dossier=new File(new_file);
+            if (!dossier.exists() || !dossier.isDirectory()){
+                dossier.mkdir();
+            }
 
-                IIOMetadata imgMetadata = writer.getDefaultImageMetadata(type, param);
-
-                try {
-                    writer.write(imgMetadata, image, iwp);
-                    System.out.println("writer");
-                    System.out.println(new_file);
-
-                    String url = "jdbc:mysql://db4free.net/bdsirtis";
-                    String user = "testbd";
-                    String passwd = "12345678";
-                    String sql = "INSERT INTO Image (idExamen,nom,image) VALUES(?,?,?)";
-
-                    int idExamen = 0+(int)(Math.random()*((999999-0)+1));
+            new_file=new_file+"\\"+rdv.getId();
+            dossier =new File(new_file);
+            if (!dossier.exists() || !dossier.isDirectory()){
+                dossier.mkdir();
+            }
+            int idImg=(int)(Math.random() * ( 999999 - 100000 )+1);
+            new_file=new_file+"\\"+idImg+".jpg";
 
 
-                    try (Connection conn = DriverManager.getConnection(url, user, passwd);) {
-                        File imagemodif = new File(new_file);
-                        try (FileInputStream inputStream = new FileInputStream(imagemodif);
-                             PreparedStatement stmt = conn.prepareStatement(sql);) {
-                            stmt.setInt(1,idExamen);
-                            stmt.setString(2, "cor494");
-                            stmt.setBinaryStream(3, inputStream, imagemodif.length());
-                            stmt.executeUpdate();
-                            System.out.println("Image sauvegarder dans la BD image");
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                    } catch (SQLException e) {
+            File file = new File(new_file);
+            FileImageOutputStream output;
+            try {
+                output = new FileImageOutputStream(file);
+                writer.setOutput(output);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            IIOImage image = new IIOImage(imageToSave, null, null);
+
+            ImageWriteParam param = writer.getDefaultWriteParam();
+            ImageTypeSpecifier type = new ImageTypeSpecifier(renderedImage);
+
+            IIOMetadata imgMetadata = writer.getDefaultImageMetadata(type, param);
+            listImg.add(file);
+
+            try {
+                writer.write(imgMetadata, image, iwp);
+                System.out.println("writer");
+                System.out.println(new_file);
+
+                String url = "jdbc:mysql://db4free.net/bdsirtis";
+                String user = "testbd";
+                String passwd = "12345678";
+                String sql = "INSERT INTO Image (idExamen,nom,image) VALUES(?,?,?)";
+
+                int idExamen = Integer.valueOf(rdv.getId());
+
+
+                try (Connection conn = DriverManager.getConnection(url, user, passwd);) {
+                    File imagemodif = new File(new_file);
+                    try (FileInputStream inputStream = new FileInputStream(imagemodif);
+                         PreparedStatement stmt = conn.prepareStatement(sql);) {
+                        stmt.setInt(1,idExamen);
+                        stmt.setString(2, ""+idImg);
+                        stmt.setBinaryStream(3, inputStream, imagemodif.length());
+                        stmt.executeUpdate();
+                        System.out.println("Image sauvegarder dans la BD image");
+                    } catch (IOException e) {
                         e.printStackTrace();
                     }
-
-                } catch (IOException e) {
+                } catch (SQLException e) {
                     e.printStackTrace();
                 }
-                writer.dispose();
+
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-        });
-    }
+            writer.dispose();
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/IU/ajout_examen/ajout_examen.fxml"));
+            Parent parent = null;
+            try {
+                parent = loader.load();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            ajout_examen_controller controller = loader.getController();
+            System.out.println(controller.toString());
+
+            controller.initData(this.sir,rdv,menu,loadermenu);
+            controller.initImg(listImg);
+            Scene scene = new Scene(parent);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+        }
 
 
-    public Node printNode;
 
 
-    /*
-    PRINT IMAGE
-     */
-    private Stage owner;
+
 
     public void printImage() throws
             NoSuchMethodException, InstantiationException, IllegalAccessException, InvocationTargetException {
@@ -340,9 +385,13 @@ public class edition_image_controller implements Initializable {
         return imageView_editionImage;
     }
 
-    public void setImageView_editionImage(Image Image,RDV rdv) {
+    public void setImageView_editionImage(Image Image, RDV rdv, ArrayList<File> listImg, SIR sir, Parent menu, FXMLLoader loadermenu) {
         this.imageView_editionImage.setImage(Image);
         this.rdv=rdv;
+        this.listImg=listImg;
+        this.sir=sir;
+        this.menu=menu;
+        this.loadermenu=loadermenu;
     }
 
 
