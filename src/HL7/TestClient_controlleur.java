@@ -18,6 +18,12 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.util.Date;
+import com.sun.jna.Native;
+import com.sun.jna.platform.win32.Shell32;
+import com.sun.jna.platform.win32.ShlObj;
+import com.sun.jna.platform.win32.WinDef;
+
+
 
 public class TestClient_controlleur {
     @FXML
@@ -69,7 +75,8 @@ public class TestClient_controlleur {
     }
 
 
-
+//apres avoir appuié sur le bouton, l'interface attends la reception du message
+    //une fois le message recu il est sotcké dans les label invisibles
     @FXML
     private void Connecter(){
         Integer port = Integer.parseInt(this.port.getText());
@@ -123,6 +130,8 @@ public class TestClient_controlleur {
 
         this.MessageCode.setText(Code());
     }
+
+    //codage du message recu
     public String Code(){
         String message = "|||";
 
@@ -144,10 +153,24 @@ public class TestClient_controlleur {
         return message;
     }
 
+
+
+
+
+
+
+
+//sauvgarde le message envoyé sur la machine sous forme d'un document texte
     @FXML
     private void OuvrirText() {
-        String FILENAME = "/Users/hugobosquet/Desktop/examRadio.txt";
+        char[] pszPath = new char[WinDef.MAX_PATH];
+        Shell32.INSTANCE.SHGetFolderPath(null,
+                ShlObj.CSIDL_DESKTOPDIRECTORY, null, ShlObj.SHGFP_TYPE_CURRENT,
+                pszPath);
 
+        String FILENAME = Native.toString(pszPath) + "\\examRadio.txt";
+       // String FILENAME = "C:\\Users\\glebb\\Desktop\\projet SIS\\examRadio.txt";
+        System.out.println(System.getProperty("user.dir"));
 
 
             BufferedWriter bw = null;

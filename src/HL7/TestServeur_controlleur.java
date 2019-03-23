@@ -25,12 +25,7 @@ import java.util.logging.Level;
 import IU.acceuil_medecin.acceuil_medecin_controller;
 public class TestServeur_controlleur {
     private Patient patient;
-    private Action action;
-    private char sex = 'X';
-    private String card = "cardAdmettre";
-    private int nbr;
     private final SimpleDateFormat formateur = new SimpleDateFormat("yyyy-MM-dd");
-private acceuil_medecin_controller acceuil;
 
 
 
@@ -68,12 +63,6 @@ private acceuil_medecin_controller acceuil;
     @FXML
     private TextField IDExam;
 
-    @FXML //fx:id="Categorie"
-    private ComboBox<String> Categorie;
-
-    @FXML //fx:id="Sexe"
-    private ComboBox<String> Sexe;
-
     @FXML //fx:id="Admettre"
     private Button Admettre ;
 
@@ -96,54 +85,42 @@ private acceuil_medecin_controller acceuil;
     private TextField port;
 
 
-   // ObservableList<String> cat = FXCollections.observableArrayList("IRM","Scanner","Radio");
-   // ObservableList<String> sexe = FXCollections.observableArrayList("Homme","Femme","Autre");
-
     @FXML
         // This method is called by the FXMLLoader when initialization is complete
     void initialize() {
-      //  Categorie.setItems(cat);
-       // Sexe.setItems(sexe);
 
     }
 
     //remplissage champs texte avec les données de la table acceuil medecin
     public void transferNom(String message) {
-        //Display the message
+
         Nom.setText(message);
     }
     public void transferPrenom(String message) {
-        //Display the message
         prenom.setText(message);
     }
 
     public void transferID(int message) {
-        //Display the message
         identification.setText(String.valueOf(message));
     }
 
     public void transferIDExam(String message) {
-        //Display the message
         IDExam.setText(String.valueOf(message));
     }
     public void transferDate(Date message) {
-        //Display the message
         Date_Exam.setText(message.toString());
     }
     public void transferMedPresc(String message) {
-        //Display the message
         MedPrescripteur.setText(message);
     }
     public void transferMedRadio(String message) {
-        //Display the message
         MedRadio.setText(message);
     }
     public void transferType(String message) {
-        //Display the message
         TypeExamen.setText(message);
     }
 
-    //set couleurs des camps
+    //set couleurs des camps par defaut
     private void initBackgroundField() {
         this.identification.setStyle("-fx-background-color: white;");   //changer couleur champ texte
         this.Nom.setStyle("-fx-background-color: white;");
@@ -151,14 +128,14 @@ private acceuil_medecin_controller acceuil;
 
     }
 
-
+//methode qui verifie si les champs sont bien remplis avant d'envoyer le message
     private boolean champsPatOk() {
         boolean r = true;
         this.initBackgroundField();
 
         if (this.Nom.getText().length() == 0) {
             r = false;
-            this.Nom.setStyle("-fx-background-color: red;");
+            this.Nom.setStyle("-fx-background-color: red;"); //met le champ en rouge si pas rempli
         }
         String s = this.identification.getText();
         int t = s.length();
@@ -172,14 +149,14 @@ private acceuil_medecin_controller acceuil;
                     s.charAt(i) != '3' & s.charAt(i) != '4' & s.charAt(i) != '5' &
                     s.charAt(i) != '6' & s.charAt(i) != '7' & s.charAt(i) != '8' & s.charAt(i) != '9') {
                 r = false;
-                this.identification.setStyle("-fx-background-color: red;");
+                this.identification.setStyle("-fx-background-color: red;"); //met champs en rouge si rempli avec autres caracteres que les chiffres
             }
         }
         return r;
 
     }
 
-
+//cree le patien qui sera ensuite envoyé
         private void creePatient() {
         try {
             //Nom de famille
@@ -204,14 +181,14 @@ private acceuil_medecin_controller acceuil;
                     classe = 'O';
                 }
 
-                this.patient = new Patient(id, surname, classe);
+                this.patient = new Patient(id, surname, classe); //creation du patient avec id, nom et type d'examen
             }
         } catch (NumberFormatException e) {
             System.out.println("Erreur d'identification patient : " + e.getMessage());
         }
 
     }
-
+//methode pour recuperer les infos qui seront envoyés
     private PatientLocation setValPatLoc(PatientLocation patLocation) {
 
         //Type examen
@@ -230,7 +207,7 @@ private acceuil_medecin_controller acceuil;
         if (field != null) {
             patLocation.setBed(field);
         }
-
+        //id examen
         field = this.IDExam.getText();
         if (field != null) {
             patLocation.setBuilding(field);
@@ -239,7 +216,7 @@ private acceuil_medecin_controller acceuil;
     }
 
 
-
+//set prenom du patient et la date de son examen
     private void setValPatient() {
         //Prénom de famille
         this.patient.setFirstName(this.prenom.getText());
@@ -257,44 +234,13 @@ private acceuil_medecin_controller acceuil;
             Logger.getLogger(TestServeur_controlleur.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-
-
-        /*int i = this.Sexe.getSelectionModel().getSelectedIndex();
-        switch (i) {
-            case 0: {
-                this.sex = 'M';
-                break;
-            }
-            case 1: {
-                this.sex = 'F';
-                break;
-            }
-            case 2: {
-                this.sex = 'O';
-                break;
-            }
-            case 3: {
-                this.sex = 'U';
-                break;
-            }
-            case 4: {
-                this.sex = 'A';
-                break;
-            }
-        }*/
-
-      /*  //sexe
-        if (this.sex != 'X') {
-            this.patient.setSex(this.sex);
-        }
-*/
         PatientLocation assignedLocation = new PatientLocation(this.patient);
         assignedLocation = this.setValPatLoc(assignedLocation);
         this.patient.setAssignedPatLocation(assignedLocation);
     }
 
 
-    @FXML
+   /* @FXML
     private void Connecter()  throws IOException{
        FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("TestClient.fxml"));
@@ -303,8 +249,9 @@ private acceuil_medecin_controller acceuil;
         Stage stage = new Stage(StageStyle.DECORATED);
         stage.setScene(scene);
         stage.show();
-    }
+    }*/
 
+   //envoie du message
     @FXML
     private void Admission() {
         if (this.champsPatOk()) {
@@ -314,17 +261,17 @@ private acceuil_medecin_controller acceuil;
             this.setValPatient();
 
 
-            //changer de panel
+
 
             String host = this.host.getText();
             Integer port = Integer.parseInt(this.port.getText());
             ClientHL7 c = new ClientHL7();
             c.connexion(host, port);
             c.admit(patient);
-            MessageInterface messageAck = c.getMsg();
-            this.l1.setText("ID message : " + messageAck.getId());
+           // MessageInterface messageAck = c.getMsg();
+          /*  this.l1.setText("ID message : " + messageAck.getId());
             this.l2.setText(messageAck.getAcknowledgmentCodeString());
-            this.l3.setText("ID Ack: " + messageAck.getIdAck());
+            this.l3.setText("ID Ack: " + messageAck.getIdAck());*/
 
         }
 
