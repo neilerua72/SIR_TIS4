@@ -222,7 +222,8 @@ public class acceuil_medecin_controller implements Initializable{
     private ListView<ImageView> listView_imagesExam;
     @FXML
     private AnchorPane cranchor;
-
+    @FXML
+    private Button rediger;
     private Examen examen;
 
     private BufferedImage image_to_edit;
@@ -442,11 +443,15 @@ public class acceuil_medecin_controller implements Initializable{
             quantite.setText(cr.getQuantiteProduitContraste()+"");
             cranchor.setVisible(true);
             aucunExamen.setVisible(false);
+            rediger.setVisible(false);
         }
         else{
             cranchor.setVisible(false);
             aucunExamen.setText("Aucun Compte-Rendu de rédigé pour l'instant");
             aucunExamen.setVisible(true);
+            rediger.setVisible(true);
+            if(sir.getConnexion().getType().equals(TypeConnexion.MAN))
+                rediger.setDisable(true);
             System.out.println("CR NULL");
         }
         if(listeIMG.size()>0){

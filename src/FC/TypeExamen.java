@@ -25,5 +25,14 @@ private String nom="";
     public String toString(){
         return nom;
     }
+
+    public String returnType(){
+        if(this.nom.equals("Scanner"))
+            return "SCANNER";
+        else if(this.nom.equals("Radio"))
+        return "RADIO";
+	else
+        return "IRM";
     }
 
+}
