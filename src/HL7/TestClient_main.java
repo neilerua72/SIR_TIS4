@@ -28,7 +28,7 @@ public class TestClient_main extends Application {
         // starts the FX toolkit, instantiates this class,
         // and calls start(...) on the FX Application thread:
         launch(args);
-
+        System.out.println(System.getProperty("user.dir"));
 
     }
 }

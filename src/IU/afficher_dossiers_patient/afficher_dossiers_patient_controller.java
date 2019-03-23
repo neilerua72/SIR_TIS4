@@ -189,8 +189,13 @@ public class afficher_dossiers_patient_controller {
 
     @FXML
     private Text dateExamen;
+
+    @FXML
+    private Text resultat;
     @FXML
     private AnchorPane cranchor;
+    @FXML
+    private Text synthese;
 
     @FXML
     private AnchorPane top;
@@ -222,6 +227,9 @@ public class afficher_dossiers_patient_controller {
         assert champ_date != null : "fx:id=\"champ_date\" was not injected: check your FXML file 'afficher_dossiers_patient.fxml'.";
         assert listView_examensRealises != null : "fx:id=\"listView_examensRealises\" was not injected: check your FXML file 'afficher_dossiers_patient.fxml'.";
         assert texte_date != null : "fx:id=\"texte_date\" was not injected: check your FXML file 'afficher_dossiers_patient.fxml'.";
+        ToggleGroup groupe_toggle_rechercherPar = new ToggleGroup();
+        toggle_nomPatient.setToggleGroup(groupe_toggle_rechercherPar);
+        toggle_IDPatient.setToggleGroup(groupe_toggle_rechercherPar);
         tableau_colonnes.getSelectionModel().selectedItemProperty().addListener(
                 (observable, oldValue, newValue) -> showListeExam(newValue));
 
@@ -256,6 +264,7 @@ public class afficher_dossiers_patient_controller {
     private void showDetailExam(TableExamen tableExamen) {
             Examen examen = sir.getExamenFromId(Integer.parseInt(tableExamen.getIdexamen()));
             CR cr = sir.getCRFromIdExam(Integer.parseInt(examen.getId()));
+
             if(cr!=null){
             Patient patient = sir.getPatientFromId(examen.getIdPatient());
             nom.setText(patient.getNom());
@@ -269,7 +278,8 @@ public class afficher_dossiers_patient_controller {
             text_descriptionTechniqueCR.setText(cr.getTechnique());
             text_comparaisonExamensExterieursCR.setText(cr.getComparaisonExamenAnt());
             text_conclusionCR.setText(cr.getConclusion());
-            text_protocoleStandardiseCR.setText(cr.getProtocoleStandardise());
+
+            protocole.setText(cr.getProtocoleStandardise());
             text_resultatCR.setText(cr.getResultat());
             text_syntheseCR.setText(cr.getSynthese());
             typeProduit.setText(cr.getProduitContrasteType());

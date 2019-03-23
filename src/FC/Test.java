@@ -8,9 +8,11 @@ public class Test {
         String mdp="1";
         Connexion conn = new Connexion(new Utilisateur(id,mdp));
         SIR sir = new SIR(conn);
-        System.out.println("TEST "+ sir.getListePatient().get(0).getSexe());
-        System.out.println(sir.getPatientFromId(123456).getNom());
 
+
+        Examen examen = sir.getExamenFromId(Integer.parseInt("304865"));
+        CR cr = sir.getCRFromIdExam(Integer.parseInt(examen.getId()));
+        System.out.println(cr.getComparaisonExamenAnt());
 
     }
 
