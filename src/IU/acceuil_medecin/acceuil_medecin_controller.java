@@ -1,5 +1,8 @@
 package IU.acceuil_medecin;
 
+import java.awt.geom.AffineTransform;
+import java.awt.image.AffineTransformOp;
+import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
@@ -13,9 +16,11 @@ import ClassTable.TableExamen;
 import IU.afficher_dossiers_patient.afficher_dossiers_patient_controller;
 import IU.ajouter_patient.ajouter_patient_controller;
 import IU.choix_rdv.choix_rdv_controller;
+import IU.img_grand.img_grand_controller;
 import IU.menu.menu_controller;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -26,6 +31,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
@@ -43,7 +50,7 @@ public class acceuil_medecin_controller implements Initializable{
     Parent menu;
     FXMLLoader loadermenu;
 
-    String nom;
+
 
 
 
@@ -172,9 +179,56 @@ public class acceuil_medecin_controller implements Initializable{
     @FXML
     private Button buttonRechercher;
 
-    private Examen exam1;
+    @FXML
+    private Text nom;
 
+    @FXML
+    private Text prenom;
+    @FXML
+    private Text sexe;
+    @FXML
+    private Text dateDeNaissance;
+    @FXML
+    private Text dateRDV;
+    @FXML
+    private Text typeExam;
+    @FXML
+    private Text dateExamen;
+    @FXML
+    private Text radio;
+    @FXML
+    private Text prescri;
+    @FXML
+    private Text text_descriptionTechniqueCR;
+    @FXML
+    private Text resumePbClinique;
+    @FXML
+    private Text protocole;
+    @FXML
+    private Text typeProduit;
+    @FXML
+    private Text quantite;
+    @FXML
+    private Text text_comparaisonExamensExterieursCR;
 
+    @FXML
+    private Text text_resultatCR;
+    @FXML
+    private Text text_conclusionCR;
+    @FXML
+    private Text text_syntheseCR;
+    @FXML
+    private ListView<ImageView> listView_imagesExam;
+    @FXML
+    private AnchorPane cranchor;
+
+    private Examen examen;
+
+    private BufferedImage image_to_edit;
+
+    public Image getImage_to_edit(){
+        return SwingFXUtils.toFXImage(image_to_edit, null);
+    }
 
     public void AjouterPat (ActionEvent event) throws IOException {
 
@@ -321,6 +375,10 @@ public class acceuil_medecin_controller implements Initializable{
 
 
             }});
+        listView_imagesExam.getSelectionModel().selectedItemProperty().addListener(observable -> {
+            image_to_edit = sir.recupImageExam(Integer.parseInt(examen.getId())).get(listView_imagesExam.getSelectionModel().getSelectedIndex()).getBuffer();
+
+        } );
        }
 
 
@@ -357,21 +415,61 @@ public class acceuil_medecin_controller implements Initializable{
 
     }
 
-    private void showExamDetails(TableExamen examen) {
+    private void showExamDetails(TableExamen tableExamen) {
+        examen = sir.getExamenFromId(Integer.parseInt(tableExamen.getIdexamen()));
+        CR cr = sir.getCRFromIdExam(Integer.parseInt(examen.getId()));
+        ArrayList<RWImage>listeIMG=new ArrayList<>(sir.recupImageExam(Integer.parseInt(examen.getId())));
 
-        if(examen!=null){
-            aucunExamen.setVisible(false);
-            afficheExam.setVisible(true);
-            idExamen.setText("ID: "+examen.getIdexamen());
-            prenomPatient.setText("Prénom : "+examen.getPrenom());
-            nomPatient.setText("Nom : "+examen.getNom());
-            typeExamen.setText("Type Examen "+examen.getTypeExam());
+        if(cr!=null){
+            Patient patient = sir.getPatientFromId(examen.getIdPatient());
+            nom.setText(patient.getNom());
+            prenom.setText(patient.getPrenom());
+            dateDeNaissance.setText(patient.getDateDeNaissance().toString());
+            dateRDV.setText(examen.getDateRDV().toString());
+            dateExamen.setText(examen.getDateExamen().toString());
+            radio.setText(examen.getMedecinRadio());
+            prescri.setText(examen.getMedecinPrescri());
+            typeExam.setText(examen.getTypeExamen().toString());
+            text_descriptionTechniqueCR.setText(cr.getTechnique());
+            text_comparaisonExamensExterieursCR.setText(cr.getComparaisonExamenAnt());
+            text_conclusionCR.setText(cr.getConclusion());
+
+            protocole.setText(cr.getProtocoleStandardise());
+            text_resultatCR.setText(cr.getResultat());
+            text_syntheseCR.setText(cr.getSynthese());
+            typeProduit.setText(cr.getProduitContrasteType());
+            quantite.setText(cr.getQuantiteProduitContraste()+"");
+            cranchor.setVisible(true);
         }
         else{
-            System.out.println("Erreur chargement examen");
-            aucunExamen.setVisible(true);
-            afficheExam.setVisible(false);
+            cranchor.setVisible(false);
+            System.out.println("CR NULL");
         }
+        if(listeIMG.size()>0){
+            for(int i=0;i<listeIMG.size();i++){
+                BufferedImage buffered_image=listeIMG.get(i).getBuffer();
+                if ((buffered_image.getHeight() > 275) && (buffered_image.getWidth() > 275)) {
+                    AffineTransform tx = new AffineTransform();
+                    tx.scale(0.2, 0.2);
+                    AffineTransformOp op = new AffineTransformOp(tx, AffineTransformOp.TYPE_BILINEAR);
+                    BufferedImage bufferedimage = op.filter(buffered_image, null);
+                    Image image = SwingFXUtils.toFXImage(bufferedimage, null);
+                    javafx.scene.image.ImageView imageview = new javafx.scene.image.ImageView(image);
+                    listView_imagesExam.getItems().add(imageview);
+                } else {
+                    //
+                    //int lastItem = listView_images.getItems().size()-1;
+                    //listView_images.getItems().size();
+                    // listView_images.getItems().remove(listView_images.getItems().get(0),listView_images.getItems().get(lastItem)); //vider le truc qui affiche et le re remplir
+
+                    Image image = SwingFXUtils.toFXImage(buffered_image, null);
+                    javafx.scene.image.ImageView imageview = new ImageView(image);
+                    listView_imagesExam.getItems().add(imageview);
+                }
+            }
+        }
+
+
     }
 
 
@@ -419,6 +517,23 @@ public class acceuil_medecin_controller implements Initializable{
     public void reset(ActionEvent event){
         MaJTableau maJTableau = new MaJTableau(sir.getTableExamen());
         tableau_colonnes.setItems(maJTableau.getData());
+    }
+    public void agrandir(ActionEvent actionEvent) throws IOException {
+
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/IU/img_grand/img_grand.fxml"));
+        Parent parent = loader.load();
+
+        //access the controller and get a method
+        img_grand_controller controller = loader.getController();
+
+        controller.initData(this.getImage_to_edit());
+        Scene scene = new Scene(parent);
+        Stage stage = new Stage(StageStyle.DECORATED);
+        stage.setScene(scene);
+        stage.show();
+
+
     }
 
 

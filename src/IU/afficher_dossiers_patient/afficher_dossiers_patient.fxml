@@ -26,14 +26,14 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="879.0" prefWidth="1276.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="IU.afficher_dossiers_patient.afficher_dossiers_patient_controller">
+<AnchorPane prefHeight="880.0" prefWidth="1479.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="IU.afficher_dossiers_patient.afficher_dossiers_patient_controller">
    <children>
       <AnchorPane fx:id="top" prefHeight="102.0" prefWidth="885.0" />
-      <StackPane layoutY="103.0" prefHeight="777.0" prefWidth="1276.0">
+      <StackPane layoutY="103.0" prefHeight="777.0" prefWidth="1479.0">
          <children>
-            <SplitPane dividerPositions="0.47566718995290425" layoutY="25.0" prefHeight="871.0" prefWidth="1276.0">
+            <SplitPane dividerPositions="0.43534190927555855" layoutY="25.0" prefHeight="871.0" prefWidth="1276.0">
                <items>
-                  <AnchorPane layoutY="25.0" maxHeight="-1.0" maxWidth="-1.0" prefHeight="715.0" prefWidth="607.0" VBox.vgrow="ALWAYS">
+                  <AnchorPane layoutY="25.0" maxHeight="-1.0" maxWidth="-1.0" prefHeight="775.0" prefWidth="644.0" VBox.vgrow="ALWAYS">
                      <children>
                         <Text fx:id="texte_rechercherPar" layoutX="95.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Rechercher par" />
                         <Rectangle fx:id="ractangle_recherche" arcHeight="5.0" arcWidth="5.0" fill="#b8cada00" height="77.0" layoutX="93.0" layoutY="25.0" stroke="#6f6e6ead" strokeLineCap="ROUND" strokeType="INSIDE" width="502.0" />
@@ -86,11 +86,11 @@
                         </Button>
                      </children>
                   </AnchorPane>
-                  <ScrollPane prefHeight="839.0" prefViewportHeight="1209.0" prefViewportWidth="652.0" prefWidth="663.0">
+                  <ScrollPane prefHeight="775.0" prefViewportHeight="1209.0" prefViewportWidth="652.0" prefWidth="920.0">
                      <content>
-                        <AnchorPane fx:id="cranchor" prefHeight="200.0" prefWidth="200.0">
+                        <AnchorPane fx:id="cranchor" prefHeight="1143.0" prefWidth="868.0">
                            <children>
-                              <ListView fx:id="listView_imagesExam" layoutX="7.0" layoutY="22.0" prefHeight="103.0" prefWidth="641.0" />
+                              <ListView fx:id="listView_imagesExam" layoutX="7.0" layoutY="22.0" orientation="HORIZONTAL" prefHeight="103.0" prefWidth="641.0" />
                               <Text layoutX="14.0" layoutY="18.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Images de l'examen">
                                  <font>
                                     <Font name="System Bold" size="12.0" />
@@ -256,6 +256,7 @@
                                     <Text layoutX="341.0" layoutY="334.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Produit de Contraste" />
                                  </children>
                               </AnchorPane>
+                              <Button fx:id="agrandir" layoutX="663.0" layoutY="58.0" mnemonicParsing="false" onAction="#agrandir" text="Agrandir" />
                            </children>
                         </AnchorPane>
                      </content>

@@ -280,4 +280,13 @@ public class SIR {
         }
         return rep;
     }
+    public ArrayList<RWImage> recupImageExam(int id){
+        ArrayList<RWImage> result = new ArrayList<>();
+        for(int i=0;i<this.listeImage.size();i++){
+            if(this.listeImage.get(i).getIdPatient().equals(String.valueOf(id))){
+                result.add(listeImage.get(i));
+            }
+        }
+        return result;
+    }
 }

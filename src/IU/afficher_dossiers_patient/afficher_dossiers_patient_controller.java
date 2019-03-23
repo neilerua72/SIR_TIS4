@@ -5,6 +5,9 @@ package IU.afficher_dossiers_patient;
  * Sample Skeleton for 'afficher_dossiers_patient.fxml' Controller Class
  */
 
+import java.awt.geom.AffineTransform;
+import java.awt.image.AffineTransformOp;
+import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -15,9 +18,12 @@ import ClassTable.TablePatient;
 import FC.*;
 import IU.acceuil_medecin.acceuil_medecin_controller;
 import IU.acceuil_secretaire.secretaire_accueil_controller;
+import IU.edition_image.edition_image_controller;
+import IU.img_grand.img_grand_controller;
 import IU.menu.menu_controller;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -27,13 +33,16 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
-import javax.swing.text.html.ImageView;
+import javax.imageio.ImageIO;
 
 public class afficher_dossiers_patient_controller {
 
@@ -149,7 +158,7 @@ public class afficher_dossiers_patient_controller {
     private Text text_prenomPatientCR;
 
     @FXML
-    private ListView<?> listView_imagesExam;
+    private ListView<ImageView> listView_imagesExam;
 
     @FXML
     private Text text_nomRadiologueCR;
@@ -208,6 +217,15 @@ public class afficher_dossiers_patient_controller {
     FXMLLoader loadermenu;
     Parent menu;
     SIR sir;
+    Examen examen;
+
+    private BufferedImage image_to_edit;
+
+    public Image getImage_to_edit(){
+        return SwingFXUtils.toFXImage(image_to_edit, null);
+    }
+
+
 
 
     @FXML
@@ -258,12 +276,17 @@ public class afficher_dossiers_patient_controller {
 
             }}
         });
+        listView_imagesExam.getSelectionModel().selectedItemProperty().addListener(observable -> {
+            image_to_edit = sir.recupImageExam(Integer.parseInt(examen.getId())).get(listView_imagesExam.getSelectionModel().getSelectedIndex()).getBuffer();
+
+        } );
 
     }
 
     private void showDetailExam(TableExamen tableExamen) {
-            Examen examen = sir.getExamenFromId(Integer.parseInt(tableExamen.getIdexamen()));
+            examen = sir.getExamenFromId(Integer.parseInt(tableExamen.getIdexamen()));
             CR cr = sir.getCRFromIdExam(Integer.parseInt(examen.getId()));
+            ArrayList<RWImage>listeIMG=new ArrayList<>(sir.recupImageExam(Integer.parseInt(examen.getId())));
 
             if(cr!=null){
             Patient patient = sir.getPatientFromId(examen.getIdPatient());
@@ -289,6 +312,29 @@ public class afficher_dossiers_patient_controller {
             else{
                 cranchor.setVisible(false);
                 System.out.println("CR NULL");
+            }
+            if(listeIMG.size()>0){
+                for(int i=0;i<listeIMG.size();i++){
+                    BufferedImage buffered_image=listeIMG.get(i).getBuffer();
+                if ((buffered_image.getHeight() > 275) && (buffered_image.getWidth() > 275)) {
+                    AffineTransform tx = new AffineTransform();
+                    tx.scale(0.2, 0.2);
+                    AffineTransformOp op = new AffineTransformOp(tx, AffineTransformOp.TYPE_BILINEAR);
+                    BufferedImage bufferedimage = op.filter(buffered_image, null);
+                    Image image = SwingFXUtils.toFXImage(bufferedimage, null);
+                    javafx.scene.image.ImageView imageview = new javafx.scene.image.ImageView(image);
+                    listView_imagesExam.getItems().add(imageview);
+                } else {
+                    //
+                    //int lastItem = listView_images.getItems().size()-1;
+                    //listView_images.getItems().size();
+                    // listView_images.getItems().remove(listView_images.getItems().get(0),listView_images.getItems().get(lastItem)); //vider le truc qui affiche et le re remplir
+
+                    Image image = SwingFXUtils.toFXImage(buffered_image, null);
+                    javafx.scene.image.ImageView imageview = new ImageView(image);
+                    listView_imagesExam.getItems().add(imageview);
+                }
+                }
             }
 
 
@@ -348,6 +394,24 @@ public class afficher_dossiers_patient_controller {
 
         stage.setScene(scene);
         stage.show();
+    }
+
+    public void agrandir(ActionEvent actionEvent) throws IOException {
+
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/IU/img_grand/img_grand.fxml"));
+        Parent parent = loader.load();
+
+        //access the controller and get a method
+        img_grand_controller controller = loader.getController();
+
+        controller.initData(this.getImage_to_edit());
+        Scene scene = new Scene(parent);
+        Stage stage = new Stage(StageStyle.DECORATED);
+        stage.setScene(scene);
+        stage.show();
+
+
     }
 
 
