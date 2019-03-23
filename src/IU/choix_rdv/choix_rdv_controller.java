@@ -1,6 +1,5 @@
 package IU.choix_rdv;
 
-import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -8,10 +7,13 @@ import java.util.ResourceBundle;
 import ClassTable.TableRDV;
 import FC.RDV;
 import FC.SIR;
+import IU.acceuil_medecin.acceuil_medecin_controller;
+import IU.acceuil_secretaire.secretaire_accueil_controller;
 import IU.ajout_examen.ajout_examen_controller;
 import IU.menu.menu_controller;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -134,5 +136,18 @@ public class choix_rdv_controller {
         stage.setScene(scene);
         stage.show();
 
+    }
+
+    public void retour(ActionEvent event) throws IOException{
+        FXMLLoader loadera = new FXMLLoader();
+        loadera.setLocation(getClass().getResource("/IU/acceuil_medecin/acceuil_medecin.fxml"));
+        Parent root= loadera.load();
+        acceuil_medecin_controller secretaire_accueil_controller = loadera.getController();
+        secretaire_accueil_controller.initData(sir,menu,loadermenu);
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();     //pas compris
+
+        stage.setScene(scene);
+        stage.show();
     }
 }
