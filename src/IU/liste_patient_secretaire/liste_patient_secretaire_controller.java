@@ -229,9 +229,16 @@ public class liste_patient_secretaire_controller {
         secretaire_accueil_controller.initData(sir,menu,loader);
         Scene scene = new Scene(root);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();     //pas compris
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Succès");
+        alert.setHeaderText("Le rendez vous a bien été ajouté");
 
+
+        alert.showAndWait();
         stage.setScene(scene);
         stage.show();
+
+
 
     }
     public void retour(ActionEvent event) throws IOException{

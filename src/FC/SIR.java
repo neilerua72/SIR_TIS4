@@ -142,6 +142,37 @@ public class SIR {
         this.tableRDV.add(tr);
 
     }
+
+    public void UpdateTableExamen(){
+        tableExamen.clear();
+        for(int i=0;i<listeExamen.size();i++){
+            Examen e = listeExamen.get(i);
+            String image;
+
+            if(e.isImage())
+                image="Traitées";
+            else
+                image="Non traitées";
+
+            String validation;
+            if(e.isValidation())
+                validation="Validé";
+            else
+                validation="Non validé";
+
+            String cr;
+            if(e.getCr()){
+                cr="Ecrit";
+            }
+            else
+                cr="Non écrit";
+
+            TableExamen tb=new TableExamen(this.getNomPatient(e.getIdPatient()),this.getPrenomPatient(e.getIdPatient()),e.getIdPatient(),e.getDateExamen(),e.getMedecinPrescri(),e.getMedecinRadio(),e.getId(),e.getTypeExamen().toString(),image,validation,cr);
+
+            tableExamen.add(tb);
+        }
+
+    }
     public boolean checkIdPatient(int idtest){
         int i=0;
         boolean rep = false;

@@ -375,6 +375,7 @@ public class ajout_examen_controller {
             loader.setLocation(getClass().getResource("/IU/redaction_CR/redaction_CR.fxml"));
             Parent parent = loader.load();
             redaction_CR_controller redaction_cr_controller = loader.getController();
+            redaction_cr_controller.initData(sir,examen,menu,loadermenu);
             Scene scene = new Scene(parent);
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(scene);

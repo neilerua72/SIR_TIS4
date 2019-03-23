@@ -260,7 +260,7 @@ public class acceuil_medecin_controller implements Initializable{
         System.out.println(tb.getIdpatient());
         this.menu=menu;
         this.loadermenu=loader;
-        for(int i=1;i<sir.getListeExamen().size();i++){
+        for(int i=1;i<sir.getTableExamen().size();i++){
             data.add(sir.getTableExamen().get(i));
         }
 

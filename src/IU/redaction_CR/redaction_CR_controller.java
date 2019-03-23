@@ -116,13 +116,21 @@ public class redaction_CR_controller implements Initializable {
         java.sql.Date dateEx = new java.sql.Date(new java.util.Date().getTime());
 
         String resumeProblemeClinique= champ_resumeProblemeCliniqueCR.getText();
+        System.out.println(resumeProblemeClinique);
         String descriptionTechnique= champ_descriptionTechniqueCR.getText();
+        System.out.println(descriptionTechnique);
         String protocoleStandarise= champ_protocoleStandardiseCR.getText();
+        System.out.println(protocoleStandarise);
         String examenAnt= champ_comparaisonExamensExterieursCR.getText();
+        System.out.println(examenAnt);
         String comparairon = champ_comparaisonExamensExterieursCR.getText();
+        System.out.println(comparairon);
         String resultatCR= champ_resultatCR.getText();
+        System.out.println(resultatCR);
         String synthese = champ_syntheseCR.getText();
+        System.out.println(synthese);
         String conclusion= champ_conclusionCR.getText();
+        System.out.println(conclusion);
         int idCRaleatoire = 0+(int)(Math.random()*((999999-0)+1));
 
         Connection connexion = null;
