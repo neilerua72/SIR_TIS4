@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
+<?import javafx.geometry.*?>
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
@@ -29,73 +31,30 @@
 
 <AnchorPane prefHeight="836.0" prefWidth="1276.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="IU.afficher_dossiers_patient.afficher_dossiers_patient_controller">
    <children>
-      <MenuBar prefHeight="25.0" prefWidth="1276.0" VBox.vgrow="NEVER">
-         <menus>
-            <Menu mnemonicParsing="false" text="File">
-               <items>
-                  <MenuItem mnemonicParsing="false" text="New" />
-                  <MenuItem mnemonicParsing="false" text="Open…" />
-                  <Menu mnemonicParsing="false" text="Open Recent" />
-                  <SeparatorMenuItem mnemonicParsing="false" />
-                  <MenuItem mnemonicParsing="false" text="Close" />
-                  <MenuItem mnemonicParsing="false" text="Save" />
-                  <MenuItem mnemonicParsing="false" text="Save As…" />
-                  <MenuItem mnemonicParsing="false" text="Revert" />
-                  <SeparatorMenuItem mnemonicParsing="false" />
-                  <MenuItem mnemonicParsing="false" text="Preferences…" />
-                  <SeparatorMenuItem mnemonicParsing="false" />
-                  <MenuItem mnemonicParsing="false" text="Quit" />
-               </items>
-            </Menu>
-            <Menu mnemonicParsing="false" text="Edit">
-               <items>
-                  <MenuItem mnemonicParsing="false" text="Undo" />
-                  <MenuItem mnemonicParsing="false" text="Redo" />
-                  <SeparatorMenuItem mnemonicParsing="false" />
-                  <MenuItem mnemonicParsing="false" text="Cut" />
-                  <MenuItem mnemonicParsing="false" text="Copy" />
-                  <MenuItem mnemonicParsing="false" text="Paste" />
-                  <MenuItem mnemonicParsing="false" text="Delete" />
-                  <SeparatorMenuItem mnemonicParsing="false" />
-                  <MenuItem mnemonicParsing="false" text="Select All" />
-                  <MenuItem mnemonicParsing="false" text="Unselect All" />
-               </items>
-            </Menu>
-            <Menu mnemonicParsing="false" text="Help">
-               <items>
-                  <MenuItem mnemonicParsing="false" text="About MyHelloApp" />
-               </items>
-            </Menu>
-         </menus>
-      </MenuBar>
-      <StackPane layoutY="25.0" prefHeight="788.0" prefWidth="1276.0">
+      <AnchorPane fx:id="top" prefHeight="102.0" prefWidth="885.0" />
+      <StackPane layoutY="103.0" prefHeight="710.0" prefWidth="1276.0">
          <children>
-            <SplitPane dividerPositions="0.47566718995290425" layoutY="25.0" prefHeight="905.0" prefWidth="1276.0">
+            <SplitPane dividerPositions="0.47566718995290425" layoutY="25.0" prefHeight="701.0" prefWidth="1276.0">
                <items>
                   <AnchorPane layoutY="25.0" maxHeight="-1.0" maxWidth="-1.0" prefHeight="715.0" prefWidth="607.0" VBox.vgrow="ALWAYS">
                      <children>
-                        <Text fx:id="texte_rechercherPar" layoutX="14.0" layoutY="21.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Rechercher par" />
-                        <Rectangle fx:id="ractangle_recherche" arcHeight="5.0" arcWidth="5.0" fill="#b8cada00" height="77.0" layoutX="4.0" layoutY="25.0" stroke="#6f6e6ead" strokeLineCap="ROUND" strokeType="INSIDE" width="591.0" />
-                        <GridPane layoutX="14.0" layoutY="27.0" prefHeight="70.0" prefWidth="570.0">
+                        <Text fx:id="texte_rechercherPar" layoutX="95.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Rechercher par" />
+                        <Rectangle fx:id="ractangle_recherche" arcHeight="5.0" arcWidth="5.0" fill="#b8cada00" height="77.0" layoutX="93.0" layoutY="25.0" stroke="#6f6e6ead" strokeLineCap="ROUND" strokeType="INSIDE" width="502.0" />
+                        <GridPane layoutX="101.0" layoutY="27.0" prefHeight="70.0" prefWidth="483.0">
                            <children>
-                              <Text fx:id="texte_date" strokeType="OUTSIDE" strokeWidth="0.0" text="Date" translateX="7.0" GridPane.columnIndex="4" />
                               <TextField fx:id="champ_rechercherParNomPatient" prefHeight="25.0" prefWidth="421.0" promptText="Entrez la recherche... " GridPane.columnSpan="4" GridPane.rowIndex="1" />
-                              <DatePicker fx:id="champ_date" prefHeight="25.0" prefWidth="152.0" promptText="JJ/MM/AAAA" translateX="4.0" GridPane.columnIndex="4" GridPane.rowIndex="1" />
-                              <ToggleButton fx:id="toggle_nomPatient" mnemonicParsing="false" text="Nom Patient" />
-                              <ToggleButton fx:id="toggle_IDPatient" mnemonicParsing="false" text="ID Patient" GridPane.columnIndex="1" />
-                              <ToggleButton fx:id="toggle_medecinPrescripteur" mnemonicParsing="false" text="Médecin Prescripteur" GridPane.columnIndex="2" />
-                              <ToggleButton fx:id="toggle_medecinRadiologue" mnemonicParsing="false" text="Médecin Radiologue" GridPane.columnIndex="3" />
+                              <ToggleButton fx:id="toggle_nomPatient" mnemonicParsing="false" prefHeight="31.0" prefWidth="195.0" text="Nom Patient" />
+                              <ToggleButton fx:id="toggle_IDPatient" mnemonicParsing="false" prefHeight="31.0" prefWidth="159.0" text="ID Patient" GridPane.columnIndex="1" />
                            </children>
                            <columnConstraints>
                               <ColumnConstraints hgrow="SOMETIMES" maxWidth="206.0" minWidth="10.0" prefWidth="87.0" />
                               <ColumnConstraints hgrow="SOMETIMES" maxWidth="297.0" minWidth="10.0" prefWidth="73.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="323.0" minWidth="10.0" prefWidth="134.0" />
                               <ColumnConstraints hgrow="SOMETIMES" maxWidth="327.0" minWidth="10.0" prefWidth="131.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="327.0" minWidth="10.0" prefWidth="131.0" />
+                              <ColumnConstraints />
                            </columnConstraints>
                            <rowConstraints>
-                              <RowConstraints maxHeight="33.0" minHeight="10.0" prefHeight="33.0" vgrow="SOMETIMES" />
-                              <RowConstraints maxHeight="33.0" minHeight="10.0" prefHeight="33.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="34.0" minHeight="10.0" prefHeight="33.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="34.0" minHeight="10.0" prefHeight="33.0" vgrow="SOMETIMES" />
                            </rowConstraints>
                         </GridPane>
                         <TableView fx:id="tableau_colonnes" layoutY="115.0" prefHeight="219.0" prefWidth="597.0">
@@ -106,6 +65,7 @@
                                     <TableColumn fx:id="colonne_nom" prefWidth="168.0" text="Nom" />
                                     <TableColumn fx:id="colonne_prenom" minWidth="0.0" prefWidth="178.0" text="Prénom" />
                                  </columns></TableColumn>
+                              <TableColumn fx:id="sexe" prefWidth="75.0" text="Sexe" />
                            </columns>
                         </TableView>
                         <Text layoutX="14.0" layoutY="357.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Liste d'examens réalisés " />
@@ -118,6 +78,15 @@
                               <TableColumn fx:id="colonne_radio" prefWidth="164.0" text="Medecin Radiologue" />
                           </columns>
                         </TableView>
+                        <Button fx:id="retour" layoutX="14.0" layoutY="40.0" mnemonicParsing="false" onAction="#retour">
+                           <graphic>
+                              <ImageView fitHeight="34.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../icone/retour.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
                      </children>
                   </AnchorPane>
                   <ScrollPane prefHeight="558.0" prefViewportHeight="1209.0" prefViewportWidth="652.0" prefWidth="725.0">

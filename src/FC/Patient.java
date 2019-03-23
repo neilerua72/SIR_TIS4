@@ -12,9 +12,10 @@ public class Patient {
     private Adresse adresse;
     private String service_acceuil;
     private String nomMedecinPrescripteur;
+    private String sexe;
 
 
-    public Patient(String nom, String prenom, int id, Date dateDeNaissance, String mail, int numTel, Adresse adresse, String service_acceuil, String nomMedecinPrescripteur) {
+    public Patient(String nom, String prenom, int id, Date dateDeNaissance,String sexe, String mail, int numTel, Adresse adresse, String service_acceuil, String nomMedecinPrescripteur) {
         this.nom = nom;
         this.prenom = prenom;
         this.id = id;
@@ -24,6 +25,7 @@ public class Patient {
         this.adresse = adresse;
         this.service_acceuil = service_acceuil;
         this.nomMedecinPrescripteur = nomMedecinPrescripteur;
+        this.sexe=sexe;
 
     }
     public Patient(){
@@ -80,6 +82,10 @@ public class Patient {
 
     public String getNomMedecinPrescripteur() {
         return nomMedecinPrescripteur;
+    }
+
+    public String getSexe(){
+        return this.sexe;
     }
 
 

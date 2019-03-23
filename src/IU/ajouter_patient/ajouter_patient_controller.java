@@ -2,8 +2,11 @@ package IU.ajouter_patient;
 
 import BD.ConnexionBase;
 import FC.*;
+import IU.acceuil_medecin.acceuil_medecin_controller;
 import IU.acceuil_secretaire.secretaire_accueil_controller;
 import IU.liste_patient_secretaire.liste_patient_secretaire_controller;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,10 +14,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import javax.print.DocFlavor;
@@ -84,6 +84,8 @@ public class ajouter_patient_controller implements Initializable {
 
     @FXML //fx:id="ajoutpatient_champ_telephonePortable"
     private TextField ajoutpatient_champ_telephonePortable;
+    @FXML
+    private ComboBox sexe;
 
 
     private Stage ajoutPatientStage;
@@ -109,6 +111,9 @@ public class ajouter_patient_controller implements Initializable {
         this.sir=sir;
         this.menu=menu;
         this.loader=loader;
+        ObservableList<String> data =FXCollections.observableArrayList("F");
+        data.add("H");
+        sexe.setItems(data);
     }
 
   /*  public void setAjoutPatientStage(Stage dialogStage){
@@ -181,9 +186,11 @@ public class ajouter_patient_controller implements Initializable {
     }
 
     public void ajoutPatient(ActionEvent actionEvent) throws IOException {
+
         String nom = ajoutpatient_champ_nom.getText();
         String prenom = ajoutpatient_champ_prenom.getText();
-
+        Object s = sexe.getValue();
+        String sexeP=(String)s;
         String rue = ajoutpatient_champ_Rue.getText();
         String medecinPrescripteur = ajoutpatient_champ_medecinPrescripteur.getText();
         String serviceAcceuil = ajoutpatient_champ_serviceAcceuil.getText();
@@ -196,14 +203,37 @@ public class ajouter_patient_controller implements Initializable {
         String email= ajoutpatient_champ_email.getText();
         String telephone = ajoutpatient_champ_telephonePortable.getText();
 
+        if(nom.length()==0||prenom.length()==0||rue.length()==0||medecinPrescripteur.length()==0||serviceAcceuil.length()==0||gooddate.toString().length()==0||ville.length()==0||codeP.length()==0||email.length()==0||telephone.length()==0){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Impossible de rajouter le patient");
+            alert.setHeaderText("Erreur de saisie");
+            alert.setContentText("Une des cases n'est pas remplie");
 
+            alert.showAndWait();
+        }
+
+        else if(!codeP.matches("[0-9]+")||codeP.length()>5){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Impossible de rajouter le patient");
+            alert.setHeaderText("Erreur de saisie");
+            alert.setContentText("Le code postale que vous avez tapez ne contient pas uniquement des chiffres, ou dépasse 5 caractères");
+
+            alert.showAndWait();
+        }else if (!telephone.matches("[0-9]+")||telephone.length()>10){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Impossible de rajouter le patient");
+            alert.setHeaderText("Erreur de saisie");
+            alert.setContentText("Le numéro de téléphone que vous avez tapez ne contient pas uniquement des chiffres, ou dépasse 10 caractères");
+
+        }
+        else{
         int idPat=(int)(Math.random() * ( 999999 - 100000 )+1);
         while(sir.checkIdPatient(idPat)){
             idPat = 0+(int)(Math.random()*((999999-0)+1));
         }
         System.out.println(idPat);
         String idPatient= String.valueOf(idPat);
-        Patient p = new Patient(nom,prenom,idPat,gooddate,email,Integer.valueOf(telephone),new Adresse(rue,info,Integer.parseInt(codeP),ville),serviceAcceuil,medecinPrescripteur);
+        Patient p = new Patient(nom,prenom,idPat,gooddate,sexeP,email,Integer.valueOf(telephone),new Adresse(rue,info,Integer.parseInt(codeP),ville),serviceAcceuil,medecinPrescripteur);
         sir.getListePatient().add(p);
         System.out.println(idPatient);
         Connection connexion = null;
@@ -217,8 +247,8 @@ public class ajouter_patient_controller implements Initializable {
             //Création de l'objet gérant les requêtes
             statement = connexion.createStatement();
             //Exécution d'une requete d'écriture
-            int statut = statement.executeUpdate("INSERT INTO `Patient` (`nom`, `prenom`, `id`, `dateDeNaissance`, `mail`, `numeroTel`, `rue`, `infoComp`, `codePostal`, `ville`, `pathologie`, `nomMedecinPrescripteur`, `serviceAcceuil`, `dateRDV`) VALUES\n" +
-                    "('"+nom+"', '"+prenom+"','"+idPatient+"','"+dateNaissancePatient+"','"+email+"','"+telephone+"','"+rue+"','"+info+"','"+codeP+"','"+ville+"', NULL,'"+medecinPrescripteur+"','"+serviceAcceuil+"', NULL);");
+            int statut = statement.executeUpdate("INSERT INTO `Patient` (`nom`, `prenom`, `id`, `dateDeNaissance`, `sexe`, `mail`, `numeroTel`, `rue`, `infoComp`, `codePostal`, `ville`, `pathologie`, `nomMedecinPrescripteur`, `serviceAcceuil`, `dateRDV`) VALUES\n" +
+                    "('"+nom+"', '"+prenom+"','"+idPatient+"','"+dateNaissancePatient+"','"+sexeP+"','"+email+"','"+telephone+"','"+rue+"','"+info+"','"+codeP+"','"+ville+"', NULL,'"+medecinPrescripteur+"','"+serviceAcceuil+"', NULL);");
             //Récupération des données du statut de la requete d'écriture
             System.out.println("Résultat de la requête d'insertion:" +statut + ".");
         }
@@ -242,16 +272,38 @@ public class ajouter_patient_controller implements Initializable {
 
 
         }
-        FXMLLoader loadera = new FXMLLoader();
-        loadera.setLocation(getClass().getResource("/IU/liste_patient_secretaire/liste_patient_secretaire.fxml"));
-        Parent root= loadera.load();
-        liste_patient_secretaire_controller secretaire_accueil_controller = loadera.getController();
-        secretaire_accueil_controller.initData(sir,menu,loader);
-        Scene scene = new Scene(root);
-        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();     //pas compris
 
-        stage.setScene(scene);
-        stage.show();
+        if(sir.getConnexion().getType().equals(TypeConnexion.SEC)) {
+            FXMLLoader loadera = new FXMLLoader();
+            loadera.setLocation(getClass().getResource("/IU/liste_patient_secretaire/liste_patient_secretaire.fxml"));
+            Parent root = loadera.load();
+            liste_patient_secretaire_controller secretaire_accueil_controller = loadera.getController();
+            secretaire_accueil_controller.initData(sir, menu, loader);
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();     //pas compris
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Succès");
+            alert.setHeaderText("Le patient a bien été ajouté");
+
+
+            alert.showAndWait();
+            stage.setScene(scene);
+
+            stage.show();
+        }
+        else{
+            FXMLLoader loadera = new FXMLLoader();
+            loadera.setLocation(getClass().getResource("/IU/acceuil_medecin/acceuil_medecin.fxml"));
+            Parent root = loadera.load();
+            acceuil_medecin_controller acceuil_medecin_controller= loadera.getController();
+            acceuil_medecin_controller.initData(sir, menu, loader);
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();     //pas compris
+
+            stage.setScene(scene);
+            stage.show();
+        }
+    }
     }
 }
 
