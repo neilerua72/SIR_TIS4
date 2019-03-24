@@ -48,6 +48,9 @@ import javax.imageio.ImageIO;
 public class afficher_dossiers_patient_controller {
 
     @FXML
+    private AnchorPane listViewAnchor;
+
+    @FXML
     private ToggleButton toggle_medecinRadiologue;
 
     @FXML
@@ -296,8 +299,9 @@ public class afficher_dossiers_patient_controller {
             examen = sir.getExamenFromId(Integer.parseInt(tableExamen.getIdexamen()));
             CR cr = sir.getCRFromIdExam(Integer.parseInt(examen.getId()));
             ArrayList<RWImage>listeIMG=new ArrayList<>(sir.recupImageExam(Integer.parseInt(examen.getId())));
-
+           listViewAnchor.setVisible(true);
             if(examen.getCr()){
+
             Patient patient = sir.getPatientFromId(examen.getIdPatient());
             nom.setText(patient.getNom());
             prenom.setText(patient.getPrenom());
@@ -310,7 +314,7 @@ public class afficher_dossiers_patient_controller {
             text_descriptionTechniqueCR.setText(cr.getTechnique());
             text_comparaisonExamensExterieursCR.setText(cr.getComparaisonExamenAnt());
             text_conclusionCR.setText(cr.getConclusion());
-
+            resumePbClinique.setText(cr.getProblemeClinique());
             protocole.setText(cr.getProtocoleStandardise());
             text_resultatCR.setText(cr.getResultat());
             text_syntheseCR.setText(cr.getSynthese());
@@ -330,6 +334,12 @@ public class afficher_dossiers_patient_controller {
                 System.out.println("CR NULL");
             }
             if(listeIMG.size()>0){
+                listView_imagesExam.setDisable(false);
+                if(listView_imagesExam.getItems().size()>0)
+                    listView_imagesExam.getItems().clear();
+
+                agrandir.setDisable(false);
+
                 for(int i=0;i<listeIMG.size();i++){
                     BufferedImage buffered_image=listeIMG.get(i).getBuffer();
                 if ((buffered_image.getHeight() > 275) && (buffered_image.getWidth() > 275)) {
@@ -350,6 +360,9 @@ public class afficher_dossiers_patient_controller {
                     javafx.scene.image.ImageView imageview = new ImageView(image);
                     listView_imagesExam.getItems().add(imageview);
                 }
+                    if(listView_imagesExam.getItems().size()>0)
+                        listView_imagesExam.getItems().clear();
+
                     listView_imagesExam.setDisable(false);
                     agrandir.setDisable(false);
                 }
@@ -391,6 +404,10 @@ public class afficher_dossiers_patient_controller {
     public void showListeExam(Patient patient){
         ArrayList<TableExamen> listetableExamen = new ArrayList<>(sir.getTableExamenFromIdPatient(patient.getId()));
         if(listetableExamen.size()!=0){
+
+            if(listeExam.getItems().size()>0)
+                listeExam.getItems().clear();
+
             TableExamen tableExamen = listetableExamen.get(0);
             final ObservableList<TableExamen> data= FXCollections.observableArrayList(tableExamen);
             for(int i=1;i<listetableExamen.size();i++){

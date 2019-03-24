@@ -100,22 +100,27 @@
                         </AnchorPane>
                         <AnchorPane prefHeight="200.0" prefWidth="200.0">
                            <children>
-                              <ScrollPane fx:id="scrolpane" prefHeight="775.0" prefViewportHeight="1209.0" prefViewportWidth="652.0" prefWidth="920.0" visible="false">
+                              <AnchorPane fx:id="listViewAnchor" prefHeight="140.0" prefWidth="764.0" visible="false">
+                                 <children>
+                                    <ListView fx:id="listView_imagesExam" disable="true" layoutY="26.0" orientation="HORIZONTAL" prefHeight="114.0" prefWidth="641.0" />
+                                    <Text layoutX="8.0" layoutY="18.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Images de l'examen">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Text>
+                                    <Button fx:id="agrandir" disable="true" layoutX="657.0" layoutY="42.0" mnemonicParsing="false" onAction="#agrandir" text="Agrandir" />
+                                 </children>
+                              </AnchorPane>
+                              <ScrollPane fx:id="scrolpane" layoutY="137.0" prefHeight="638.0" prefViewportHeight="1209.0" prefViewportWidth="652.0" prefWidth="920.0" visible="false">
                                  <content>
-                                    <AnchorPane fx:id="cranchor" prefHeight="1143.0" prefWidth="868.0">
+                                    <AnchorPane fx:id="cranchor" prefHeight="1063.0" prefWidth="868.0">
                                        <children>
-                                          <ListView fx:id="listView_imagesExam" layoutX="7.0" layoutY="22.0" orientation="HORIZONTAL" prefHeight="103.0" prefWidth="641.0" />
-                                          <Text layoutX="14.0" layoutY="18.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Images de l'examen">
+                                          <Text layoutX="14.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Compte rendu de l'examen">
                                              <font>
                                                 <Font name="System Bold" size="12.0" />
                                              </font>
                                           </Text>
-                                          <Text layoutX="14.0" layoutY="150.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Compte rendu de l'examen">
-                                             <font>
-                                                <Font name="System Bold" size="12.0" />
-                                             </font>
-                                          </Text>
-                                          <AnchorPane layoutY="143.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1000.0" prefWidth="652.0">
+                                          <AnchorPane layoutY="30.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1000.0" prefWidth="652.0">
                                              <children>
                                                 <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#5e5e5e00" height="168.0" layoutX="7.0" layoutY="33.0" stroke="#797979" strokeType="INSIDE" width="304.0" />
                                                 <Text layoutX="10.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Informations Relatives au Patient" />
@@ -270,7 +275,6 @@
                                                 <Text layoutX="341.0" layoutY="334.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Produit de Contraste" />
                                              </children>
                                           </AnchorPane>
-                                          <Button fx:id="agrandir" layoutX="663.0" layoutY="58.0" mnemonicParsing="false" onAction="#agrandir" text="Agrandir" />
                                        </children>
                                     </AnchorPane>
                                  </content>
