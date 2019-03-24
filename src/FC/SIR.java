@@ -32,6 +32,10 @@ public class SIR {
     private ArrayList<TableRDV> tableRDV;
     private ArrayList<RWImage> listeImage;
 
+    /**
+     * Constructeur de la classe qui recquiert le paramètrze connexion
+     * @param connexion la connexion nécessaire à la formation du SIR
+     */
     public SIR(Connexion connexion){
         this.connexion=connexion;
         TableExamen tb;
@@ -92,32 +96,65 @@ public class SIR {
 
     }
 
+    /**
+     * Méthode qui retourne la connexion correspondant au SIR
+     * @return la connexion
+     */
     public Connexion getConnexion(){
         return connexion;
     }
 
+    /**
+     * Méthode qui retourne qui retourne la liste des patients du SIR
+     * @return la liste des patients
+     */
     public ArrayList<Patient> getListePatient() {
         return listePatient;
     }
 
+    /**
+     * Méthode qui retourne la liste des CR du SIR
+     * @return
+     */
     public ArrayList<CR> getListeCR() { return listeCR; }
 
+    /**
+     * Méthode qui retourne la liste des utilisateurs du SIR
+     * @return la liste d'utilisateurs
+     */
     public ArrayList<Utilisateur> getListeUtilisateur() {
         return listeUtilisateur;
     }
 
+    /**
+     * Méthode qui retourne la liste des RDV du SIR
+     * @return la liste de RDV
+     */
     public ArrayList<RDV> getListeRDV() {
         return listeRDV;
     }
 
+    /**
+     * Méthode qui retourne la liste des examens du SIR
+     * @return la liste d'examen
+     */
     public ArrayList<Examen> getListeExamen() {
         return listeExamen;
     }
 
+    /**
+     * Méthode qui retourne la liste d'examen pour l'affichage sous forme de table
+     * @return la liste d'examen pour l'affichage sous forme de table
+     */
     public ArrayList<TableExamen> getTableExamen() {
         return tableExamen;
     }
 
+    /**
+     * Méthode qui retourne le nom du patient en fonction de son ID
+     * @param id l'id d'un patient
+     * @return le nom du patient
+     */
     public String getNomPatient(int id){
         int i=0;
         String s="";
@@ -131,6 +168,12 @@ public class SIR {
         }
         return s;
     }
+
+    /**
+     * Méthode qui retourne le prénom du patient en fonction de son id
+     * @param id l'id du patient
+     * @return le prenom du patient
+     */
     public String getPrenomPatient(int id){
         int i=0;
         String s="";
@@ -145,11 +188,17 @@ public class SIR {
         return s;
     }
 
+    /**
+     * Méthode qui retourne la liste des RDV pour l'afficahge sous forme de table
+     * @return la liste des TablesRDV
+     */
     public ArrayList<TableRDV> getTableRDV() {
         return tableRDV;
     }
 
-
+    /**
+     * Méthode qui met à jour la liste de Table RDV
+     */
     public void UpdateTableRDV(){
         RDV rdv = listeRDV.get(listeRDV.size()-1);
         TableRDV tr = new TableRDV(rdv.getDateRDV(),rdv.getTypeExamen().toString(),rdv.getId(),String.valueOf(rdv.getSalle()),"Test",rdv.getIdPatient(),rdv.getMedecinPrescri(),this.getNomPatient(rdv.getIdPatient()),this.getPrenomPatient(rdv.getIdPatient()));
@@ -157,6 +206,9 @@ public class SIR {
 
     }
 
+    /**
+     * Méthode qui met à jour la liste de la Table d'examen
+     */
     public void UpdateTableExamen(){
         tableExamen.clear();
         for(int i=0;i<listeExamen.size();i++){
@@ -187,6 +239,12 @@ public class SIR {
         }
 
     }
+
+    /**
+     * Méthode qui vérifie qu'un id de patient n'est pas déjà affecté
+     * @param idtest id que l'on souhaite tester
+     * @return si oui ou non l'id existe déjà
+     */
     public boolean checkIdPatient(int idtest){
         int i=0;
         boolean rep = false;
@@ -198,6 +256,12 @@ public class SIR {
         }
         return rep;
     }
+
+    /**
+     * Méthode qui vérifie qu'un id de RDV n'est pas déjà affecté
+     * @param idtest id que l'on souhaite tester
+     * @return si oui ou non l'id existe déjà
+     */
     public boolean checkIdRDV(int idtest){
         int i=0;
         boolean rep = false;
@@ -209,6 +273,12 @@ public class SIR {
         }
         return rep;
     }
+
+    /**
+     * Méthode qui vérifie qu'un id d'examen n'est pas déjà affecté
+     * @param idtest id que l'on souhaite tester
+     * @return si oui ou non l'id existe déjà
+     */
     public boolean checkIdExamen(int idtest){
         int i=0;
         boolean rep = false;
@@ -220,6 +290,12 @@ public class SIR {
         }
         return rep;
     }
+
+    /**
+     * Méthode qui retourne l'objet RDV en fonction du RDV qui sert à l'affichage de la table
+     * @param trdv l'objet qui sert à l'afficahge dans la table
+     * @return l'objet RDV
+     */
     public RDV getRDVfromTableRDV(TableRDV trdv){
         int i=0;
         boolean rep=false;
@@ -237,9 +313,19 @@ public class SIR {
 
     }
 
+    /**
+     * Méthode qui renvoit la liste des images du SIR
+     * @return la liste d'image du SIR
+     */
     public ArrayList<RWImage> getListeImage() {
         return listeImage;
     }
+
+    /**
+     * Méthiode qui retourne la liste d'examen pour l'affichage en fonction de l'id d'un patient
+     * @param idPatient l'id du patient
+     * @return une liste de TableExamen
+     */
     public ArrayList<TableExamen> getTableExamenFromIdPatient(int idPatient){
         ArrayList<TableExamen> result = new ArrayList<>();
         for(int i=0;i<this.tableExamen.size();i++){
@@ -249,6 +335,12 @@ public class SIR {
         }
         return result;
     }
+
+    /**
+     * Méthode qui retourne l'examen en fonction de l'id de l'examen
+     * @param idExam id de l'examen
+     * @return l'examen correspondant à l'id
+     */
     public Examen getExamenFromId(int idExam){
         Examen examen=new Examen();
         boolean rep = false;
@@ -264,6 +356,11 @@ public class SIR {
         return examen;
     }
 
+    /**
+     * Méthode qui retourne un CR en fonction de l'id de l'examen
+     * @param idExamen id de l'examen
+     * @return le cr correspondant à l'id d'examen
+     */
     public CR getCRFromIdExam(int idExamen){
         CR cr = new CR();
         boolean rep = false;
@@ -278,6 +375,12 @@ public class SIR {
         }
         return cr;
     }
+
+    /**
+     * Méthode qui retourne le patient en fonction de son id
+     * @param id id du patient
+     * @return le patient
+     */
     public Patient getPatientFromId(int id){
         int i=0;
         Patient p = new Patient();
@@ -293,16 +396,10 @@ public class SIR {
         return p;
     }
 
-    public ArrayList<TableExamen> rechercheExam(String s){
-        ArrayList<TableExamen> result = new ArrayList<>();
-        for(int i=0;i<tableExamen.size();i++){
-            if(s.length()<=tableExamen.get(i).getNom().length()&&s.toLowerCase().equals(tableExamen.get(i).getNom().substring(0,s.length()).toLowerCase())){
-                result.add(tableExamen.get(i));
-            }
-        }
-        return result;
-    }
-
+    /**
+     * Méthode qui supprime un RDV. Cette methode sert quand l'examen est fait, à enlever le RDV
+     * @param id id du RDV à supprimer de la liste
+     */
     public void supprimerRDV(String id){
         int i=0;
         boolean rep = true;
@@ -314,6 +411,12 @@ public class SIR {
             i++;
         }
     }
+
+    /**
+     * Méthode qui vérifie si un id d'image est déjà affecté ou non
+     * @param idtest id à tester
+     * @return si oui ou non l'id est déjà affecté
+     */
     public boolean checkIdImage(int idtest){
         int i=0;
         boolean rep = false;
@@ -325,6 +428,12 @@ public class SIR {
         }
         return rep;
     }
+
+    /**
+     * Méthode qui retourne une liste d'image en fonction de l'id d'un examen
+     * @param id id examen
+     * @return la liste d'image correspondant
+     */
     public ArrayList<RWImage> recupImageExam(int id){
         ArrayList<RWImage> result = new ArrayList<>();
         for(int i=0;i<this.listeImage.size();i++){
@@ -335,6 +444,11 @@ public class SIR {
         return result;
     }
 
+    /**
+     * Méthode qui permet de définir si un examen possède un CR ou non
+     * @param id id de l'examen a modifier
+     * @param value valeur du boolean pour le CR
+     */
     public void ecrireCR(String id, boolean value){
         boolean rep=false;
         int i=0;
