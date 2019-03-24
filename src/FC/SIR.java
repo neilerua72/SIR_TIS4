@@ -320,4 +320,16 @@ public class SIR {
         }
         return result;
     }
+
+    public void ecrireCR(String id, boolean value){
+        boolean rep=false;
+        int i=0;
+        while(i<listeExamen.size()&&rep==false){
+            if(id.equals(listeExamen.get(i).getId())){
+                rep = true;
+                listeExamen.get(i).setCrExamen(value);
+            }
+            i++;
+        }
+    }
 }

@@ -137,7 +137,8 @@ public class redaction_CR_controller implements Initializable {
         Statement statement = null;
         CR cr = new CR(idCRaleatoire,Integer.valueOf(examen.getId()),resumeProblemeClinique,descriptionTechnique,comparairon,dateEx,protocoleStandarise,resultatCR,synthese,conclusion);
         sir.getListeCR().add(cr);
-        examen.setCrExamen(true);
+        sir.ecrireCR(examen.getId(),true);
+        sir.UpdateTableExamen();
 
         try {
 
