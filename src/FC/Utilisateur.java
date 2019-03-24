@@ -1,5 +1,10 @@
 package FC;
-
+/**
+ * Classe qui modélise un utilisateur
+ * @author Aurélien
+ * @version 1.0
+ *
+ */
 public class Utilisateur {
     private String id;
     private String mdp;

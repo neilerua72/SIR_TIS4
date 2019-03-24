@@ -6,7 +6,21 @@ import ClassTable.TableRDV;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
-
+/**
+ * Classe qui modélise un système d'information radiologique. Ils contient toutes les informations qu'un SIR est sensé contenir. Il se compose de listes
+ * d'objets et d'une connexion
+ * @author Aurélien
+ * @version 1.0
+ * @see FC.Connexion
+ * @see FC.Patient
+ * @see FC.Utilisateur
+ * @see FC.RDV
+ * @see FC.Examen
+ * @see ClassTable.TableExamen
+ * @see FC.CR
+ * @see ClassTable.TableRDV
+ * @see FC.RWImage
+ */
 public class SIR {
     private Connexion connexion;
     private ArrayList<Patient> listePatient;

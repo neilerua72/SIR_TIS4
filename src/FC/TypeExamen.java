@@ -1,6 +1,11 @@
 package FC;
 
-
+/**
+ * Classe qui définit les différents types d'examens possible
+ * @author Aurélien
+ * @version 1.0
+ *
+ */
 public enum TypeExamen{
         SCANNER("Scanner"),
         RADIO("Radio"),

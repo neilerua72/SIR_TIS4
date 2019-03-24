@@ -1,6 +1,12 @@
 package FC;
 
 import java.util.Date;
+/**
+ * Classe qui modélise un patient. On y retrouve toute les informations pour un patient. Elle contient aussi une adresse.
+ * @author Aurélien
+ * @version 1.0
+ * @see FC.Adresse
+ */
 
 public class Patient {
     private String nom;

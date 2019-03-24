@@ -2,7 +2,12 @@ package FC;
 
 import java.awt.image.BufferedImage;
 import java.sql.Blob;
-
+/**
+ * Classe qui modélise une image. Elle permet de retrouver les infos d'une image dont cette application a besoin pour tourner
+ * @author Aurélien
+ * @version 1.0
+ *
+ */
 public class RWImage {
    private String nom;
    private int id;

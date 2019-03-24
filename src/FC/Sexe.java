@@ -1,5 +1,10 @@
 package FC;
-
+/**
+ * Classe qui modélise le sexe
+ * @author Aurélien
+ * @version 1.0
+ *
+ */
 public enum Sexe {
     H("Homme"),
     F("Femme");

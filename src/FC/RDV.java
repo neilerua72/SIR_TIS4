@@ -1,7 +1,12 @@
 package FC;
 
 import java.sql.Date;
-
+/**
+ * Classe qui modélise un RDV. Il s'agit d'une classe avec les informations de base d'un RDV
+ * @author Aurélien
+ * @version 1.0
+ *
+ */
 public class RDV {
     private Date dateRDV;
     private TypeExamen typeExamen;

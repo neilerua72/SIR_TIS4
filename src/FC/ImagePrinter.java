@@ -16,7 +16,12 @@ import java.awt.print.PageFormat;
 import java.awt.print.Printable;
 import java.awt.print.PrinterException;
 import java.awt.print.PrinterJob;
-
+/**
+ * Classe qui permet l'impression d'une image
+ * @author Vaëa
+ * @version 1.0
+ *
+ */
 public class ImagePrinter extends Application {
 
     @Override

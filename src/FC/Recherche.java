@@ -3,9 +3,14 @@ package FC;
 import ClassTable.TableExamen;
 import ClassTable.TableRDV;
 import javafx.event.Event;
-
-
 import java.util.ArrayList;
+/**
+ * Classe qui modélise une recherche. Cette classe prends comme attribut une chaine de caractère, un event et le SIR. Elle permet de retourner des
+ * d'objets qui se trouvent dans les listes du SIR si il y a égalité entre un attribut de cet objet et la chaine de caractère
+ * @author Aurélien
+ * @version 1.0
+ * @see FC.SIR
+ */
 
 public class Recherche {
     SIR sir;

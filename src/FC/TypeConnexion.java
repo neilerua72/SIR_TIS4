@@ -1,5 +1,10 @@
 package FC;
-
+/**
+ * Classe qui définit les différents types de connexion possible
+ * @author Aurélien
+ * @version 1.0
+ *
+ */
 public enum TypeConnexion {
     MED("Médecin Radiologue"),
     MAN("Manipulateur Radiologue"),
