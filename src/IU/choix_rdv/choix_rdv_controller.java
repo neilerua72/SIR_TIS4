@@ -133,6 +133,7 @@ public class choix_rdv_controller {
         controller.initData(this.sir,this.sir.getRDVfromTableRDV(rdv),menu,loadermenu);
         Scene scene = new Scene(parent);
         Stage stage = new Stage(StageStyle.DECORATED);
+        stage.setTitle("Sinpati - Ajout Examen");
         stage.setScene(scene);
         stage.show();
 
@@ -146,7 +147,7 @@ public class choix_rdv_controller {
         secretaire_accueil_controller.initData(sir,menu,loadermenu);
         Scene scene = new Scene(root);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();     //pas compris
-
+        stage.setTitle("Sinpati - Acceuil");
         stage.setScene(scene);
         stage.show();
     }

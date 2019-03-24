@@ -99,6 +99,7 @@ public class secretaire_accueil_controller {
 
         Scene scene = new Scene(parent);
         Stage stage = new Stage(StageStyle.DECORATED);
+        stage.setTitle("Sinpati - Rédaction CR");
         stage.setScene(scene);
         stage.show();
 
@@ -113,7 +114,7 @@ public class secretaire_accueil_controller {
         controller.initData(sir,menu,loaderMenu);
         Scene scene = new Scene(parent);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();     //pas compris
-
+        stage.setTitle("Sinpati - Liste Patient");
         stage.setScene(scene);
         stage.show();
 

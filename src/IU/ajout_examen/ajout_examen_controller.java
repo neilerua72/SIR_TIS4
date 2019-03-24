@@ -284,6 +284,8 @@ public class ajout_examen_controller {
         controller.setImageView_editionImage(this.getImage_to_edit(),this.rdv,this.selectedImage,sir,menu,loadermenu);
         Scene scene = new Scene(parent);
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        stage.setTitle("Sinpati - Edition Image");
+
         stage.setScene(scene);
         stage.show();
 
@@ -378,6 +380,7 @@ public class ajout_examen_controller {
             redaction_cr_controller.initData(sir,examen,menu,loadermenu);
             Scene scene = new Scene(parent);
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setTitle("Sinpati - Rédaction CR");
             stage.setScene(scene);
             stage.show();
 
@@ -392,6 +395,7 @@ public class ajout_examen_controller {
             redaction_cr_controller.initData(sir,menu,loadermenu);
             Scene scene = new Scene(parent);
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setTitle("Sinpati - Acceuil");
             stage.setScene(scene);
             stage.show();
         }

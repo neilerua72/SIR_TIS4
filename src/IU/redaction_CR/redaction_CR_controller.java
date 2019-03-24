@@ -223,6 +223,7 @@ public class redaction_CR_controller implements Initializable {
         acceuil_medecin_controller.initData(sir,menu,loadermenu);
         Scene scene= new Scene(parent);
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        stage.setTitle("Sinpati - Acceuil");
         stage.setScene(scene);
         stage.show();
     }

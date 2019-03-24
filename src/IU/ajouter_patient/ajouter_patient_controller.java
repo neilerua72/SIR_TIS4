@@ -281,6 +281,7 @@ public class ajouter_patient_controller implements Initializable {
             secretaire_accueil_controller.initData(sir, menu, loader);
             Scene scene = new Scene(root);
             Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();     //pas compris
+            stage.setTitle("Sinpati - Liste Patient");
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Succès");
             alert.setHeaderText("Le patient a bien été ajouté");
@@ -299,7 +300,7 @@ public class ajouter_patient_controller implements Initializable {
             acceuil_medecin_controller.initData(sir, menu, loader);
             Scene scene = new Scene(root);
             Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();     //pas compris
-
+            stage.setTitle("Sinpati - Acceuil");
             stage.setScene(scene);
             stage.show();
         }

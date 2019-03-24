@@ -227,6 +227,9 @@ public class acceuil_medecin_controller implements Initializable{
     private Button rediger;
     private Examen examen;
 
+    @FXML
+    private AnchorPane anchorView;
+
     private BufferedImage image_to_edit;
 
     public Image getImage_to_edit(){
@@ -422,6 +425,10 @@ public class acceuil_medecin_controller implements Initializable{
         examen = sir.getExamenFromId(Integer.parseInt(tableExamen.getIdexamen()));
         CR cr = sir.getCRFromIdExam(Integer.parseInt(examen.getId()));
         ArrayList<RWImage>listeIMG=new ArrayList<>(sir.recupImageExam(Integer.parseInt(examen.getId())));
+        if(listView_imagesExam.getItems().size()>0){
+            listView_imagesExam.getItems().clear();
+        }
+        listView_imagesExam.setVisible(true);
 
         if(examen.getCr()){
             Patient patient = sir.getPatientFromId(examen.getIdPatient());
@@ -436,7 +443,7 @@ public class acceuil_medecin_controller implements Initializable{
             text_descriptionTechniqueCR.setText(cr.getTechnique());
             text_comparaisonExamensExterieursCR.setText(cr.getComparaisonExamenAnt());
             text_conclusionCR.setText(cr.getConclusion());
-
+            resumePbClinique.setText(cr.getProblemeClinique());
             protocole.setText(cr.getProtocoleStandardise());
             text_resultatCR.setText(cr.getResultat());
             text_syntheseCR.setText(cr.getSynthese());
@@ -478,10 +485,12 @@ public class acceuil_medecin_controller implements Initializable{
                 }
             }listView_imagesExam.setDisable(false);
             agrandir.setDisable(false);
+            anchorView.setVisible(true);
         }
     else{
         listView_imagesExam.setDisable(true);
         agrandir.setDisable(true);
+
     }
     }
 
@@ -500,6 +509,8 @@ public class acceuil_medecin_controller implements Initializable{
         afficher_dossiers_patient_controller.initData(sir,menu,loadermenu);
         Scene scene = new Scene(parent);
          Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();     //pas compris
+        stage.setTitle("Sinpati - DMP");
+
         stage.setScene(scene);
         stage.show();
 
@@ -516,7 +527,7 @@ public class acceuil_medecin_controller implements Initializable{
         controller.initData(this.sir,menu,loadermenu);
         Scene scene = new Scene(parent);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();     //pas compris
-
+        stage.setTitle("Sinpati - Choix RDV");
         stage.setScene(scene);
         stage.show();
     }
@@ -547,6 +558,7 @@ public class acceuil_medecin_controller implements Initializable{
         controller.initData(this.getImage_to_edit());
         Scene scene = new Scene(parent);
         Stage stage = new Stage(StageStyle.DECORATED);
+        stage.setTitle("Sinpati - Agrandissement");
         stage.setScene(scene);
         stage.show();
 
@@ -560,6 +572,7 @@ public class acceuil_medecin_controller implements Initializable{
         redaction_cr.initData(sir,examen,this.menu,this.loadermenu);
         Scene scene = new Scene(parent);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setTitle("Sinpati - Rédaction CR");
         stage.setScene(scene);
         stage.show();
 

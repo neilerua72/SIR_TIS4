@@ -21,6 +21,7 @@ import IU.acceuil_secretaire.secretaire_accueil_controller;
 import IU.edition_image.edition_image_controller;
 import IU.img_grand.img_grand_controller;
 import IU.menu.menu_controller;
+import IU.redaction_CR.redaction_CR_controller;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.embed.swing.SwingFXUtils;
@@ -215,6 +216,8 @@ public class afficher_dossiers_patient_controller {
     @FXML
     private Button retour;
     @FXML
+    private Button rediger;
+    @FXML
             private TableColumn<?,?> sexe;
     @FXML
             private Text aucunExamen;
@@ -315,11 +318,15 @@ public class afficher_dossiers_patient_controller {
             quantite.setText(examen.getDose());
             scrolpane.setVisible(true);
             aucunExamen.setVisible(false);
+            rediger.setVisible(false);
             }
             else{
                 scrolpane.setVisible(false);
                 aucunExamen.setText("Aucun Compte-Rendu de rédigé pour l'instant");
                 aucunExamen.setVisible(true);
+                rediger.setVisible(true);
+                if(sir.getConnexion().getType().equals(TypeConnexion.MAN))
+                    rediger.setDisable(true);
                 System.out.println("CR NULL");
             }
             if(listeIMG.size()>0){
@@ -399,6 +406,7 @@ public class afficher_dossiers_patient_controller {
 
         }
         else{
+            if(listeExam.getItems().size()>0)
             listeExam.getItems().clear();
         }
        scrolpane.setVisible(false);
@@ -414,7 +422,7 @@ public class afficher_dossiers_patient_controller {
         acceuil_medecin_controller.initData(sir,menu,loadermenu);
         Scene scene = new Scene(root);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();     //pas compris
-
+        stage.setTitle("Sinpati - Acceuil");
         stage.setScene(scene);
         stage.show();
     }
@@ -431,11 +439,26 @@ public class afficher_dossiers_patient_controller {
         controller.initData(this.getImage_to_edit());
         Scene scene = new Scene(parent);
         Stage stage = new Stage(StageStyle.DECORATED);
+        stage.setTitle("Sinpati - Agrandissement");
         stage.setScene(scene);
         stage.show();
 
 
     }
+    public void rediger(ActionEvent event) throws IOException {
+        FXMLLoader loader =new FXMLLoader();
+        loader.setLocation(getClass().getResource("/IU/redaction_CR/redaction_CR.fxml"));
+        Parent parent = loader.load();
+        redaction_CR_controller redaction_cr = loader.getController();
+        redaction_cr.initData(sir,examen,this.menu,this.loadermenu);
+        Scene scene = new Scene(parent);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setTitle("Sinpati - Rédaction CR");
+        stage.setScene(scene);
+        stage.show();
+
+    }
+
 
 
 }

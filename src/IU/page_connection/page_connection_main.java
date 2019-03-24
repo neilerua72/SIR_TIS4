@@ -18,6 +18,7 @@ public class page_connection_main extends Application {
         Parent root = loader.load();
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
+        primaryStage.setTitle("Sinpati - Connexion");
         primaryStage.show();
 
     }

@@ -105,7 +105,7 @@ public class liste_patient_secretaire_controller {
         secretaire_accueil_controller.initData(sir,menu,loader);
         Scene scene = new Scene(root);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();     //pas compris
-
+        stage.setTitle("Sinpati - Ajouter Patient");
         stage.setScene(scene);
         stage.show();
 
@@ -229,6 +229,7 @@ public class liste_patient_secretaire_controller {
         secretaire_accueil_controller.initData(sir,menu,loader);
         Scene scene = new Scene(root);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();     //pas compris
+        stage.setTitle("Sinpati - Acceuil");
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Succès");
         alert.setHeaderText("Le rendez vous a bien été ajouté");
@@ -249,7 +250,7 @@ public class liste_patient_secretaire_controller {
         secretaire_accueil_controller.initData(sir,menu,loader);
         Scene scene = new Scene(root);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();     //pas compris
-
+        stage.setTitle("Sinpati - Acceuil");
         stage.setScene(scene);
         stage.show();
     }

@@ -44,6 +44,7 @@ public class ActionConnexion {
                 Stage window = (Stage)((Node)e.getSource()).getScene().getWindow();
 
                 window.setScene(tableViewScene);
+                window.setTitle("Sinpati - Acceuil");
                 window.show();
                 System.out.println("Connecter");
             }else{
@@ -70,6 +71,7 @@ public class ActionConnexion {
             Stage window = (Stage)((Node)e.getSource()).getScene().getWindow();
 
             window.setScene(tableViewScene);
+               window.setTitle("Sinpati - Acceuil");
             window.show();
             System.out.println("Connecter");
 
