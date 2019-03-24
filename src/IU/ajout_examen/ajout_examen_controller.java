@@ -31,6 +31,7 @@ import java.util.Date;
 import BD.ConnexionBase;
 import FC.*;
 import IU.acceuil_medecin.acceuil_medecin_controller;
+import IU.choix_rdv.choix_rdv_controller;
 import IU.edition_image.edition_image_controller;
 import IU.redaction_CR.redaction_CR_controller;
 import javafx.collections.ObservableList;
@@ -426,6 +427,20 @@ public class ajout_examen_controller {
                 listView_images.getItems().add(imageview);
             }
         }
+    }
+    public void retour (ActionEvent event) throws IOException {
+
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/IU/choix_rdv/choix_rdv.fxml"));
+        Parent parent = loader.load();
+        choix_rdv_controller choix_rdv_controller = loader.getController();
+        choix_rdv_controller.initData(sir,menu,loadermenu);
+        Scene scene = new Scene(parent);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setTitle("Sinpati - Choix RDV");
+        //stage.setScene(scene);
+        stage.show();
+        stage.close();
     }
 }
 
