@@ -358,7 +358,34 @@ public class ajout_examen_controller {
             e.printStackTrace();
         }
 
+        try {
 
+            int idImg=(int)(Math.random() * ( 999999 - 100000 )+1);
+            int idExamen = Integer.valueOf(rdv.getId());
+            ConnexionBase cb = new ConnexionBase();
+            connexion=cb.returnConnexion();
+            String query ="INSERT INTO Image (idExamen,nom,image) VALUES(?,?,?)";
+
+
+            for(int i=0;i<this.selectedImage.size();i++){
+                String new_file = new String();
+                new_file=System.getProperty("user.dir");
+                File imageliste=new File(new_file);
+                File file = this.selectedImage.get(i);
+
+                try (FileInputStream inputStream = new FileInputStream(file);
+                     PreparedStatement stmt = connexion.prepareStatement(query);) {
+                    stmt.setInt(1,idExamen);
+                    stmt.setString(2, ""+idImg);
+                    stmt.setBinaryStream(3, inputStream, file.length());
+                    stmt.executeUpdate();
+                    System.out.println("Image sauvegarder dans la BD image");
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }}
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
         for(int i=0;i<this.selectedImages.size();i++){
             int index = selectedImages.get(i).getName().indexOf('.');
