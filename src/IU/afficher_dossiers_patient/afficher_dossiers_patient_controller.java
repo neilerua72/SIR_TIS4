@@ -266,7 +266,7 @@ public class afficher_dossiers_patient_controller {
         listeExam.getSelectionModel().selectedItemProperty().addListener(
                 (observable, oldValue, newValue) -> showDetailExam(newValue));
 
-        champ_rechercherParNomPatient.setOnKeyPressed(new EventHandler<KeyEvent>() {
+        champ_rechercherParNomPatient.setOnKeyReleased(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent event) {
                 if (event.getCode().toString().equals("BACK_SPACE") && champ_rechercherParNomPatient.getText().length() < 2) {

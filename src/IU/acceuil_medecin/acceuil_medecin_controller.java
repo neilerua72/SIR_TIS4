@@ -334,7 +334,7 @@ public class acceuil_medecin_controller implements Initializable{
                 (observable, oldValue, newValue) -> showExamDetails(newValue));
 
 
-        champ_rechercherParNomPatient.setOnKeyPressed(new EventHandler<KeyEvent>() {
+        champ_rechercherParNomPatient.setOnKeyReleased(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent event) {
                 if (event.getCode().toString().equals("BACK_SPACE") && champ_rechercherParNomPatient.getText().length() < 2) {
