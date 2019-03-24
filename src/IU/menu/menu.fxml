@@ -9,7 +9,7 @@
 <AnchorPane fx:id="top" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="102.0" prefWidth="885.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="IU.menu.menu_controller">
    <children>
       <ImageView fx:id="img" fitHeight="74.0" fitWidth="86.0" layoutX="26.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
-      <Button fx:id="deco" layoutX="779.0" layoutY="20.0" mnemonicParsing="false" onAction="#seDeco">
+      <Button fx:id="deco" layoutX="779.0" layoutY="15.0" mnemonicParsing="false" onAction="#seDeco">
          <graphic>
             <ImageView fitHeight="51.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -18,5 +18,6 @@
             </ImageView>
          </graphic></Button>
       <Text fx:id="nomprenom" layoutX="177.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+      <Text layoutX="778.0" layoutY="88.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Déconnexion" />
    </children>
 </AnchorPane>

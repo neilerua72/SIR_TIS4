@@ -26,27 +26,27 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="880.0" prefWidth="1539.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="IU.afficher_dossiers_patient.afficher_dossiers_patient_controller">
+<AnchorPane prefHeight="845.0" prefWidth="1302.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="IU.afficher_dossiers_patient.afficher_dossiers_patient_controller">
    <children>
-      <AnchorPane fx:id="top" prefHeight="102.0" prefWidth="885.0" />
-      <StackPane layoutY="103.0" prefHeight="777.0" prefWidth="1479.0">
+      <AnchorPane fx:id="top" prefHeight="114.0" prefWidth="1299.0" />
+      <StackPane layoutX="3.0" layoutY="115.0" prefHeight="730.0" prefWidth="1299.0">
          <children>
-            <SplitPane dividerPositions="0.43534190927555855" layoutY="25.0" prefHeight="871.0" prefWidth="1276.0">
+            <SplitPane dividerPositions="0.4668192219679634" layoutY="25.0" prefHeight="753.0" prefWidth="844.0">
                <items>
-                  <AnchorPane layoutY="25.0" maxHeight="-1.0" maxWidth="-1.0" prefHeight="775.0" prefWidth="644.0" VBox.vgrow="ALWAYS">
+                  <AnchorPane layoutY="25.0" maxHeight="-1.0" maxWidth="-1.0" prefHeight="917.0" prefWidth="621.0" VBox.vgrow="ALWAYS">
                      <children>
-                        <Text fx:id="texte_rechercherPar" layoutX="95.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Rechercher par" />
-                        <Rectangle fx:id="ractangle_recherche" arcHeight="5.0" arcWidth="5.0" fill="#b8cada00" height="77.0" layoutX="93.0" layoutY="25.0" stroke="#6f6e6ead" strokeLineCap="ROUND" strokeType="INSIDE" width="502.0" />
-                        <GridPane layoutX="101.0" layoutY="27.0" prefHeight="70.0" prefWidth="483.0">
+                        <Text fx:id="texte_rechercherPar" layoutX="220.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Rechercher par" />
+                        <Rectangle fx:id="ractangle_recherche" arcHeight="5.0" arcWidth="5.0" fill="#b8cada00" height="77.0" layoutX="218.0" layoutY="23.0" stroke="#6f6e6ead" strokeLineCap="ROUND" strokeType="INSIDE" width="371.0" />
+                        <GridPane layoutX="227.0" layoutY="28.0" prefHeight="70.0" prefWidth="352.0">
                            <children>
-                              <TextField fx:id="champ_rechercherParNomPatient" prefHeight="25.0" prefWidth="421.0" promptText="Entrez la recherche... " GridPane.columnSpan="4" GridPane.rowIndex="1" />
-                              <ToggleButton fx:id="toggle_nomPatient" mnemonicParsing="false" prefHeight="31.0" prefWidth="195.0" selected="true" text="Nom Patient" />
-                              <ToggleButton fx:id="toggle_IDPatient" mnemonicParsing="false" prefHeight="31.0" prefWidth="159.0" text="ID Patient" GridPane.columnIndex="1" />
+                              <TextField fx:id="champ_rechercherParNomPatient" prefHeight="25.0" prefWidth="396.0" promptText="Entrez la recherche... " GridPane.columnSpan="4" GridPane.rowIndex="1" />
+                              <ToggleButton fx:id="toggle_nomPatient" mnemonicParsing="false" prefHeight="31.0" prefWidth="159.0" selected="true" text="Nom Patient" translateX="2.0" />
+                              <ToggleButton fx:id="toggle_IDPatient" mnemonicParsing="false" prefHeight="31.0" prefWidth="159.0" text="ID Patient" translateX="20.0" GridPane.columnIndex="1" />
                            </children>
                            <columnConstraints>
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="206.0" minWidth="10.0" prefWidth="87.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="297.0" minWidth="10.0" prefWidth="73.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="327.0" minWidth="10.0" prefWidth="131.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="206.0" minWidth="10.0" prefWidth="147.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="297.0" minWidth="10.0" prefWidth="158.0" />
+                              <ColumnConstraints />
                               <ColumnConstraints />
                            </columnConstraints>
                            <rowConstraints>
@@ -54,41 +54,46 @@
                               <RowConstraints maxHeight="34.0" minHeight="10.0" prefHeight="33.0" vgrow="SOMETIMES" />
                            </rowConstraints>
                         </GridPane>
-                        <TableView fx:id="tableau_colonnes" layoutY="115.0" prefHeight="219.0" prefWidth="597.0">
+                        <TableView fx:id="tableau_colonnes" layoutX="9.0" layoutY="115.0" prefHeight="236.0" prefWidth="586.0">
                            <columns>
-                              <TableColumn fx:id="colonne_IDPatient" prefWidth="84.0" text="ID Patient" />
-                              <TableColumn fx:id="colonne_patient" prefWidth="463.0" text="Patient">
+                              <TableColumn fx:id="colonne_IDPatient" prefWidth="143.0" text="ID Patient" />
+                              <TableColumn fx:id="colonne_patient" prefWidth="332.0" text="Patient">
                                  <columns>
                                     <TableColumn fx:id="colonne_nom" prefWidth="168.0" text="Nom" />
                                     <TableColumn fx:id="colonne_prenom" minWidth="0.0" prefWidth="178.0" text="Prénom" />
                                  </columns></TableColumn>
-                              <TableColumn fx:id="sexe" prefWidth="75.0" text="Sexe" />
+                              <TableColumn fx:id="sexe" prefWidth="96.0" text="Sexe" />
                            </columns>
                         </TableView>
-                        <Text layoutX="14.0" layoutY="357.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Liste d'examens réalisés " />
-                        <ListView fx:id="listView_examensRealises" layoutY="373.0" prefHeight="243.0" prefWidth="603.0" />
-                        <TableView fx:id="listeExam" layoutX="-2.0" layoutY="373.0" prefHeight="243.0" prefWidth="603.0">
+                        <Text layoutX="9.0" layoutY="378.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Liste d'examens réalisés " />
+                        <ListView fx:id="listView_examensRealises" layoutX="7.0" layoutY="388.0" prefHeight="330.0" prefWidth="586.0" />
+                        <TableView fx:id="listeExam" layoutX="7.0" layoutY="388.0" prefHeight="330.0" prefWidth="586.0">
                           <columns>
                             <TableColumn fx:id="colonne_date" prefWidth="117.0" text="Date" />
-                            <TableColumn fx:id="colonne_type" prefWidth="156.0" text="Type" />
-                              <TableColumn fx:id="colonne_prescri" prefWidth="165.0" text="Médecin Prescripteur" />
-                              <TableColumn fx:id="colonne_radio" prefWidth="164.0" text="Medecin Radiologue" />
+                            <TableColumn fx:id="colonne_type" prefWidth="151.0" text="Type" />
+                              <TableColumn fx:id="colonne_prescri" prefWidth="162.0" text="Médecin Prescripteur" />
+                              <TableColumn fx:id="colonne_radio" prefWidth="172.0" text="Medecin Radiologue" />
                           </columns>
                         </TableView>
-                        <Button fx:id="retour" layoutX="14.0" layoutY="40.0" mnemonicParsing="false" onAction="#retour">
+                        <Button fx:id="retour" layoutX="20.0" layoutY="28.0" mnemonicParsing="false" onAction="#retour" prefHeight="16.0" prefWidth="26.0">
                            <graphic>
-                              <ImageView fitHeight="34.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="31.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../icone/retour.png" />
                                  </image>
                               </ImageView>
                            </graphic>
                         </Button>
+                        <Text fill="#949494" layoutX="18.0" layoutY="78.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Page Précédente" textAlignment="CENTER" wrappingWidth="51.826171875">
+                           <font>
+                              <Font size="9.0" />
+                           </font>
+                        </Text>
                      </children>
                   </AnchorPane>
-                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                  <AnchorPane prefHeight="751.0" prefWidth="661.0">
                      <children>
-                        <AnchorPane layoutX="168.0" layoutY="231.0" prefHeight="200.0" prefWidth="682.0">
+                        <AnchorPane layoutX="53.0" layoutY="261.0" prefHeight="223.0" prefWidth="602.0" translateX="-40.0" translateY="-25.0">
                            <children>
                               <Button fx:id="rediger" layoutX="266.0" layoutY="125.0" mnemonicParsing="false" onAction="#rediger" text="Rédiger le CR" visible="false" />
                               <Text fx:id="aucunExamen" layoutX="235.0" layoutY="106.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Aucun examen séléctionné" textAlignment="CENTER">
@@ -98,22 +103,21 @@
                               </Text>
                            </children>
                         </AnchorPane>
-                        <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                        <AnchorPane prefHeight="729.0" prefWidth="686.0">
                            <children>
-                              <AnchorPane fx:id="listViewAnchor" prefHeight="140.0" prefWidth="764.0" visible="false">
+                              <AnchorPane fx:id="listViewAnchor" prefHeight="182.0" prefWidth="678.0" translateX="5.0" visible="false">
                                  <children>
-                                    <ListView fx:id="listView_imagesExam" disable="true" layoutY="26.0" orientation="HORIZONTAL" prefHeight="114.0" prefWidth="641.0" />
-                                    <Text layoutX="8.0" layoutY="18.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Images de l'examen">
+                                    <ListView fx:id="listView_imagesExam" disable="true" layoutX="5.0" layoutY="21.0" orientation="HORIZONTAL" prefHeight="114.0" prefWidth="655.0" />
+                                    <Text layoutX="11.0" layoutY="18.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Images de l'examen">
                                        <font>
                                           <Font name="System Bold" size="12.0" />
                                        </font>
                                     </Text>
-                                    <Button fx:id="agrandir" disable="true" layoutX="657.0" layoutY="42.0" mnemonicParsing="false" onAction="#agrandir" text="Agrandir" />
                                  </children>
                               </AnchorPane>
-                              <ScrollPane fx:id="scrolpane" layoutY="137.0" prefHeight="638.0" prefViewportHeight="1209.0" prefViewportWidth="652.0" prefWidth="920.0" visible="false">
+                              <ScrollPane fx:id="scrolpane" layoutY="137.0" prefHeight="584.0" prefViewportHeight="1209.0" prefViewportWidth="652.0" prefWidth="678.0" translateX="10.0" visible="false">
                                  <content>
-                                    <AnchorPane fx:id="cranchor" prefHeight="1063.0" prefWidth="868.0">
+                                    <AnchorPane fx:id="cranchor" prefHeight="1001.0" prefWidth="666.0">
                                        <children>
                                           <Text layoutX="14.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Compte rendu de l'examen">
                                              <font>
@@ -275,6 +279,7 @@
                                                 <Text layoutX="341.0" layoutY="334.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Produit de Contraste" />
                                              </children>
                                           </AnchorPane>
+                                          <Button fx:id="agrandir" disable="true" layoutX="548.0" layoutY="10.0" mnemonicParsing="false" onAction="#agrandir" text="Agrandir l'image" />
                                        </children>
                                     </AnchorPane>
                                  </content>

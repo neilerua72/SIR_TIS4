@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.shape.*?>
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
@@ -15,44 +16,51 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="644.0" prefWidth="885.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="IU.choix_rdv.choix_rdv_controller">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="644.0" prefWidth="857.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="IU.choix_rdv.choix_rdv_controller">
    <children>
-      <AnchorPane layoutY="105.0" prefHeight="539.0" prefWidth="885.0">
+      <AnchorPane layoutY="105.0" prefHeight="541.0" prefWidth="856.0">
          <children>
-            <TableView fx:id="tableau" layoutY="100.0" prefHeight="441.0" prefWidth="885.0">
-              <columns>
-                  <TableColumn fx:id="colonne_id" minWidth="4.0" prefWidth="115.0" text="id Exam" />
-                <TableColumn fx:id="colonne_patient" prefWidth="263.0" text="Patient">
-                     <columns>
-                        <TableColumn fx:id="colonne_nomPatient" prefWidth="71.0" text="Nom" />
-                        <TableColumn fx:id="colonne_prenomPatient" prefWidth="70.0" text="Prénom" />
-                        <TableColumn fx:id="colonne_IDPatient" minWidth="0.0" prefWidth="84.0" text="ID" />
-                     </columns>
-                  </TableColumn>
-                <TableColumn fx:id="colonne_dateRDV" prefWidth="128.0" text="Date RDV" />
-                  <TableColumn fx:id="colonne_salle" prefWidth="158.0" text="Salle" />
-                  <TableColumn fx:id="colonne_medecinPrescripteur" prefWidth="147.0" text="Médecin Prescripteur" />
-              </columns>
-            </TableView>
-            <Text layoutX="119.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="RDV Patients">
-               <font>
-                  <Font name="System Bold" size="26.0" />
-               </font>
-            </Text>
-            <Button fx:id="recherche" layoutX="549.0" layoutY="42.0" mnemonicParsing="false" onAction="#RDVDate" text="RDV d'aujourd'hui" />
-            <Button layoutX="23.0" layoutY="34.0" mnemonicParsing="false" onAction="#retour">
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="56.0" layoutX="393.0" layoutY="22.0" stroke="#979797" strokeType="INSIDE" width="444.0" />
+            <Button fx:id="recherche" layoutX="562.0" layoutY="44.0" mnemonicParsing="false" onAction="#RDVDate" text="RDV d'aujourd'hui" />
+            <Text layoutX="401.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Recherche" />
+            <Button layoutX="23.0" layoutY="27.0" mnemonicParsing="false" onAction="#retour" prefHeight="35.0" prefWidth="42.0">
                <graphic>
-                  <ImageView fitHeight="37.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="29.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../icone/retour.png" />
                      </image>
                   </ImageView>
                </graphic>
             </Button>
-            <TextField fx:id="rechercherParNom" layoutX="305.0" layoutY="42.0" promptText="Rechercher par nom" />
-            <Button layoutX="722.0" layoutY="42.0" mnemonicParsing="false" onAction="#Reinitialiser" text="Réinitialiser" />
+            <TextField fx:id="rechercherParNom" layoutX="399.0" layoutY="44.0" promptText="Rechercher par nom" />
+            <Button layoutX="687.0" layoutY="44.0" mnemonicParsing="false" onAction="#Reinitialiser" text="Réinitialiser la recherche" />
+            <Text fill="#949494" layoutX="19.0" layoutY="72.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Page Précédente" textAlignment="CENTER" wrappingWidth="51.826171875">
+               <font>
+                  <Font size="9.0" />
+               </font>
+            </Text>
+            <TableView fx:id="tableau" layoutY="100.0" prefHeight="441.0" prefWidth="857.0">
+              <columns>
+                  <TableColumn fx:id="colonne_id" minWidth="4.0" prefWidth="145.0" text="ID Exam" />
+                <TableColumn fx:id="colonne_patient" prefWidth="204.0" text="Patient">
+                     <columns>
+                        <TableColumn fx:id="colonne_IDPatient" minWidth="0.0" prefWidth="73.0" text="ID" />
+                        <TableColumn fx:id="colonne_nomPatient" prefWidth="70.0" text="Nom" />
+                        <TableColumn fx:id="colonne_prenomPatient" prefWidth="82.0" text="Prénom" />
+                     </columns>
+                  </TableColumn>
+                <TableColumn fx:id="colonne_dateRDV" prefWidth="134.0" text="Date RDV" />
+                  <TableColumn fx:id="colonne_salle" prefWidth="137.0" text="Salle" />
+                  <TableColumn fx:id="colonne_medecinPrescripteur" prefWidth="215.0" text="Médecin Prescripteur" />
+              </columns>
+            </TableView>
+            <Text layoutX="164.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="RDV Patients">
+               <font>
+                  <Font name="System Bold" size="26.0" />
+               </font>
+            </Text>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="top" prefHeight="102.0" prefWidth="885.0" />
+      <AnchorPane fx:id="top" prefHeight="102.0" prefWidth="857.0" />
    </children>
 </AnchorPane>
