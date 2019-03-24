@@ -39,7 +39,7 @@
                   <Font name="System Bold" size="26.0" />
                </font>
             </Text>
-            <Button fx:id="recherche" layoutX="549.0" layoutY="42.0" mnemonicParsing="false" text="RDV d'aujourd'hui" />
+            <Button fx:id="recherche" layoutX="549.0" layoutY="42.0" mnemonicParsing="false" onAction="#RDVDate" text="RDV d'aujourd'hui" />
             <Button layoutX="23.0" layoutY="34.0" mnemonicParsing="false" onAction="#retour">
                <graphic>
                   <ImageView fitHeight="37.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
@@ -50,6 +50,7 @@
                </graphic>
             </Button>
             <TextField fx:id="rechercherParNom" layoutX="305.0" layoutY="42.0" promptText="Rechercher par nom" />
+            <Button layoutX="722.0" layoutY="42.0" mnemonicParsing="false" onAction="#Reinitialiser" text="Réinitialiser" />
          </children>
       </AnchorPane>
       <AnchorPane fx:id="top" prefHeight="102.0" prefWidth="885.0" />

@@ -2,11 +2,16 @@ package IU.choix_rdv;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
 import java.util.ResourceBundle;
 
 import ClassTable.TableRDV;
 import FC.RDV;
+import FC.Recherche;
 import FC.SIR;
+import IU.acceuil_medecin.MaJTableau;
 import IU.acceuil_medecin.acceuil_medecin_controller;
 import IU.acceuil_secretaire.secretaire_accueil_controller;
 import IU.ajout_examen.ajout_examen_controller;
@@ -14,16 +19,15 @@ import IU.menu.menu_controller;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -70,6 +74,8 @@ public class choix_rdv_controller {
 
     @FXML
     private Button recherche;
+    @FXML
+            private TextField rechercherParNom;
     SIR sir;
     Parent menu;
     FXMLLoader loadermenu;
@@ -96,6 +102,20 @@ public class choix_rdv_controller {
                         e.printStackTrace();
                     }
                 });
+        rechercherParNom.setOnKeyReleased(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent event) {
+                if (event.getCode().toString().equals("BACK_SPACE") && rechercherParNom.getText().length() < 2) {
+                    MaJRDV maJTableau = new MaJRDV(sir.getTableRDV());
+                    tableau.setItems(maJTableau.getData());
+                }
+                if(rechercherParNom.getText().length()>0){
+                    Recherche recherche = new Recherche(sir, event, rechercherParNom.getText());
+                    MaJRDV maJTableau = new MaJRDV(recherche.rechercherRDVParNom());
+                    tableau.setItems(maJTableau.getData());
+                }
+            }
+        });
 
     }
 
@@ -150,5 +170,18 @@ public class choix_rdv_controller {
         stage.setTitle("Sinpati - Acceuil");
         stage.setScene(scene);
         stage.show();
+    }
+
+    public void RDVDate(ActionEvent event){
+        Date date = new Date();
+        LocalDate todayLocalDate = LocalDate.now( ZoneId.of( "Europe/Paris" ) );
+        java.sql.Date sqlDate = java.sql.Date.valueOf(todayLocalDate);
+        Recherche recherche = new Recherche(sir, event, sqlDate.toString());
+        MaJRDV maJTableau = new MaJRDV(recherche.rechercheRDVparDate());
+        tableau.setItems(maJTableau.getData());
+    }
+    public void Reinitialiser(ActionEvent event){
+        MaJRDV maJRDV = new MaJRDV(sir.getTableRDV());
+        tableau.setItems(maJRDV.getData());
     }
 }

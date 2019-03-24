@@ -1,6 +1,7 @@
 package FC;
 
 import ClassTable.TableExamen;
+import ClassTable.TableRDV;
 import javafx.event.Event;
 
 
@@ -95,6 +96,27 @@ public class Recherche {
             }
         }
 
+        return result;
+    }
+    public ArrayList<TableRDV> rechercheRDVparDate(){
+        ArrayList<TableRDV> result = new ArrayList<>();
+        for(int i=0;i<sir.getTableRDV().size();i++){
+            System.out.println("COMPARAISON : "+sir.getTableRDV().get(i).getDateRDV().toString()+"   /   "+s);
+            if(sir.getTableRDV().get(i).getDateRDV().toString().equals(s)){
+                result.add(sir.getTableRDV().get(i));
+            }
+        }
+
+        return result;
+    }
+
+    public ArrayList<TableRDV> rechercherRDVParNom(){
+        ArrayList<TableRDV>result=new ArrayList<>();
+        for(int i=0;i<sir.getTableRDV().size();i++){
+            if(s.length()<=sir.getTableRDV().get(i).getNom().length()&&s.toLowerCase().equals(sir.getTableRDV().get(i).getNom().substring(0,s.length()).toLowerCase())){
+                result.add(sir.getTableRDV().get(i));
+            }
+        }
         return result;
     }
 
