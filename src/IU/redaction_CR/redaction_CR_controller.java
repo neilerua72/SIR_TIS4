@@ -234,6 +234,18 @@ this.examen=examen;
 this.menu=menu;
 this.loadermenu=loadermenu;
 }
+public void annuler(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/IU/acceuil_medecin/acceuil_medecin.fxml"));
+        Parent parent = loader.load();
+        acceuil_medecin_controller acceuil_medecin_controller =loader.getController();
+        acceuil_medecin_controller.initData(sir,menu,loadermenu);
+        Scene scene = new Scene(parent);
+        Stage stage =(Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setTitle("Sinpati - Acceuil");
+        stage.setScene(scene);
+        stage.show();
+}
 
 }
 
