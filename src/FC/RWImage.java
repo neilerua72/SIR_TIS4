@@ -14,6 +14,13 @@ public class RWImage {
    private BufferedImage buffer;
    private String idPatient;
 
+    /**
+     * Constructeur qui requiert tout les attributs de la classe pour l'instancier
+     * @param nom
+     * @param id
+     * @param buffer
+     * @param idPatient
+     */
     public RWImage(String nom, int id, BufferedImage buffer,String idPatient) {
         this.nom = nom;
         this.id = id;
@@ -21,18 +28,34 @@ public class RWImage {
         this.idPatient=idPatient;
     }
 
+    /**
+     * Méthode qui retourne le nom de l'image
+     * @return le nom de l'image
+     */
     public String getNom() {
         return nom;
     }
 
+    /**
+     * Méthode qui retourne l'id de l'image
+     * @return l'id de l'image
+     */
     public int getId() {
         return id;
     }
 
+    /**
+     * Méthode qui retourne l'image sous forme de buffered
+     * @return le buffered Image
+     */
     public BufferedImage getBuffer() {
         return buffer;
     }
 
+    /**
+     * Méthode qui retourne l'id de l'EXAMEN
+     * @return l'id de l'examen
+     */
     public String getIdPatient() {
         return idPatient;
     }

@@ -50,7 +50,10 @@ public class ImagePrinter extends Application {
         primaryStage.show();
     }
 
-
+    /**
+     * Méthode qui imprime une image
+     * @param image l'image à imprimer
+     */
     private void printImage(BufferedImage image) {
         PrinterJob printJob = PrinterJob.getPrinterJob();
         printJob.setPrintable(new Printable() {

@@ -16,11 +16,23 @@ public class Recherche {
     SIR sir;
     Event event;
     String s;
+
+    /**
+     * Constructeur qui prends en paramètre le SIR, l'event qui déclenche la recherche, et l'a chaine de caractère pour la recherche
+     * @param sir le SIR de l'application
+     * @param event l'event qui a déclenché la recherche
+     * @param s la chaine de caractère pour la comparaison
+     */
     public Recherche(SIR sir, Event event,String s){
         this.sir=sir;
         this.event=event;
         this.s=s;
     }
+
+    /**
+     * Méthode qui permet de rechercher un examen en fonction d'un nom de patient et qui retourne sous le résultat de la recherche sous forme d'une liste d'examen pour l'affichage
+     * @return une liste de TableExamen (examen pour l'affichage)
+     */
     public ArrayList<TableExamen> rechercheExamenNom(){
         ArrayList<TableExamen> result = new ArrayList<>();
         for(int i=0;i<sir.getTableExamen().size();i++){
@@ -31,6 +43,11 @@ public class Recherche {
 
         return result;
     }
+
+    /**
+     * Méthode qui permet de rechercher un examen en fonction de l'id de l'examen et qui retourne sous le résultat de la recherche sous forme d'une liste d'examen pour l'affichage
+     * @return la liste de TableExamen (examen pour l'affichage)
+     */
     public ArrayList<TableExamen> rechercheExamenIDExamn(){
         ArrayList<TableExamen> result = new ArrayList<>();
         for(int i=0;i<sir.getTableExamen().size();i++){
@@ -41,6 +58,11 @@ public class Recherche {
 
         return result;
     }
+
+    /**
+     * Méthode qui permet de rechercher un examen en fonction de l'ID du patient et qui retourne sous le résultat de la recherche sous forme d'une liste d'examen pour l'affichage
+     * @return la liste de TableExamen(examen pour l'affichage)
+     */
     public ArrayList<TableExamen> rechercheExamenIDPat(){
         ArrayList<TableExamen> result = new ArrayList<>();
         for(int i=0;i<sir.getTableExamen().size();i++){
@@ -51,6 +73,11 @@ public class Recherche {
 
         return result;
     }
+
+    /**
+     * Méthode qui permet de rechercher un examen en fonction d'un medecin prescripteur et qui retourne sous le résultat de la recherche sous forme d'une liste d'examen pour l'affichage
+     * @return la liste de TableExamen (examen pour l'affichage)
+     */
     public ArrayList<TableExamen> rechercherExamenParMedecinPrescri(){
         ArrayList<TableExamen> result = new ArrayList<>();
         for(int i=0;i<sir.getTableExamen().size();i++){
@@ -61,6 +88,11 @@ public class Recherche {
 
         return result;
     }
+
+    /**
+     * Méthode qui permet de rechercher un examen en fonction d'un medecin radiologue et qui retourne sous le résultat de la recherche sous forme d'une liste d'examen pour l'affichage
+     * @return la liste de TableExamen (examen pour l'affichage)
+     */
     public ArrayList<TableExamen> rechercherExamenParMedecinRadio(){
         ArrayList<TableExamen> result = new ArrayList<>();
         for(int i=0;i<sir.getTableExamen().size();i++){
@@ -71,6 +103,11 @@ public class Recherche {
 
         return result;
     }
+
+    /**
+     * Méthode qui permet de rechercher un examen en fonction de la date d'examen et qui retourne sous le résultat de la recherche sous forme d'une liste d'examen pour l'affichage
+     * @return la liste de TableExamen (examen pour l'affichage)
+     */
     public ArrayList<TableExamen> rechercherExamenParDate(){
         ArrayList<TableExamen> result = new ArrayList<>();
         for(int i=0;i<sir.getTableExamen().size();i++){
@@ -83,6 +120,10 @@ public class Recherche {
         return result;
     }
 
+    /**
+     * Méthode qui permet de rechercher un patient en fonction de son nom et qui retourne sous le résultat de la recherche sous forme d'une liste de Patient
+     * @return la liste de patient correspondant à la requête
+     */
     public ArrayList<Patient> rechercherPatient(){
         ArrayList<Patient> result = new ArrayList<>();
         for(int i=0;i<sir.getListePatient().size();i++){
@@ -93,6 +134,11 @@ public class Recherche {
 
         return result;
     }
+
+    /**
+     * Méthode qui permet de rechercher un patient en fonction de son id et qui retourne sous le résultat de la recherche sous forme d'une liste de Patient
+     * @return la liste de patient correspondant à la requête
+     */
     public ArrayList<Patient> rechercherIdPatient(){
         ArrayList<Patient> result = new ArrayList<>();
         for(int i=0;i<sir.getListePatient().size();i++){
@@ -103,6 +149,11 @@ public class Recherche {
 
         return result;
     }
+
+    /**
+     * Méthode qui permet de rechercher un RDV en fonction de sa date et qui retourne sous le résultat de la recherche sous forme d'une liste de RDV pour l'affichage
+     * @return la liste des RDV pour une date donné sous forme d'afficahge
+     */
     public ArrayList<TableRDV> rechercheRDVparDate(){
         ArrayList<TableRDV> result = new ArrayList<>();
         for(int i=0;i<sir.getTableRDV().size();i++){
@@ -115,6 +166,10 @@ public class Recherche {
         return result;
     }
 
+    /**
+     * Méthode qui permet de rechercher un RDV en fonction du nom du patient et qui retourne sous le résultat de la recherche sous forme d'une liste de RDV pour l'affichage
+     * @return une liste de RDV pour un nom de patient
+     */
     public ArrayList<TableRDV> rechercherRDVParNom(){
         ArrayList<TableRDV>result=new ArrayList<>();
         for(int i=0;i<sir.getTableRDV().size();i++){
