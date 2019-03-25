@@ -232,10 +232,19 @@ public class acceuil_medecin_controller implements Initializable{
 
     private BufferedImage image_to_edit;
 
+    /**
+     * Méthode qui retourne l'image à afficher en grand
+     * @return l'image que l'on souhaite afficher en grand
+     */
     public Image getImage_to_edit(){
         return SwingFXUtils.toFXImage(image_to_edit, null);
     }
 
+    /**
+     * Méthode qui permet de définir l'action du bouton qui ajoute un patient. Cette méthode ajoute un patient au SIR
+     * @param event l'event qui déclenche l'action
+     * @throws IOException
+     */
     public void AjouterPat (ActionEvent event) throws IOException {
 
         FXMLLoader loader = new FXMLLoader();
@@ -254,7 +263,12 @@ public class acceuil_medecin_controller implements Initializable{
 
     }
 
-
+    /**
+     * Méthode qui initialise l'interface. Elle permet de définir tout les Text et de fixer leurs valeurs
+     * @param sir le SIR de l'application
+     * @param menu le menu qui est affiché en haut
+     * @param loader le loader du menu qui est affiché en haut
+     */
     public void initData(SIR sir,Parent menu,FXMLLoader loader){
         System.out.println("Init data");
         this.sir=sir;
@@ -292,10 +306,13 @@ public class acceuil_medecin_controller implements Initializable{
         top.getChildren().add(menu);
     }
 
+    /**
+     * Méthode généré par FXML qui initialise en background l'interface. Cette méthode définit aussi les listenners des objets tels que les tableView ou les textFields
+     * @param url
+     * @param rb
+     */
     @FXML
-    public
-    // This method is called by the FXMLLoader when initialization is complete
-    void initialize(URL url, ResourceBundle rb) {
+    public void initialize(URL url, ResourceBundle rb) {
         System.out.println("initialize");
         assert colonne_CR != null : "fx:id=\"colonne_CR\" was not injected: check your FXML file 'acceuil_medecin.fxml'.";
         assert colonne_dossierPatient != null : "fx:id=\"colonne_dossierPatient\" was not injected: check your FXML file 'acceuil_medecin.fxml'.";
@@ -335,6 +352,10 @@ public class acceuil_medecin_controller implements Initializable{
 
 
         champ_rechercherParNomPatient.setOnKeyReleased(new EventHandler<KeyEvent>() {
+            /**
+             * Méthode qui gère la recheche d'examen
+             * @param event l'event qui déclenche la recherche
+             */
             @Override
             public void handle(KeyEvent event) {
                 if (event.getCode().toString().equals("BACK_SPACE") && champ_rechercherParNomPatient.getText().length() < 2) {
@@ -388,7 +409,9 @@ public class acceuil_medecin_controller implements Initializable{
        }
 
 
-
+    /**
+     * Méthode qui permet d'envoyer des infos à un autre logiciel selon la norme HL7
+     */
    @FXML
     private void Envoyer() {
 
@@ -421,6 +444,10 @@ public class acceuil_medecin_controller implements Initializable{
 
     }
 
+    /**
+     * Méthode qui permet d'afficher le détail d'un examen contenu dans une table
+     * @param tableExamen
+     */
     private void showExamDetails(TableExamen tableExamen) {
         examen = sir.getExamenFromId(Integer.parseInt(tableExamen.getIdexamen()));
         CR cr = sir.getCRFromIdExam(Integer.parseInt(examen.getId()));
@@ -495,11 +522,11 @@ public class acceuil_medecin_controller implements Initializable{
     }
 
 
-
-
-
-
-
+    /**
+     * Méthode qui permet d'afficher l'interface qui contient tout les dossiers radiologiques patients
+     * @param actionEvent l'action qui déclenche l'évènement
+     * @throws IOException
+     */
     public void afficheDossierPatient(ActionEvent actionEvent) throws IOException {
 
         FXMLLoader loader = new FXMLLoader();
@@ -517,6 +544,11 @@ public class acceuil_medecin_controller implements Initializable{
 
     }
 
+    /**
+     * Méthode qui permet de faire un examen
+     * @param event l'event qui déclenche la méthode
+     * @throws IOException
+     */
     public void DoExamen(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/IU/choix_rdv/choix_rdv.fxml"));
@@ -531,6 +563,11 @@ public class acceuil_medecin_controller implements Initializable{
         stage.setScene(scene);
         stage.show();
     }
+
+    /**
+     * Méthode qui permet de définir l'action de la recherche par date
+     * @param event l'event qui a déclenché l'action
+     */
     public void rechercherParDate(ActionEvent event){
         if(!date_button.isSelected()){
             date_button.setSelected(true);
@@ -542,10 +579,21 @@ public class acceuil_medecin_controller implements Initializable{
         MaJTableau maJTableau = new MaJTableau(recherche.rechercherExamenParDate());
         tableau_colonnes.setItems(maJTableau.getData());
     }
+
+    /**
+     * Méthode qui permet de définir l'action du bouton de réinitilisation de la table d'examen
+     * @param event
+     */
     public void reset(ActionEvent event){
         MaJTableau maJTableau = new MaJTableau(sir.getTableExamen());
         tableau_colonnes.setItems(maJTableau.getData());
     }
+
+    /**
+     * Méthode qui permet de définir l'action du bouton d'agrandissement d'une image
+     * @param actionEvent l'event qui déclenche l'action
+     * @throws IOException
+     */
     public void agrandir(ActionEvent actionEvent) throws IOException {
 
         FXMLLoader loader = new FXMLLoader();
@@ -564,6 +612,12 @@ public class acceuil_medecin_controller implements Initializable{
 
 
     }
+
+    /**
+     * Méthode qui permet de définir le comportement du bouton rédiger
+     * @param event l'event qui déclenche l'action
+     * @throws IOException
+     */
     public void rediger(ActionEvent event) throws IOException {
         FXMLLoader loader =new FXMLLoader();
         loader.setLocation(getClass().getResource("/IU/redaction_CR/redaction_CR.fxml"));

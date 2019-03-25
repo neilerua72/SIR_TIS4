@@ -7,6 +7,7 @@ package IU.redaction_CR;
 import BD.ConnexionBase;
 import FC.CR;
 import FC.Examen;
+import FC.Patient;
 import FC.SIR;
 import IU.acceuil_medecin.acceuil_medecin_controller;
 import javafx.event.ActionEvent;
@@ -233,6 +234,18 @@ this.sir=sir;
 this.examen=examen;
 this.menu=menu;
 this.loadermenu=loadermenu;
+Patient p = sir.getPatientFromId(examen.getIdPatient());
+nom.setText(p.getNom());
+prenom.setText(p.getPrenom());
+sexe.setText(p.getSexe());
+dateNaissance.setText(p.getDateDeNaissance().toString());
+dateRDV.setText(examen.getDateRDV().toString());
+typeExamen.setText(examen.getTypeExamen().toString());
+type.setText(examen.getProduit());
+quantite.setText(examen.getDose());
+DateExamen.setText(examen.getDateExamen().toString());
+NomPrescri.setText(examen.getMedecinPrescri());
+NomRadiologue.setText(examen.getMedecinRadio());
 }
 public void annuler(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader();
