@@ -7,18 +7,34 @@ import FC.TypeExamen;
 import java.sql.*;
 import java.util.ArrayList;
 
+/**
+ * Classe qui modélise la lecture de notre base de donnée apres connexion à celle ci,
+ * cette classe contient une arrayList des examens et des rendez vous
+ */
 public class LectExamen {
     private ArrayList<Examen> listeExamen;
     private ArrayList<RDV> listeRDV;
 
+    /**
+     * Méthode qui retourne la liste d'examen
+     * @return liste d'examen
+     */
     public ArrayList<Examen> getListeExamen() {
         return listeExamen;
     }
-
+    /**
+     * Méthode qui retourne la liste de rendez vous
+     * @return liste de rendez vous
+     */
     public ArrayList<RDV> getListeRDV() {
         return listeRDV;
     }
-
+    /**
+     *Méthode qui permet de se connecter à la base de donnée et lire la table Examen, afin d'ajouter
+     * idExamen,idPatient,dateRDV,ExamenFait,medecinPrescri,medecinRadio,dateExamen,image,validation,
+     * CRExamen,typeExamen,Salle,vue,zoneetudie,lateralite,produit,dose dans la liste des RDV et des Examens
+     * avec leurs données respectives
+     */
     public LectExamen(){
     listeExamen=new ArrayList<>();
     listeRDV=new ArrayList<>();

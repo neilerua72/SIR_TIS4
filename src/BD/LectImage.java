@@ -13,9 +13,19 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+/**
+ * Classe qui modélise la lecture de notre base de donnée apres connexion à celle ci,
+ * cette classe contient une arrayList de toutes les images
+ */
 
 public class LectImage {
     ArrayList<RWImage> listeImage;
+
+    /**
+     *Méthode qui permet de se connecter à la base de donnée et lire la table image, afin d'ajouter
+     * le nom,l' image,idExamen et id dans la liste des images
+     */
+
     public LectImage(){
         listeImage = new ArrayList<>();
         Connection connexion = null;
@@ -45,11 +55,9 @@ public class LectImage {
                 InputStream in = new ByteArrayInputStream(imgData);
                 BufferedImage bImageFromConvert = ImageIO.read(in);
 
-               /* ImageIO.write(bImageFromConvert, "jpg", new File(
-                        "/Users/hugobosquet/Desktop/new-sinus.jpg"));*/
                RWImage rwImage = new RWImage(name,id,bImageFromConvert,String.valueOf(idExamen));
                listeImage.add(rwImage);
-                System.out.println("copie de l'image sur le bureau");
+                System.out.println("lecture de l'image de la BD");
 
 
             }
@@ -82,7 +90,10 @@ public class LectImage {
             }
         }
     }
-
+    /**
+     * Méthode qui retourne la liste d'images
+     * @return liste d'images
+     */
     public ArrayList<RWImage> getListeImage() {
         return listeImage;
     }
