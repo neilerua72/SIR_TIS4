@@ -8,7 +8,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -16,6 +18,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Optional;
 
 public class menu_controller{
 
@@ -51,15 +54,26 @@ public class menu_controller{
      * @throws IOException
      */
     public void seDeco(ActionEvent e) throws IOException {
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/IU/page_connection/page_connection.fxml"));
-        Parent conne = loader.load();
-        Scene scene = new Scene(conne);
-        Stage window = (Stage)((Node)e.getSource()).getScene().getWindow();
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Voulez vous vous déconnecter ?");
+        alert.setHeaderText("Vous allez vous déconnecter.");
+        alert.setContentText("Etes vous sûr ?");
 
-        window.setScene(scene);
-        window.show();
-        System.out.println("deConnecter");
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK){
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/IU/page_connection/page_connection.fxml"));
+            Parent conne = loader.load();
+            Scene scene = new Scene(conne);
+            Stage window = (Stage)((Node)e.getSource()).getScene().getWindow();
+
+            window.setScene(scene);
+            window.show();
+            System.out.println("deConnecter");
+        } else {
+
+        }
+
 
     }
 

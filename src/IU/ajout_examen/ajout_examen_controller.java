@@ -386,10 +386,13 @@ public class ajout_examen_controller {
         try {
 
             int idImg=(int)(Math.random() * ( 999999 - 100000 )+1);
+            while(sir.checkIdImage(idImg)){
+                idImg=(int)(Math.random() * ( 999999 - 100000 )+1);
+            }
             int idExamen = Integer.valueOf(rdv.getId());
             ConnexionBase cb = new ConnexionBase();
             connexion=cb.returnConnexion();
-            String query ="INSERT INTO Image (idExamen,nom,image) VALUES(?,?,?)";
+            String query ="INSERT INTO Image (id,idExamen,nom,image) VALUES(?,?,?)";
 
 
             for(int i=0;i<this.selectedImage.size();i++){
@@ -400,9 +403,10 @@ public class ajout_examen_controller {
 
                 try (FileInputStream inputStream = new FileInputStream(file);
                      PreparedStatement stmt = connexion.prepareStatement(query);) {
-                    stmt.setInt(1,idExamen);
-                    stmt.setString(2, ""+idImg);
-                    stmt.setBinaryStream(3, inputStream, file.length());
+                    stmt.setInt(1,idImg);
+                    stmt.setInt(2,idExamen);
+                    stmt.setString(3, ""+idImg);
+                    stmt.setBinaryStream(4, inputStream, file.length());
                     stmt.executeUpdate();
                     System.out.println("Image sauvegarder dans la BD image");
                 } catch (IOException e) {
