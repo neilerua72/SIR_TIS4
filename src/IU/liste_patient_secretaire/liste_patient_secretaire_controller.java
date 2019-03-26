@@ -76,7 +76,7 @@ public class liste_patient_secretaire_controller {
     private TableColumn<?, ?> colonne_prenomPatient;
 
     @FXML
-    private Text idPatient;
+    private Text text_IDPatient;
     @FXML
     private Text nom;
     @FXML
@@ -194,10 +194,10 @@ public class liste_patient_secretaire_controller {
      */
     private void addRDV(Patient patient) {
         grid.setVisible(true);
-        idPatient.setText(String.valueOf(patient.getId()));
+        text_IDPatient.setText(patient.getId()+"");
         nom.setText("Nom : "+patient.getNom());
         prenom.setText("Prenom : "+patient.getPrenom());
-        sexeText.setText("Sexe "+patient.getSexe());
+        sexeText.setText("Sexe : "+patient.getSexe());
 
         salle_champ.setText("");
         ajoutpatient_champ_Rue.setText("");
@@ -221,7 +221,7 @@ public class liste_patient_secretaire_controller {
         String typeExamen = (String)type;
         typeExamEnum=typeExamEnum.matchType(typeExamen);
         String salle = salle_champ.getText();
-        String idPat = idPatient.getText();
+        String idPat = text_IDPatient.getText();
         int id = 0+(int)(Math.random()*((999999-0)+1));
         while(sir.checkIdRDV(id)){
             id = 0+(int)(Math.random()*((999999-0)+1));
