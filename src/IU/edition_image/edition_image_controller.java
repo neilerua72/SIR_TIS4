@@ -290,7 +290,13 @@ public class edition_image_controller implements Initializable {
 
             IIOMetadata imgMetadata = writer.getDefaultImageMetadata(type, param);
             listImg.add(file);
-
+                try {
+            writer.write(imgMetadata, image, iwp);
+            System.out.println("writer");
+            System.out.println(new_file);}
+                catch (IOException e) {
+                    e.printStackTrace();
+                }
 
             writer.dispose();
             FXMLLoader loader = new FXMLLoader();

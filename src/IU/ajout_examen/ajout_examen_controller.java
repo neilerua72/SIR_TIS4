@@ -344,6 +344,17 @@ public class ajout_examen_controller {
 
         Connection connexion = null;
         Statement statement = null;
+        for(int i=0;i<this.selectedImage.size();i++){
+            int index = selectedImage.get(i).getName().indexOf('.');
+            String nomFichier = selectedImage.get(i).getName().substring(0,index);
+            int idImg=(int)(Math.random() * ( 999999 - 100000 )+1);
+            while(sir.checkIdImage(idImg)){
+                idImg = 0+(int)(Math.random()*((999999-0)+1));
+            }
+            BufferedImage buffered_image = ImageIO.read(selectedImage.get(i));
+            RWImage rwImage = new RWImage(nomFichier,idImg,buffered_image,rdv.getId());
+            sir.getListeImage().add(rwImage);
+        }
 
         try {
 
@@ -403,12 +414,7 @@ public class ajout_examen_controller {
                     idImg=(int)(Math.random() * ( 999999 - 100000 )+1);
                 }
 
-                int index = selectedImages.get(i).getName().indexOf('.');
-                String nomFichier = selectedImages.get(i).getName().substring(0,index);
 
-                BufferedImage buffered_image = ImageIO.read(selectedImages.get(i));
-                RWImage rwImage = new RWImage(nomFichier,idImg,buffered_image,rdv.getId());
-                sir.getListeImage().add(rwImage);
 
                 try (FileInputStream inputStream = new FileInputStream(file);
                      PreparedStatement stmt = connexion.prepareStatement(query);) {
