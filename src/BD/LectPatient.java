@@ -7,9 +7,19 @@ import FC.Patient;
 import java.sql.*;
 import java.util.ArrayList;
 
+/**
+ * Classe qui modélise la lecture de notre base de donnée apres connexion à celle ci,
+ * cette classe contient une arrayList de tous les Patients
+ */
+
 public class LectPatient {
     private ArrayList<Patient> listePatient = new ArrayList<Patient>();
 
+    /**
+     *Méthode qui permet de se connecter à la base de donnée et lire la table Patient, afin d'ajouter
+     * nom,prenom,id,dateDeNaissance,mail,sexe,numeroTel,rue,infoComp,codePostal,ville,pathologie,
+     * nomMedecinPrescripteur,serviceAcceuil,dateRDV dans la liste des Patients
+     */
     public LectPatient(){
         Connection connexion = null;
         Statement statement = null;
@@ -74,6 +84,10 @@ public class LectPatient {
             }
         }
     }
+    /**
+     * Méthode qui retourne la liste des Patients
+     * @return liste Patient
+     */
 
     public ArrayList<Patient> getListePatient() {
         return listePatient;

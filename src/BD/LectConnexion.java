@@ -11,8 +11,18 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+/**
+ * Classe qui modélise la lecture de notre base de donnée apres connexion à celle ci,
+ * cette classe contient une arrayList de tous les utilisateurs
+ */
+
 public class LectConnexion {
     private ArrayList<Utilisateur> listeUsers = new ArrayList<>();
+
+    /**
+     *Méthode qui permet de se connecter à la base de donnée et lire la table connexion, afin d'ajouter
+     * l'id, le mot de passe, le prenom et le nom dans la liste des utilisateurs
+     */
     public LectConnexion(){
         Connection connexion = null;
         Statement statement = null;
@@ -69,6 +79,11 @@ public class LectConnexion {
         }
 
     }
+
+    /**
+     * Méthode qui retourne la liste d'utilisateurs
+     * @return liste des utlisateurs
+     */
     public ArrayList<Utilisateur> getListeUsers(){
         return this.listeUsers;
     }

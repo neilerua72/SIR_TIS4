@@ -7,9 +7,20 @@ import FC.CR;
 import java.sql.*;
 import java.util.ArrayList;
 
+/**
+ * Classe qui modélise la lecture de notre base de donnée apres connexion à celle ci,
+ * cette classe contient une arrayList de tous les compte rendu
+ */
+
+
 public class LectCR {
     private ArrayList<CR> listeCR = new ArrayList<CR>();
 
+    /**
+     *Méthode qui permet de se connecter à la base de donnée et lire la table Compte rendu, afin d'ajouter
+     * idCR,idExam,problemeClinique,technique,comparaisonExamenAnt,dateCR,protocoleStandardise,
+     * resultat,synthese,conclusion dans la liste des comptes rendu.
+     */
     public LectCR() {
         Connection connexion = null;
         Statement statement = null;
@@ -76,7 +87,10 @@ public class LectCR {
             }
 
     }}
-
+    /**
+     * Méthode qui retourne la liste de compte rendu
+     * @return liste des comptes rendu
+     */
     public ArrayList<CR> getListeCR() {
         return listeCR;
     }
