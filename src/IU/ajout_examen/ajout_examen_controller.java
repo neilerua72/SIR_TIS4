@@ -385,14 +385,11 @@ public class ajout_examen_controller {
 
         try {
 
-            int idImg=(int)(Math.random() * ( 999999 - 100000 )+1);
-            while(sir.checkIdImage(idImg)){
-                idImg=(int)(Math.random() * ( 999999 - 100000 )+1);
-            }
+
             int idExamen = Integer.valueOf(rdv.getId());
             ConnexionBase cb = new ConnexionBase();
             connexion=cb.returnConnexion();
-            String query ="INSERT INTO Image (id,idExamen,nom,image) VALUES(?,?,?)";
+            String query ="INSERT INTO Image (id,idExamen,nom,image) VALUES(?,?,?,?)";
 
 
             for(int i=0;i<this.selectedImage.size();i++){
@@ -400,6 +397,18 @@ public class ajout_examen_controller {
                 new_file=System.getProperty("user.dir");
                 File imageliste=new File(new_file);
                 File file = this.selectedImage.get(i);
+
+                int idImg=(int)(Math.random() * ( 999999 - 100000 )+1);
+                while(sir.checkIdImage(idImg)){
+                    idImg=(int)(Math.random() * ( 999999 - 100000 )+1);
+                }
+
+                int index = selectedImages.get(i).getName().indexOf('.');
+                String nomFichier = selectedImages.get(i).getName().substring(0,index);
+
+                BufferedImage buffered_image = ImageIO.read(selectedImages.get(i));
+                RWImage rwImage = new RWImage(nomFichier,idImg,buffered_image,rdv.getId());
+                sir.getListeImage().add(rwImage);
 
                 try (FileInputStream inputStream = new FileInputStream(file);
                      PreparedStatement stmt = connexion.prepareStatement(query);) {
@@ -416,17 +425,6 @@ public class ajout_examen_controller {
             e.printStackTrace();
         }
 
-        for(int i=0;i<this.selectedImages.size();i++){
-            int index = selectedImages.get(i).getName().indexOf('.');
-            String nomFichier = selectedImages.get(i).getName().substring(0,index);
-            int idImg=(int)(Math.random() * ( 999999 - 100000 )+1);
-            while(sir.checkIdImage(idImg)){
-                idImg = 0+(int)(Math.random()*((999999-0)+1));
-            }
-            BufferedImage buffered_image = ImageIO.read(selectedImages.get(i));
-            RWImage rwImage = new RWImage(nomFichier,idImg,buffered_image,rdv.getId());
-            sir.getListeImage().add(rwImage);
-        }
 
 
         if(this.sir.getConnexion().getType().equals(TypeConnexion.MED)){
