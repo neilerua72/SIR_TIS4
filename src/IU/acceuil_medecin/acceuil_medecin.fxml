@@ -89,7 +89,7 @@
                     </columns>
             </TableView>
             <Button fx:id="button_consulterTousLesDP" layoutX="729.0" layoutY="24.0" mnemonicParsing="false" onAction="#afficheDossierPatient" prefHeight="31.0" prefWidth="193.0" text="Consulter tous les DPR" textAlignment="CENTER" wrapText="true" />
-            <Button fx:id="message" layoutX="730.0" layoutY="98.0" mnemonicParsing="false" onAction="#Envoyer" prefHeight="33.0" prefWidth="193.0" text="Envoyer vers le dossier patient" />
+            <Button fx:id="message" layoutX="730.0" layoutY="98.0" mnemonicParsing="false" onAction="#Envoyer" prefHeight="33.0" prefWidth="193.0" text="Envoyer vers le logiciel SIH" />
             <Button fx:id="DoExam" layoutX="730.0" layoutY="62.0" mnemonicParsing="false" onAction="#DoExamen" prefHeight="31.0" prefWidth="88.0" text="Faire Examen" />
          </children>
     </AnchorPane>
