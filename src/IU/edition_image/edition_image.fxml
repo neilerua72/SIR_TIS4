@@ -1,19 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.shape.*?>
-<?import javafx.scene.text.*?>
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Slider?>
-<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -25,8 +14,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="651.0" prefWidth="798.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="IU.edition_image.edition_image_controller">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="651.0" prefWidth="798.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="IU.edition_image.edition_image_controller">
    <children>
       <Pane fx:id="pane_image" layoutX="27.0" layoutY="48.0" maxHeight="575.0" maxWidth="575.0" minHeight="575.0" minWidth="575.0" AnchorPane.bottomAnchor="145.0" AnchorPane.leftAnchor="27.0" AnchorPane.rightAnchor="198.0" AnchorPane.topAnchor="48.0">
          <children>
@@ -173,9 +161,9 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button fx:id="button_supprimer" alignment="CENTER_RIGHT" mnemonicParsing="false" prefHeight="57.0" prefWidth="52.0" translateX="19.0" GridPane.rowIndex="12">
+      <Button fx:id="button_supprimer" alignment="CENTER_RIGHT" disable="true" mnemonicParsing="false" prefHeight="57.0" prefWidth="52.0" translateX="19.0" GridPane.rowIndex="12">
          <graphic>
-            <ImageView fitHeight="47.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true" scaleX="1.4" scaleY="1.4">
+            <ImageView disable="true" fitHeight="47.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true" scaleX="1.4" scaleY="1.4">
                <image>
                   <Image url="@delete.png" />
                </image>
