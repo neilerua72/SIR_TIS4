@@ -37,6 +37,9 @@ public class choix_rdv_controller {
     private ResourceBundle resources;
 
     @FXML
+    private AnchorPane top;
+
+    @FXML
     private URL location;
 
     @FXML
@@ -53,9 +56,6 @@ public class choix_rdv_controller {
 
     @FXML
     private TableColumn<?, ?> colonne_patient;
-
-    @FXML
-    private AnchorPane top;
 
     @FXML
     private TableColumn<?, ?> colonne_dateRDV;
@@ -142,9 +142,7 @@ public class choix_rdv_controller {
             for (int i = 1; i < sir.getTableRDV().size(); i++) {
                 data.add(sir.getTableRDV().get(i));
             }
-            menu_controller menu_controller = loadermenu.getController();
-            menu_controller.initData(sir);
-            top.getChildren().add(menu);
+
             colonne_IDPatient.setCellValueFactory(new PropertyValueFactory<>("idPatient"));
             colonne_dateRDV.setCellValueFactory(new PropertyValueFactory<>("dateRDV"));
             colonne_medecinPrescripteur.setCellValueFactory(new PropertyValueFactory<>("medecinPrescri"));
@@ -155,6 +153,10 @@ public class choix_rdv_controller {
             tableau.setItems(data);
 
         }
+        menu_controller menu_controller = loadermenu.getController();
+        menu_controller.initData(sir);
+        top.getChildren().add(menu);
+
     }
 
     /**

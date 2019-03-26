@@ -477,6 +477,7 @@ public class acceuil_medecin_controller implements Initializable{
             typeProduit.setText(examen.getProduit());
             quantite.setText(examen.getDose()+"");
             cranchor.setVisible(true);
+            anchorView.setVisible(true);
             aucunExamen.setVisible(false);
             rediger.setVisible(false);
         }
@@ -484,6 +485,7 @@ public class acceuil_medecin_controller implements Initializable{
             cranchor.setVisible(false);
             aucunExamen.setText("Aucun Compte-Rendu de rédigé pour l'instant");
             aucunExamen.setVisible(true);
+            anchorView.setVisible(false);
             rediger.setVisible(true);
             if(sir.getConnexion().getType().equals(TypeConnexion.MAN))
                 rediger.setDisable(true);

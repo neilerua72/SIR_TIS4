@@ -263,7 +263,7 @@
                   </AnchorPane>
                </content>
             </ScrollPane>
-            <AnchorPane fx:id="anchorView" layoutX="8.0" layoutY="14.0" prefHeight="170.0" prefWidth="591.0">
+            <AnchorPane fx:id="anchorView" layoutX="8.0" layoutY="14.0" prefHeight="170.0" prefWidth="591.0" visible="false">
                <children>
                   <Text layoutY="10.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Images de l'examen">
                      <font>
