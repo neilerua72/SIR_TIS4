@@ -75,8 +75,10 @@ public class secretaire_accueil_controller {
     @FXML
     AnchorPane top;
 
+    /**
+     * Méthode qui initialise en background l'interface. C'est cette méthode qui est appelé lorsque l'on souhaite charger une interface.
+     */
     @FXML
-        // This method is called by the FXMLLoader when initialization is complete
     void initialize() {
         assert colonne_id != null : "fx:id=\"colonne_CR\" was not injected: check your FXML file 'secretaire_accueil_controller.fxml'.";
         assert colonne_nomPatient != null : "fx:id=\"colonne_nomPatient\" was not injected: check your FXML file 'secretaire_accueil_controller.fxml'.";
@@ -90,6 +92,12 @@ public class secretaire_accueil_controller {
         assert colonne_prenomPatient != null : "fx:id=\"colonne_prenomPatient\" was not injected: check your FXML file 'secretaire_accueil_controller.fxml'.";
 
     }
+
+    /**
+     * Méthode qui déclenche la rédaction de compte rendu pour la secrétaire. Ne fonctionne pas encore
+     * @param actionEvent event qui déclenche l'action
+     * @throws IOException Exception pour gérer le chargement de l'interface
+     */
     public void redigerCompteRendu(ActionEvent actionEvent) throws IOException {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/IU/redaction_CR/redaction_CR.fxml"));
@@ -104,6 +112,12 @@ public class secretaire_accueil_controller {
         stage.show();
 
     }
+
+    /**
+     * Méthode qui permet d'afficher l'interface avec la liste de tout les patients. C'est depuis cette interface que la secrétaire pourra ajouter des RDV à un patient ou ajouter un patient
+     * @param event action qui déclenche l'event
+     * @throws IOException Exception pour le chargement de l'interface
+     */
     public void AjouterPat (ActionEvent event) throws IOException {
 
         FXMLLoader loaderListe = new FXMLLoader();
@@ -120,6 +134,13 @@ public class secretaire_accueil_controller {
 
 
     }
+
+    /**
+     * Méthode qui initialise les données de l'interface. C'est cette méthode qui permet de mettre à jour l'interface avec les données que nous souhaitons.
+     * @param sir le SIR de l'application
+     * @param menu le menu de l'interface
+     * @param loader le loader du menu
+     */
     public void initData(SIR sir, Parent menu, FXMLLoader loader){
         this.sir=sir;
         this.loaderMenu=loader;

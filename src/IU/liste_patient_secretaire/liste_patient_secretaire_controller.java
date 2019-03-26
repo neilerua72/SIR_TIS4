@@ -101,6 +101,12 @@ public class liste_patient_secretaire_controller {
     private Parent menu;
     private FXMLLoader loader;
     private Patient p;
+
+    /**
+     * Méthode qui affiche l'interface pour ajouter un patient
+     * @param event event qui déclenche l'action
+     * @throws IOException
+     */
     @FXML
     void AjouterPat(ActionEvent event) throws IOException {
         FXMLLoader loadera = new FXMLLoader();
@@ -117,7 +123,9 @@ public class liste_patient_secretaire_controller {
 
     }
 
-
+    /**
+     * Méthode qui initialise en backGround l'interface
+     */
     @FXML
     void initialize() {
         assert colonne_nomPatient != null : "fx:id=\"colonne_nomPatient\" was not injected: check your FXML file 'liste_patient_secretaire.fxml'.";
@@ -131,6 +139,10 @@ public class liste_patient_secretaire_controller {
         tableau.getSelectionModel().selectedItemProperty().addListener(
                 (observable, oldValue, newValue) -> addRDV(newValue));
         rechercherParNom.setOnKeyReleased(new EventHandler<KeyEvent>() {
+            /**
+             * Méthode qui observe le comportement de la barre de recherche. Cette méthode est appelé a chaque fois que une touche est relaché
+             * @param event event qui déclenche l'action
+             */
             @Override
             public void handle(KeyEvent event) {
                 if (event.getCode().toString().equals("BACK_SPACE") && rechercherParNom.getText().length() < 2) {
@@ -148,6 +160,12 @@ public class liste_patient_secretaire_controller {
 
     }
 
+    /**
+     * Méthode qui initialise les données de l'interface
+     * @param sir le SIR de l'application
+     * @param menu le menu de l'application
+     * @param loader le lodaer du menu
+     */
     public void initData(SIR sir, Parent menu, FXMLLoader loader){
         this.menu=menu;
         this.sir=sir;
@@ -170,6 +188,10 @@ public class liste_patient_secretaire_controller {
          p = new Patient();
     }
 
+    /**
+     * Méthode qui met a jour les informations avant d'ajouter un RDV
+     * @param patient la patient a qui il faut ajouter un rdv
+     */
     private void addRDV(Patient patient) {
         grid.setVisible(true);
         idPatient.setText(String.valueOf(patient.getId()));
@@ -183,6 +205,12 @@ public class liste_patient_secretaire_controller {
 
 
     }
+
+    /**
+     * Méthode qui ajoute un RDV pour un patient donné
+     * @param event event qui déclenche l'action
+     * @throws IOException
+     */
     @FXML
     public void ajoutRDV(ActionEvent event) throws IOException {
         LocalDate date = date_RDV.getValue();
@@ -287,6 +315,12 @@ public class liste_patient_secretaire_controller {
 
 
     }
+
+    /**
+     * Méthode qui initialise l'action de retour
+     * @param event event qui déclenche l'action
+     * @throws IOException
+     */
     public void retour(ActionEvent event) throws IOException{
         FXMLLoader loadera = new FXMLLoader();
         loadera.setLocation(getClass().getResource("/IU/acceuil_secretaire/secretaire_accueil.fxml"));

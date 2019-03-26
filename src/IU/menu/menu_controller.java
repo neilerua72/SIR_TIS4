@@ -31,7 +31,10 @@ public class menu_controller{
     @FXML
     private AnchorPane menu;
 
-
+    /**
+     * Méthode qui initialise les données de l'interface
+     * @param sir le SIR de l'application
+     */
     public void initData(SIR sir){
         nomprenom.setText(sir.getConnexion().getUser().getNomPremnom()+" / "+sir.getConnexion().getType().toString());
         if(sir.getConnexion().getType().equals(TypeConnexion.SEC))
@@ -41,6 +44,12 @@ public class menu_controller{
         else
             img.setImage(new Image("/IU/icone/man.jpg"));
     }
+
+    /**
+     * Action pour un bouton qui permet de se déconnecter
+     * @param e l'event qui déclenche l'action
+     * @throws IOException
+     */
     public void seDeco(ActionEvent e) throws IOException {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/IU/page_connection/page_connection.fxml"));

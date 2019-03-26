@@ -233,13 +233,19 @@ public class afficher_dossiers_patient_controller {
 
     private BufferedImage image_to_edit;
 
+    /**
+     * Méthode qui retourne l'image à éditer
+     * @return l'image à éditer
+     */
+
     public Image getImage_to_edit(){
         return SwingFXUtils.toFXImage(image_to_edit, null);
     }
 
 
-
-
+    /**
+     * Méthode qui initialise en background l'interface. C'est cette méthode qui est appelé lorsque l'on charge l'interface
+     */
     @FXML
         // This method is called by the FXMLLoader when initialization is complete
     void initialize() {
@@ -267,6 +273,10 @@ public class afficher_dossiers_patient_controller {
                 (observable, oldValue, newValue) -> showDetailExam(newValue));
 
         champ_rechercherParNomPatient.setOnKeyReleased(new EventHandler<KeyEvent>() {
+            /**
+             * Listenner qui écoute la barre de recherche et qui observe les changements sur la barre de recherhce. Au moindre relachement de touche, cette méthode est appelé. Elle déclenche la recherche et la mise à jour de la tableView
+             * @param event
+             */
             @Override
             public void handle(KeyEvent event) {
                 if (event.getCode().toString().equals("BACK_SPACE") && champ_rechercherParNomPatient.getText().length() < 2) {
@@ -295,6 +305,10 @@ public class afficher_dossiers_patient_controller {
 
     }
 
+    /**
+     * Cette méthode met à jour les détails de l'examen pour un examen donné. Cett eméthode est appelé à chaque clic sur un élement de la tableView
+     * @param tableExamen l'examen qui a été cliqué
+     */
     private void showDetailExam(TableExamen tableExamen) {
             examen = sir.getExamenFromId(Integer.parseInt(tableExamen.getIdexamen()));
             CR cr = sir.getCRFromIdExam(Integer.parseInt(examen.getId()));
@@ -374,7 +388,12 @@ public class afficher_dossiers_patient_controller {
 
     }
 
-
+    /**
+     * Méthode qui initialise l'interface avec les champs que l'ont souhaite mettre à jour
+     * @param sir le SIR de l'application
+     * @param menu le menu de l'application
+     * @param loadermenu le loader du menu
+     */
     public void initData(SIR sir, Parent menu, FXMLLoader loadermenu){
         this.sir=sir;
         this.menu=menu;
@@ -400,7 +419,10 @@ public class afficher_dossiers_patient_controller {
 
     }
 
-
+    /**
+     * Méthode qui affiche les examens pour un patient donné
+     * @param patient le patient qui a été cliqué
+     */
     public void showListeExam(Patient patient){
         ArrayList<TableExamen> listetableExamen = new ArrayList<>(sir.getTableExamenFromIdPatient(patient.getId()));
         if(listetableExamen.size()!=0){
@@ -431,6 +453,12 @@ public class afficher_dossiers_patient_controller {
         aucunExamen.setVisible(true);
 
     }
+
+    /**
+     * Méthode qui permet d'implémenter l'action de retour
+     * @param event event qui déclenche l'action
+     * @throws IOException Exception qui gère le chargement de de l'interface
+     */
     public void retour(ActionEvent event) throws IOException {
         FXMLLoader loadera = new FXMLLoader();
         loadera.setLocation(getClass().getResource("/IU/acceuil_medecin/acceuil_medecin.fxml"));
@@ -444,6 +472,11 @@ public class afficher_dossiers_patient_controller {
         stage.show();
     }
 
+    /**
+     * Méthode qui permet d'agrandir l'image sélectionné
+     * @param actionEvent event qui déclenche l'action
+     * @throws IOException Exception qui gère le chargement de l'interface
+     */
     public void agrandir(ActionEvent actionEvent) throws IOException {
 
         FXMLLoader loader = new FXMLLoader();
@@ -462,6 +495,12 @@ public class afficher_dossiers_patient_controller {
 
 
     }
+
+    /**
+     * Bouton qui permet de rédiger le CR d'un examen
+     * @param event event qui déclenche l'action
+     * @throws IOException exception qu igère le chargement de l'interface
+     */
     public void rediger(ActionEvent event) throws IOException {
         FXMLLoader loader =new FXMLLoader();
         loader.setLocation(getClass().getResource("/IU/redaction_CR/redaction_CR.fxml"));

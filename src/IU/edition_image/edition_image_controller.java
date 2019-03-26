@@ -135,6 +135,10 @@ public class edition_image_controller implements Initializable {
     private Parent menu;
     private FXMLLoader loadermenu;
 
+    /**
+     * Méthode qui retourne le slider du contraste
+     * @return le slider du contraste
+     */
     public Slider getSlider_contrast() {
         return slider_contrast;
     }
@@ -145,7 +149,11 @@ public class edition_image_controller implements Initializable {
     int verticalFlipCount = 0;
     int rotateRightCount = 0;
 
-
+    /**
+     * Méthode qui initialise l'interface en background
+     * @param location
+     * @param resources
+     */
     @FXML
     // This method is called by the FXMLLoader when initialization is complete
     public void initialize(URL location, ResourceBundle resources) {
@@ -168,6 +176,12 @@ public class edition_image_controller implements Initializable {
         slider_contrast.setValue(0.5);
         ColorAdjust colorAdjust = new ColorAdjust();
         slider_contrast.valueProperty().addListener(new ChangeListener<Number>() {
+            /**
+             * Méthode qui observe les changement du slider. Si il y a changement, il modifie le contraste
+             * @param observable
+             * @param oldValue l'ancienne valeur du slider
+             * @param newValue la nouvelle valeur du slider
+             */
             @Override
             public void changed(ObservableValue<? extends Number> observable, //
                                 Number oldValue, Number newValue) {
@@ -181,6 +195,12 @@ public class edition_image_controller implements Initializable {
 
         slider_brightness.setValue(0.5);
         slider_brightness.valueProperty().addListener(new ChangeListener<Number>() {
+            /**
+             * Méthode qui observe les changements sur le slider de la luminosité. Si il y a changement, la méthode modifie la luminosité
+             * @param observable
+             * @param oldValue l'ancienne valeur du slider
+             * @param newValue la nouvelle valeur du slider
+             */
             @Override
             public void changed(ObservableValue<? extends Number> observable, //
                                 Number oldValue, Number newValue) {
@@ -206,30 +226,12 @@ public class edition_image_controller implements Initializable {
      */
     private Stage owner;
 
+    /**
+     * méthode qui permet de valider l'image et de la rajouter à la liste des images de l'examen
+     * @param event event qui déclenche l'action
+     * @throws IOException Exception pour gérer le chargement de l'interface
+     */
     public void validerImg(ActionEvent event) throws IOException {
-
-            //Image image =  SwingFXUtils.fromFXImage(imageView_editionImage.getImage());  // javafx.scene.image.Image
-           /*     String format = "png";
-                File file = new File("C:\\Users\\Utilisateur\\Documents\\Polytech\\Cours TIS4\\Semestre 8\\SIR\\SIR_TIS4\\src\\IU\\edition_image\\test_image_local\\formattedImage.jpg.");
-                try {
-                    ImageIO.write(SwingFXUtils.fromFXImage(imageView_editionImage.getImage(), null), format, file);
-                    System.out.println("writer");
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                System.out.println("writer");
-
-
-            }
-        });
-    } */
-
-               /*
-               //recreates the image to save
-                imageView_editionImage.setPreserveRatio(false);
-                WritableImage writableImage = new WritableImage((int) imageView_editionImage.getFitWidth(), (int) imageView_editionImage.getFitHeight());
-                WritableImage writableImage = new WritableImage(imageView_editionImage.getImage().getPixelReader(), (int) imageView_editionImage.getImage().getWidth(), (int) imageView_editionImage.getImage().getHeight());
-                */
 
             // Scaling the image gives it a higher resolution which results in a better image quality when the image is exported
             SnapshotParameters snapshotParameters = new SnapshotParameters();
@@ -342,10 +344,13 @@ public class edition_image_controller implements Initializable {
         }
 
 
-
-
-
-
+    /**
+     * Méthode qui permet d'imprimer une image
+     * @throws NoSuchMethodException
+     * @throws InstantiationException
+     * @throws IllegalAccessException
+     * @throws InvocationTargetException
+     */
     public void printImage() throws
             NoSuchMethodException, InstantiationException, IllegalAccessException, InvocationTargetException {
         System.out.println("pressed");
@@ -380,11 +385,23 @@ public class edition_image_controller implements Initializable {
         }
     }
 
-
+    /**
+     * Méthode qui retourne l'imageView de l'édition d'image
+     * @return un ImageView
+     */
     public ImageView getImageView_editionImage() {
         return imageView_editionImage;
     }
 
+    /**
+     * Méthode qui permet d'initialiser l'interface et de mettre à jour les champs avec les informations nécessaires.
+     * @param Image l'image à éditer
+     * @param rdv le RDV correspondant à l'examen en cours
+     * @param listImg la liste d'image en cours d'enregistrement
+     * @param sir le SIR de l'application
+     * @param menu le menu de l'application
+     * @param loadermenu le loader du menu
+     */
     public void setImageView_editionImage(Image Image, RDV rdv, ArrayList<File> listImg, SIR sir, Parent menu, FXMLLoader loadermenu) {
         this.imageView_editionImage.setImage(Image);
         this.rdv=rdv;
@@ -394,7 +411,10 @@ public class edition_image_controller implements Initializable {
         this.loadermenu=loadermenu;
     }
 
-
+    /**
+     * Méthode qui retourne l'image
+     * @param actionEvent l'event qui déclenche l'action
+     */
     public void verticalFlipActivated(ActionEvent actionEvent) {
         if (verticalFlipCount % 2 == 0) {
             imageView_editionImage.setScaleY(-1.0);
@@ -409,6 +429,10 @@ public class edition_image_controller implements Initializable {
 
     int horizontalFlipCount = 0;
 
+    /**
+     * Méthode qui retourne l'image horizontalement
+     * @param actionEvent event qui déclenche l'action
+     */
     public void horizontalFlipActivated(ActionEvent actionEvent) {
         if (horizontalFlipCount % 2 == 0) {
             this.imageView_editionImage.setScaleX(-1.0);
@@ -420,7 +444,10 @@ public class edition_image_controller implements Initializable {
         horizontalFlipCount++;
     }
 
-
+    /**
+     * Méthode qui retourne l'image à gauche
+     * @param actionEvent event qui déclenche l'action
+     */
     public void rotateLeftActivated(ActionEvent actionEvent) {
         if (rotateLeftCount % 2 == 0) {
             if (countPair % 2 == 0) {
@@ -444,7 +471,10 @@ public class edition_image_controller implements Initializable {
         rotateLeftCount++;
     }
 
-
+    /**
+     * Méthode qui retourne l'image à droite
+     * @param actionEvent event qui déclenche l'action
+     */
     public void rotateRightActivated(ActionEvent actionEvent) {
         if (rotateRightCount % 2 == 0) {
             if (countPair % 2 == 0) {
@@ -469,7 +499,9 @@ public class edition_image_controller implements Initializable {
         rotateRightCount++;
     }
 
-
+    /**
+     * Méthode qui inverse les couleurs
+     */
     public void invertGreyScale() {
         PixelReader pixelReader = imageView_editionImage.getImage().getPixelReader();
         WritableImage copyImage = new WritableImage((int) imageView_editionImage.getImage().getWidth(), (int) imageView_editionImage.getImage().getHeight());

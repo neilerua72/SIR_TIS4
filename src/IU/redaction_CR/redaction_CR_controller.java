@@ -106,11 +106,22 @@ public class redaction_CR_controller implements Initializable {
     private Examen examen;
     private Parent menu;
     private FXMLLoader loadermenu;
+
+    /**
+     * Méthode qui permet de charger l'interface en background. C'est cette méthode qui est appelé lorsque l'on charge notre interface.
+     * @param location
+     * @param resources
+     */
     @FXML // This method is called by the FXMLLoader when initialization is complete
     public void initialize(URL location, ResourceBundle resources) {
 
     }
 
+    /**
+     * Méthode qui permet de valider le CR et de passer à l'interface suivante. Le CR est sauvegardé dans la BD et dans le SIR
+     * @param actionEvent event qui déclenche l'action
+     * @throws IOException Exception qui gére le chargement de l'interface
+     */
     public void validerCR(ActionEvent actionEvent) throws IOException{
 
 
@@ -229,7 +240,15 @@ public class redaction_CR_controller implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
-public void initData(SIR sir, Examen examen,Parent menu,FXMLLoader loadermenu){
+
+    /**
+     * Méthode qui initialise notre interface avec les champs que nous souhaitons
+     * @param sir le SIR de l'application
+     * @param examen l'examen pour lequel le CR est rédiger
+     * @param menu le menu de l'application
+     * @param loadermenu le loader du menu
+     */
+    public void initData(SIR sir, Examen examen,Parent menu,FXMLLoader loadermenu){
 this.sir=sir;
 this.examen=examen;
 this.menu=menu;
@@ -247,18 +266,7 @@ DateExamen.setText(examen.getDateExamen().toString());
 NomPrescri.setText(examen.getMedecinPrescri());
 NomRadiologue.setText(examen.getMedecinRadio());
 }
-public void annuler(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/IU/acceuil_medecin/acceuil_medecin.fxml"));
-        Parent parent = loader.load();
-        acceuil_medecin_controller acceuil_medecin_controller =loader.getController();
-        acceuil_medecin_controller.initData(sir,menu,loadermenu);
-        Scene scene = new Scene(parent);
-        Stage stage =(Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setTitle("Sinpati - Acceuil");
-        stage.setScene(scene);
-        stage.show();
-}
+
 
 }
 

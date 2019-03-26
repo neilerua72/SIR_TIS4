@@ -50,7 +50,11 @@ public class page_connection_controller {
         private Button button_seConnecter; // Value injected by FXMLLoader
 
 
-
+    /**
+     * Méthode qui déclenche la connexion et qui fait appel à la classe ActionConnexion
+     * @param e event qui déclenche l'action
+     * @throws IOException
+     */
     @FXML
     private void SeConnecter(ActionEvent e) throws IOException {
         String id = champ_nomUtilisateur.getText();
@@ -58,6 +62,10 @@ public class page_connection_controller {
         ActionConnexion connexion=new ActionConnexion(id,mdp,e);
 
     }
+
+    /**
+     * Méthode qui initialise l'interface en BackGroung
+     */
         @FXML // This method is called by the FXMLLoader when initialization is complete
         void initialize() {
             assert champ_nomUtilisateur != null : "fx:id=\"champ_nomUtilisateur\" was not injected: check your FXML file 'page_connection.fxml'.";

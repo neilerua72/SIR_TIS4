@@ -169,6 +169,14 @@ public class ajout_examen_controller {
             //  System.out.println("Valeur Selectionnée"+ listView_images.getSelectionModel().getSelectedIndices()));
         });
     }
+
+    /**
+     * Méthode qui initialise notre interface avec les champs que l'on veut initialiser
+     * @param sir le SIR de l'application
+     * @param rdv le RDV dont on ajoute l'examen
+     * @param menu le menu de l'application
+     * @param loadermenu le loader du menu
+     */
     public void initData(SIR sir, RDV rdv,Parent menu, FXMLLoader loadermenu){
         this.sir=sir;
         this.menu=menu;
@@ -196,6 +204,12 @@ public class ajout_examen_controller {
     //faire liaison bouton
 
     ObservableList<BufferedImage> list_images;
+
+    /**
+     * Méthode qui permet d'aller selectionner des fichiers grâce à une fenetre de dialogue
+     * @param event event qui déclenche l'action
+     * @throws IOException
+     */
 
     public void chooseFileForList(ActionEvent event) throws IOException {
         FileChooser file_chooser = new FileChooser();
@@ -273,6 +287,11 @@ public class ajout_examen_controller {
         }
     }
 
+    /**
+     * Méthode qui déclenche l'interface d'édition d'image
+     * @param actionEvent event qui déclenche l'action
+     * @throws IOException
+     */
     public void editionImage(ActionEvent actionEvent) throws IOException {
 
         FXMLLoader loader = new FXMLLoader();
@@ -292,6 +311,12 @@ public class ajout_examen_controller {
 
 
     }
+
+    /**
+     * Méthode qui permet de déclencher la validation d'une manipulation
+     * @param event event qui déclenche l'action
+     * @throws IOException
+     */
     public void ValiderManip(ActionEvent event) throws IOException {
         String lateralite = champ_lateraliteManip.getText();
         String vue = champ_vueManip.getText();
@@ -428,6 +453,12 @@ public class ajout_examen_controller {
             stage.show();
         }
     }
+
+    /**
+     * Méthode qui initialise la la liste d'image
+     * @param listeImg la liste d'image à initialisé
+     * @throws IOException
+     */
     public void initImg(ArrayList<File> listeImg) throws IOException {
         for(int i=0;i<listeImg.size();i++){
             selectedImage.add(listeImg.get(i));
@@ -455,6 +486,12 @@ public class ajout_examen_controller {
             }
         }
     }
+
+    /**
+     * Méthode qui implémente l'action retour
+     * @param event event qui déclenche l'action
+     * @throws IOException
+     */
     public void retour (ActionEvent event) throws IOException {
 
         FXMLLoader loader = new FXMLLoader();

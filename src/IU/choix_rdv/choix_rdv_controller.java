@@ -80,6 +80,9 @@ public class choix_rdv_controller {
     Parent menu;
     FXMLLoader loadermenu;
 
+    /**
+     * Méthode qui initialise l'interface en background
+     */
     @FXML
     void initialize() {
         assert date != null : "fx:id=\"date\" was not injected: check your FXML file 'choix_rdv.fxml'.";
@@ -103,6 +106,10 @@ public class choix_rdv_controller {
                     }
                 });
         rechercherParNom.setOnKeyReleased(new EventHandler<KeyEvent>() {
+            /**
+             * Listenner qui regarde le comportement de la barre de recherche. A chaque fois qu'une touche est relaché, cette méthode est appelé
+             * @param event event qui déclenche l'action
+             */
             @Override
             public void handle(KeyEvent event) {
                 if (event.getCode().toString().equals("BACK_SPACE") && rechercherParNom.getText().length() < 2) {
@@ -119,6 +126,12 @@ public class choix_rdv_controller {
 
     }
 
+    /**
+     * Méthode qui initialise les données de l'interface
+     * @param sir le SIR de l'application
+     * @param menu le menu de l'application
+     * @param loadermenu le loader du menu
+     */
     public void initData(SIR sir, Parent menu, FXMLLoader loadermenu){
         this.sir=sir;
         this.menu=menu;
@@ -143,6 +156,12 @@ public class choix_rdv_controller {
 
         }
     }
+
+    /**
+     * Méthode qui permet de sélectionner un rdv dans une table.
+     * @param rdv le rdv selectionné
+     * @throws IOException
+     */
     public void selectionRDV(TableRDV rdv) throws IOException {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/IU/ajout_examen/ajout_examen.fxml"));
@@ -159,6 +178,11 @@ public class choix_rdv_controller {
 
     }
 
+    /**
+     * Méthode qui implémente l'action retour sur cette interface
+     * @param event event qui déclenche l'action
+     * @throws IOException
+     */
     public void retour(ActionEvent event) throws IOException{
         FXMLLoader loadera = new FXMLLoader();
         loadera.setLocation(getClass().getResource("/IU/acceuil_medecin/acceuil_medecin.fxml"));
@@ -172,6 +196,10 @@ public class choix_rdv_controller {
         stage.show();
     }
 
+    /**
+     * Méthode qui affiche les rdv pour la date du jour
+     * @param event event qui déclenche l'action
+     */
     public void RDVDate(ActionEvent event){
         Date date = new Date();
         LocalDate todayLocalDate = LocalDate.now( ZoneId.of( "Europe/Paris" ) );
@@ -180,6 +208,11 @@ public class choix_rdv_controller {
         MaJRDV maJTableau = new MaJRDV(recherche.rechercheRDVparDate());
         tableau.setItems(maJTableau.getData());
     }
+
+    /**
+     * Méthode qui réinitialise la liste de RDV
+     * @param event
+     */
     public void Reinitialiser(ActionEvent event){
         MaJRDV maJRDV = new MaJRDV(sir.getTableRDV());
         tableau.setItems(maJRDV.getData());

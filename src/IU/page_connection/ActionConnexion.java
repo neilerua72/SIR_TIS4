@@ -16,7 +16,19 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 
+/**
+ * Classe qui permet de se connecter au SIR peut importe la manière dont l'action est déclenché (touche entrée ou le bouton)
+ * @author Aurélien
+ * @version 1.0
+ */
 public class ActionConnexion {
+    /**
+     * Constructeur de la classe qui réalise l'action de la connexion, peut importe la manière dont elle a été déclenché
+     * @param id id de l'utilisateur
+     * @param mdp mdp de l'utilisateur
+     * @param e l'eveneement qui é déclenché la connexion
+     * @throws IOException
+     */
     public ActionConnexion(String id, String mdp, Event e) throws IOException {
         FC.Connexion conn = new FC.Connexion(new Utilisateur(id,mdp));
         SIR sir = new SIR(conn);
