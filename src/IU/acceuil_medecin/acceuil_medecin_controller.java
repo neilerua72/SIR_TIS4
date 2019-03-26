@@ -342,9 +342,9 @@ public class acceuil_medecin_controller implements Initializable{
         toggle_nomPatient.setToggleGroup(groupe_toggle_rechercherPar);
         toggle_IDPatient.setToggleGroup(groupe_toggle_rechercherPar);
         toggle_medecinPrescripteur.setToggleGroup(groupe_toggle_rechercherPar);
-        toggle_medecinPrescripteur.setText("Médecin"+"\n"+"Préscripteur");
+
         toggle_medecinRadiologue.setToggleGroup(groupe_toggle_rechercherPar);
-        toggle_medecinRadiologue.setText("Médecin"+"\n"+"radiologue");
+
         toggle_IDExamen.setToggleGroup(groupe_toggle_rechercherPar);
         date_button.setToggleGroup(groupe_toggle_rechercherPar);
         tableau_colonnes.getSelectionModel().selectedItemProperty().addListener(
