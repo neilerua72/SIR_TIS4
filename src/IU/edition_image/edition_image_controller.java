@@ -289,11 +289,15 @@ public class edition_image_controller implements Initializable {
             ImageTypeSpecifier type = new ImageTypeSpecifier(renderedImage);
 
             IIOMetadata imgMetadata = writer.getDefaultImageMetadata(type, param);
-            listImg.add(file);
+            this.listImg.add(file);
                 try {
             writer.write(imgMetadata, image, iwp);
             System.out.println("writer");
-            System.out.println(new_file);}
+            System.out.println(new_file);
+
+
+
+                }
                 catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -311,7 +315,7 @@ public class edition_image_controller implements Initializable {
             System.out.println(controller.toString());
 
             controller.initData(this.sir,rdv,menu,loadermenu);
-            controller.initImg(listImg);
+            controller.initImg(this.listImg);
             Scene scene = new Scene(parent);
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(scene);
@@ -380,7 +384,7 @@ public class edition_image_controller implements Initializable {
     public void setImageView_editionImage(Image Image, RDV rdv, ArrayList<File> listImg, SIR sir, Parent menu, FXMLLoader loadermenu) {
         this.imageView_editionImage.setImage(Image);
         this.rdv=rdv;
-        this.listImg=listImg;
+        this.listImg=new ArrayList<>(listImg);
         this.sir=sir;
         this.menu=menu;
         this.loadermenu=loadermenu;
