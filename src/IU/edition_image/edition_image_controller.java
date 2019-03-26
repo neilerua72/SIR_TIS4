@@ -299,22 +299,7 @@ public class edition_image_controller implements Initializable {
                     String passwd = "12345678";
                     String sql = "INSERT INTO Image (id,idExamen,nom,image) VALUES(?,?,?,?)";
                     int idExamen = Integer.valueOf(rdv.getId());
-                    try (Connection conn = DriverManager.getConnection(url, user, passwd);) {
-                        File imagemodif = new File(new_file);
-                        try (FileInputStream inputStream = new FileInputStream(imagemodif);
-                             PreparedStatement stmt = conn.prepareStatement(sql);) {
-                            stmt.setInt(1,idImg);
-                            stmt.setInt(2,idExamen);
-                            stmt.setString(3, ""+idImg);
-                            stmt.setBinaryStream(4, inputStream, imagemodif.length());
-                            stmt.executeUpdate();
-                            System.out.println("Image sauvegarder dans la BD image");
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                    } catch (SQLException e) {
-                        e.printStackTrace();
-                    }
+
 
 
                 }
@@ -336,7 +321,7 @@ public class edition_image_controller implements Initializable {
 
             controller.initData(this.sir,rdv,menu,loadermenu);
             controller.initImg(this.listImg);
-            sir.getListeImage().add(new RWImage(""+idImg,idImg,imageToSave,rdv.getId()));
+            //sir.getListeImage().add(new RWImage(""+idImg,idImg,imageToSave,rdv.getId()));
             Scene scene = new Scene(parent);
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(scene);
